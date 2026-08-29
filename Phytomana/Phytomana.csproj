@@ -34,19 +34,13 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="ComponentTemplate.cs"/>
-        <Compile Include="SubsystemTemplate.cs"/>
-        <Compile Include="TemplateBlock.cs"/>
-        <Compile Include="TemplateHarmonyPatch.cs" />
-        <Compile Include="TemplateModLoader.cs"/>
-        <Compile Include="TemplateReplaceBlock.cs"/>
-        <Compile Include="TemplateWidget.cs"/>
+        <Compile Include="*.cd"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <PropertyGroup>
             <PathOfScmod>$(TargetDir)..\$(AssemblyName).scmod</PathOfScmod>
         </PropertyGroup>
         <ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(PathOfScmod)" Overwrite="true" />
-        <Message Text="The scmod file has been created: 已打包 scmod 文件到: $(PathOfScmod)" Importance="high" />
+        <Message Text="The scmod file has been created:$(PathOfScmod)" Importance="high" />
     </Target>
 </Project>
