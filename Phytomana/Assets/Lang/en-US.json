@@ -19,6 +19,10 @@
       "DisplayName": "Sunblaze Flower",
       "Description": "Burn to Mana"
     },
+    "WaterDonFlower:0" : {
+      "DisplayName": "Springfroth Flower",
+      "Description": "Water to Mana"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "Mana Spreader",
       "Description": "",

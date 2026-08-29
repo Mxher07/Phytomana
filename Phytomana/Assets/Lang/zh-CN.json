@@ -19,6 +19,10 @@
       "DisplayName": "日耀花",
       "Description": "「燃烧以产能」"
     },
+    "WaterDonFlower:0" : {
+      "DisplayName": "泉沫珠",
+      "Description": "「魔法之流动」"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "魔力发射器",
       "Description": "「地之信任者」",

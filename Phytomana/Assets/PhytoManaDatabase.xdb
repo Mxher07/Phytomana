@@ -9,5 +9,8 @@
   <MemberSubsystemTemplate Name="Mana" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f8" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7bf" Value="Game.SubsystemMana" Type="string"/>
   </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="WaterDonBehavior" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f9" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7df" Value="Game.SubsystemWaterDonBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
       </ProjectTemplate>
 </PhytoMana>

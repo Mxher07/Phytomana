@@ -15,6 +15,7 @@ namespace Game {
             public double NextProductionParticleTime;
             public double NextDrainTime;
             public double NextBlueParticleTime;
+            public float IdleIsolatedElapsed;
         }
 
         public const double ScanInterval = 1.0;
@@ -25,6 +26,8 @@ namespace Game {
         public const float ManaRatePerLevel = 10f;
         public const float ManaRatePeriod = 5f;
         public const float DrainAmount = 5f;
+        public const float IsolatedDrainDelay = 1.5f;
+        public const float TransferRate = 75f / 0.5f;
 
         public SubsystemGameInfo m_subsystemGameInfo;
         public SubsystemParticles m_subsystemParticles;
@@ -86,6 +89,7 @@ namespace Game {
                     data.IsBurning = false;
                 }
                 else {
+                    data.IdleIsolatedElapsed = 0f;
                     float rate = (BaseManaRate + ManaRatePerLevel * data.BurnHeatLevel) / ManaRatePeriod;
                     m_subsystemMana.AddMana(data.Point, rate * dt);
                     if (time >= data.NextProductionParticleTime) {
@@ -95,16 +99,24 @@ namespace Game {
                 }
             }
             else {
-                if (time >= data.NextDrainTime) {
-                    data.NextDrainTime = time + DrainInterval;
-                    if (m_subsystemMana.GetManaAmount(data.Point) > 0f) {
-                        m_subsystemMana.RemoveMana(data.Point, DrainAmount);
-                    }
+                if (m_subsystemMana.HasSpreaderNearby(data.Point)) {
+                    data.IdleIsolatedElapsed = 0f;
                 }
-                if (time >= data.NextBlueParticleTime) {
-                    data.NextBlueParticleTime = time + DrainParticleInterval;
-                    if (m_subsystemMana.GetManaAmount(data.Point) > 0f) {
-                        SpawnManaParticle(data.Point, 0.9f, 0.25f, 1.5f, Color.Blue);
+                else {
+                    data.IdleIsolatedElapsed += dt;
+                }
+                if (data.IdleIsolatedElapsed > IsolatedDrainDelay) {
+                    if (time >= data.NextDrainTime) {
+                        data.NextDrainTime = time + DrainInterval;
+                        if (m_subsystemMana.GetManaAmount(data.Point) > 0f) {
+                            m_subsystemMana.RemoveMana(data.Point, DrainAmount);
+                        }
+                    }
+                    if (time >= data.NextBlueParticleTime) {
+                        data.NextBlueParticleTime = time + DrainParticleInterval;
+                        if (m_subsystemMana.GetManaAmount(data.Point) > 0f) {
+                            SpawnManaParticle(data.Point, 0.9f, 0.25f, 1.5f, Color.Blue);
+                        }
                     }
                 }
                 if (time >= data.NextScanTime) {
@@ -112,6 +124,7 @@ namespace Game {
                     TryEatFuel(data);
                 }
             }
+            m_subsystemMana.TransferManaToBestSpreader(data.Point, TransferRate * dt);
         }
 
         public void SpawnManaParticle(Point3 point, float yOffset, float size, float duration, Color color) {
