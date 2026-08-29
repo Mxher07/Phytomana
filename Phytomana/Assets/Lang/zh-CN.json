@@ -5,20 +5,29 @@
   "Blocks": {
     "GrownWoodBlock:0": {
       "DisplayName": "生息木",
-      "Description": ""
+      "Description": "白曦菊转化的花岗岩"
     },
     "GrownStoneBlock:0": {
       "DisplayName": "生息岩",
-      "Description": ""
+      "Description": "白曦菊转化的花岗岩"
     },
     "GrownDaisyFlower:0": {
-      "DisplayName": "白息菊",
+      "DisplayName": "白曦菊",
       "Description": "「转换天地生息之劳者」"
     },
     "ManaSpreaderBlock:0": {
       "DisplayName": "魔力发射器",
       "Description": "「地之信任者」",
-      "0": "使用生息木，铁锭，线制作魔力发射器"
+      "CRDescription:0": "使用生息木，铁锭，花瓣制作魔力发射器"
+    },
+    "SumeruFlowerBlock:0" : {
+      "DisplayName": "X色 须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruPetalBlock:0" : {
+      "DisplayName": "X色 须弥花瓣",
+      "Description": "「须弥完美载体」",
+      "CRDescription:0": "揉成花瓣"
     }
   }
 }

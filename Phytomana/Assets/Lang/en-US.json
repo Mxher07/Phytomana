@@ -4,21 +4,30 @@
   },
   "Blocks": {
     "GrownWoodBlock:0": {
-      "DisplayName": "GrownWood",
+      "DisplayName": "Grown Wood",
       "Description": ""
     },
     "GrownStoneBlock:0": {
-      "DisplayName": "GrownStone",
+      "DisplayName": "Grown Stone",
       "Description": ""
     },
     "GrownDaisyFlower:0": {
-      "DisplayName": "DawnDaisy",
+      "DisplayName": "Dawn Daisy",
       "Description": "Converts wood and stone into Grown variants when placed nearby."
     },
     "ManaSpreaderBlock:0": {
-      "DisplayName": "ManaSpreader",
+      "DisplayName": "Mana Spreader",
       "Description": "",
-      "0": "Grown Wood, Iron Ingot, and String are used to craft the Mana Projector."
+      "CRDescription:0": "Grown Wood, Iron Ingot, and Petal are used to craft the Mana Spreader."
+    },
+    "SumeruFlowerBlock:0" : {
+      "DisplayName": "X Sumeru Flower",
+      "Description": ""
+    },
+    "SumeruPetalBlock:0" : {
+      "DisplayName": "X Sumeru Petal",
+      "Description": "Sumeru Flower's Petal",
+      "CRDescription:0": "Kneaded into petals"
     }
   }
 }

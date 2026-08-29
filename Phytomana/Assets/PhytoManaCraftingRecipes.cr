@@ -1,7 +1,10 @@
 <PhytoMana>
-  <Recipe Result="ManaSpreaderBlock" ResultCount="1" RequiredHeatLevel="0" a="grownwood" b="ironingot" c="string" d="planks" Description="[0]">
+  <Recipe Result="ManaSpreaderBlock" ResultCount="1" RequiredHeatLevel="0" a="grownwood" b="ironingot" c="petal" Description="[0]">
     "aaa"
-    "bc"
+    "cb"
     "aaa"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower" Description="[0]">
+    "a"
   </Recipe>
 </PhytoMana>
