@@ -1,18 +1,18 @@
 {
   "BlocksManager": {
-    "PhytoMana": "Phytomana"
+    "PhytoMana": "PhytoMana"
   },
   "Blocks": {
     "GrownWoodBlock:0": {
-      "DisplayName": "GrownWood",
+      "DisplayName": "生息木",
       "Description": ""
     },
     "GrownStoneBlock:0": {
-      "DisplayName": "GrownStone",
+      "DisplayName": "生息岩",
       "Description": ""
     },
     "GrownDaisyFlower:0": {
-      "DisplayName": "GrownDaisy",
+      "DisplayName": "生息菊",
       "Description": ""
     }
   }
