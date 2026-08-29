@@ -1,10 +1,10 @@
 {
   "Blocks": {
-    "GrownWood:0": {
+    "GrownWoodBlock:0": {
       "DisplayName": "Grown Wood",
       "Description": ""
     },
-    "GrownStone:0": {
+    "GrownStoneBlock:0": {
       "DisplayName": "Grown Stone",
       "Description": ""
     }
