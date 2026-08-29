@@ -21,11 +21,11 @@
       "CRDescription:0": "Grown Wood, Iron Ingot, and Petal are used to craft the Mana Spreader."
     },
     "SumeruFlowerBlock:0" : {
-      "DisplayName": "X Sumeru Flower",
+      "DisplayName": "Sumeru Flower",
       "Description": ""
     },
     "SumeruPetalBlock:0" : {
-      "DisplayName": "X Sumeru Petal",
+      "DisplayName": "Sumeru Petal",
       "Description": "Sumeru Flower's Petal",
       "CRDescription:0": "Kneaded into petals"
     }

@@ -21,11 +21,11 @@
       "CRDescription:0": "使用生息木，铁锭，花瓣制作魔力发射器"
     },
     "SumeruFlowerBlock:0" : {
-      "DisplayName": "X色 须弥花",
+      "DisplayName": "须弥花",
       "Description": "「须弥降世之物」"
     },
     "SumeruPetalBlock:0" : {
-      "DisplayName": "X色 须弥花瓣",
+      "DisplayName": "须弥花瓣",
       "Description": "「须弥完美载体」",
       "CRDescription:0": "揉成花瓣"
     }
