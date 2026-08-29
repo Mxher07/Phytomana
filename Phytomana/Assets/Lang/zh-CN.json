@@ -1,6 +1,6 @@
 {
   "BlocksManager": {
-    "PhytoMana": "PhytoMana"
+    "PhytoMana": "须弥魔法"
   },
   "Blocks": {
     "GrownWoodBlock:0": {
@@ -12,8 +12,13 @@
       "Description": ""
     },
     "GrownDaisyFlower:0": {
-      "DisplayName": "生息菊",
-      "Description": ""
+      "DisplayName": "白息菊",
+      "Description": "「转换天地生息之劳者」"
+    },
+    "ManaSpreaderBlock:0": {
+      "DisplayName": "魔力发射器",
+      "Description": "「地之信任者」",
+      "0": "使用生息木，铁锭，线制作魔力发射器"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "BlocksManager": {
-    "PhytoMana": "Phytomana"
+    "PhytoMana": "PhytoMana"
   },
   "Blocks": {
     "GrownWoodBlock:0": {
@@ -12,8 +12,13 @@
       "Description": ""
     },
     "GrownDaisyFlower:0": {
-      "DisplayName": "GrownDaisy",
-      "Description": ""
+      "DisplayName": "DawnDaisy",
+      "Description": "Converts wood and stone into Grown variants when placed nearby."
+    },
+    "ManaSpreaderBlock:0": {
+      "DisplayName": "ManaSpreader",
+      "Description": "",
+      "0": "Grown Wood, Iron Ingot, and String are used to craft the Mana Projector."
     }
   }
 }
