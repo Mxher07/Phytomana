@@ -22,14 +22,14 @@ namespace Game {
         private bool m_isMultiColor;
 
         public ManaParticleSystem(Vector3 position, float size, float duration, Color color, Vector3? targetPosition = null) 
-            : base(32) {
+            : base(2) {
             InitializeParticles(position, size, duration, new Color[] { color }, targetPosition);
             m_isMultiColor = false;
             Log.Information($"[PhytoMana]SingleColor ManaParticle Created.");
         }
 
         public ManaParticleSystem(Vector3 position, float size, float duration, Color[] colors, Vector3? targetPosition = null) 
-            : base(32) {
+            : base(2) {
             if (colors == null || colors.Length < 2) {
                 throw new ArgumentException("Colors are null!");
             }

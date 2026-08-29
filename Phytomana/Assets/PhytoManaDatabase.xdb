@@ -3,5 +3,11 @@
   <MemberSubsystemTemplate Name="GrownDaisyBehavior" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f6" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a79f" Value="Game.SubsystemGrownDaisyBehavior" Type="string"/>
   </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="SunPowerBehavior" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f7" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7af" Value="Game.SubsystemSunPowerBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="Mana" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f8" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7bf" Value="Game.SubsystemMana" Type="string"/>
+  </MemberSubsystemTemplate>
       </ProjectTemplate>
 </PhytoMana>

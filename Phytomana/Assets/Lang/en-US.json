@@ -15,6 +15,10 @@
       "DisplayName": "Dawn Daisy",
       "Description": "Converts wood and stone into Grown variants when placed nearby."
     },
+    "SunPowerFlower:0" : {
+      "DisplayName": "Sunblaze Flower",
+      "Description": "Burn to Mana"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "Mana Spreader",
       "Description": "",

@@ -15,6 +15,10 @@
       "DisplayName": "白曦菊",
       "Description": "「转换天地生息之劳者」"
     },
+    "SunPowerFlower:0" : {
+      "DisplayName": "日耀花",
+      "Description": "「燃烧以产能」"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "魔力发射器",
       "Description": "「地之信任者」",
