@@ -2,14 +2,14 @@
 using Engine.Graphics;
 
 namespace Game {
-    public class GorwnStoneBlock : CubeBlock {
+    public class GrownStoneBlock : CubeBlock {
         public Texture2D m_texture;
 
         public override void Initialize() {
             base.Initialize();
             CanBeBuiltIntoFurniture = true;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownStone");
-            int contents = BlocksManager.GetBlockIndex<GorwnStoneBlock>();
+            int contents = BlocksManager.GetBlockIndex<GrownStoneBlock>();
             Log.Information($"[PhytoMana]{contents} Registered.");
         }
 
