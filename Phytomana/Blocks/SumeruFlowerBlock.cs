@@ -6,7 +6,7 @@ namespace Game {
         public Texture2D m_texture;
         public override void Initialize() {
             base.Initialize();
-            CanBeBuiltIntoFurniture = true;
+            CanBeBuiltIntoFurniture = false;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/SumeruFlower");
             int contents = BlocksManager.GetBlockIndex<SumeruFlowerBlock>();
             Log.Information($"[PhytoMana]{contents} Registered.");

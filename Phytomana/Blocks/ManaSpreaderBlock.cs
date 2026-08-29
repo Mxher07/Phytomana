@@ -6,7 +6,7 @@ namespace Game {
         public Texture2D m_texture;
         public override void Initialize() {
             base.Initialize();
-            CanBeBuiltIntoFurniture = true;
+            CanBeBuiltIntoFurniture = false;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaSpreader");
             int contents = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
 Log.Information($"[PhytoMana]{contents} Registered.");
