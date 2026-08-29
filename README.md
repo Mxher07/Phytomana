@@ -1,4 +1,4 @@
-#Phytomana
+# Phytomana
 
 ![Phytomana](Logo.png)
 
@@ -6,23 +6,23 @@
 
 ---
 
-#Overview
+# Overview
 
 **Phytomana** aims to bring *nature-driven* *magical* *automation* and *utility systems* to **SurvivalCraft2**, providing a flexible foundation for both mod developers and players who seek a more organic approach to tech and magic progression.
 
 ---
 
-#**License**
+# **License**
 
 This project is distributed under a dual-license structure:
 
-##Code License
+## Code License
 
 All source code is licensed under the **Mozilla Public** License 2.0 (MPL-2.0).
 
 >You may use, modify, and distribute the code, provided that any modifications to MPL-licensed files are made available under the same license. For full terms, see MPL-2.0.
 
-##Asset License
+## Asset License
 
 All textures and graphical assets are licensed under the **Creative Commons Attribution-NonCommercial 3.0** Unported (CC BY-NC 3.0).
 
@@ -34,14 +34,14 @@ Asset Credit: **WuroZaye** (and other contributors, as listed in metadata).
 
 ---
 
-#Mod Template License
+# Mod Template License
 
 The original mod template used to bootstrap this project is provided under the MIT License.
 See **LICENSE.template** for full text.
 
 ---
 
-License Badges
+# License Badges
 
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 
@@ -49,7 +49,7 @@ License Badges
 
 ---
 
-#Legal Notices
+# Legal Notices
 
 >· MPL-2.0 license text is included in the repository.
 >· CC BY-NC 3.0 license text is **not** included in the repository.
