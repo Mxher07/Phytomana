@@ -367,3 +367,6 @@ FodyWeavers.xsd
 
 #md
 AGENTS.md
+
+#oc
+.origincode/*

@@ -34,7 +34,8 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="*/*.cs"/>
+        <Compile Include="Blocks/*.cs"/>
+        <Compile Include="Subsystems/*.cs"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <PropertyGroup>
