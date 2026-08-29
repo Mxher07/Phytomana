@@ -1,1 +1,2 @@
 # Phytomana
+![PhytomanaIcon](Logo.png)
