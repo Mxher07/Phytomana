@@ -1,0 +1,107 @@
+using Engine;
+using Engine.Graphics;
+
+namespace Game {
+    public class ManaPoolBlock : Block {
+        public BlockMesh m_meshStone = new();
+        public BlockMesh m_meshMana = new();
+        public Texture2D m_textureStone;
+        public Texture2D m_textureMana;
+        
+        public override void Initialize() {
+            base.Initialize();
+            
+            Model model = ContentManager.Get<Model>("Models/PhytoMana/mana_pool");
+            m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownStone");
+            m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/Mana2");
+            
+            
+            var poolMesh = model.FindMesh("base");
+            Matrix poolBone = BlockMesh.GetBoneAbsoluteTransform(poolMesh.ParentBone);
+            m_meshStone.AppendModelMeshPart(
+                poolMesh.MeshParts[0],
+                poolBone * Matrix.CreateTranslation(0f, -0.5f, 0f),
+                false, false, false, false,
+                Color.White
+            );
+            
+            
+            var manaMesh = model.FindMesh("mana");
+            Matrix manaBone = BlockMesh.GetBoneAbsoluteTransform(manaMesh.ParentBone);
+            m_meshMana.AppendModelMeshPart(
+                manaMesh.MeshParts[0],
+                manaBone * Matrix.CreateTranslation(0f, 0.5f, 0f),
+                false, false, false, false,
+                Color.White
+            );
+            
+        
+        }
+        
+        
+        public override Texture2D GetDefaultTexture(int value) => m_textureStone;
+        
+        
+        public override void GenerateTerrainVertices(
+            BlockGeometryGenerator generator, 
+            TerrainGeometry geometry, 
+            int value, 
+            int x, 
+            int y, 
+            int z
+        ) {
+            Matrix matrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(x + 0.5f, y, z + 0.5f);
+            generator.GenerateMeshVertices(
+                this,
+                x,
+                y,
+                z,
+                m_meshStone,
+                Color.White,
+                matrix,
+                geometry.GetGeometry(m_textureStone).SubsetOpaque
+            );
+            generator.GenerateMeshVertices(
+                this,
+                x,
+                y,
+                z,
+                m_meshMana,
+                Color.White,
+                matrix,
+                geometry.GetGeometry(m_textureMana).SubsetOpaque
+            );
+        }
+        
+        
+        public override void DrawBlock(
+            PrimitivesRenderer3D primitivesRenderer,
+            int value,
+            Color color,
+            float size,
+            ref Matrix matrix,
+            DrawBlockEnvironmentData environmentData
+        ) {
+            
+            BlocksManager.DrawMeshBlock(
+                primitivesRenderer, 
+                m_meshStone, 
+                m_textureStone,
+                color, 
+                2f * size, 
+                ref matrix, 
+                environmentData
+            );
+            
+            BlocksManager.DrawMeshBlock(
+                primitivesRenderer, 
+                m_meshMana, 
+                m_textureMana,
+                color, 
+                2f * size, 
+                ref matrix, 
+                environmentData
+            );
+        }
+    }
+}

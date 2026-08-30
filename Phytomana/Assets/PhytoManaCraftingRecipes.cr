@@ -16,4 +16,9 @@
     "ba "
     "  a"
   </Recipe>
+  <Recipe Result="ManaPoolBlock" ResultCount="1" RequiredHeatLevel="0" a="grownstone" Description="[0]">
+    "   "
+    "a a"
+    "aaa"
+  </Recipe>
 </PhytoMana>
