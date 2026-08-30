@@ -36,6 +36,34 @@
       "DisplayName": "须弥花瓣",
       "Description": "「须弥完美载体」",
       "CRDescription:0": "揉成花瓣"
+    },
+    "GrownRodBlock:0" : {
+      "DisplayName": "息木枝",
+      "Description": "",
+      "CRDescription:0": "使用生息木制作息木枝"
+    },
+    "GrownStaffBlock:0" : {
+      "DisplayName": "生息法杖",
+      "Description": "",
+      "CRDescription:0": "使用息木枝与须弥花瓣制作生息法杖"
     }
+  },
+  "GrownStaffMessages": {
+    "ModeWork": "工作模式",
+    "ModeBind": "绑定模式",
+    "ModeEquip": "当前模式：{0}",
+    "ModeChanged": "模式已切换：{0}",
+    "StatusWorking": "工作中",
+    "StatusIdle": "休息中",
+    "StatusDraining": "流失中",
+    "StatusFormat": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 产能:{4}mn/sct",
+    "StatusFormatDraining": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 产能:-",
+    "SpreadStatusFormat": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 使用:{4}mn/sct",
+    "StartSelected": "已选中起始点：({0}, {1}, {2})",
+    "StartCancelled": "已取消选择起始点",
+    "BindSuccess": "绑定成功：{0},{1},{2} → {3},{4},{5}",
+    "ErrTooFar": "绑定失败：距离太远",
+    "ErrWrongDirection": "绑定失败：目标不在起始点的六向直线上",
+    "ErrNoManaCapability": "绑定失败：目标方块不具有魔力使用能力"
   }
 }

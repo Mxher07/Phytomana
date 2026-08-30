@@ -136,6 +136,22 @@ namespace Game {
             ));
         }
 
+        public bool IsWorkingMana(Point3 point) => m_sunpowers.TryGetValue(point, out SunPowerData data) && data.IsBurning;
+
+        public float GetProductionRate(Point3 point) {
+            if (m_sunpowers.TryGetValue(point, out SunPowerData data) && data.IsBurning) {
+                return (BaseManaRate + ManaRatePerLevel * data.BurnHeatLevel) / ManaRatePeriod;
+            }
+            return 0f;
+        }
+
+        public bool IsDrainingMana(Point3 point) {
+            if (m_sunpowers.TryGetValue(point, out SunPowerData data) && !data.IsBurning) {
+                return data.IdleIsolatedElapsed > IsolatedDrainDelay;
+            }
+            return false;
+        }
+
         public void TryEatFuel(SunPowerData data) {
             if (m_subsystemMana.GetManaAmount(data.Point) >= m_subsystemMana.GetMaxManaAmount(data.Contents)) {
                 return;

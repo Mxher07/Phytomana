@@ -117,8 +117,18 @@ namespace Game {
             }
             Point3 waterCell = staticWaterCells[m_random.Int(staticWaterCells.Count)];
             m_subsystemTerrain.DestroyCell(0, waterCell.X, waterCell.Y, waterCell.Z, 0, false, false);
+            SpawnDrinkParticle(waterCell);
             data.IsAbsorbing = true;
             data.AbsorbEndTime = m_subsystemGameInfo.TotalElapsedGameTime + AbsorbDuration;
+        }
+
+        public void SpawnDrinkParticle(Point3 waterCell) {
+            m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
+                new Vector3(waterCell.X + 0.5f, waterCell.Y + 0.3f, waterCell.Z + 0.5f),
+                0.25f,
+                1.5f,
+                Color.SkyBlue
+            ));
         }
 
         public void SpawnManaParticle(Point3 point) {
@@ -129,6 +139,10 @@ namespace Game {
                 Color.SkyBlue
             ));
         }
+
+        public bool IsWorkingMana(Point3 point) => m_waterDons.TryGetValue(point, out WaterDonData data) && data.IsAbsorbing;
+
+        public float GetProductionRate(Point3 point) => m_waterDons.TryGetValue(point, out WaterDonData data) && data.IsAbsorbing ? ManaRate : 0f;
 
         public void AddWaterDon(int x, int y, int z) {
             Point3 point = new(x, y, z);

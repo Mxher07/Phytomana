@@ -7,4 +7,13 @@
   <Recipe Result="SumeruPetalBlock" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower" Description="[0]">
     "a"
   </Recipe>
+  <Recipe Result="GrownRodBlock" ResultCount="1" RequiredHeatLevel="0" a="grownwood" Description="[0]">
+    "a"
+    "a"
+  </Recipe>
+  <Recipe Result="GrownStaffBlock" ResultCount="1" RequiredHeatLevel="0" a="grownwood" b="petal" Description="[0]">
+    "ab"
+    "ba "
+    "  a"
+  </Recipe>
 </PhytoMana>

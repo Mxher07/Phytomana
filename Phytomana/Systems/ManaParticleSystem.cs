@@ -21,8 +21,8 @@ namespace Game {
         private Random m_random = new Random();
         private bool m_isMultiColor;
 
-        public ManaParticleSystem(Vector3 position, float size, float duration, Color color, Vector3? targetPosition = null) 
-            : base(2) {
+        public ManaParticleSystem(Vector3 position, float size, float duration, Color color, Vector3? targetPosition = null, int count = 2) 
+            : base(count) {
             InitializeParticles(position, size, duration, new Color[] { color }, targetPosition);
             m_isMultiColor = false;
             Log.Information($"[PhytoMana]SingleColor ManaParticle Created.");

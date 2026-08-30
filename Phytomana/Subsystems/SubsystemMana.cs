@@ -7,13 +7,28 @@ using GameEntitySystem;
 using TemplatesDatabase;
 
 namespace Game {
+    public class ManaLink {
+        public Point3 From;
+        public Point3 To;
+        public float TransferAccumulator;
+
+        public ManaLink(Point3 from, Point3 to) {
+            From = from;
+            To = to;
+        }
+    }
+
     public class SubsystemMana : Subsystem {
         public const string ManaName = "mana";
         public const string ManaShortName = "mn";
+        public const float StaffLinkTransferAmount = 160f;
+        public const float StaffLinkTransferPeriod = 1f;
 
         public Dictionary<Point3, float> m_manaAmounts = [];
 
         public Dictionary<int, float> m_maxManaAmounts = [];
+
+        public List<ManaLink> m_links = [];
 
         public SubsystemTerrain m_subsystemTerrain;
 
@@ -42,6 +57,19 @@ namespace Game {
                     m_manaAmounts[new Point3(x, y, z)] = Math.Max(0f, amount);
                 }
             }
+            string linkText = valuesDictionary.GetValue("ManaLinks", string.Empty);
+            foreach (string item in linkText.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
+                string[] array = item.Split([','], StringSplitOptions.None);
+                if (array.Length == 6
+                    && int.TryParse(array[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out int fx)
+                    && int.TryParse(array[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int fy)
+                    && int.TryParse(array[2], NumberStyles.Integer, CultureInfo.InvariantCulture, out int fz)
+                    && int.TryParse(array[3], NumberStyles.Integer, CultureInfo.InvariantCulture, out int tx)
+                    && int.TryParse(array[4], NumberStyles.Integer, CultureInfo.InvariantCulture, out int ty)
+                    && int.TryParse(array[5], NumberStyles.Integer, CultureInfo.InvariantCulture, out int tz)) {
+                    AddLink(new Point3(fx, fy, fz), new Point3(tx, ty, tz), false);
+                }
+            }
         }
 
         public override void Save(ValuesDictionary valuesDictionary) {
@@ -57,6 +85,23 @@ namespace Game {
                 stringBuilder.Append(';');
             }
             valuesDictionary.SetValue("ManaAmounts", stringBuilder.ToString());
+
+            StringBuilder linkBuilder = new();
+            foreach (ManaLink link in m_links) {
+                linkBuilder.Append(link.From.X.ToString(CultureInfo.InvariantCulture));
+                linkBuilder.Append(',');
+                linkBuilder.Append(link.From.Y.ToString(CultureInfo.InvariantCulture));
+                linkBuilder.Append(',');
+                linkBuilder.Append(link.From.Z.ToString(CultureInfo.InvariantCulture));
+                linkBuilder.Append(',');
+                linkBuilder.Append(link.To.X.ToString(CultureInfo.InvariantCulture));
+                linkBuilder.Append(',');
+                linkBuilder.Append(link.To.Y.ToString(CultureInfo.InvariantCulture));
+                linkBuilder.Append(',');
+                linkBuilder.Append(link.To.Z.ToString(CultureInfo.InvariantCulture));
+                linkBuilder.Append(';');
+            }
+            valuesDictionary.SetValue("ManaLinks", linkBuilder.ToString());
         }
 
         public bool CanStoreMana(int contents) => m_maxManaAmounts.ContainsKey(contents);
@@ -121,6 +166,87 @@ namespace Game {
             RemoveMana(from, transfer);
             AddMana(bestPoint.Value, transfer);
             return transfer;
+        }
+
+        public bool AddLink(Point3 from, Point3 to, bool apply = true) {
+            if (from == to || HasLink(from, to)) {
+                return false;
+            }
+            m_links.Add(new ManaLink(from, to));
+            if (apply) {
+                PruneLinks();
+            }
+            return true;
+        }
+
+        public bool HasLink(Point3 from, Point3 to) {
+            foreach (ManaLink link in m_links) {
+                if (link.From == from && link.To == to) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void RemoveLink(Point3 from, Point3 to) {
+            for (int i = 0; i < m_links.Count; i++) {
+                if (m_links[i].From == from && m_links[i].To == to) {
+                    m_links.RemoveAt(i);
+                    return;
+                }
+            }
+        }
+
+        public void PruneLinks() {
+            for (int i = m_links.Count - 1; i >= 0; i--) {
+                ManaLink link = m_links[i];
+                if (m_subsystemTerrain.Terrain.GetCellContents(link.From) != m_manaSpreaderIndex
+                    || m_subsystemTerrain.Terrain.GetCellContents(link.To) != m_manaSpreaderIndex) {
+                    m_links.RemoveAt(i);
+                }
+            }
+        }
+
+        public float GetOutgoingUsage(Point3 from) {
+            float usage = 0f;
+            foreach (ManaLink link in m_links) {
+                if (link.From != from) {
+                    continue;
+                }
+                int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To);
+                if (toContents != m_manaSpreaderIndex) {
+                    continue;
+                }
+                float targetFree = GetMaxManaAmount(toContents) - GetManaAmount(link.To);
+                if (GetManaAmount(from) >= StaffLinkTransferAmount && targetFree >= StaffLinkTransferAmount) {
+                    usage += StaffLinkTransferAmount;
+                }
+            }
+            return usage;
+        }
+
+        public void TransferManaToLinked(Point3 from, float amount) {
+            if (amount <= 0f) {
+                return;
+            }
+            foreach (ManaLink link in m_links) {
+                if (link.From != from) {
+                    continue;
+                }
+                int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To);
+                if (toContents != m_manaSpreaderIndex) {
+                    continue;
+                }
+                if (GetManaAmount(from) <= 0f) {
+                    break;
+                }
+                float targetFree = GetMaxManaAmount(toContents) - GetManaAmount(link.To);
+                float transfer = Math.Min(Math.Min(amount, GetManaAmount(from)), targetFree);
+                if (transfer > 0f) {
+                    RemoveMana(from, transfer);
+                    AddMana(link.To, transfer);
+                }
+            }
         }
     }
 }

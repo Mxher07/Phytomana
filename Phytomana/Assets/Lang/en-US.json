@@ -36,6 +36,34 @@
       "DisplayName": "Sumeru Petal",
       "Description": "Sumeru Flower's Petal",
       "CRDescription:0": "Kneaded into petals"
+    },
+    "GrownRodBlock:0" : {
+      "DisplayName": "Grown Wood Rod",
+      "Description": "",
+      "CRDescription:0": "use Grown Wood to craft rod"
+    },
+    "GrownStaffBlock:0" : {
+      "DisplayName": "Grown Staff",
+      "Description": "",
+      "CRDescription:0": "Grown wood and Sumeru Petal used to craft Grown Staff"
     }
+  },
+  "GrownStaffMessages": {
+    "ModeWork": "Work Mode",
+    "ModeBind": "Bind Mode",
+    "ModeEquip": "Current Mode: {0}",
+    "ModeChanged": "Mode switched: {0}",
+    "StatusWorking": "Working",
+    "StatusIdle": "Resting",
+    "StatusDraining": "Leaking",
+    "StatusFormat": "[{0}] Stored:{1}/{2}mn Current:{3} Output:{4}mn/sct",
+    "StatusFormatDraining": "[{0}] Stored:{1}/{2}mn Current:{3} Output:-",
+    "SpreadStatusFormat": "[{0}] Stored:{1}/{2}mn Current:{3} Usage:{4}mn/sct",
+    "StartSelected": "Start point selected: ({0}, {1}, {2})",
+    "StartCancelled": "Start point deselected",
+    "BindSuccess": "Bound: {0},{1},{2} → {3},{4},{5}",
+    "ErrTooFar": "Bind failed: too far away",
+    "ErrWrongDirection": "Bind failed: target is not on a straight axis",
+    "ErrNoManaCapability": "Bind failed: target has no mana capacity"
   }
 }
