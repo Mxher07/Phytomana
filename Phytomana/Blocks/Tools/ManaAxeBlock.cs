@@ -35,7 +35,7 @@ namespace Game {
                 false,
                 false,
                 Color.White
-            );;
+            );
             
             m_standaloneBlockMesh.AppendBlockMesh(blockMesh);
             m_standaloneBlockMesh.AppendBlockMesh(blockMesh2);

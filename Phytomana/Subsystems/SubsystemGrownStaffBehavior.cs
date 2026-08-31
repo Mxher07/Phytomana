@@ -123,7 +123,7 @@ namespace Game {
                         || !m_subsystemMana.IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
                         continue;
                     }
-                    float toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
+                    int toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
                     float maxTarget = m_subsystemMana.GetMaxManaAmount(toContents);
                     if (m_subsystemMana.GetManaAmount(from) >= SubsystemMana.StaffLinkTransferAmount
                         && maxTarget - m_subsystemMana.GetManaAmount(to) >= SubsystemMana.StaffLinkTransferAmount) {

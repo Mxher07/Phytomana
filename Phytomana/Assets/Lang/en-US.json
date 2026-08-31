@@ -5,47 +5,83 @@
   "Blocks": {
     "GrownWoodBlock:0": {
       "DisplayName": "Grown Wood",
-      "Description": ""
+      "Description": "Wood converted into its Grown variant by the Dawn Daisy."
     },
     "GrownStoneBlock:0": {
       "DisplayName": "Grown Stone",
-      "Description": ""
+      "Description": "Stone converted into its Grown variant by the Dawn Daisy."
     },
     "GrownDaisyFlower:0": {
       "DisplayName": "Dawn Daisy",
-      "Description": "Converts wood and stone into Grown variants when placed nearby."
+      "Description": "Converts nearby wood and stone into their Grown variants."
     },
-    "SunPowerFlower:0" : {
+    "SunPowerFlower:0": {
       "DisplayName": "Sunblaze Flower",
-      "Description": "Burn to Mana"
+      "Description": "Burns fuel thrown onto it to produce Mana."
     },
-    "WaterDonFlower:0" : {
+    "WaterDonFlower:0": {
       "DisplayName": "Springfroth Flower",
-      "Description": "Water to Mana"
+      "Description": "Absorbs nearby water to produce Mana."
     },
     "ManaSpreaderBlock:0": {
       "DisplayName": "Mana Spreader",
-      "Description": "",
-      "CRDescription:0": "Grown Wood, Iron Ingot, and Petal are used to craft the Mana Spreader."
+      "Description": "Stores up to 1200 Mn and sends it to blocks linked to it with a Grown Staff."
     },
-    "SumeruFlowerBlock:0" : {
+    "ManaPoolBlock:0": {
+      "DisplayName": "Mana Pool",
+      "Description": "Stores up to 3800 Mn. Drops Items will be convert."
+    },
+    "SumeruFlowerBlock:0": {
       "DisplayName": "Sumeru Flower",
-      "Description": ""
+      "Description": "A flower from Sumeru."
     },
-    "SumeruPetalBlock:0" : {
+    "SumeruPetalBlock:0": {
       "DisplayName": "Sumeru Petal",
-      "Description": "Sumeru Flower's Petal",
-      "CRDescription:0": "Kneaded into petals"
+      "Description": "Harvested from the Sumeru Flower."
     },
-    "GrownRodBlock:0" : {
+    "GrownRodBlock:0": {
       "DisplayName": "Grown Wood Rod",
-      "Description": "",
-      "CRDescription:0": "use Grown Wood to craft rod"
+      "Description": "A wooden rod crafted from Grown Wood."
     },
-    "GrownStaffBlock:0" : {
+    "GrownStaffBlock:0": {
       "DisplayName": "Grown Staff",
-      "Description": "",
-      "CRDescription:0": "Grown wood and Sumeru Petal used to craft Grown Staff"
+      "Description": "Links Mana blocks together. Sneak and click to switch modes; click to bind blocks or read their Mana status."
+    },
+    "ManaIngotBlock:0": {
+      "DisplayName": "Mana Ingot",
+      "Description": "An iron ingot infused with Mana inside a Mana Pool."
+    },
+    "ManaAxeBlock:0": {
+      "DisplayName": "Mana Axe",
+      "Description": "An axe with a Mana Ingot head."
+    },
+    "ManaPickaxeBlock:0": {
+      "DisplayName": "Mana Pickaxe",
+      "Description": "A pickaxe with a Mana Ingot head."
+    },
+    "ManaShovelBlock:0": {
+      "DisplayName": "Mana Shovel",
+      "Description": "A shovel with a Mana Ingot head."
+    },
+    "ManaMacheteBlock:0": {
+      "DisplayName": "Mana Machete",
+      "Description": "A machete with a Mana Ingot blade."
+    },
+    "ClothingBlock:900": {
+      "DisplayName": "Mana Steel Helmet",
+      "Description": "Armor crafted with Mana Ingots."
+    },
+    "ClothingBlock:901": {
+      "DisplayName": "Mana Steel Chestplate",
+      "Description": "Armor crafted with Mana Ingots."
+    },
+    "ClothingBlock:902": {
+      "DisplayName": "Mana Steel Leggings",
+      "Description": "Armor crafted with Mana Ingots."
+    },
+    "ClothingBlock:903": {
+      "DisplayName": "Mana Steel Boots",
+      "Description": "Armor crafted with Mana Ingots."
     }
   },
   "GrownStaffMessages": {
