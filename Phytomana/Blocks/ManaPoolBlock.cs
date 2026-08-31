@@ -50,7 +50,7 @@ namespace Game {
             int y, 
             int z
         ) {
-            Matrix matrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(x + 0.5f, y, z + 0.5f);
+            Matrix matrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(0.5f, 0f, 0.5f);
             generator.GenerateMeshVertices(
                 this,
                 x,
@@ -82,13 +82,13 @@ namespace Game {
             ref Matrix matrix,
             DrawBlockEnvironmentData environmentData
         ) {
-            
+            float drawSize = environmentData.DrawBlockMode == DrawBlockMode.World ? 2f * size * 0.05f : 2f * size;
             BlocksManager.DrawMeshBlock(
                 primitivesRenderer, 
                 m_meshStone, 
                 m_textureStone,
                 color, 
-                2f * size, 
+                drawSize, 
                 ref matrix, 
                 environmentData
             );
@@ -98,7 +98,7 @@ namespace Game {
                 m_meshMana, 
                 m_textureMana,
                 color, 
-                2f * size, 
+                drawSize, 
                 ref matrix, 
                 environmentData
             );

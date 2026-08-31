@@ -18,11 +18,12 @@ namespace Game {
         }
     }
 
-    public class SubsystemMana : Subsystem {
+    public class SubsystemMana : Subsystem, IUpdateable {
         public const string ManaName = "mana";
         public const string ManaShortName = "mn";
         public const float StaffLinkTransferAmount = 160f;
         public const float StaffLinkTransferPeriod = 1f;
+        public const float IngotConversionCost = 300f;
 
         public Dictionary<Point3, float> m_manaAmounts = [];
 
@@ -32,20 +33,38 @@ namespace Game {
 
         public SubsystemTerrain m_subsystemTerrain;
 
+        public SubsystemPickables m_subsystemPickables;
+
+        public SubsystemParticles m_subsystemParticles;
+
         public int m_sunPowerFlowerIndex;
 
         public int m_manaSpreaderIndex;
 
         public int m_waterDonFlowerIndex;
 
+        public int m_manaPoolIndex;
+
+        public int m_ironIngotIndex;
+
+        public int m_manaIngotIndex;
+
+        public UpdateOrder UpdateOrder => UpdateOrder.Default;
+
         public override void Load(ValuesDictionary valuesDictionary) {
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
+            m_subsystemPickables = Project.FindSubsystem<SubsystemPickables>(true);
+            m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
             m_sunPowerFlowerIndex = BlocksManager.GetBlockIndex<SunPowerFlower>();
             m_manaSpreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
             m_waterDonFlowerIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
+            m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
+            m_ironIngotIndex = BlocksManager.GetBlockIndex<IronIngotBlock>();
+            m_manaIngotIndex = BlocksManager.GetBlockIndex<ManaIngotBlock>();
             m_maxManaAmounts[m_sunPowerFlowerIndex] = 800f;
             m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
             m_maxManaAmounts[m_waterDonFlowerIndex] = 240f;
+            m_maxManaAmounts[m_manaPoolIndex] = 3800f;
             string text = valuesDictionary.GetValue("ManaAmounts", string.Empty);
             foreach (string item in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
                 string[] array = item.Split([','], StringSplitOptions.None);
@@ -197,11 +216,70 @@ namespace Game {
             }
         }
 
+        public bool IsManaStorage(int contents) => contents == m_manaSpreaderIndex || contents == m_manaPoolIndex;
+
+        public void Update(float dt) {
+            List<KeyValuePair<Point3, float>> snapshot = [.. m_manaAmounts];
+            foreach (KeyValuePair<Point3, float> pair in snapshot) {
+                Point3 point = pair.Key;
+                if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex) {
+                    continue;
+                }
+                if (GetManaAmount(point) < IngotConversionCost) {
+                    continue;
+                }
+                TryConvertIngot(point);
+            }
+        }
+
+        public void TryConvertIngot(Point3 poolPoint) {
+            foreach (Pickable pickable in m_subsystemPickables.Pickables) {
+                if (pickable.ToRemove) {
+                    continue;
+                }
+                if (Terrain.ExtractContents(pickable.Value) != m_ironIngotIndex) {
+                    continue;
+                }
+                if (!IsPickableInCell(pickable, poolPoint)) {
+                    continue;
+                }
+                RemoveMana(poolPoint, IngotConversionCost);
+                Vector3 position = pickable.Position;
+                pickable.ToRemove = true;
+                m_subsystemPickables.AddPickable(m_manaIngotIndex, Math.Max(1, pickable.Count), position, pickable.Velocity, null);
+                Vector3 center = new(poolPoint.X + 0.5f, poolPoint.Y + 0.2f, poolPoint.Z + 0.5f);
+                foreach (Vector3 offset in new[] {
+                    new Vector3(0.4f, 0f, 0.4f),
+                    new Vector3(0.4f, 0f, -0.4f),
+                    new Vector3(-0.4f, 0f, 0.4f),
+                    new Vector3(-0.4f, 0f, -0.4f)
+                }) {
+                    m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
+                        center + offset,
+                        0.8f,
+                        1.2f,
+                        new Color(102, 204, 255)
+                    ));
+                }
+                return;
+            }
+        }
+
+        public bool IsPickableInCell(Pickable pickable, Point3 cell) {
+            Vector3 position = pickable.Position;
+            return position.X >= cell.X
+                && position.X < cell.X + 1f
+                && position.Z >= cell.Z
+                && position.Z < cell.Z + 1f
+                && position.Y >= cell.Y - 0.5f
+                && position.Y < cell.Y + 1.5f;
+        }
+
         public void PruneLinks() {
             for (int i = m_links.Count - 1; i >= 0; i--) {
                 ManaLink link = m_links[i];
                 if (m_subsystemTerrain.Terrain.GetCellContents(link.From) != m_manaSpreaderIndex
-                    || m_subsystemTerrain.Terrain.GetCellContents(link.To) != m_manaSpreaderIndex) {
+                    || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(link.To))) {
                     m_links.RemoveAt(i);
                 }
             }
@@ -214,7 +292,7 @@ namespace Game {
                     continue;
                 }
                 int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To);
-                if (toContents != m_manaSpreaderIndex) {
+                if (!IsManaStorage(toContents)) {
                     continue;
                 }
                 float targetFree = GetMaxManaAmount(toContents) - GetManaAmount(link.To);
@@ -234,7 +312,7 @@ namespace Game {
                     continue;
                 }
                 int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To);
-                if (toContents != m_manaSpreaderIndex) {
+                if (!IsManaStorage(toContents)) {
                     continue;
                 }
                 if (GetManaAmount(from) <= 0f) {

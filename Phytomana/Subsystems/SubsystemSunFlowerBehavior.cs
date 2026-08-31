@@ -90,7 +90,7 @@ namespace Game {
                 }
                 else {
                     data.IdleIsolatedElapsed = 0f;
-                    float rate = (BaseManaRate + ManaRatePerLevel * data.BurnHeatLevel) / ManaRatePeriod;
+                    float rate = (BaseManaRate + ManaRatePerLevel * data.BurnHeatLevel) / ManaRatePeriod / 1.65f;
                     m_subsystemMana.AddMana(data.Point, rate * dt);
                     if (time >= data.NextProductionParticleTime) {
                         data.NextProductionParticleTime = time + ProductionParticleInterval;
@@ -140,7 +140,7 @@ namespace Game {
 
         public float GetProductionRate(Point3 point) {
             if (m_sunpowers.TryGetValue(point, out SunPowerData data) && data.IsBurning) {
-                return (BaseManaRate + ManaRatePerLevel * data.BurnHeatLevel) / ManaRatePeriod;
+                return (BaseManaRate + ManaRatePerLevel * data.BurnHeatLevel) / ManaRatePeriod / 1.65f;
             }
             return 0f;
         }

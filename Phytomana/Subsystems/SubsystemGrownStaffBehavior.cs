@@ -35,6 +35,7 @@ namespace Game {
         public int m_sunPowerIndex;
         public int m_waterDonIndex;
         public int m_spreaderIndex;
+        public int m_manaPoolIndex;
         public int m_staffIndex;
 
         public Dictionary<PlayerData, StaffState> m_states = [];
@@ -58,6 +59,7 @@ namespace Game {
             m_sunPowerIndex = BlocksManager.GetBlockIndex<SunPowerFlower>();
             m_waterDonIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
             m_spreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
+            m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
             m_staffIndex = BlocksManager.GetBlockIndex<GrownStaffBlock>();
         }
 
@@ -104,7 +106,8 @@ namespace Game {
             int contents = Terrain.ExtractContents(hit.Value.Value);
             if (contents == m_sunPowerIndex
                 || contents == m_waterDonIndex
-                || contents == m_spreaderIndex) {
+                || contents == m_spreaderIndex
+                || contents == m_manaPoolIndex) {
                 state.HoverCell = hit.Value.CellFace.Point;
             }
         }
@@ -117,10 +120,11 @@ namespace Game {
                     Point3 from = link.From;
                     Point3 to = link.To;
                     if (m_subsystemTerrain.Terrain.GetCellContents(from) != m_spreaderIndex
-                        || m_subsystemTerrain.Terrain.GetCellContents(to) != m_spreaderIndex) {
+                        || !m_subsystemMana.IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
                         continue;
                     }
-                    float maxTarget = m_subsystemMana.GetMaxManaAmount(m_spreaderIndex);
+                    float toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
+                    float maxTarget = m_subsystemMana.GetMaxManaAmount(toContents);
                     if (m_subsystemMana.GetManaAmount(from) >= SubsystemMana.StaffLinkTransferAmount
                         && maxTarget - m_subsystemMana.GetManaAmount(to) >= SubsystemMana.StaffLinkTransferAmount) {
                         m_subsystemMana.RemoveMana(from, SubsystemMana.StaffLinkTransferAmount);
@@ -203,13 +207,16 @@ namespace Game {
             if (contents == m_sunPowerIndex || contents == m_waterDonIndex) {
                 return true;
             }
-            if (contents != m_spreaderIndex) {
+            if (contents != m_spreaderIndex && contents != m_manaPoolIndex) {
                 if (state.BindStart.HasValue) {
                     ShowMessage(player, "ErrNoManaCapability", Color.Red, true);
                 }
                 return state.BindStart.HasValue;
             }
             if (!state.BindStart.HasValue) {
+                if (contents == m_manaPoolIndex) {
+                    return true;
+                }
                 state.BindStart = point;
                 ShowMessage(player, "StartSelected", Color.White, true, point.X, point.Y, point.Z);
                 return true;

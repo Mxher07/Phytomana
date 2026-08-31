@@ -51,6 +51,26 @@
       "DisplayName": "魔法池",
       "Description": "存储魔法",
       "CRDescription:0": "使用生息岩制作魔法池"
+    },
+    "ClothingBlock:900" : {
+      "DisplayName": "魔钢头盔",
+      "Description": "",
+      "CRDescription:0": "使用注魔钢锭制作魔钢头盔"
+    },
+    "ClothingBlock:901" : {
+      "DisplayName": "魔钢胸甲",
+      "Description": "",
+      "CRDescription:0": "使用注魔钢锭制作魔钢胸甲"
+    },
+    "ClothingBlock:902" : {
+      "DisplayName": "魔钢护腿",
+      "Description": "",
+      "CRDescription:0": "使用注魔钢锭制作魔钢护腿"
+    },
+    "ClothingBlock:903" : {
+      "DisplayName": "魔钢靴子",
+      "Description": "",
+      "CRDescription:0": "使用注魔钢锭制作魔钢靴子"
     }
   },
   "GrownStaffMessages": {

@@ -21,4 +21,22 @@
     "a a"
     "aaa"
   </Recipe>
+  <Recipe Result="ClothingBlock:900" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:11" Description="[0]">
+    " a"
+    "aba"
+  </Recipe>
+  <Recipe Result="ClothingBlock:901" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:5" Description="[0]">
+    " a "
+    "aba"
+    " a "
+  </Recipe>
+  <Recipe Result="ClothingBlock:902" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:7" Description="[0]">
+    " a"
+    "aba"
+    " a"
+  </Recipe>
+  <Recipe Result="ClothingBlock:903" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:8" Description="[0]">
+    " a"
+    "aba"
+  </Recipe>
 </PhytoMana>
