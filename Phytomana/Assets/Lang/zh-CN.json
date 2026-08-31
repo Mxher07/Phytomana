@@ -47,7 +47,7 @@
       "Description": "",
       "CRDescription:0": "使用息木枝与须弥花瓣制作生息法杖"
     },
-    "ManaPoolBlock" : {
+    "ManaPoolBlock:0" : {
       "DisplayName": "魔法池",
       "Description": "存储魔法",
       "CRDescription:0": "使用生息岩制作魔法池"
