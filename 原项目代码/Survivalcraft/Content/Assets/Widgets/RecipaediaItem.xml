@@ -1,0 +1,7 @@
+<StackPanelWidget xmlns="runtime-namespace:Game" Direction="Horizontal" Margin="0, 0">
+  <BlockIconWidget Name="RecipaediaItem.Icon" Size="64, 64" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+  <StackPanelWidget Direction="Vertical" VerticalAlignment="Center">
+    <LabelWidget Name="RecipaediaItem.Text" Color="255, 255, 255" VerticalAlignment="Center" Margin="10, 0"/>
+    <LabelWidget Name="RecipaediaItem.Details" Color="128, 128, 128" VerticalAlignment="Center" WordWrap="false" Ellipsis="true" Margin="10, 0"/>
+  </StackPanelWidget>
+</StackPanelWidget>

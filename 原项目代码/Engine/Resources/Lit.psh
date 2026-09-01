@@ -1,0 +1,102 @@
+﻿#ifdef HLSL
+
+#ifdef USE_TEXTURE
+Texture2D u_texture;
+SamplerState u_samplerState;
+#endif
+#ifdef USE_ALPHATHRESHOLD
+float u_alphaThreshold;
+#endif
+#ifdef USE_FOG
+float3 u_fogColor;
+#endif
+
+void main(
+	in float4 v_color : COLOR,
+#ifdef USE_TEXTURE
+	in float2 v_texcoord: TEXCOORD,
+#endif
+#ifdef USE_FOG
+	in float v_fog : FOG,
+#endif
+	out float4 svTarget: SV_TARGET
+)
+{
+	// Color
+	float4 result = v_color;
+
+	// Texture
+#ifdef USE_TEXTURE
+	result *= u_texture.Sample(u_samplerState, v_texcoord);
+#endif
+	
+	// Alpha threshold
+#ifdef USE_ALPHATHRESHOLD
+	if (result.a <= u_alphaThreshold)
+		discard;
+#endif
+
+	// Fog
+#ifdef USE_FOG
+	float4 premultipliedFogColor = float4(u_fogColor * result.a, result.a);
+	result = lerp(result, premultipliedFogColor, v_fog);
+#endif
+	
+	// Return
+	svTarget = result;
+}
+
+#endif
+#ifdef GLSL
+
+// <Sampler Name='u_samplerState' Texture='u_texture' />
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#ifdef USE_TEXTURE
+uniform sampler2D u_texture;
+#endif
+#ifdef USE_ALPHATHRESHOLD
+uniform float u_alphaThreshold;
+#endif
+#ifdef USE_FOG
+uniform vec3 u_fogColor;
+#endif
+
+varying vec4 v_color;
+#ifdef USE_TEXTURE
+varying vec2 v_texcoord;
+#endif
+#ifdef USE_FOG
+varying float v_fog;
+#endif
+
+void main()
+{
+	// Color
+	vec4 result = v_color;
+
+	// Texture
+#ifdef USE_TEXTURE
+	result *= texture2D(u_texture, v_texcoord);
+#endif
+	
+	// Alpha threshold
+#ifdef USE_ALPHATHRESHOLD
+	if (result.a <= u_alphaThreshold)
+		discard;
+#endif
+
+	// Fog
+#ifdef USE_FOG
+	vec4 premultipliedFogColor = vec4(u_fogColor * result.a, result.a);
+	result = mix(result, premultipliedFogColor, v_fog);
+#endif
+
+	// On some devices using gl_FragColor in calculations causes a compile fail (Kindle Fire 1)
+	gl_FragColor = result;
+}
+
+#endif

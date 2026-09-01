@@ -1,0 +1,55 @@
+﻿<CanvasWidget xmlns="runtime-namespace:Game">
+  <CanvasWidget Size="600, 400" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+      <LabelWidget Text="[EditCommunityServerInfoDialog:1]" Color="255, 255, 255" HorizontalAlignment="Center" Margin="0, 5"/>
+      <StackPanelWidget Direction="Horizontal" Margin="10, 10">
+        <CanvasWidget Size="160, 50">
+          <LabelWidget Text="[EditCommunityServerInfoDialog:2]" VerticalAlignment="Center" HorizontalAlignment="Far" />
+        </CanvasWidget>
+        <CanvasWidget Size="10, 0" />
+        <CheckboxWidget Name="EditCommunityServerInfoDialog.OriginalCheckbox" Text="[EditCommunityServerInfoDialog:3]" CheckboxSize="32, 32" VerticalAlignment="Center" IsAutoCheckingEnabled="false" />
+        <CanvasWidget Size="20, 0" />
+        <CheckboxWidget Name="EditCommunityServerInfoDialog.ChineseCheckbox" Text="[EditCommunityServerInfoDialog:4]" CheckboxSize="32, 32" VerticalAlignment="Center" IsAutoCheckingEnabled="false" />
+      </StackPanelWidget>
+      <StackPanelWidget Direction="Horizontal" Margin="10, 10">
+        <CanvasWidget Size="160, 50">
+          <LabelWidget Text="[EditCommunityServerInfoDialog:5]" VerticalAlignment="Center" HorizontalAlignment="Far" />
+        </CanvasWidget>
+        <CanvasWidget Size="10, 0" />
+        <CanvasWidget>
+          <BevelledRectangleWidget Size="Infinity, 50" Style="{Styles/TextBoxArea}" />
+          <TextBoxWidget Name="EditCommunityServerInfoDialog.Name" Color="255, 255, 255" Margin="6, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+        </CanvasWidget>
+      </StackPanelWidget>
+      <StackPanelWidget Direction="Horizontal" Margin="10, 10">
+        <CanvasWidget Size="160, 50">
+          <LabelWidget Text="[EditCommunityServerInfoDialog:6]" VerticalAlignment="Center" HorizontalAlignment="Far" />
+        </CanvasWidget>
+        <CanvasWidget Size="10, 0" />
+        <CanvasWidget>
+          <BevelledRectangleWidget Size="Infinity, 50" Style="{Styles/TextBoxArea}" />
+          <TextBoxWidget Name="EditCommunityServerInfoDialog.ApiUrl" Color="255, 255, 255" Margin="6, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+        </CanvasWidget>
+      </StackPanelWidget>
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="10, 10">
+        <CanvasWidget Size="160, 50">
+          <LabelWidget Text="[EditCommunityServerInfoDialog:7]" VerticalAlignment="Center" HorizontalAlignment="Far" />
+        </CanvasWidget>
+        <CanvasWidget Size="10, 0" />
+        <CanvasWidget>
+          <BevelledRectangleWidget Size="Infinity, 50" Style="{Styles/TextBoxArea}" />
+          <TextBoxWidget Name="EditCommunityServerInfoDialog.WebsiteUrl" Color="255, 255, 255" Margin="6, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+        </CanvasWidget>
+      </StackPanelWidget>
+      <CanvasWidget Size="0, Infinity" />
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="EditCommunityServerInfoDialog.Ok" Text="[EditCommunityServerInfoDialog:8]" Style="{Styles/ButtonStyle_160x60}" />
+        <CanvasWidget Size="40, 0" />
+        <BevelledButtonWidget Name="EditCommunityServerInfoDialog.Remove" Text="[EditCommunityServerInfoDialog:9]" Style="{Styles/ButtonStyle_160x60}" />
+        <CanvasWidget Size="40, 0" />
+        <BevelledButtonWidget Name="EditCommunityServerInfoDialog.Cancel" Text="[EditCommunityServerInfoDialog:10]" Style="{Styles/ButtonStyle_160x60}" />
+      </StackPanelWidget>
+    </StackPanelWidget>
+  </CanvasWidget>
+</CanvasWidget>

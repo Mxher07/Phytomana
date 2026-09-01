@@ -1,0 +1,40 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[ReleasesScreen:1]" />
+    </CanvasWidget>
+
+    <CanvasWidget Size="300, Infinity" Margin="10, 10">
+
+      <BevelledRectangleWidget Style="{Styles/Area}" />
+      <ListPanelWidget Name="ReleasesList" Direction="Vertical" Margin="5, 3" ItemSize="56" SelectionColor="10, 70, 0, 90"/>
+
+    </CanvasWidget>
+
+    <CanvasWidget Size="Infinity, Infinity" Margin="10, 10">
+
+      <BevelledRectangleWidget Style="{Styles/Area}" />
+
+      <ScrollPanelWidget Name="ScrollPanel" Direction="Vertical" Margin="3, 3" ClampToBounds="true">
+        <CanvasWidget HorizontalAlignment="Center" VerticalAlignment="Near">
+
+          <StackPanelWidget Name="ReleaseInfoPanel" Direction="Vertical" HorizontalAlignment="Center" Margin="10, 10" >
+            <LabelWidget Name="ReleaseTitle" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true" />
+            <CanvasWidget Size="0, 10" />
+            <LabelWidget Name="ReleaseInfo" Color="128, 128, 128" HorizontalAlignment="Center" TextAnchor="Left" WordWrap="true" />
+            <CanvasWidget Size="0, 24" />
+            <LabelWidget Name="ReleaseText" Color="128, 128, 128" HorizontalAlignment="Center" TextAnchor="Left" WordWrap="true" />
+            <CanvasWidget Size="0, 24" />
+          </StackPanelWidget>
+
+        </CanvasWidget>
+      </ScrollPanelWidget>
+
+    </CanvasWidget>
+  </StackPanelWidget>
+
+</Screen>

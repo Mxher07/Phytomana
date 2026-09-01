@@ -1,0 +1,15 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <RectangleWidget FillColor="0, 0, 0, 255" OutlineColor="0, 0, 0, 0" />
+
+  <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 30">
+    <LabelWidget Name="SpawnDialog.SeasonLabel" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true"/>
+    <CanvasWidget Size="0, 90"/>
+    <LabelWidget Name="SpawnDialog.LargeLabel" Color="255, 255, 255" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true"/>
+    <CanvasWidget Size="0, 15"/>
+    <ValueBarWidget Name="SpawnDialog.Progress" LayoutDirection="Horizontal" HorizontalAlignment="Center" BarsCount="5" BarSize="12, 12" BarSubtexture="{Textures/Atlas/ProgressBar}" Spacing="10" />
+  </StackPanelWidget>
+
+  <LabelWidget Name="SpawnDialog.SmallLabel" Color="128, 128, 128" HorizontalAlignment="Center" VerticalAlignment="Far" TextAnchor="HorizontalCenter" WordWrap="true" Margin="0, 20"/>
+
+</CanvasWidget>

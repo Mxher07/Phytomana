@@ -1,0 +1,5 @@
+将本压缩包中的所有文件覆盖到游戏目录，运行`Survivalcraft.exe`
+如果还是弹窗提示`你的显卡驱动不支持当前程序使用的图形API，请尝试更新显卡驱动，或使用兼容补丁。`，建议为您的电脑购买并装上五年内发布的显卡
+
+Copy and cover all files from this compressed package to the game directory, then run `Survivalcraft.exe`
+If you still get a pop-up window saying `Your graphics card driver does not support the graphics API used by the current program. Please try updating your graphics card driver or using the compatible patch.`, it is recommended to purchase and install a graphics card released within the last five years for your computer.

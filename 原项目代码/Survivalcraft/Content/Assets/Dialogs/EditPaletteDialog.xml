@@ -1,0 +1,34 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="740, 420" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0, 15">
+      
+      <LabelWidget  Text="[EditPaletteDialog:1]" HorizontalAlignment="Center"/>
+
+      <CanvasWidget Size="0, 5" />
+
+      <LabelWidget  Color="128, 128, 128" Text="[EditPaletteDialog:2]" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true" Margin="30, 0"/>
+
+      <CanvasWidget Size="0, 15" />
+
+      <CanvasWidget Margin="20, 0">
+
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+        <ScrollPanelWidget Direction="Vertical" Margin="3, 3">
+          <StackPanelWidget Name="EditPaletteDialog.ListPanel" Direction="Vertical" HorizontalAlignment="Center" />
+        </ScrollPanelWidget>
+
+      </CanvasWidget>
+
+      <CanvasWidget Size="0, 15" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="EditPaletteDialog.OK" Style="{Styles/ButtonStyle_160x60}" Text="[EditPaletteDialog:3]" Margin="20, 0" />
+        <BevelledButtonWidget Name="EditPaletteDialog.Cancel" Style="{Styles/ButtonStyle_160x60}" Margin="20, 0" Text="[EditPaletteDialog:4]"/>
+      </StackPanelWidget>
+      
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

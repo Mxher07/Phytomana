@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\EntitySystem\EntitySystem.props" />
+    <Import Project="..\build\Android.props" />
+    <ItemGroup>
+        <ProjectReference Include="..\Engine.Android\Engine.Android.csproj" />
+    </ItemGroup>
+</Project>

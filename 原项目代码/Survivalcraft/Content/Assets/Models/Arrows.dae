@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="ArrowShaft-mesh" name="ArrowShaft">
+      <mesh>
+        <source id="ArrowShaft-mesh-positions">
+          <float_array id="ArrowShaft-mesh-positions-array" count="18">2.4 0 -0 2.400005 0 80 -1.199995 2.078461 80 -1.2 2.078461 0 -1.199995 -2.078461 80 -1.2 -2.078461 0</float_array>
+          <technique_common>
+            <accessor source="#ArrowShaft-mesh-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowShaft-mesh-normals">
+          <float_array id="ArrowShaft-mesh-normals-array" count="18">1 0 -0 -0.49999976 0.86602557 0 -0.50000024 0.8660254 0 -0.50000024 -0.8660254 0 -0.49999976 -0.86602557 0 -0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#ArrowShaft-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowShaft-mesh-map">
+          <float_array id="ArrowShaft-mesh-map-array" count="42">0.005035 0.994706 0.006916 0.994706 0.006916 0.994259 0.005035 0.994706 0.006916 0.994259 0.005035 0.994259 0.005035 0.994259 0.006916 0.994259 0.006916 0.993812 0.005035 0.994259 0.006916 0.993812 0.005035 0.993812 0.005035 0.993812 0.006916 0.993812 0.006916 0.993365 0.005035 0.993812 0.006916 0.993365 0.005035 0.993365 0.005035 0.994706 0.005035 0.994259 0.005035 0.993812</float_array>
+          <technique_common>
+            <accessor source="#ArrowShaft-mesh-map-array" count="21" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="ArrowShaft-mesh-vertices">
+          <input semantic="POSITION" source="#ArrowShaft-mesh-positions" />
+        </vertices>
+        <triangles count="7">
+          <input semantic="VERTEX" source="#ArrowShaft-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#ArrowShaft-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#ArrowShaft-mesh-map" offset="2" />
+          <p>0 0 0 2 1 2 1 0 1 0 0 3 3 2 5 2 1 4 3 2 6 4 3 8 2 1 7 3 2 9 5 4 11 4 3 10 5 4 12 1 0 14 4 3 13 5 4 15 0 0 17 1 0 16 0 5 18 5 5 20 3 5 19</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="ArrowStabilizer-mesh" name="ArrowStabilizer">
+      <mesh>
+        <source id="ArrowStabilizer-mesh-positions">
+          <float_array id="ArrowStabilizer-mesh-positions-array" count="15">2.995676 5.198646 -0.093565 1E-06 0 17.999998 -2.995673 -5.198647 0 5.198647 -2.995674 0 -5.198647 2.995675 0</float_array>
+          <technique_common>
+            <accessor source="#ArrowStabilizer-mesh-positions-array" count="5" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowStabilizer-mesh-normals">
+          <float_array id="ArrowStabilizer-mesh-normals-array" count="6">-0.8664412 0.4992791 -0 -0.4992791 -0.8664412 0</float_array>
+          <technique_common>
+            <accessor source="#ArrowStabilizer-mesh-normals-array" count="2" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowStabilizer-mesh-map">
+          <float_array id="ArrowStabilizer-mesh-map-array" count="12">0.001703 0.998212 0.023673 0.998212 0.001703 0.976242 0.023673 0.998212 0.012688 0.987227 0.012688 0.987227</float_array>
+          <technique_common>
+            <accessor source="#ArrowStabilizer-mesh-map-array" count="6" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="ArrowStabilizer-mesh-vertices">
+          <input semantic="POSITION" source="#ArrowStabilizer-mesh-positions" />
+        </vertices>
+        <triangles count="2">
+          <input semantic="VERTEX" source="#ArrowStabilizer-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#ArrowStabilizer-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#ArrowStabilizer-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 1 3 4 1 5 3 1 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="BoltShaft-mesh" name="BoltShaft">
+      <mesh>
+        <source id="BoltShaft-mesh-positions">
+          <float_array id="BoltShaft-mesh-positions-array" count="18">2 0 0 2.759481 1E-06 45 -1.379733 2.389777 45 -1 1.732051 0 -1.379733 -2.389776 45 -1 -1.732051 0</float_array>
+          <technique_common>
+            <accessor source="#BoltShaft-mesh-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltShaft-mesh-normals">
+          <float_array id="BoltShaft-mesh-normals-array" count="12">0.99985766 0 -0.016874995 -0.499929 0.865902 -0.016875 -0.499929 -0.865902 -0.016875 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#BoltShaft-mesh-normals-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltShaft-mesh-map">
+          <float_array id="BoltShaft-mesh-map-array" count="42">0.004467 0.96521 0.004467 0.995634 0.007815 0.995634 0.004467 0.96521 0.007815 0.995634 0.007815 0.96521 0.007815 0.96521 0.007815 0.995634 0.010327 0.995634 0.007815 0.96521 0.010327 0.995634 0.010327 0.96521 0.010327 0.96521 0.010327 0.995634 0.004467 0.995634 0.010327 0.96521 0.004467 0.995634 0.004467 0.96521 0.004904 0.980913 0.004904 0.980905 0.004904 0.980896</float_array>
+          <technique_common>
+            <accessor source="#BoltShaft-mesh-map-array" count="21" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="BoltShaft-mesh-vertices">
+          <input semantic="POSITION" source="#BoltShaft-mesh-positions" />
+        </vertices>
+        <triangles count="7">
+          <input semantic="VERTEX" source="#BoltShaft-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#BoltShaft-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#BoltShaft-mesh-map" offset="2" />
+          <p>0 0 0 2 1 2 1 0 1 0 0 3 3 1 5 2 1 4 3 1 6 4 2 8 2 1 7 3 1 9 5 2 11 4 2 10 5 2 12 1 0 14 4 2 13 5 2 15 0 0 17 1 0 16 0 3 18 5 3 20 3 3 19</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="BoltStabilizer-mesh" name="BoltStabilizer">
+      <mesh>
+        <source id="BoltStabilizer-mesh-positions">
+          <float_array id="BoltStabilizer-mesh-positions-array" count="15">2.995674 5.198645 -0.057856 -1E-06 0 11.130307 -2.995674 -5.198647 0 5.198645 -2.995674 0 -5.198647 2.995674 0</float_array>
+          <technique_common>
+            <accessor source="#BoltStabilizer-mesh-positions-array" count="5" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltStabilizer-mesh-normals">
+          <float_array id="BoltStabilizer-mesh-normals-array" count="6">-0.8664412 0.4992791 -0 -0.4992791 -0.8664412 0</float_array>
+          <technique_common>
+            <accessor source="#BoltStabilizer-mesh-normals-array" count="2" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltStabilizer-mesh-map">
+          <float_array id="BoltStabilizer-mesh-map-array" count="12">0.000512 0.999469 0.022482 0.999469 0.000512 0.977499 0.022482 0.999469 0.011497 0.988484 0.011497 0.988484</float_array>
+          <technique_common>
+            <accessor source="#BoltStabilizer-mesh-map-array" count="6" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="BoltStabilizer-mesh-vertices">
+          <input semantic="POSITION" source="#BoltStabilizer-mesh-positions" />
+        </vertices>
+        <triangles count="2">
+          <input semantic="VERTEX" source="#BoltStabilizer-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#BoltStabilizer-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#BoltStabilizer-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 1 3 4 1 5 3 1 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="BoltTip-mesh" name="BoltTip">
+      <mesh>
+        <source id="BoltTip-mesh-positions">
+          <float_array id="BoltTip-mesh-positions-array" count="12">-3E-06 -0 5.968997 -1.390948 -2.434334 0 -1.38769 2.401036 0 2.749573 0.000379 -0</float_array>
+          <technique_common>
+            <accessor source="#BoltTip-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltTip-mesh-normals">
+          <float_array id="BoltTip-mesh-normals-array" count="12">0.0013789997 0.0016239997 0.99999774 -0.4561309 -0.7970078 -0.3958829 -0.45791295 0.7951429 -0.39757195 0.91692525 0.0022190004 -0.3990531</float_array>
+          <technique_common>
+            <accessor source="#BoltTip-mesh-normals-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltTip-mesh-map">
+          <float_array id="BoltTip-mesh-map-array" count="24">0.010399 0.999518 0.013209 0.986314 0.007741 0.986312 0.010399 0.999518 0.007741 0.986312 0.000552 0.984973 0.010399 0.999518 0.000552 0.984973 0.013209 0.986314 0.000552 0.984973 0.007741 0.986312 0.013209 0.986314</float_array>
+          <technique_common>
+            <accessor source="#BoltTip-mesh-map-array" count="12" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="BoltTip-mesh-vertices">
+          <input semantic="POSITION" source="#BoltTip-mesh-positions" />
+        </vertices>
+        <triangles count="4">
+          <input semantic="VERTEX" source="#BoltTip-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#BoltTip-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#BoltTip-mesh-map" offset="2" />
+          <p>0 0 0 2 2 2 1 1 1 0 0 3 3 3 5 2 2 4 0 0 6 1 1 8 3 3 7 3 3 9 1 1 11 2 2 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="BoltExplosiveTip-mesh" name="BoltExplosiveTip">
+      <mesh>
+        <source id="BoltExplosiveTip-mesh-positions">
+          <float_array id="BoltExplosiveTip-mesh-positions-array" count="18">0 0 6.168833 -5 -0 -0 -0 5 -0 0 -5 -0 5 1E-06 -0 0 0 -6.168833</float_array>
+          <technique_common>
+            <accessor source="#BoltExplosiveTip-mesh-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltExplosiveTip-mesh-normals">
+          <float_array id="BoltExplosiveTip-mesh-normals-array" count="24">-0.613491 0.613491 0.49725 -0.613491 -0.613491 0.49725 0.613491 -0.613491 0.49725 0.613491 0.613491 0.49725 -0.613491 0.613491 -0.49725 -0.613491 -0.613491 -0.49725 0.613491 -0.613491 -0.49725 0.613491 0.613491 -0.49725</float_array>
+          <technique_common>
+            <accessor source="#BoltExplosiveTip-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="BoltExplosiveTip-mesh-map">
+          <float_array id="BoltExplosiveTip-mesh-map-array" count="48">0.00054 0.99935 0.003268 0.994174 0.00054 0.994174 0.003268 0.99935 0.005996 0.994174 0.003268 0.994174 0.005996 0.99935 0.008725 0.994174 0.005996 0.994174 0.008725 0.99935 0.011453 0.994174 0.008725 0.994174 0.00054 0.988998 0.00054 0.994174 0.003268 0.994174 0.003268 0.988998 0.003268 0.994174 0.005996 0.994174 0.005996 0.988998 0.005996 0.994174 0.008725 0.994174 0.008725 0.988998 0.008725 0.994174 0.011453 0.994174</float_array>
+          <technique_common>
+            <accessor source="#BoltExplosiveTip-mesh-map-array" count="24" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="BoltExplosiveTip-mesh-vertices">
+          <input semantic="POSITION" source="#BoltExplosiveTip-mesh-positions" />
+        </vertices>
+        <triangles count="8">
+          <input semantic="VERTEX" source="#BoltExplosiveTip-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#BoltExplosiveTip-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#BoltExplosiveTip-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 1 3 1 1 5 3 1 4 0 2 6 3 2 8 4 2 7 0 3 9 4 3 11 2 3 10 5 4 12 1 4 14 2 4 13 5 5 15 3 5 17 1 5 16 5 6 18 4 6 20 3 6 19 5 7 21 2 7 23 4 7 22</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="ArrowFireTip-mesh" name="ArrowFireTip">
+      <mesh>
+        <source id="ArrowFireTip-mesh-positions">
+          <float_array id="ArrowFireTip-mesh-positions-array" count="42">0 -0 -0.993191 5.086833 -0 -0.993191 2.543416 4.405327 -0.993191 -2.543417 4.405326 -0.993191 -5.086833 -0 -0.993191 -2.543416 -4.405327 -0.993191 2.543416 -4.405327 -0.993191 3.555215 -0 15 1.777607 3.078907 15 -1.777608 3.078907 15 -3.555215 -0 15 -1.777607 -3.078907 15 1.777607 -3.078907 15 -0 -0 15</float_array>
+          <technique_common>
+            <accessor source="#ArrowFireTip-mesh-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowFireTip-mesh-normals">
+          <float_array id="ArrowFireTip-mesh-normals-array" count="24">0 0 -1 0.99544567 0 0.09533096 0.49772307 0.8620811 0.09533101 -0.49772307 0.8620811 0.09533101 -0.99544567 -0 0.09533096 -0.49772307 -0.8620811 0.09533101 0.49772307 -0.8620811 0.09533101 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#ArrowFireTip-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowFireTip-mesh-map">
+          <float_array id="ArrowFireTip-mesh-map-array" count="144">0.009046 0.98462 0.012762 0.98462 0.01524 0.98462 0.009046 0.98462 0.000373 0.98462 0.002851 0.98462 0.009046 0.98462 0.002851 0.98462 0.005329 0.98462 0.009046 0.98462 0.005329 0.98462 0.007807 0.98462 0.009046 0.98462 0.007807 0.98462 0.010284 0.98462 0.009046 0.98462 0.010284 0.98462 0.012762 0.98462 0.012762 0.98462 0.012762 0.999487 0.01524 0.999487 0.012762 0.98462 0.01524 0.999487 0.01524 0.98462 0.000373 0.98462 0.000373 0.999487 0.002851 0.999487 0.000373 0.98462 0.002851 0.999487 0.002851 0.98462 0.002851 0.98462 0.002851 0.999487 0.005329 0.999487 0.002851 0.98462 0.005329 0.999487 0.005329 0.98462 0.005329 0.98462 0.005329 0.999487 0.007807 0.999487 0.005329 0.98462 0.007807 0.999487 0.007807 0.98462 0.007807 0.98462 0.007807 0.999487 0.010284 0.999487 0.007807 0.98462 0.010284 0.999487 0.010284 0.98462 0.010284 0.98462 0.010284 0.999487 0.012762 0.999487 0.010284 0.98462 0.012762 0.999487 0.012762 0.98462 0.009046 0.999487 0.01524 0.999487 0.012762 0.999487 0.009046 0.999487 0.002851 0.999487 0.000373 0.999487 0.009046 0.999487 0.005329 0.999487 0.002851 0.999487 0.009046 0.999487 0.007807 0.999487 0.005329 0.999487 0.009046 0.999487 0.010284 0.999487 0.007807 0.999487 0.009046 0.999487 0.012762 0.999487 0.010284 0.999487</float_array>
+          <technique_common>
+            <accessor source="#ArrowFireTip-mesh-map-array" count="72" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="ArrowFireTip-mesh-vertices">
+          <input semantic="POSITION" source="#ArrowFireTip-mesh-positions" />
+        </vertices>
+        <triangles count="24">
+          <input semantic="VERTEX" source="#ArrowFireTip-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#ArrowFireTip-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#ArrowFireTip-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 1 0 17 6 0 16 1 1 18 8 2 20 7 1 19 1 1 21 2 2 23 8 2 22 2 2 24 9 3 26 8 2 25 2 2 27 3 3 29 9 3 28 3 3 30 10 4 32 9 3 31 3 3 33 4 4 35 10 4 34 4 4 36 11 5 38 10 4 37 4 4 39 5 5 41 11 5 40 5 5 42 12 6 44 11 5 43 5 5 45 6 6 47 12 6 46 6 6 48 7 1 50 12 6 49 6 6 51 1 1 53 7 1 52 13 7 54 7 7 56 8 7 55 13 7 57 8 7 59 9 7 58 13 7 60 9 7 62 10 7 61 13 7 63 10 7 65 11 7 64 13 7 66 11 7 68 12 7 67 13 7 69 12 7 71 7 7 70</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="ArrowTip-mesh" name="ArrowTip">
+      <mesh>
+        <source id="ArrowTip-mesh-positions">
+          <float_array id="ArrowTip-mesh-positions-array" count="12">-7E-06 -1E-06 12.592528 -2.990217 -5.233253 0.038819 -2.983212 5.161671 0.038819 5.910947 0.000814 0.038818</float_array>
+          <technique_common>
+            <accessor source="#ArrowTip-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowTip-mesh-normals">
+          <float_array id="ArrowTip-mesh-normals-array" count="12">-0.9728461 0.00065600005 0.23145203 0.48842293 0.84174186 0.23002997 0.493041 -0.838476 0.232096 -0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#ArrowTip-mesh-normals-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ArrowTip-mesh-map">
+          <float_array id="ArrowTip-mesh-map-array" count="24">0.007417 0.998245 0.013562 0.986044 0.001361 0.986044 0.007426 0.998567 0.013561 0.986367 0.00136 0.986367 0.00754 0.998573 0.01356 0.986373 0.00136 0.986373 0.007414 0.986042 0.001363 0.998242 0.013564 0.998242</float_array>
+          <technique_common>
+            <accessor source="#ArrowTip-mesh-map-array" count="12" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="ArrowTip-mesh-vertices">
+          <input semantic="POSITION" source="#ArrowTip-mesh-positions" />
+        </vertices>
+        <triangles count="4">
+          <input semantic="VERTEX" source="#ArrowTip-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#ArrowTip-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#ArrowTip-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 1 3 3 1 5 2 1 4 0 2 6 1 2 8 3 2 7 3 3 9 1 3 11 2 3 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="ArrowShaft" name="ArrowShaft" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#ArrowShaft-mesh" name="ArrowShaft" />
+        </node>
+        <node id="ArrowStabilizer" name="ArrowStabilizer" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#ArrowStabilizer-mesh" name="ArrowStabilizer" />
+        </node>
+        <node id="BoltShaft" name="BoltShaft" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#BoltShaft-mesh" name="BoltShaft" />
+        </node>
+        <node id="BoltStabilizer" name="BoltStabilizer" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0.04 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#BoltStabilizer-mesh" name="BoltStabilizer" />
+        </node>
+        <node id="BoltTip" name="BoltTip" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0.45 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#BoltTip-mesh" name="BoltTip" />
+        </node>
+        <node id="BoltExplosiveTip" name="BoltExplosiveTip" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0.4665605 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#BoltExplosiveTip-mesh" name="BoltExplosiveTip" />
+        </node>
+        <node id="ArrowFireTip" name="ArrowFireTip" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0.76339185 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#ArrowFireTip-mesh" name="ArrowFireTip" />
+        </node>
+        <node id="ArrowTip" name="ArrowTip" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0.78947383 0 -0.01 0 -4.608E-05 0 0 0 1</matrix>
+          <instance_geometry url="#ArrowTip-mesh" name="ArrowTip" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

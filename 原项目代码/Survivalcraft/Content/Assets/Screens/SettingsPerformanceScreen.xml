@@ -1,0 +1,80 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[SettingsPerformanceScreen:1]" />
+    </CanvasWidget>
+
+    <CanvasWidget Margin="10, 20">
+      <BevelledRectangleWidget Style="{Styles/Area}" />
+      <ScrollPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3, 3">
+        <StackPanelWidget Direction="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="false">
+        
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:2]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <BevelledButtonWidget Name="ResolutionButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:3]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <StackPanelWidget Direction="Vertical" VerticalAlignment="Center" Margin="20, 0">
+              <SliderWidget Name="VisibilityRangeSlider" Size="Infinity, 60" Granularity="1" />
+              <LabelWidget Name="VisibilityRangeWarningLabel" TextAnchor="HorizontalCenter" Color="128, 128, 128" HorizontalAlignment="Center" />
+            </StackPanelWidget>
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:5]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <BevelledButtonWidget Name="TerrainMipmapsButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:6]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <BevelledButtonWidget Name="SkyRenderingModeButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:7]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <BevelledButtonWidget Name="ObjectShadowsButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:8]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <SliderWidget Name="FramerateLimitSlider" Size="Infinity, 60" VerticalAlignment="Center" Margin="20, 0" MinValue="0" MaxValue="2" Granularity="1" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:13]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <SliderWidget Name="AnimatedTextureRefreshLimitSlider" Size="Infinity, 60" VerticalAlignment="Center" Margin="20, 0" MinValue="0" MaxValue="7" Granularity="1" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:9]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <BevelledButtonWidget Name="DisplayFpsCounterButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsPerformanceScreen:10]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <BevelledButtonWidget Name="DisplayFpsRibbonButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+		<UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+			<LabelWidget Text="[SettingsPerformanceScreen:11]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+			<SliderWidget Name="LowFPSToTimeDeceleration" Size="Infinity, 60" VerticalAlignment="Center" Margin="20, 0" MinValue="0" MaxValue="2" Granularity="1" />
+		</UniformSpacingPanelWidget>
+			
+		<UniformSpacingPanelWidget Direction="Horizontal">
+			<LabelWidget Text="[SettingsPerformanceScreen:12]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+			<BevelledButtonWidget Name="UseAPISleepTimeAccelerationButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+		</UniformSpacingPanelWidget>
+
+        </StackPanelWidget>
+      </ScrollPanelWidget>
+    </CanvasWidget>
+    
+  </StackPanelWidget>
+
+</Screen>

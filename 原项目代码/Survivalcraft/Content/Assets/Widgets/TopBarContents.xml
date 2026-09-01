@@ -1,0 +1,24 @@
+<CanvasWidget xmlns="runtime-namespace:Game" Size="64, Infinity">
+
+  <StackPanelWidget Direction="Vertical" Margin="4, 0" >
+    <CanvasWidget Size="0, 4" />
+    <BevelledButtonWidget Name="TopBar.Back" Size="60, 60">
+      <CanvasWidget Name="BevelledButton.Canvas" Margin="0, 0" />
+      <BevelledRectangleWidget Name="BevelledButton.Rectangle" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+      <RectangleWidget Name="BevelledButton.Image" Size="32, 32" Subtexture="{Textures/Atlas/ArrowLeft}" OutlineColor="0, 0, 0, 0" FillColor="255, 255, 255" IsVisible="true" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </BevelledButtonWidget>
+    <CanvasWidget Size="0, 4" />
+    <BevelledRectangleWidget Size="60, Infinity" TextureScale="0.5" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+    <CanvasWidget Size="0, 4" />
+  </StackPanelWidget>
+
+  <StackPanelWidget Direction="Vertical" IsHitTestVisible="false" Margin="4, 0">
+    <CanvasWidget Size="0, 4" />
+    <CanvasWidget Size="0, 64" />
+    <CanvasWidget Size="54, Infinity" VerticalAlignment="Center" Margin="0, 10" ClampToBounds="true">
+      <LabelWidget Name="TopBar.Label" TextOrientation="VerticalLeft" Color="255, 255, 255, 255" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </CanvasWidget>
+    <CanvasWidget Size="0, 4" />
+  </StackPanelWidget>
+
+</CanvasWidget>

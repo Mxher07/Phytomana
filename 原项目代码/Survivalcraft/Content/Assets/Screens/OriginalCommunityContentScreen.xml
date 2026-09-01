@@ -1,0 +1,59 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[OriginalCommunityContentScreen:1]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" VerticalAlignment="Center">
+
+      <CanvasWidget Size="0, 5" />
+
+      <StackPanelWidget Direction="Horizontal">
+        <StackPanelWidget Margin="10, 0">
+          <LabelWidget Name="Order" Text="[OriginalCommunityContentScreen:2]" VerticalAlignment="Center" ClampToBounds="true"/>
+          <CanvasWidget Size="10, 0"/>
+          <BevelledButtonWidget Name="ChangeOrder" Text="[OriginalCommunityContentScreen:3]" Style="{Styles/ButtonStyle_70x60}" VerticalAlignment="Center"/>
+        </StackPanelWidget>
+        <StackPanelWidget Margin="10, 0">
+          <LabelWidget Name="Filter" Text="[OriginalCommunityContentScreen:2]" VerticalAlignment="Center"/>
+          <CanvasWidget Size="10, 0"/>
+          <BevelledButtonWidget Name="ChangeFilter" Text="[OriginalCommunityContentScreen:3]" Style="{Styles/ButtonStyle_70x60}" VerticalAlignment="Center"/>
+        </StackPanelWidget>
+        <StackPanelWidget Margin="10, 0">
+          <CanvasWidget VerticalAlignment="Center" Size="Infinity, 50" Margin="0, 5" >
+            <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+            <TextBoxWidget Name="Search" Title="Search Name" Size="Infinity, 50" VerticalAlignment="Center" MaximumLength="20" Margin="10, 0"/>
+            <LabelWidget Name="SearchLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[OriginalCommunityContentScreen:6]" Color="96, 96, 96"/>
+            <LinkWidget Name="ClearSearchLink" Text="[OriginalCommunityContentScreen:7]" Color="64, 192, 64" HorizontalAlignment="Far" VerticalAlignment="Center" DropShadow="true" Margin="10, 0" />
+          </CanvasWidget>
+        </StackPanelWidget>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 8" />
+
+      <CanvasWidget Margin="10, 0">
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+        <ListPanelWidget Name="List" Direction="Vertical" Margin="3, 3" ItemSize="48" SelectionColor="10, 70, 0, 90"/>
+      </CanvasWidget>
+
+      <CanvasWidget Size="0, 8" />
+
+      <StackPanelWidget Direction="Horizontal" Margin="5, 0">
+        <BevelledButtonWidget Name="Download" Style="{Styles/ButtonStyle_310x60}" Text="[OriginalCommunityContentScreen:4]"/>
+        <CanvasWidget Size="Infinity, 0"/>
+        <BevelledButtonWidget Name="Delete" Style="{Styles/ButtonStyle_160x60}" Text="[OriginalCommunityContentScreen:5]"/>
+        <CanvasWidget Size="10, 0"/>
+        <BevelledButtonWidget Name="MoreOptions" Style="{Styles/ButtonStyle_70x60}" Text="[OriginalCommunityContentScreen:3]"/>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 5" />
+
+    </StackPanelWidget>
+    
+  </StackPanelWidget>
+
+</Screen>

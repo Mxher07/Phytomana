@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Stairs-mesh" name="Stairs">
+      <mesh>
+        <source id="Stairs-mesh-positions">
+          <float_array id="Stairs-mesh-positions-array" count="36">-50 -50 100 50 0 100 50 -50 100 -50 0 100 50 50 0 -50 50 50 -50 50 0 50 50 50 50 0 50 -50 0 50 -50 -50 0 50 -50 0</float_array>
+          <technique_common>
+            <accessor source="#Stairs-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Stairs-mesh-normals">
+          <float_array id="Stairs-mesh-normals-array" count="18">0 0 1 0 1 0 0 -1 0 1 0 0 -1 0 0 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#Stairs-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Stairs-mesh-map">
+          <float_array id="Stairs-mesh-map-array" count="120">0.062446 0.99999 2.3E-05 0.968772 2.3E-05 0.99999 2.3E-05 0.968772 0.062446 0.99999 0.062446 0.968772 2.3E-05 0.937554 0.062446 0.968772 0.062446 0.937554 0.062446 0.968772 2.3E-05 0.937554 2.3E-05 0.968772 2.3E-05 0.968772 0.062446 0.968772 2.3E-05 0.937554 0.062446 0.968772 0.062446 0.937554 2.3E-05 0.937554 2.3E-05 0.99999 0.062446 0.99999 2.3E-05 0.968772 0.062446 0.99999 0.062446 0.968772 2.3E-05 0.968772 0.062446 0.99999 2.3E-05 0.937554 2.3E-05 0.99999 0.062446 0.99999 0.062446 0.937554 2.3E-05 0.937554 0.062446 0.937554 0.031235 0.968772 0.062446 0.968772 0.031235 0.968772 2.3E-05 0.99999 0.031235 0.99999 0.031235 0.968772 2.3E-05 0.937554 2.3E-05 0.968772 0.062446 0.99999 0.031235 0.968772 0.031235 0.99999 0.062446 0.99999 0.062446 0.937554 0.031235 0.968772 0.062446 0.937554 2.3E-05 0.937554 0.031235 0.968772 0.062446 0.937554 2.3E-05 0.937554 0.031235 0.968772 0.031235 0.968772 2.3E-05 0.937554 2.3E-05 0.99999 2.3E-05 0.99999 0.062446 0.937554 2.3E-05 0.937554 2.3E-05 0.99999 0.062446 0.99999 0.062446 0.937554</float_array>
+          <technique_common>
+            <accessor source="#Stairs-mesh-map-array" count="60" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Stairs-mesh-vertices">
+          <input semantic="POSITION" source="#Stairs-mesh-positions" />
+        </vertices>
+        <triangles count="20">
+          <input semantic="VERTEX" source="#Stairs-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Stairs-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Stairs-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 8 0 12 7 0 14 9 0 13 9 0 15 7 0 17 5 0 16 1 1 18 8 1 20 3 1 19 3 1 21 8 1 23 9 1 22 2 2 24 0 2 26 10 2 25 2 2 27 10 2 29 11 2 28 4 3 30 7 3 32 8 3 31 8 3 33 1 3 35 2 3 34 9 4 36 5 4 38 6 4 37 0 4 39 3 4 41 9 4 40 0 4 42 9 4 44 10 4 43 10 4 45 9 4 47 6 4 46 4 3 48 8 3 50 11 3 49 8 3 51 2 3 53 11 3 52 4 5 54 11 5 56 10 5 55 4 5 57 10 5 59 6 5 58</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="StairsOuterCorner-mesh" name="StairsOuterCorner">
+      <mesh>
+        <source id="StairsOuterCorner-mesh-positions">
+          <float_array id="StairsOuterCorner-mesh-positions-array" count="42">50.000008 50 0 -50 50 50 -50 50 0 50 50 50 -50 -50 0 49.999992 -50 0 -50 0 100 -4E-06 8E-06 50 -8E-06 0 100 -50 0 50 -4E-06 -49.999992 50 8E-06 -50 100 -50 -50 100 50 -50 50</float_array>
+          <technique_common>
+            <accessor source="#StairsOuterCorner-mesh-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="StairsOuterCorner-mesh-normals">
+          <float_array id="StairsOuterCorner-mesh-normals-array" count="18">0 1 0 0 0 -1 1 0 -0 0 0 1 0 -1 0 -1 0 0</float_array>
+          <technique_common>
+            <accessor source="#StairsOuterCorner-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="StairsOuterCorner-mesh-map">
+          <float_array id="StairsOuterCorner-mesh-map-array" count="144">2.7E-05 0.937521 0.062465 0.968742 0.062465 0.937521 0.062465 0.968742 2.7E-05 0.937521 2.7E-05 0.968742 2.7E-05 0.999963 0.062465 0.937521 2.7E-05 0.937521 2.7E-05 0.999963 0.062465 0.999963 0.062465 0.937521 0.062465 0.999963 0.031246 0.968742 0.031246 0.999963 0.062465 0.999963 0.062465 0.968742 0.031246 0.968742 0.031246 0.999963 2.7E-05 0.968742 2.7E-05 0.999963 0.031246 0.999963 0.031246 0.968742 2.7E-05 0.968742 0.062465 0.968742 0.031246 0.999963 0.062465 0.999963 0.062465 0.968742 0.031246 0.968742 0.031246 0.999963 2.7E-05 0.999963 0.031246 0.968742 2.7E-05 0.937521 2.7E-05 0.999963 0.031246 0.999963 0.031246 0.968742 0.062465 0.968742 2.7E-05 0.937521 0.031246 0.968742 0.062465 0.968742 0.062465 0.937521 2.7E-05 0.937521 0.031246 0.999963 2.7E-05 0.937521 2.7E-05 0.999963 0.031246 0.999963 0.031246 0.968742 2.7E-05 0.937521 0.031246 0.968742 0.062465 0.937521 2.7E-05 0.937521 0.031246 0.968742 0.062465 0.968742 0.062465 0.937521 0.062465 0.968742 2.7E-05 0.937521 2.7E-05 0.968742 0.062465 0.968742 0.062465 0.937521 2.7E-05 0.937521 0.062465 0.999963 0.031246 0.968742 0.031246 0.999963 0.062465 0.999963 0.062465 0.937521 0.031246 0.968742 0.062465 0.937521 2.7E-05 0.968742 0.031246 0.968742 0.062465 0.937521 2.7E-05 0.937521 2.7E-05 0.968742</float_array>
+          <technique_common>
+            <accessor source="#StairsOuterCorner-mesh-map-array" count="72" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="StairsOuterCorner-mesh-vertices">
+          <input semantic="POSITION" source="#StairsOuterCorner-mesh-positions" />
+        </vertices>
+        <triangles count="24">
+          <input semantic="VERTEX" source="#StairsOuterCorner-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#StairsOuterCorner-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#StairsOuterCorner-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 0 1 6 5 1 8 4 1 7 0 1 9 4 1 11 2 1 10 6 0 12 8 0 14 7 0 13 6 0 15 7 0 17 9 0 16 8 2 18 11 2 20 10 2 19 8 2 21 10 2 23 7 2 22 6 3 24 12 3 26 11 3 25 6 3 27 11 3 29 8 3 28 12 4 30 4 4 32 10 4 31 12 4 33 10 4 35 11 4 34 13 4 36 10 4 38 4 4 37 13 4 39 4 4 41 5 4 40 10 3 42 13 3 44 3 3 43 10 3 45 3 3 47 7 3 46 7 3 48 3 3 50 1 3 49 7 3 51 1 3 53 9 3 52 3 2 54 13 2 56 5 2 55 3 2 57 5 2 59 0 2 58 12 5 60 6 5 62 9 5 61 12 5 63 9 5 65 4 5 64 4 5 66 9 5 68 1 5 67 4 5 69 1 5 71 2 5 70</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="StairsInnerCorner-mesh" name="StairsInnerCorner">
+      <mesh>
+        <source id="StairsInnerCorner-mesh-positions">
+          <float_array id="StairsInnerCorner-mesh-positions-array" count="42">49.999992 -50 0 50.000008 50 0 -50 50 0 -50 -50 0 49.999992 -2E-06 100 -8E-06 0 100 -4E-06 8E-06 50 49.999996 6E-06 50 -50 -50 100 50.000008 -50 100 -4E-06 49.999996 100 0 50.000004 50 -50 49.999996 100 50 50 50</float_array>
+          <technique_common>
+            <accessor source="#StairsInnerCorner-mesh-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="StairsInnerCorner-mesh-normals">
+          <float_array id="StairsInnerCorner-mesh-normals-array" count="18">0 0 -1 0 1 0 0 -1 0 1 -0 0 -1 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#StairsInnerCorner-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="StairsInnerCorner-mesh-map">
+          <float_array id="StairsInnerCorner-mesh-map-array" count="144">2.3E-05 0.937584 2.3E-05 0.99999 0.062446 0.99999 0.062446 0.99999 0.062446 0.937584 2.3E-05 0.937584 1.6E-05 0.99999 0.031227 0.99999 0.031227 0.968787 0.031227 0.968787 1.6E-05 0.968787 1.6E-05 0.99999 2.3E-05 0.99999 0.062446 0.99999 0.062446 0.937584 0.062446 0.937584 2.3E-05 0.937584 2.3E-05 0.99999 0.062446 0.99999 0.062446 0.968787 0.031234 0.968787 0.031234 0.968787 0.031234 0.99999 0.062446 0.99999 2.3E-05 0.99999 0.062446 0.99999 0.062446 0.937584 0.062446 0.937584 2.3E-05 0.937584 2.3E-05 0.99999 0.031234 0.937584 2.3E-05 0.937584 2.3E-05 0.968787 2.3E-05 0.968787 0.031234 0.968787 0.031234 0.937584 0.062447 0.937584 0.031235 0.937584 0.031235 0.968787 0.062447 0.937584 0.031235 0.968787 0.062447 0.99999 2.3E-05 0.99999 0.062447 0.99999 0.031235 0.968787 0.031235 0.968787 2.3E-05 0.968787 2.3E-05 0.99999 0.031234 0.99999 0.031234 0.968787 2.3E-05 0.99999 2.3E-05 0.99999 0.031234 0.968787 2.3E-05 0.937584 0.062446 0.968787 0.062446 0.937584 0.031234 0.968787 0.031234 0.968787 0.062446 0.937584 2.3E-05 0.937584 0.031234 0.968787 0.031234 0.99999 0.062446 0.99999 0.062446 0.937584 0.031234 0.968787 0.062446 0.99999 2.3E-05 0.968787 0.031234 0.968787 2.3E-05 0.937584 0.031234 0.968787 0.062446 0.937584 2.3E-05 0.937584</float_array>
+          <technique_common>
+            <accessor source="#StairsInnerCorner-mesh-map-array" count="72" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="StairsInnerCorner-mesh-vertices">
+          <input semantic="POSITION" source="#StairsInnerCorner-mesh-positions" />
+        </vertices>
+        <triangles count="24">
+          <input semantic="VERTEX" source="#StairsInnerCorner-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#StairsInnerCorner-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#StairsInnerCorner-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 2 0 3 0 0 5 3 0 4 4 1 6 6 1 8 5 1 7 6 1 9 4 1 11 7 1 10 8 2 12 0 2 14 9 2 13 0 2 15 8 2 17 3 2 16 10 3 18 6 3 20 11 3 19 6 3 21 10 3 23 5 3 22 12 4 24 3 4 26 8 4 25 3 4 27 12 4 29 2 4 28 11 5 30 7 5 32 13 5 31 7 5 33 11 5 35 6 5 34 12 5 36 5 5 38 10 5 37 12 5 39 8 5 41 5 5 40 9 5 42 5 5 44 8 5 43 5 5 45 9 5 47 4 5 46 4 3 48 9 3 50 7 3 49 9 3 51 0 3 53 7 3 52 13 3 54 7 3 56 1 3 55 7 3 57 0 3 59 1 3 58 11 1 60 12 1 62 10 1 61 2 1 63 12 1 65 11 1 64 13 1 66 1 1 68 11 1 67 11 1 69 1 1 71 2 1 70</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Stairs" name="Stairs" type="NODE">
+          <matrix sid="transform">-0.01 0 0 0 0 0 0.01 0 0 0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Stairs-mesh" name="Stairs" />
+        </node>
+        <node id="StairsOuterCorner" name="StairsOuterCorner" type="NODE">
+          <matrix sid="transform">-0.01 0 0 0 0 0 0.01 0 0 0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#StairsOuterCorner-mesh" name="StairsOuterCorner" />
+        </node>
+        <node id="StairsInnerCorner" name="StairsInnerCorner" type="NODE">
+          <matrix sid="transform">-0.01 0 0 0 0 0 0.01 0 0 0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#StairsInnerCorner-mesh" name="StairsInnerCorner" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

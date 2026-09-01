@@ -1,0 +1,22 @@
+{
+    "name": "Human",
+    "layers": {
+        "Base": {
+            "index": 0,
+            "blendMode": "Override"
+        },
+        "Activity": {
+            "index": 1,
+            "blendMode": "Additive",
+            "boneMask": [ "Hand1", "Hand2" ]
+        },
+        "Ride": {
+            "index": 2,
+            "blendMode": "Override"
+        },
+        "Death": {
+            "index": 3,
+            "blendMode": "Override"
+        }
+    }
+}

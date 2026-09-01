@@ -1,0 +1,30 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[HelpTopicScreen:1]" />
+    </CanvasWidget>
+
+    <CanvasWidget Size="Infinity, Infinity" Margin="10, 10">
+
+      <BevelledRectangleWidget Style="{Styles/Area}" />
+
+      <ScrollPanelWidget Name="ScrollPanel" Direction="Vertical" Margin="3, 3" ClampToBounds="true">
+        <CanvasWidget HorizontalAlignment="Center" VerticalAlignment="Near">
+
+          <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" Margin="10, 10" >
+            <LabelWidget Name="Title" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true" />
+            <CanvasWidget Size="0, 20" />
+            <LabelWidget Name="Text" Color="128, 128, 128" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true" />
+          </StackPanelWidget>
+
+        </CanvasWidget>
+      </ScrollPanelWidget>
+
+    </CanvasWidget>
+  </StackPanelWidget>
+
+</Screen>

@@ -1,0 +1,46 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[RecipaediaScreen:0]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+      <CanvasWidget Size="0, 10" />
+      
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Style="{Styles/ButtonStyle_ArrowLeft}" Name="PreviousCategory" Margin="20, 0" VerticalAlignment="Center"/>
+        <CanvasWidget Size="340, 60" VerticalAlignment="Center">
+          <LabelWidget Name="Category" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </CanvasWidget>
+        <BevelledButtonWidget Style="{Styles/ButtonStyle_ArrowRight}" Name="NextCategory" Margin="20, 0" VerticalAlignment="Center"/>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 10" />
+
+      <StackPanelWidget Direction="Vertical" Margin="20, 0">
+        <CanvasWidget>
+          <BevelledRectangleWidget Style="{Styles/Area}" />
+          <ListPanelWidget Name="BlocksList" Direction="Vertical" Margin="5, 3" ItemSize="70" SelectionColor="10, 70, 0, 90"/>
+        </CanvasWidget>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 10" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="0, 0">
+        <BevelledButtonWidget Name="DetailsButton" Style="{Styles/ButtonStyle_310x60}" Text="[RecipaediaScreen:1]" HorizontalAlignment="Center"/>
+        <CanvasWidget Size="20, 0" />
+        <BevelledButtonWidget Name="RecipesButton" Style="{Styles/ButtonStyle_310x60}" Text="[RecipaediaScreen:2]" HorizontalAlignment="Center"/>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 10" />
+
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+  
+</Screen>

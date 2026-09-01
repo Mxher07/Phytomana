@@ -1,0 +1,26 @@
+name: Debug with SSH Access
+on:
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  debug-session:
+    runs-on: macos-26  # 根据需求选择 runner
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup environment
+      run: |
+        echo "设置调试环境..."
+        dotnet --version || echo ".NET 未安装"
+        node --version || echo "Node 未安装"
+        
+    - name: Start SSH Debug Session
+      uses: mxschmitt/action-tmate@v3
+      with:
+        limit-access-to-actor: true  # 只允许触发者访问
+        
+    - name: Continue after debug
+      run: |
+        echo "调试会话结束，继续执行后续步骤"
+        # 这里可以添加你的构建命令

@@ -1,0 +1,18 @@
+<resources>
+  <string name="ApiTitle">Survivalcraft 2.4 API 1.9</string>
+  <string name="ShortTitle">[API1.9]Survivalcraft 2</string>
+  <string name="ImportExternalContentActivityLabel">Import External Content</string>
+  <string name="Yes">Yes</string>
+  <string name="No">No</string>
+  <string name="Ok">OK</string>
+  <string name="NeedPermission">Need Permission</string>
+  <string name="FileNotFound">File Not Found</string>
+  <string name="Import">Import</string>
+  <string name="InsureImporting">Do you want to import {0}?</string>
+  <string name="NotSupportedType">Not supported type</string>
+  <string name="FileTypeIsNotSupported">File type {0} is not supported.</string>
+  <string name="Importing">Importing...</string>
+  <string name="ImportedSuccessfully">Imported Successfully</string>
+  <string name="InsureLaunchingGame">Do you want to launch game?</string>
+  <string name="FailedToImport">Failed to Import</string>
+</resources>

@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Survivalcraft\Survivalcraft.props" />
+    <Import Project="..\build\IOS.props" />
+    <PropertyGroup>
+        <ImplicitUsings>true</ImplicitUsings>
+        <ProvisioningType>manual</ProvisioningType>
+        <EnableSGenConc>true</EnableSGenConc>
+        <ApplicationId>com.survivalcraft.api</ApplicationId>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Remove="..\Survivalcraft\Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="..\Survivalcraft\Content.zip" Link="Content.zip">
+            <LogicalName>Game.Content.zip</LogicalName>
+        </EmbeddedResource>
+        <None Include="..\Survivalcraft\init.js" Link="init.js">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\EntitySystem.IOS\EntitySystem.IOS.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Remove="Jint" />
+        <PackageReference Remove="NAudio.Flac.Unknown.Mod" />
+        <PackageReference Remove="HarmonyX" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Bass.Net">
+            <HintPath>..\Engine.IOS\Bass.Net.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <!--IOS真机原生库加载-->
+        <NativeReference Include="native/bass.xcframework/ios-arm64_armv7_armv7s/bass.framework" Condition="'$(RuntimeIdentifier)'=='ios-arm64'">
+            <Kind>Framework</Kind>
+            <ForceLoad>true</ForceLoad>
+        </NativeReference>
+        <NativeReference Include="native/bassflac.xcframework/ios-arm64_armv7_armv7s/bassflac.framework" Condition="'$(RuntimeIdentifier)'=='ios-arm64'">
+            <Kind>Framework</Kind>
+            <ForceLoad>true</ForceLoad>
+        </NativeReference>
+        <!--IOS模拟器原生库加载-->
+        <NativeReference Include="native/bass.xcframework/ios-arm64_i386_x86_64-simulator/bass.framework" Condition="'$(RuntimeIdentifier)'=='iossimulator-arm64'">
+            <Kind>Framework</Kind>
+            <ForceLoad>true</ForceLoad>
+        </NativeReference>
+        <NativeReference Include="native/bassflac.xcframework/ios-arm64_i386_x86_64-simulator/bassflac.framework" Condition="'$(RuntimeIdentifier)'=='iossimulator-arm64'">
+            <Kind>Framework</Kind>
+            <ForceLoad>true</ForceLoad>
+        </NativeReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="AppDelegate.cs"/>
+        <Compile Include="GameViewController.cs"/>
+        <Compile Include="Main.cs"/>
+        <Compile Include="TouchView.cs"/>
+    </ItemGroup>
+</Project>

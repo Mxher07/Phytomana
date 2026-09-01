@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  android:versionCode="19310"
+  android:versionName="API1.9.3.1"
+  package="com.candy.survivalcraftAPI1_9">
+  <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="36" />
+  <application
+    android:label="@string/ApiTitle"
+    android:theme="@style/MainTheme"
+    android:requestLegacyExternalStorage="true"
+    android:icon="@mipmap/icon"
+    android:roundIcon="@mipmap/icon_round"
+    android:usesCleartextTraffic="true"
+    android:localeConfig="@xml/locales_config"
+    android:appCategory="game"
+    android:isGame="true"
+    android:enableOnBackInvokedCallback="false">
+    <meta-data
+      android:name="android.notch_support"
+      android:value="true" />
+    <meta-data
+      android:name="android.game_mode_config"
+      android:resource="@xml/game_mode_config" />
+    <meta-data
+      android:name="com.oculus.supportedDevices"
+      android:value="quest|quest2|quest3|questpro|quest3s" />
+    <provider
+      android:name="androidx.core.content.FileProvider"
+      android:authorities="${applicationId}.fileprovider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+    </provider>
+  </application>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <!-- VR support for standalone headsets (Meta Quest, etc.) -->
+  <uses-feature android:name="android.hardware.vr.headtracking" android:required="false" android:version="1" />
+  <uses-feature android:glEsVersion="0x00030002" android:required="false" />
+  <uses-permission android:name="org.khronos.openxr.permission.OPENXR" />
+  <uses-permission android:name="org.khronos.openxr.permission.OPENXR_SYSTEM" />
+  <queries>
+    <package android:name="com.candy.survivalcraft" />
+    <provider android:authorities="org.khronos.openxr.runtime_broker;org.khronos.openxr.system_runtime_broker" />
+    <intent>
+      <action android:name="org.khronos.openxr.OpenXRRuntimeService" />
+    </intent>
+    <intent>
+      <action android:name="org.khronos.openxr.OpenXRApiLayerService" />
+    </intent>
+  </queries>
+</manifest>

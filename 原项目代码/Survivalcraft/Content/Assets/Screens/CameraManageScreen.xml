@@ -1,0 +1,31 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[SettingsControlsScreen:23]" />
+    </CanvasWidget>
+
+	  <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+		  <CanvasWidget Size="Infinity, 10" />
+		  <CanvasWidget Margin="10, 20">
+			  <BevelledRectangleWidget Style="{Styles/Area}" />
+			  <ListPanelWidget Name="KeysList" Direction="Vertical" HorizontalAlignment="Center" Margin="3, 3" ItemSize="56" SelectionColor="10, 70, 0, 90"/>
+		  </CanvasWidget>
+
+      <LabelWidget Text="[CameraManageScreen:Tip]" Color="255, 255, 255, 255" HorizontalAlignment="Center" VerticalAlignment="Center" FontScale="0.8" DropShadow="true" WordWrap="true"/>
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="4, 10">
+        <BevelledButtonWidget Name="EnableCamera" Style="{Styles/ButtonStyle_160x60}" Text="[CameraManageScreen:Enable]" VerticalAlignment="Center" />
+			  <BevelledButtonWidget Name="DisableCamera" Style="{Styles/ButtonStyle_160x60}" Text="[CameraManageScreen:Disable]" VerticalAlignment="Center" />
+        <BevelledButtonWidget Name="Up" Style="{Styles/ButtonStyle_ArrowUp}" VerticalAlignment="Center" />
+        <BevelledButtonWidget Name="Down" Style="{Styles/ButtonStyle_ArrowDown}" VerticalAlignment="Center" />
+        <BevelledButtonWidget Name="Reset" Style="{Styles/ButtonStyle_160x60}" Text="[CameraManageScreen:Reset]" VerticalAlignment="Center" />
+      </StackPanelWidget>
+	  </StackPanelWidget>
+	</StackPanelWidget>
+
+</Screen>

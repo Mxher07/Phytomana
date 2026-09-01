@@ -1,0 +1,21 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="600, 240" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+      <LabelWidget Name="TextBoxDialog.Title" Color="255, 255, 255" HorizontalAlignment="Center" Margin="0, 5"/>
+      <CanvasWidget Size="0, Infinity" />
+      <CanvasWidget Margin="10, 0">
+        <BevelledRectangleWidget Size="Infinity, 40" Style="{Styles/TextBoxArea}" />
+        <TextBoxWidget Name="TextBoxDialog.TextBox" Color="255, 255, 255" Margin="4, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+      </CanvasWidget>
+      <CanvasWidget Size="0, Infinity" />
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="TextBoxDialog.OkButton" Text="[TextBoxDialog:1]" Style="{Styles/ButtonStyle_160x60}" />
+        <CanvasWidget Size="40, 0" />
+        <BevelledButtonWidget Name="TextBoxDialog.CancelButton" Text="[TextBoxDialog:2]" Style="{Styles/ButtonStyle_160x60}" />
+      </StackPanelWidget>
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

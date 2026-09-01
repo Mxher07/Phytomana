@@ -1,0 +1,26 @@
+<Dialog xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Margin="0, 0" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="50, 10">
+
+        <CanvasWidget HorizontalAlignment="Center">
+          <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+          <ScrollPanelWidget Direction="Vertical" Margin="4, 5" >
+            <StackPanelWidget Name="StatsPanel" Direction="Vertical" Margin="5, 0" HorizontalAlignment="Center" />
+          </ScrollPanelWidget>
+        </CanvasWidget>
+
+        <CanvasWidget Size="0, 10" />
+
+        <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+          <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+            <BevelledButtonWidget Name="Resume" Style="{Styles/ButtonStyle_160x60}" Text="[GameMenuDialog:1]" HorizontalAlignment="Center" Margin="8, 0" />
+            <BevelledButtonWidget Name="Quit" Style="{Styles/ButtonStyle_160x60}" Text="[GameMenuDialog:2]" HorizontalAlignment="Center" Margin="8, 0" />
+            <BevelledButtonWidget Name="More" Style="{Styles/ButtonStyle_160x60}" Text="[GameMenuDialog:3]" HorizontalAlignment="Center" Margin="8, 0" />
+          </StackPanelWidget>
+        </StackPanelWidget>
+
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</Dialog>

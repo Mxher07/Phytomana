@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2022-03-18T07:12:00</created>
+    <modified>2022-03-18T07:12:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Photodiode-mesh" name="Photodiode">
+      <mesh>
+        <source id="Photodiode-mesh-positions">
+          <float_array id="Photodiode-mesh-positions-array" count="24">-12.5 -19.75 6.25 12.5 19.75 6.25 12.5 -19.75 6.25 -12.5 19.75 6.25 -12.5 -19.75 0 12.5 -19.75 0 12.5 19.75 0 -12.5 19.75 0</float_array>
+          <technique_common>
+            <accessor source="#Photodiode-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Photodiode-mesh-normals">
+          <float_array id="Photodiode-mesh-normals-array" count="18">0 0 1 0 -1 0 1 0 0 0 1 0 -1 0 0 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#Photodiode-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Photodiode-mesh-map">
+          <float_array id="Photodiode-mesh-map-array" count="72">0.5157 0.507837 0.546829 0.554623 0.546829 0.507837 0.546829 0.554623 0.5157 0.507837 0.5157 0.554623 0.515686 0.507537 0.546794 0.500143 0.546794 0.507537 0.546794 0.500143 0.515686 0.507537 0.515686 0.500143 0.508068 0.507534 0.554591 0.500046 0.554591 0.507534 0.554591 0.500046 0.508068 0.507534 0.508068 0.500046 0.546789 0.507625 0.515661 0.500181 0.515661 0.507625 0.515661 0.500181 0.546789 0.507625 0.546789 0.500181 0.554645 0.507644 0.508078 0.500148 0.508078 0.507644 0.508078 0.500148 0.554645 0.507644 0.554645 0.500148 0.98422 0.695462 0.953263 0.741928 0.953263 0.695462 0.98422 0.695462 0.98422 0.741928 0.953263 0.741928</float_array>
+          <technique_common>
+            <accessor source="#Photodiode-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Photodiode-mesh-vertices">
+          <input semantic="POSITION" source="#Photodiode-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#Photodiode-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Photodiode-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Photodiode-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 5 1 8 2 1 7 2 1 9 0 1 11 4 1 10 5 2 12 6 2 14 1 2 13 1 2 15 2 2 17 5 2 16 6 3 18 7 3 20 3 3 19 3 3 21 1 3 23 6 3 22 7 4 24 4 4 26 0 4 25 0 4 27 3 4 29 7 4 28 5 5 30 4 5 32 7 5 31 5 5 33 7 5 35 6 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Photodiode" name="Photodiode" type="NODE">
+        <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+        <instance_geometry url="#Photodiode-mesh" name="Photodiode" />
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

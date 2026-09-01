@@ -1,0 +1,98 @@
+<GameWidget xmlns="runtime-namespace:Game" ClampToBounds="true">
+
+  <ViewWidget Name="View" ClampToBounds="true" />
+
+  <CanvasWidget Name="Gui" IsHitTestVisible="false">
+  
+    <ClearWidget ClearColor="false" />
+  
+    <CanvasWidget Name="ControlsContainer" IsHitTestVisible="false" IsVisible="false">
+
+      <StackPanelWidget Direction="Vertical" IsHitTestVisible="false">
+
+        <CanvasWidget Size="0, Infinity" IsHitTestVisible="false" />
+      
+        <CanvasWidget Name="ModalPanelContainer" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="false" />
+
+        <CanvasWidget Size="0, Infinity" IsHitTestVisible="false" />
+
+        <CanvasWidget Size="Infinity, -1" IsHitTestVisible="false">
+
+          <StackPanelWidget Name="MoveContainer" Direction="Vertical" IsInverted="true" HorizontalAlignment="Far" IsHitTestVisible="false">
+            <CanvasWidget Name="MoveButtonsContainer" Size="224, 224">
+              <MoveRoseWidget Name="MoveRose" />
+            </CanvasWidget>
+            <CanvasWidget Name="MovePadContainer" Size="160, 160">
+              <CanvasWidget Name="MoveRectangleContainer" Size="160, 160">
+                <RectangleWidget Name="MoveRectangle" Subtexture="{Textures/Atlas/TouchController}" FillColor="255, 255, 255" OutlineColor="0, 0, 0, 0" FlipHorizontal="true" />
+                <LabelWidget Text="[GameWidget:1]" HorizontalAlignment="Near" VerticalAlignment="Far" Margin="11, 4" DropShadow="false" FontScale="1.5" />
+              </CanvasWidget>
+              <TouchInputWidget Name="Move" />
+            </CanvasWidget>
+          </StackPanelWidget>
+
+          <StackPanelWidget Name="LookContainer" Direction="Vertical" IsInverted="true" HorizontalAlignment="Near" VerticalAlignment="Far" IsHitTestVisible="false">
+            <CanvasWidget Name="LookPadContainer" Size="160, 160">
+              <CanvasWidget Name="LookRectangleContainer" Size="160, 160">
+                <RectangleWidget Name="LookRectangle" Subtexture="{Textures/Atlas/TouchController}" FillColor="255, 255, 255" OutlineColor="0, 0, 0, 0" FlipHorizontal="false" />
+                <LabelWidget Text="[GameWidget:2]" HorizontalAlignment="Near" VerticalAlignment="Far" Margin="22, 4" DropShadow="false" FontScale="1.5" />
+              </CanvasWidget>
+              <TouchInputWidget Name="Look" />
+            </CanvasWidget>
+          </StackPanelWidget>
+      
+        </CanvasWidget>
+
+      </StackPanelWidget>
+    
+      <StackPanelWidget Name="BottomWidgetsContainer" Direction="Vertical" VerticalAlignment="Far" HorizontalAlignment="Center" IsHitTestVisible="false">
+        <MessageWidget Name="Message" HorizontalAlignment="Center" Margin="140, 6" IsHitTestVisible="false"/>
+        <StackPanelWidget Name="BottomBarsContainer" Direction="Horizontal" HorizontalAlignment="Center" Margin="0, 2">
+          <ValueBarWidget Name="HealthBar" LayoutDirection="Horizontal" Margin="8, 0" VerticalAlignment="Center" BarsCount="10" Spacing="-1" BarBlending="false" HalfBars="true" LitBarColor="0, 0, 0" UnlitBarColor="64, 64, 64, 255" BarSize="15, 16" BarSubtexture="{Textures/Atlas/HealthBar}" TextureLinearFilter="true"/>
+          <ValueBarWidget Name="TemperatureBar" LayoutDirection="Horizontal" Margin="8, 0" VerticalAlignment="Far" BarsCount="1" LitBarColor="255, 255, 255" BarSize="50, 14" TextureLinearFilter="true" Value="1"/>
+          <LabelWidget Name="LevelLabel" TextAnchor="HorizontalCenter" Margin="8, 0" FontScale="0.6" VerticalAlignment="Center" DropShadow="true" Color="255, 255, 255"/>
+          <ValueBarWidget Name="FoodBar" LayoutDirection="Horizontal" Margin="8, 0" VerticalAlignment="Center" BarsCount="10" BarBlending="false" HalfBars="true" LitBarColor="150, 170, 190" UnlitBarColor="64, 64, 64, 255" BarSize="15, 16" Spacing="-1.5" BarSubtexture="{Textures/Atlas/FoodBar}" TextureLinearFilter="true"/>
+        </StackPanelWidget>
+        <ShortInventoryWidget Name="ShortInventory" HorizontalAlignment="Center" />
+      </StackPanelWidget>
+
+      <StackPanelWidget Name="LeftControlsContainer" Direction="Vertical" HorizontalAlignment="Near" VerticalAlignment="Near" IsHitTestVisible="false">
+        <BitmapButtonWidget Name="BackButton" Size="64, 64" NormalSubtexture="{Textures/Atlas/BackButton}" ClickedSubtexture="{Textures/Atlas/BackButton_Pressed}" Margin="0, 3" />
+        <BitmapButtonWidget Name="ClothingButton" Size="64, 64" NormalSubtexture="{Textures/Atlas/ClothingButton}" ClickedSubtexture="{Textures/Atlas/ClothingButton_Pressed}" Margin="0, 3" IsAutoCheckingEnabled="true"/>
+        <BitmapButtonWidget Name="InventoryButton" Size="64, 64" NormalSubtexture="{Textures/Atlas/InventoryButton}" ClickedSubtexture="{Textures/Atlas/InventoryButton_Pressed}" Margin="0, 3" IsAutoCheckingEnabled="true"/>
+      </StackPanelWidget>
+
+      <StackPanelWidget Name="RightControlsContainer" Direction="Vertical" HorizontalAlignment="Far" VerticalAlignment="Near" IsHitTestVisible="false">
+        <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Far">
+          <StackPanelWidget Name="MoreContents" Direction="Horizontal" HorizontalAlignment="Far" IsVisible="false" Margin="4, 3">
+            <BitmapButtonWidget Name="HelpButton" Size="68, 64" NormalSubtexture="{Textures/Atlas/HelpButton}" ClickedSubtexture="{Textures/Atlas/HelpButton_Pressed}" Margin="4, 0" />
+            <BitmapButtonWidget Name="PhotoButton" Size="68, 64" NormalSubtexture="{Textures/Atlas/PhotoButton}" ClickedSubtexture="{Textures/Atlas/PhotoButton_Pressed}" Margin="4, 0" />
+            <BitmapButtonWidget Name="CameraButton" Size="68, 64" NormalSubtexture="{Textures/Atlas/CameraButton}" ClickedSubtexture="{Textures/Atlas/CameraButton_Pressed}" Margin="4, 0" />
+            <BitmapButtonWidget Name="PrecipitationButton" Size="68, 64" NormalSubtexture="{Textures/Atlas/PrecipitationButton}" ClickedSubtexture="{Textures/Atlas/PrecipitationButton_Pressed}" Margin="4, 0" />
+            <BitmapButtonWidget Name="FogButton" Size="68, 64" NormalSubtexture="{Textures/Atlas/FogButton}" ClickedSubtexture="{Textures/Atlas/FogButton_Pressed}" Margin="4, 0" />
+            <BitmapButtonWidget Name="LightningButton" Size="68, 64" NormalSubtexture="{Textures/Atlas/LightningButton}" ClickedSubtexture="{Textures/Atlas/LightningButton_Pressed}" Margin="4, 0" />
+            <BitmapButtonWidget Name="TimeOfDayButton" Size="68, 64" NormalSubtexture="{Textures/Atlas/TimeOfDayButton}" ClickedSubtexture="{Textures/Atlas/TimeOfDayButton_Pressed}" Margin="4, 0" />
+          </StackPanelWidget>
+          <BitmapButtonWidget Name="MoreButton" HorizontalAlignment="Far" Size="64, 64" NormalSubtexture="{Textures/Atlas/MoreButton}" ClickedSubtexture="{Textures/Atlas/MoreButton_Pressed}" Margin="0, 3" IsAutoCheckingEnabled="true" />
+        </StackPanelWidget>
+        <BitmapButtonWidget Name="CreativeFlyButton" HorizontalAlignment="Far" Size="64, 64" NormalSubtexture="{Textures/Atlas/CreativeFlyButton}" ClickedSubtexture="{Textures/Atlas/CreativeFlyButton_Pressed}" Margin="0, 3" IsAutoCheckingEnabled="true"/>
+        <BitmapButtonWidget Name="CrouchButton" HorizontalAlignment="Far" Size="64, 64" NormalSubtexture="{Textures/Atlas/SneakButton}" ClickedSubtexture="{Textures/Atlas/SneakButton_Pressed}" Margin="0, 3" IsAutoCheckingEnabled="true"/>
+        <BitmapButtonWidget Name="MountButton" HorizontalAlignment="Far" Size="64, 64" NormalSubtexture="{Textures/Atlas/MountButton}" ClickedSubtexture="{Textures/Atlas/MountButton_Pressed}" Margin="0, 3" IsAutoCheckingEnabled="true"/>
+        <BitmapButtonWidget Name="EditItemButton" HorizontalAlignment="Far" Size="64, 64" NormalSubtexture="{Textures/Atlas/EditItemButton}" ClickedSubtexture="{Textures/Atlas/EditItemButton_Pressed}" Margin="0, 3" />
+      </StackPanelWidget>
+
+      <DragHostWidget Name="DragHost" />
+
+    </CanvasWidget>
+
+    <CanvasWidget Name="LargeMessage" HorizontalAlignment="Center" IsVisible="false" IsHitTestVisible="false">
+      <StackPanelWidget Direction="Vertical" IsHitTestVisible="false">
+        <CanvasWidget Size="0, 50" />
+        <LabelWidget Name="LargeLabel" HorizontalAlignment="Center" DropShadow="true" FontSpacing="12, 0" Margin="0, 50"/>
+        <LabelWidget Name="SmallLabel" HorizontalAlignment="Center" DropShadow="true" TextAnchor="HorizontalCenter"/>
+      </StackPanelWidget>
+    </CanvasWidget>
+
+  </CanvasWidget>
+
+</GameWidget>

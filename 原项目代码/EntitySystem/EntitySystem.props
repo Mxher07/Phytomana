@@ -1,0 +1,12 @@
+﻿<Project>
+    <Import Project="$(MSBuildThisFileDirectory)..\build\Common.props" />
+    <PropertyGroup>
+        <RootNamespace>EntitySystem</RootNamespace>
+        <AssemblyName>EntitySystem</AssemblyName>
+        <PackageId>SurvivalcraftAPI.EntitySystem</PackageId>
+        <Title>SurvivalcraftAPI.EntitySystem</Title><!--For NuGet Package-->
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)**\*.cs" Exclude="$(MSBuildThisFileDirectory)obj\**\*.cs"/>
+    </ItemGroup>
+</Project>

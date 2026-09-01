@@ -1,0 +1,43 @@
+可以包括图像、布局描述、二进制blobs和字符串字典
+在应用程序中作为资源文件。各种Android api被设计成
+操作资源id，而不是直接地处理图像、字符串或二进制blob
+
+例如，一个示例Android应用程序包含一个用户界面布局(main.xml)，
+一个国际化字符串表(strings.xml)和一些图标(drawable-XXX/icon.png)
+将其资源保存在应用程序的“资源”目录中:
+
+Resources/
+    drawable/
+        icon.png
+
+    layout/
+        main.xml
+
+    values/
+        strings.xml
+
+为了让构建系统识别Android资源，将构建操作设置为
+“AndroidResource”。原生Android api不直接操作文件名，但是
+而是对资源id进行操作。当你编译一个使用资源的Android应用程序时，
+构建系统将打包分发的资源，并生成一个名为Resource的类。
+(这是Android约定)，其中包含每个资源的令牌
+包括在内。例如，对于上面的资源布局，这是Resource类将公开的内容:
+
+public class Resource {
+    public class Drawable {
+        public const int icon = 0x123;
+    }
+
+    public class Layout {
+        public const int main = 0x456;
+    }
+
+    public class Strings {
+        public const int first_string = 0xabc;
+        public const int second_string = 0xbcd;
+    }
+}
+
+然后你可以使用Resource.Drawable.icon来引用drawable/icon.png文件，或者
+Resource.Layout.main来引用layout/main.xml文件，或者Resource.Strings.first_string
+引用字典文件values/strings.xml中的第一个字符串。

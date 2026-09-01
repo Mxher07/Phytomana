@@ -1,0 +1,20 @@
+﻿<Screen xmlns="runtime-namespace:Game">
+  <PanoramaWidget />
+  <StackPanelWidget Direction="Horizontal">
+    <CanvasWidget Style="{Widgets/TopBarContents}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+      <CanvasWidget Margin="10, 0">
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+        <ListPanelWidget Name="ModsContentList" Direction="Vertical" Margin="3, 3" ItemSize="96" SelectionColor="10, 70, 0, 90"/>
+      </CanvasWidget>
+      <StackPanelWidget Direction="Horizontal" Margin="10, 10">
+        <BevelledButtonWidget Name="ViewDetailButton" IsEnabled="false" Size="160, 60"/>
+        <BevelledButtonWidget Name="TriggerEnableButton" IsEnabled="false" Size="160, 60"/>
+        <BevelledButtonWidget Name="MoveUpButton" Style="{Styles/ButtonStyle_ArrowUp}" IsEnabled="false" Size="60, 60"/>
+        <BevelledButtonWidget Name="MoveDownButton" Style="{Styles/ButtonStyle_ArrowDown}" IsEnabled="false" Size="60, 60"/>
+        <CanvasWidget Size="Infinity, 0" />
+        <BevelledButtonWidget Name="OpenHomepageButton" IsEnabled="false" Size="210, 60"/>
+      </StackPanelWidget>
+    </StackPanelWidget>
+  </StackPanelWidget>
+</Screen>

@@ -1,0 +1,9 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+  <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <LabelWidget Name="ListSelectionDialog.Title" Color="255, 255, 255" HorizontalAlignment="Center" DropShadow="true" Margin="0, 8"/>
+    <CanvasWidget Name="ListSelectionDialog.Content" Size="600, 460" ClampToBounds="true">
+      <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+      <ListPanelWidget Name="ListSelectionDialog.List" Direction="Vertical" HorizontalAlignment="Center" Margin="5, 5" SelectionColor="10, 70, 0, 90"/>
+    </CanvasWidget>
+  </StackPanelWidget>
+</CanvasWidget>

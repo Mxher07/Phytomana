@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="FourLed-mesh" name="FourLed">
+      <mesh>
+        <source id="FourLed-mesh-positions">
+          <float_array id="FourLed-mesh-positions-array" count="24">-50 -50 6.25 50 50 6.25 50 -50 6.25 -50 50 6.25 -50 -50 0 50 -50 0 50 50 0 -50 50 0</float_array>
+          <technique_common>
+            <accessor source="#FourLed-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="FourLed-mesh-normals">
+          <float_array id="FourLed-mesh-normals-array" count="18">0 0 1 0 -1 0 1 0 0 0 1 0 -1 0 0 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#FourLed-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="FourLed-mesh-map">
+          <float_array id="FourLed-mesh-map-array" count="72">0.562532 0.31252098 0.624969 0.374983 0.624969 0.31252098 0.624969 0.374983 0.562532 0.31252098 0.562532 0.374983 0.56282 0.31636703 0.624815 0.31263602 0.624815 0.31636703 0.624815 0.31263602 0.56282 0.31636703 0.56282 0.31263602 0.562796 0.316316 0.624864 0.31258798 0.624864 0.316316 0.624864 0.31258798 0.562796 0.316316 0.562796 0.31258798 0.624767 0.31636202 0.562719 0.31265497 0.562719 0.31636202 0.562719 0.31265497 0.624767 0.31636202 0.624767 0.31265497 0.624937 0.31637096 0.562809 0.312639 0.562809 0.31637096 0.562809 0.312639 0.624937 0.31637096 0.624937 0.312639 0.991774 0.695845 0.946111 0.741928 0.946111 0.695845 0.991774 0.695845 0.991774 0.741928 0.946111 0.741928</float_array>
+          <technique_common>
+            <accessor source="#FourLed-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="FourLed-mesh-vertices">
+          <input semantic="POSITION" source="#FourLed-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#FourLed-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#FourLed-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#FourLed-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 5 1 8 2 1 7 2 1 9 0 1 11 4 1 10 5 2 12 6 2 14 1 2 13 1 2 15 2 2 17 5 2 16 6 3 18 7 3 20 3 3 19 3 3 21 1 3 23 6 3 22 7 4 24 4 4 26 0 4 25 0 4 27 3 4 29 7 4 28 5 5 30 4 5 32 7 5 31 5 5 33 7 5 35 6 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Led-mesh" name="Led">
+      <mesh>
+        <source id="Led-mesh-positions">
+          <float_array id="Led-mesh-positions-array" count="36">-19.75 -19.75 0 -19.75 -19.75 6.25 19.75 -19.75 6.25 19.75 -19.75 0 19.75 19.75 6.25 19.75 19.75 0 -19.75 19.75 6.25 -19.75 19.75 0 3.236889 -3.236889 6.25 3.236889 3.236889 6.25 -3.236889 3.236889 6.25 -3.236889 -3.236889 6.25</float_array>
+          <technique_common>
+            <accessor source="#Led-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Led-mesh-normals">
+          <float_array id="Led-mesh-normals-array" count="18">0 -1 0 1 0 0 0 1 0 -1 0 0 0 0 -1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Led-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Led-mesh-map">
+          <float_array id="Led-mesh-map-array" count="108">0.883028 0.695259 0.883028 0.687767 0.929494 0.687767 0.883009 0.695159 0.883009 0.68767 0.929532 0.68767 0.929459 0.69525 0.929459 0.687806 0.882952 0.687806 0.929586 0.695269 0.929586 0.687772 0.883019 0.687772 0.991774 0.695845 0.991774 0.741928 0.946111 0.741928 0.910044 0.714935 0.910044 0.722581 0.929549 0.742086 0.929494 0.687767 0.929494 0.695259 0.883028 0.695259 0.929532 0.68767 0.929532 0.695159 0.883009 0.695159 0.882952 0.687806 0.882952 0.69525 0.929459 0.69525 0.883019 0.687772 0.883019 0.695269 0.929586 0.695269 0.946111 0.741928 0.946111 0.695845 0.991774 0.695845 0.882893 0.742086 0.929549 0.742086 0.910044 0.722581 0.882893 0.742086 0.910044 0.722581 0.902398 0.722581 0.882893 0.69543 0.882893 0.742086 0.902398 0.722581 0.882893 0.69543 0.902398 0.722581 0.902398 0.714935 0.929549 0.69543 0.882893 0.69543 0.902398 0.714935 0.929549 0.69543 0.902398 0.714935 0.910044 0.714935 0.929549 0.742086 0.929549 0.69543 0.910044 0.714935</float_array>
+          <technique_common>
+            <accessor source="#Led-mesh-map-array" count="54" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Led-mesh-vertices">
+          <input semantic="POSITION" source="#Led-mesh-positions" />
+        </vertices>
+        <triangles count="18">
+          <input semantic="VERTEX" source="#Led-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Led-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Led-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 3 1 3 4 1 5 2 1 4 5 2 6 6 2 8 4 2 7 7 3 9 1 3 11 6 3 10 3 4 12 7 4 14 5 4 13 8 5 15 4 5 17 9 5 16 2 0 18 0 0 20 3 0 19 4 1 21 3 1 23 5 1 22 6 2 24 5 2 26 7 2 25 1 3 27 7 3 29 0 3 28 7 4 30 3 4 32 0 4 31 6 5 33 9 5 35 4 5 34 6 5 36 10 5 38 9 5 37 1 5 39 10 5 41 6 5 40 1 5 42 11 5 44 10 5 43 2 5 45 11 5 47 1 5 46 2 5 48 8 5 50 11 5 49 4 5 51 8 5 53 2 5 52</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="LedBulb-mesh" name="LedBulb">
+      <mesh>
+        <source id="LedBulb-mesh-positions">
+          <float_array id="LedBulb-mesh-positions-array" count="24">3.239771 3.239771 6.25 3.239771 -3.239771 6.25 1.585641 -1.585641 5.242047 -3.239771 -3.239771 6.25 -1.585641 -1.585641 5.242047 -3.239771 3.239771 6.25 -1.585641 1.585641 5.242047 1.585641 1.585641 5.242047</float_array>
+          <technique_common>
+            <accessor source="#LedBulb-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LedBulb-mesh-normals">
+          <float_array id="LedBulb-mesh-normals-array" count="15">-0.52035815 0 0.8539482 0 0.52035815 0.8539482 0.52035815 0 0.8539482 0 -0.52035815 0.8539482 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#LedBulb-mesh-normals-array" count="5" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LedBulb-mesh-map">
+          <float_array id="LedBulb-mesh-map-array" count="60">0.94395 0.998622 0.941768 0.998622 0.941768 0.999714 0.94395 0.998622 0.941768 0.998622 0.941768 0.999714 0.941768 0.998622 0.94395 0.998622 0.94395 0.999714 0.941768 0.998622 0.94395 0.998622 0.94395 0.999714 0.94395 0.999714 0.94395 0.997531 0.941768 0.997531 0.941768 0.999714 0.94395 0.999714 0.94395 0.998622 0.941768 0.999714 0.94395 0.999714 0.94395 0.998622 0.94395 0.999714 0.941768 0.999714 0.941768 0.998622 0.94395 0.999714 0.941768 0.999714 0.941768 0.998622 0.941768 0.997531 0.941768 0.999714 0.94395 0.999714</float_array>
+          <technique_common>
+            <accessor source="#LedBulb-mesh-map-array" count="30" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="LedBulb-mesh-vertices">
+          <input semantic="POSITION" source="#LedBulb-mesh-positions" />
+        </vertices>
+        <triangles count="10">
+          <input semantic="VERTEX" source="#LedBulb-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#LedBulb-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#LedBulb-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 1 3 4 1 5 3 1 4 3 2 6 6 2 8 5 2 7 5 3 9 7 3 11 0 3 10 7 4 12 4 4 14 2 4 13 2 0 15 0 0 17 7 0 16 4 1 18 1 1 20 2 1 19 6 2 21 3 2 23 4 2 22 7 3 24 5 3 26 6 3 25 4 4 27 7 4 29 6 4 28</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="OneLed-mesh" name="OneLed">
+      <mesh>
+        <source id="OneLed-mesh-positions">
+          <float_array id="OneLed-mesh-positions-array" count="24">-50 -50 6.25 50 50 6.25 50 -50 6.25 -50 50 6.25 -50 -50 0 50 -50 0 50 50 0 -50 50 0</float_array>
+          <technique_common>
+            <accessor source="#OneLed-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="OneLed-mesh-normals">
+          <float_array id="OneLed-mesh-normals-array" count="18">0 0 1 0 -1 0 1 0 0 0 1 0 -1 0 0 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#OneLed-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="OneLed-mesh-map">
+          <float_array id="OneLed-mesh-map-array" count="72">0.625127 0.31255603 0.687419 0.374942 0.687419 0.31255603 0.687419 0.374942 0.625127 0.31255603 0.625127 0.374942 0.625415 0.316397 0.687265 0.312671 0.687265 0.316397 0.687265 0.312671 0.625415 0.316397 0.625415 0.312671 0.62539 0.316347 0.687314 0.312622 0.687314 0.316347 0.687314 0.312622 0.62539 0.316347 0.62539 0.312622 0.687217 0.316392 0.625313 0.31269002 0.625313 0.316392 0.625313 0.31269002 0.687217 0.316392 0.687217 0.31269002 0.687386 0.316401 0.625403 0.31267297 0.625403 0.316401 0.625403 0.31267297 0.687386 0.316401 0.687386 0.31267297 0.991774 0.695845 0.946111 0.741928 0.946111 0.695845 0.991774 0.695845 0.991774 0.741928 0.946111 0.741928</float_array>
+          <technique_common>
+            <accessor source="#OneLed-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="OneLed-mesh-vertices">
+          <input semantic="POSITION" source="#OneLed-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#OneLed-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#OneLed-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#OneLed-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 5 1 8 2 1 7 2 1 9 0 1 11 4 1 10 5 2 12 6 2 14 1 2 13 1 2 15 2 2 17 5 2 16 6 3 18 7 3 20 3 3 19 3 3 21 1 3 23 6 3 22 7 4 24 4 4 26 0 4 25 0 4 27 3 4 29 7 4 28 5 5 30 4 5 32 7 5 31 5 5 33 7 5 35 6 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="FourLed" name="FourLed" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#FourLed-mesh" name="FourLed" />
+        </node>
+        <node id="Led" name="Led" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Led-mesh" name="Led" />
+        </node>
+        <node id="LedBulb" name="LedBulb" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#LedBulb-mesh" name="LedBulb" />
+        </node>
+        <node id="OneLed" name="OneLed" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#OneLed-mesh" name="OneLed" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Survivalcraft\Survivalcraft.props" />
+    <Import Project="..\build\Linux.props" />
+    <ItemGroup>
+        <ProjectReference Include="..\EntitySystem.Linux\EntitySystem.Linux.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="TextCopy" Version="6.2.1" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\Survivalcraft\Content.zip" Link="Content.zip">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="..\Survivalcraft\init.js" Link="init.js">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="..\README.md">
+            <Link>Readme 请读我.md</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

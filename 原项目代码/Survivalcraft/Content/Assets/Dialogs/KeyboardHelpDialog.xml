@@ -1,0 +1,91 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="620, 420" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0, 15">
+
+      <LabelWidget  Text="[KeyboardHelpDialog:1]" HorizontalAlignment="Center"/>
+
+      <CanvasWidget Margin="20, 15">
+
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+
+        <ScrollPanelWidget Margin="4, 4" Direction="Vertical">
+
+          <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+
+            <StackPanelWidget Direction="Vertical">
+              <LabelWidget Text="[KeyboardHelpDialog:2]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:3]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:4]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:5]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:6]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:7]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:8]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:9]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:10]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:11]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:12]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:13]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:52]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:53]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:14]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:15]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:16]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:17]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:18]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:19]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:20]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:21]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:22]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:23]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:24]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[KeyboardHelpDialog:25]" HorizontalAlignment="Center" />
+            </StackPanelWidget>
+
+            <CanvasWidget Size="16, 0" />
+
+            <StackPanelWidget Direction="Vertical">
+              <LabelWidget Text="[KeyboardHelpDialog:26]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:27]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:28]" Color="160, 160, 160"/>
+              <LabelWidget Text="[KeyboardHelpDialog:29]" Color="160, 160, 160"/>
+              <LabelWidget Text="[KeyboardHelpDialog:30]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:31]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:32]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:33]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:34]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:35]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:36]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:37]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:54]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:55]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:38]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:39]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:40]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:41]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:42]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:43]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:44]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:45]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:46]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:47]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:48]" Color="160, 160, 160" />
+              <LabelWidget Text="[KeyboardHelpDialog:49]" Color="160, 160, 160" />
+            </StackPanelWidget>
+          </StackPanelWidget>
+
+        </ScrollPanelWidget>
+
+      </CanvasWidget>
+
+      <StackPanelWidget HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="OkButton" Text="[KeyboardHelpDialog:50]" Style="{Styles/ButtonStyle_160x60}" />
+        <CanvasWidget Size="40, 0" />
+        <BevelledButtonWidget Name="HelpButton" Text="[KeyboardHelpDialog:51]" Style="{Styles/ButtonStyle_160x60}" />
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+
+  </CanvasWidget>
+</CanvasWidget>

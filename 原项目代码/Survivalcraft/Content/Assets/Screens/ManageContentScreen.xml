@@ -1,0 +1,35 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[ManageContentScreen:1]" />
+    </CanvasWidget>
+    
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+      <LabelWidget Text="[ManageContentScreen:2]" Color="128, 128, 128" HorizontalAlignment="Center" Margin="0, 10" />
+
+      <CanvasWidget Margin="15, 0">
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+        <ListPanelWidget Name="ContentList" Direction="Vertical" Margin="3, 3" ItemSize="64" SelectionColor="10, 70, 0, 90"/>
+      </CanvasWidget>
+
+      <StackPanelWidget Direction="Horizontal" Margin="0, 10">
+        <BevelledButtonWidget Name="DeleteButton" Style="{Styles/ButtonStyle_160x60}" Text="[ManageContentScreen:3]" Margin="10, 0"/>
+        <BevelledButtonWidget Name="UploadButton" Style="{Styles/ButtonStyle_160x60}" Text="[ManageContentScreen:4]" Margin="10, 0"/>
+        <CanvasWidget Size="Infinity, 0" />
+        <StackPanelWidget Margin="10, 0">
+          <LabelWidget Name="Filter" VerticalAlignment="Center"/>
+          <CanvasWidget Size="10, 0"/>
+          <BevelledButtonWidget Name="ChangeFilter" Text="[ManageContentScreen:5]" Style="{Styles/ButtonStyle_70x60}" VerticalAlignment="Center"/>
+        </StackPanelWidget>
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+
+</Screen>

@@ -1,0 +1,33 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="640, 400" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <RectangleWidget FillColor="0, 0, 0, 255" OutlineColor="128, 128, 128, 128" OutlineThickness="2" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0, 15">
+
+      <LabelWidget  HorizontalAlignment="Center" Text="[ReportCommunityContentDialog:1]"/>
+      <LabelWidget Name="ReportCommunityContentDialog.Name" HorizontalAlignment="Center"/>
+
+      <CanvasWidget Size="0, 20" />
+
+      <LabelWidget  HorizontalAlignment="Center" Color="128, 128, 128" Text="[ReportCommunityContentDialog:2]"/>
+
+      <CanvasWidget Size="0, 5" />
+
+      <CanvasWidget Margin="100, 0">
+        <RectangleWidget OutlineColor="128, 128, 128, 255" FillColor="0, 0, 0, 0"/>
+        <ScrollPanelWidget Direction="Vertical" Margin="3, 3" >
+          <StackPanelWidget Name="ReportCommunityContentDialog.Container" Direction="Vertical" Margin="10, 0" />
+        </ScrollPanelWidget>
+      </CanvasWidget>
+
+      <CanvasWidget Size="0, 20" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="5, 0">
+        <BevelledButtonWidget Name="ReportCommunityContentDialog.Report" Text="[ReportCommunityContentDialog:3]" Style="{Styles/ButtonStyle_160x60}" VerticalAlignment="Center" Margin="40, 0"/>
+        <BevelledButtonWidget Name="ReportCommunityContentDialog.Cancel" Style="{Styles/ButtonStyle_160x60}" Text="[ReportCommunityContentDialog:4]" Margin="40, 0"/>
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

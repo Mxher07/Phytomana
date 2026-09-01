@@ -1,0 +1,42 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[SettingsGraphicsScreen:1]" />
+    </CanvasWidget>
+
+    <CanvasWidget Margin="10, 20">
+      <BevelledRectangleWidget Style="{Styles/Area}" />
+      <ScrollPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3, 3">
+        <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+          <UniformSpacingPanelWidget Name="VrPanel" Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsGraphicsScreen:2]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <BevelledButtonWidget Name="VirtualRealityButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsGraphicsScreen:3]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <SliderWidget Name="BrightnessSlider" Size="Infinity, 60" VerticalAlignment="Center" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsGraphicsScreen:4]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <SliderWidget Name="ViewAngleSlider" Size="Infinity, 60" VerticalAlignment="Center" Margin="20, 0" Granularity="0.02" MinValue="0.02" MaxValue="2.24" />
+          </UniformSpacingPanelWidget>
+
+          <UniformSpacingPanelWidget Name="VrEyeHeightOffsetPanel" Direction="Horizontal" Margin="0, 3">
+            <LabelWidget Text="[SettingsGraphicsScreen:5]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+            <SliderWidget Name="VrEyeHeightOffsetSlider" Size="Infinity, 60" VerticalAlignment="Center" Granularity="0.1" MinValue="-1" MaxValue="1" Margin="20, 0" />
+          </UniformSpacingPanelWidget>
+
+        </StackPanelWidget>
+      </ScrollPanelWidget>
+    </CanvasWidget>
+
+  </StackPanelWidget>
+
+</Screen>

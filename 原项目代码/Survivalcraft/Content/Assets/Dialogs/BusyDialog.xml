@@ -1,0 +1,14 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="600, 240" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <UniformSpacingPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+      <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <LabelWidget Name="BusyDialog.LargeLabel" Color="255, 255, 255" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 5"/>
+        <LabelWidget Name="BusyDialog.SmallLabel" Color="128, 128, 128" HorizontalAlignment="Center" VerticalAlignment="Near" TextAnchor="HorizontalCenter" WordWrap="true" Margin="10, 5"/>
+      </StackPanelWidget>
+      <BusyBarWidget HorizontalAlignment="Center" VerticalAlignment="Center" LitBarColor="255, 255, 255" UnlitBarColor="64, 64, 64, 64"/>
+    </UniformSpacingPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

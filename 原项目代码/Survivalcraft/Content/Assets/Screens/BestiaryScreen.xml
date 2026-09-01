@@ -1,0 +1,28 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[BestiaryScreen:1]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+      <CanvasWidget Size="0, 10" />
+      
+      <StackPanelWidget Direction="Vertical" Margin="20, 0">
+        <CanvasWidget>
+          <RectangleWidget FillColor="0, 0, 0, 64" OutlineColor="128, 128, 128, 128" />
+          <ListPanelWidget Name="CreaturesList" Direction="Vertical" Margin="5, 3" ItemSize="120" SelectionColor="10, 70, 0, 90"/>
+        </CanvasWidget>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 10" />
+
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+  
+</Screen>

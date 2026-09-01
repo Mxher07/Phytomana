@@ -1,0 +1,79 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[SettingsCompatibilityScreen:1]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" Margin="10, 0">
+
+      <CanvasWidget Size="0, 20" />
+
+      <LabelWidget  Color="255, 255, 255" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true" Text="[SettingsCompatibilityScreen:2]" />
+
+      <CanvasWidget Size="0, 20" />
+
+      <CanvasWidget>
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+        <ScrollPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3, 3">
+          <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <UniformSpacingPanelWidget Direction="Horizontal">
+              <LabelWidget Text="[SettingsCompatibilityScreen:11]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Name="ViewGameLogButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" Text="[SettingsCompatibilityScreen:12]"/>
+            </UniformSpacingPanelWidget>
+
+            <UniformSpacingPanelWidget Direction="Horizontal">
+              <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Name="OpenGameLogButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" Text="[SettingsCompatibilityScreen:13]"/>
+            </UniformSpacingPanelWidget>
+
+            <UniformSpacingPanelWidget Name="ShareGameLogButtonPanel" Direction="Horizontal" IsVisible="false">
+              <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Name="ShareGameLogButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" Text="[SettingsCompatibilityScreen:15]"/>
+            </UniformSpacingPanelWidget>
+
+            <UniformSpacingPanelWidget Direction="Horizontal">
+              <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Name="ReportButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" Text="[SettingsCompatibilityScreen:10]"/>
+            </UniformSpacingPanelWidget>
+
+            <UniformSpacingPanelWidget Direction="Horizontal">
+              <LabelWidget Text="[SettingsCompatibilityScreen:14]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Name="FileAssociationEnabledButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0"/>
+            </UniformSpacingPanelWidget>
+
+            <UniformSpacingPanelWidget Direction="Horizontal">
+              <LabelWidget Text="[SettingsCompatibilityScreen:17]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Text="[SettingsCompatibilityScreen:18]" Name="ManageClassSubstitutesButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0"/>
+            </UniformSpacingPanelWidget>
+
+            <UniformSpacingPanelWidget Direction="Horizontal">
+              <LabelWidget Text="[SettingsCompatibilityScreen:16]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Name="SafeModeButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0"/>
+            </UniformSpacingPanelWidget>
+
+            <UniformSpacingPanelWidget Direction="Horizontal" IsVisible="false">
+              <LabelWidget Text="[SettingsCompatibilityScreen:8]" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" />
+              <BevelledButtonWidget Name="ResetDefaultsButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0" Text="[SettingsCompatibilityScreen:9]"/>
+            </UniformSpacingPanelWidget>
+
+          </StackPanelWidget>
+        </ScrollPanelWidget>
+      </CanvasWidget>
+
+      <CanvasWidget Size="0, 10"/>
+
+      <CanvasWidget Size="Infinity, 80" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <LabelWidget Name="Description" HorizontalAlignment="Center" VerticalAlignment="Center" TextAnchor="HorizontalCenter, VerticalCenter" Color="128, 128, 128" WordWrap="true" />
+      </CanvasWidget>
+
+      <CanvasWidget Size="0, 10"/>
+
+    </StackPanelWidget>
+  </StackPanelWidget>
+
+</Screen>

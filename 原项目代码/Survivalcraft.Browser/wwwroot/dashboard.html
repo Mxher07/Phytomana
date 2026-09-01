@@ -1,0 +1,1174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Dashboard - Survivalcraft API</title>
+    <link rel="icon" type="image/webp" href="./favicon.webp" />
+    <link rel="manifest" href="./manifest.json" />
+    <style>
+        :root {
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-sub: #666;
+            --accent-color: #007bff;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --border-radius: 8px;
+            --console-bg: #1e1e1e;
+            --console-text: #00ff00;
+            --modal-overlay: rgba(0, 0, 0, 0.5);
+            --tooltip-bg: #333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 20px 0 20px;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: calc(100vh - 20px);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            flex: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* 状态列表布局 */
+        .status-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto; /* 名称 - 状态 - 按钮组 */
+            gap: 10px;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Label with Tooltip Icon */
+        .status-label-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+            position: relative;
+            cursor: help;
+        }
+
+        .status-label {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .info-icon {
+            width: 14px;
+            height: 14px;
+            color: #aaa;
+            flex-shrink: 0;
+        }
+
+        /* Tooltip Style */
+        .tooltip {
+            position: absolute;
+            bottom: 125%;
+            left: 0;
+            background-color: var(--tooltip-bg);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            width: 200px;
+            z-index: 100;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s, visibility 0.2s;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 10px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--tooltip-bg) transparent transparent transparent;
+        }
+
+        /* Hover & Active Tooltip Logic */
+        .status-label-wrap:hover .tooltip,
+        .status-label-wrap.active .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .status-value {
+            font-family: monospace;
+            font-size: 0.9em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #eee;
+        }
+
+        .status-value.success { color: var(--success-color); background: #e6f4ea; }
+        .status-value.error { color: var(--error-color); background: #fbeaea; }
+
+        /* 按钮组 */
+        .btn-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        /* 按钮样式 */
+        button {
+            background-color: var(--bg-color);
+            border: 1px solid #ddd;
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        button:hover {
+            background-color: #e2e6ea;
+            border-color: #ccc;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button.primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+        }
+        button.primary:hover {
+            background-color: #0056b3;
+        }
+
+        button.icon-btn {
+            padding: 4px 8px;
+            font-size: 1.1rem;
+            line-height: 1;
+            border: 1px solid transparent;
+            background: transparent;
+        }
+        button.icon-btn:hover {
+            background-color: rgba(0,0,0,0.05);
+            border-color: #eee;
+        }
+
+        /* 控制台/输出区域 */
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #outputContainer {
+            background-color: var(--console-bg);
+            color: var(--console-text);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 13px;
+            height: 250px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #outputContainer div {
+            margin-bottom: 4px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 2px;
+            word-break: break-all;
+        }
+
+        /* Footer Styles */
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            width: 100%;
+            border-top: 1px solid #e0e4e8;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        .footer-copyright {
+            margin-bottom: 8px;
+        }
+
+        .footer-host {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: relative; /* Context for absolute positioning if needed */
+        }
+
+        .modal-header {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 { margin: 0; }
+        .close-modal { font-size: 1.5rem; border: none; background: none; cursor: pointer; padding: 0 5px; }
+
+        .file-manager-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .breadcrumbs {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .crumb { cursor: pointer; color: var(--accent-color); }
+        .crumb:hover { text-decoration: underline; }
+        .crumb-separator { margin: 0 5px; color: #999; }
+        .crumb.active { color: #666; cursor: default; text-decoration: none; pointer-events: none;}
+
+        .file-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.1s;
+        }
+        .file-item:hover { background-color: #f8f9fa; }
+        .file-item.selected { background-color: #e8f0fe; }
+
+        .file-checkbox {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .file-icon { margin-right: 10px; font-size: 1.2rem; min-width: 24px; text-align: center; flex-shrink: 0; }
+        .file-info { flex: 1; min-width: 0; margin-right: 10px;}
+        .file-name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+        .file-meta { font-size: 0.8rem; color: #888; white-space: nowrap; }
+
+        .file-actions { display: flex; gap: 5px; flex-shrink: 0; }
+
+        /* Bulk Actions Toolbar */
+        .bulk-actions-bar {
+            background: #f1f3f4;
+            border-top: 1px solid #ddd;
+            padding: 10px 15px;
+            display: none; /* Hidden by default */
+            justify-content: space-between;
+            align-items: center;
+            animation: slideUp 0.2s ease-out;
+        }
+        .bulk-actions-bar.visible { display: flex; }
+        .bulk-info { font-weight: 500; font-size: 0.9rem; color: #333; }
+        .bulk-buttons { display: flex; gap: 10px; }
+        .bulk-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+            font-size: 0.9rem;
+        }
+        .bulk-btn:hover { background: #e9e9e9; }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Mobile Adaptations */
+        @media (max-width: 480px) {
+            .status-row {
+                grid-template-columns: 1fr auto;
+                grid-template-areas:
+                    "label status"
+                    "action action";
+            }
+            .status-label { grid-area: label; }
+            .status-value { grid-area: status; }
+            .btn-group {
+                grid-area: action;
+                width: 100%;
+                margin-top: 5px;
+            }
+            .btn-group button { flex: 1; }
+
+            /* Mobile File List: 强制单行 */
+            .file-item {
+                padding: 8px 10px; /* Reduce padding */
+            }
+            .file-checkbox { margin-right: 8px; }
+            .file-icon { margin-right: 6px; font-size: 1.1rem; }
+            .file-info { margin-right: 5px; }
+
+            /* Hide file size on very small screens if needed, but flex should handle it */
+            .file-meta { font-size: 0.75rem; }
+            .file-actions { gap: 2px; }
+            button.icon-btn {
+                padding: 4px 6px;
+                font-size: 1rem;
+            }
+
+            /* Bulk bar on mobile */
+            .bulk-actions-bar {
+                padding: 8px 10px;
+            }
+            .bulk-btn {
+                padding: 4px 8px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* 隐藏的文件输入框 */
+        #hiddenFileInput { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="dashboard" class="card">
+        <h2>Dashboard</h2>
+        <div class="status-row">
+            <div class="status-label-wrap" onclick="toggleTooltip(this)">
+                <span class="status-label">Service Worker</span>
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                <div class="tooltip">Used to persistently cache network requests locally, such as game assemblies and assets.</div>
+            </div>
+            <span id="serviceWorkerStatus" class="status-value">Checking...</span>
+            <div></div>
+        </div>
+        <div class="status-row">
+            <div class="status-label-wrap" onclick="toggleTooltip(this)">
+                <span class="status-label">SharedArrayBuffer</span>
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                <div class="tooltip">Essential for multi-threading support in the game.</div>
+            </div>
+            <span id="sharedArrayBufferStatus" class="status-value">Checking...</span>
+            <div></div>
+        </div>
+        <div class="status-row">
+            <div class="status-label-wrap" onclick="toggleTooltip(this)">
+                <span class="status-label">OffscreenCanvas</span>
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                <div class="tooltip">Essential for rendering the game.</div>
+            </div>
+            <span id="offscreenCanvasStatus" class="status-value">Checking...</span>
+            <div></div>
+        </div>
+        <div class="status-row">
+            <div class="status-label-wrap" onclick="toggleTooltip(this)">
+                <span class="status-label">CacheStorage</span>
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                <div class="tooltip">Where network requests, such as game assemblies and assets, are cached.</div>
+            </div>
+            <span id="cacheStorageStatus" class="status-value">Checking...</span>
+            <div class="btn-group">
+                <button id="clearCachesButton">Clear</button>
+            </div>
+        </div>
+        <div class="status-row">
+            <div class="status-label-wrap" onclick="toggleTooltip(this)">
+                <span class="status-label">Origin Private File System</span>
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                <div class="tooltip">Used to persistently store game world saves and settings locally.</div>
+            </div>
+            <span id="opfsStatus" class="status-value">Checking...</span>
+            <div class="btn-group">
+                <button id="manageOpfsButton" class="primary">Manage</button>
+                <button id="clearOpfsButton">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="output-header">
+        <h3 style="margin:0; font-size:1.1rem; color:#555;">Log Output</h3>
+        <button id="clearOutputButton" class="primary">Clear Log</button>
+    </div>
+
+    <div id="outputContainer"></div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="https://gitee.com/SC-SPM/SurvivalcraftApi/" target="_blank">Source Code↗</a>
+        <a href="https://scapiweb.netlify.app/" target="_blank">Back to Game↗</a>
+    </div>
+    <div class="footer-copyright">
+        &copy; 2026 <a href="https://gitee.com/SC-SPM" target="_blank" style="color: inherit; text-decoration: none; font-weight: 500;">SC-SPM</a>
+    </div>
+    <div class="footer-host">
+        Hosted by <a href="https://www.netlify.com/" target="_blank" style="color: inherit; text-decoration: underline;">Netlify</a>
+    </div>
+</footer>
+
+<!-- OPFS Manager Modal -->
+<div id="opfsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>OPFS Explorer</h3>
+            <button class="close-modal" id="closeModalButton">&times;</button>
+        </div>
+        <div class="file-manager-body">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <!-- JS Generated -->
+            </div>
+            <ul class="file-list" id="fileList">
+                <!-- JS Generated -->
+            </ul>
+            <!-- Bulk Actions Toolbar -->
+            <div id="bulkActionsBar" class="bulk-actions-bar">
+                <div class="bulk-info" id="bulkInfoText">0 selected</div>
+                <div class="bulk-buttons">
+                    <button id="bulkDownloadBtn" class="bulk-btn">
+                        <span>📥</span> <span>Download</span>
+                    </button>
+                    <button id="bulkDeleteBtn" class="bulk-btn" style="color:var(--error-color); border-color: #ffcccc;">
+                        <span>🗑️</span> <span>Delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden File Input for Replacements -->
+<input type="file" id="hiddenFileInput" />
+
+<script type="module">
+    // Import fflate for ZIP functionality
+    let fflateModule = null;
+
+    async function getFflate() {
+        if (fflateModule) return fflateModule;
+        output("Loading compression library...");
+        try {
+            fflateModule = await import('https://cdn.skypack.dev/fflate@0.8.2?min');
+            output("Library loaded successfully.");
+            return fflateModule;
+        } catch (e) {
+            output("Failed to load fflate: " + e.message, 'error');
+            throw e;
+        }
+    }
+
+    // DOM 元素缓存
+    const els = {
+        outputContainer: document.getElementById("outputContainer"),
+        swStatus: document.getElementById("serviceWorkerStatus"),
+        sabStatus: document.getElementById("sharedArrayBufferStatus"),
+        offscreenCanvasStatus: document.getElementById("offscreenCanvasStatus"),
+        cacheStorageStatus: document.getElementById("cacheStorageStatus"),
+        opfsStatus: document.getElementById("opfsStatus"),
+        clearCachesButton: document.getElementById("clearCachesButton"),
+        clearOpfsButton: document.getElementById("clearOpfsButton"),
+        clearOutputButton: document.getElementById("clearOutputButton"),
+        // Modal Elements
+        manageOpfsButton: document.getElementById("manageOpfsButton"),
+        opfsModal: document.getElementById("opfsModal"),
+        closeModalButton: document.getElementById("closeModalButton"),
+        breadcrumbs: document.getElementById("breadcrumbs"),
+        fileList: document.getElementById("fileList"),
+        hiddenFileInput: document.getElementById("hiddenFileInput"),
+        // Bulk Action Elements
+        bulkActionsBar: document.getElementById("bulkActionsBar"),
+        bulkInfoText: document.getElementById("bulkInfoText"),
+        bulkDownloadBtn: document.getElementById("bulkDownloadBtn"),
+        bulkDeleteBtn: document.getElementById("bulkDeleteBtn")
+    };
+
+    window.toggleTooltip = function(el) {
+        const isActive = el.classList.contains('active');
+        document.querySelectorAll('.status-label-wrap').forEach(w => w.classList.remove('active'));
+        if (!isActive) el.classList.add('active');
+    };
+
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.status-label-wrap').forEach(w => w.classList.remove('active'));
+    });
+
+    // State for File Manager
+    let currentDirHandle = null;
+    let pathStack = []; // Array of {name, handle}
+    let pendingReplaceHandle = null; // Store handle when waiting for file picker
+    let selectedEntries = new Set(); // Set of Strings (names)
+    let currentDirEntries = new Map(); // Map<Name, Handle> for quick lookup
+
+    // 日志输出工具
+    function output(message, type = 'info') {
+        const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+        const div = document.createElement("div");
+        div.innerHTML = `<span style="opacity:0.5">[${time}]</span> ${message}`;
+        if (type === 'error') div.style.color = '#ff6b6b';
+        els.outputContainer.appendChild(div);
+        els.outputContainer.scrollTop = els.outputContainer.scrollHeight;
+    }
+
+    function setStatus(element, text, isSuccess) {
+        element.textContent = text;
+        element.className = 'status-value ' + (isSuccess ? 'success' : 'error');
+    }
+
+    els.clearOutputButton.addEventListener("click", () => els.outputContainer.replaceChildren());
+
+    // --- Core Functions ---
+
+    async function clearCaches() {
+        if (typeof CacheStorage === "function" && globalThis.caches) {
+            if (!globalThis.confirm("This will require the game to be downloaded again. Are you sure?")) return;
+            try {
+                const keys = await caches.keys();
+                await Promise.all(keys.map(key => globalThis.caches.delete(key)));
+                output("Clear caches succeeded.");
+                setStatus(els.cacheStorageStatus, "✔️ 0", true);
+            } catch (e) {
+                output(`Clear caches failed: ${e}`, 'error');
+            }
+        }
+    }
+    els.clearCachesButton.addEventListener("click", clearCaches);
+
+    async function clearOpfs() {
+        if (typeof FileSystemDirectoryHandle === "function" && globalThis.navigator.storage?.getDirectory) {
+            if (!globalThis.confirm("This will delete all files in OPFS, including game world saves and settings. Are you sure?")) return;
+            try {
+                const root = await globalThis.navigator.storage.getDirectory();
+                const entries = [];
+                for await (const entry of root.keys()) {
+                    entries.push(entry);
+                }
+                for (const name of entries) {
+                    await root.removeEntry(name, { recursive: true });
+                }
+                output("Clear OPFS succeeded.");
+                setStatus(els.opfsStatus, "✔️ 0 B", true);
+                if(els.opfsModal.classList.contains('open')) {
+                    await refreshFileManager(); // Refresh if open
+                }
+            } catch (error) {
+                output(`Clear OPFS failed: ${error}`, 'error');
+            }
+        }
+    }
+    els.clearOpfsButton.addEventListener("click", clearOpfs);
+
+    // --- Helper: Format Bytes ---
+    function formatBytes(bytes, decimals = 2) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
+    // --- Helper: Count Size ---
+    async function countFilesAndSize(dirHandle) {
+        let totalCount = 0;
+        let totalSize = 0;
+        for await (const entry of dirHandle.values()) {
+            if (entry.kind === 'file') {
+                const file = await entry.getFile();
+                totalCount++;
+                totalSize += file.size;
+            } else if (entry.kind === 'directory') {
+                const { count, size } = await countFilesAndSize(entry);
+                totalCount += count;
+                totalSize += size;
+            }
+        }
+        return { count: totalCount, size: totalSize };
+    }
+
+    // --- Modal Logic ---
+    els.manageOpfsButton.addEventListener('click', async () => {
+        try {
+            const root = await navigator.storage.getDirectory();
+            pathStack = [{ name: 'Root', handle: root }];
+            currentDirHandle = root;
+            selectedEntries.clear();
+            els.opfsModal.classList.add('open');
+            await renderFileManager();
+        } catch (e) {
+            output("Could not open OPFS: " + e, 'error');
+        }
+    });
+
+    els.closeModalButton.addEventListener('click', () => {
+        els.opfsModal.classList.remove('open');
+        checkOpfs(); // Refresh OPFS stat again on close
+    });
+
+    async function refreshFileManager() {
+        if (currentDirHandle) {
+            selectedEntries.clear(); // Clear selection on refresh
+            await renderFileManager();
+        }
+    }
+
+    async function renderFileManager() {
+        // Reset Bulk Bar
+        updateBulkBar();
+
+        // 1. Render Breadcrumbs
+        els.breadcrumbs.innerHTML = '';
+        pathStack.forEach((item, index) => {
+            const span = document.createElement('span');
+            span.textContent = item.name;
+            span.className = index === pathStack.length - 1 ? 'crumb active' : 'crumb';
+            if (index !== pathStack.length - 1) {
+                span.onclick = () => navigateToBreadcrumb(index);
+            }
+            els.breadcrumbs.appendChild(span);
+
+            if (index < pathStack.length - 1) {
+                const sep = document.createElement('span');
+                sep.textContent = '/';
+                sep.className = 'crumb-separator';
+                els.breadcrumbs.appendChild(sep);
+            }
+        });
+
+        // 2. Render File List
+        els.fileList.innerHTML = '<li style="padding:20px; text-align:center; color:#888;">Loading...</li>';
+
+        const entries = [];
+        currentDirEntries.clear();
+
+        try {
+            for await (const entry of currentDirHandle.values()) {
+                entries.push(entry);
+                currentDirEntries.set(entry.name, entry);
+            }
+        } catch(e) {
+            els.fileList.innerHTML = `<li style="padding:20px; color:red;">Error reading directory: ${e.message}</li>`;
+            return;
+        }
+
+        // Sort: Folders first, then alphabetical
+        entries.sort((a, b) => {
+            if (a.kind === b.kind) return a.name.localeCompare(b.name);
+            return a.kind === 'directory' ? -1 : 1;
+        });
+
+        els.fileList.innerHTML = '';
+
+        if (entries.length === 0) {
+            els.fileList.innerHTML = '<li style="padding:20px; text-align:center; color:#888;">Empty Directory</li>';
+            return;
+        }
+
+        for (const entry of entries) {
+            const li = document.createElement('li');
+            li.className = 'file-item';
+            li.dataset.filename = entry.name;
+            if (selectedEntries.has(entry.name)) {
+                li.classList.add('selected');
+            }
+
+            // Checkbox
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'file-checkbox';
+            checkbox.checked = selectedEntries.has(entry.name);
+            checkbox.onclick = (e) => {
+                e.stopPropagation();
+                toggleSelection(entry.name);
+            };
+
+            // Meta info retrieval (async)
+            let metaText = '';
+            let icon = entry.kind === 'directory' ? '📂' : '📄';
+
+            if (entry.kind === 'file') {
+                const file = await entry.getFile();
+                metaText = formatBytes(file.size);
+            } else {
+                metaText = 'Folder';
+            }
+
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'file-info';
+            infoDiv.innerHTML = `
+                <div class="file-name">${entry.name}</div>
+                <div class="file-meta">${metaText}</div>
+            `;
+
+            // Interaction: Click name to enter folder
+            const nameEl = infoDiv.querySelector('.file-name');
+            if (entry.kind === 'directory') {
+                nameEl.onclick = () => enterDirectory(entry.name, entry);
+            }
+
+            const iconDiv = document.createElement('div');
+            iconDiv.className = 'file-icon';
+            iconDiv.textContent = icon;
+
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'file-actions';
+
+            // Buttons based on type (Using Emojis)
+            if (entry.kind === 'file') {
+                // Download
+                const dlBtn = createBtn('📥', 'Download', () => downloadFile(entry));
+                // Replace
+                const repBtn = createBtn('🔄', 'Replace', () => triggerReplace(entry));
+                // Delete
+                const delBtn = createBtn('🗑️', 'Delete', () => deleteEntry(entry));
+
+                actionsDiv.append(dlBtn, repBtn, delBtn);
+            } else {
+                // Zip Download
+                const zipBtn = createBtn('📥', 'Download as Zip', () => downloadFolderAsZip(entry));
+                // Delete Folder
+                const delBtn = createBtn('🗑️', 'Delete', () => deleteEntry(entry));
+
+                actionsDiv.append(zipBtn, delBtn);
+            }
+
+            li.append(checkbox, iconDiv, infoDiv, actionsDiv);
+            els.fileList.appendChild(li);
+        }
+    }
+
+    function createBtn(text, title, onClick) {
+        const btn = document.createElement('button');
+        btn.textContent = text;
+        btn.title = title;
+        btn.className = 'icon-btn';
+        btn.onclick = onClick;
+        return btn;
+    }
+
+    // --- Selection Logic ---
+    function toggleSelection(name) {
+        if (selectedEntries.has(name)) {
+            selectedEntries.delete(name);
+        } else {
+            selectedEntries.add(name);
+        }
+
+        const li = els.fileList.querySelector(`li[data-filename="${name}"]`);
+        if (li) {
+            const checkbox = li.querySelector('.file-checkbox');
+            if (selectedEntries.has(name)) {
+                li.classList.add('selected');
+                checkbox.checked = true;
+            } else {
+                li.classList.remove('selected');
+                checkbox.checked = false;
+            }
+        }
+
+        updateBulkBar();
+    }
+
+    function updateBulkBar() {
+        const count = selectedEntries.size;
+        if (count > 0) {
+            els.bulkActionsBar.classList.add('visible');
+            els.bulkInfoText.textContent = `${count} item${count > 1 ? 's' : ''} selected`;
+        } else {
+            els.bulkActionsBar.classList.remove('visible');
+        }
+    }
+
+    // --- Bulk Actions ---
+    els.bulkDeleteBtn.onclick = async () => {
+        if (selectedEntries.size === 0) return;
+        if (!confirm(`Are you sure you want to delete ${selectedEntries.size} items?`)) return;
+
+        let successCount = 0;
+        for (const name of selectedEntries) {
+            try {
+                await currentDirHandle.removeEntry(name, { recursive: true });
+                successCount++;
+            } catch (e) {
+                output(`Failed to delete ${name}: ${e.message}`, 'error');
+            }
+        }
+        output(`Deleted ${successCount} items.`);
+        selectedEntries.clear();
+        await refreshFileManager();
+    };
+
+    els.bulkDownloadBtn.onclick = async () => {
+        if (selectedEntries.size === 0) return;
+
+        // Single file selected -> Normal download
+        if (selectedEntries.size === 1) {
+            const name = selectedEntries.values().next().value;
+            const entry = currentDirEntries.get(name);
+            if (entry.kind === 'file') {
+                await downloadFile(entry);
+                return;
+            }
+        }
+
+        // Multiple items or single folder -> Zip
+        output("Preparing bulk download...");
+        const entriesToZip = [];
+        for (const name of selectedEntries) {
+            const entry = currentDirEntries.get(name);
+            if (entry) entriesToZip.push(entry);
+        }
+
+        try {
+            const fflate = await getFflate();
+            const zipContent = {};
+            for (const entry of entriesToZip) {
+                if (entry.kind === 'file') {
+                    const file = await entry.getFile();
+                    const buffer = await file.arrayBuffer();
+                    zipContent[entry.name] = new Uint8Array(buffer);
+                } else {
+                    const subObj = await buildZipObjectRecursive(entry, entry.name + "/");
+                    Object.assign(zipContent, subObj);
+                }
+            }
+
+            output("Compressing selection...");
+            fflate.zip(zipContent, (err, data) => {
+                if (err) {
+                    output(`Zip error: ${err}`, 'error');
+                    return;
+                }
+                downloadBlob(new Blob([data], { type: 'application/zip' }), "files_backup.zip");
+                output("Bulk download started.");
+            });
+
+        } catch (e) {
+            output(`Bulk download failed: ${e}`, 'error');
+        }
+    };
+
+    // --- Navigation Logic ---
+    function navigateToBreadcrumb(index) {
+        pathStack = pathStack.slice(0, index + 1);
+        currentDirHandle = pathStack[pathStack.length - 1].handle;
+        refreshFileManager();
+    }
+
+    function enterDirectory(name, handle) {
+        pathStack.push({ name: name, handle: handle });
+        currentDirHandle = handle;
+        refreshFileManager();
+    }
+
+    // --- File Actions ---
+
+    async function downloadFile(fileHandle) {
+        try {
+            const file = await fileHandle.getFile();
+            downloadBlob(file, fileHandle.name);
+            output(`Downloaded: ${fileHandle.name}`);
+        } catch (e) {
+            output(`Download failed: ${e}`, 'error');
+        }
+    }
+
+    function downloadBlob(blobOrFile, name) {
+        const url = URL.createObjectURL(blobOrFile);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    function triggerReplace(fileHandle) {
+        pendingReplaceHandle = fileHandle;
+        els.hiddenFileInput.value = ''; // Reset
+        els.hiddenFileInput.click();
+    }
+
+    async function deleteEntry(entry) {
+        if(!confirm(`Delete ${entry.kind} "${entry.name}"?`)) return;
+        try {
+            await currentDirHandle.removeEntry(entry.name, { recursive: true });
+            output(`Deleted: ${entry.name}`);
+            await refreshFileManager();
+        } catch(e) {
+            output(`Delete failed: ${e}`, 'error');
+        }
+    }
+
+    // Handle File Input Change (for Replace)
+    els.hiddenFileInput.addEventListener('change', async (e) => {
+        if (!e.target.files.length || !pendingReplaceHandle) return;
+        const newFile = e.target.files[0];
+
+        try {
+            // Create a writable stream to the existing handle
+            const writable = await pendingReplaceHandle.createWritable();
+            await writable.write(newFile);
+            await writable.close();
+
+            output(`Replaced content of: ${pendingReplaceHandle.name}`);
+            await refreshFileManager(); // Refresh UI size info
+        } catch (err) {
+            output(`Replace failed: ${err}`, 'error');
+            alert(`Replace failed. File might be in use. \nError: ${err.message}`);
+        } finally {
+            pendingReplaceHandle = null;
+        }
+    });
+
+    // --- Folder to Zip Logic ---
+
+    async function downloadFolderAsZip(dirHandle) {
+        output(`Preparing to zip folder: ${dirHandle.name}...`);
+        try {
+            const fflate = await getFflate();
+            const zipContent = await buildZipObjectRecursive(dirHandle, "");
+            output(`Compressing ${dirHandle.name}...`);
+            fflate.zip(zipContent, (err, data) => {
+                if (err) {
+                    output(`Zip creation error: ${err}`, 'error');
+                    alert("Error creating ZIP");
+                    return;
+                }
+                downloadBlob(new Blob([data], { type: 'application/zip' }), `${dirHandle.name}.zip`);
+                output(`Zip downloaded: ${dirHandle.name}.zip`);
+            });
+        } catch (e) {
+            output(`Zip logic failed: ${e}`, 'error');
+        }
+    }
+
+    async function buildZipObjectRecursive(dirHandle, prefix) {
+        const obj = {};
+        for await (const entry of dirHandle.values()) {
+            if (entry.kind === 'file') {
+                const file = await entry.getFile();
+                const buffer = await file.arrayBuffer();
+                obj[prefix + entry.name] = new Uint8Array(buffer);
+            } else if (entry.kind === 'directory') {
+                const subObj = await buildZipObjectRecursive(entry, prefix + entry.name + "/");
+                Object.assign(obj, subObj);
+            }
+        }
+        return obj;
+    }
+
+    async function checkOpfs() {
+        output("Checking OPFS...");
+        if (typeof FileSystemDirectoryHandle === "function" && navigator.storage?.getDirectory) {
+            try {
+                const root = await navigator.storage.getDirectory();
+                const { count, size } = await countFilesAndSize(root);
+                const formatted = formatBytes(size);
+                output(`OPFS: ${count} files, total ${formatted}.`);
+                setStatus(els.opfsStatus, `✔️ ${formatted}`, true);
+                els.manageOpfsButton.disabled = false;
+            } catch (error) {
+                output(`Access OPFS failed: ${error}`, 'error');
+                setStatus(els.opfsStatus, "❌ Error", false);
+                els.manageOpfsButton.disabled = true;
+            }
+        } else {
+            output("OPFS: Unsupported.");
+            setStatus(els.opfsStatus, "❌ Unsupported", false);
+            els.manageOpfsButton.disabled = true;
+        }
+    }
+
+    // --- Initialization Checks ---
+    async function checkAll() {
+        // 1. Service Worker
+        output("Checking Service Worker...");
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("./service-worker.js", { scope: "./" })
+                .then(() => {
+                    output("Service Worker registered.");
+                    setStatus(els.swStatus, "✔️ OK", true);
+                })
+                .catch(err => {
+                    output(`Service Worker warning: ${err.message}`, 'error');
+                    setStatus(els.swStatus, "⚠️ Register Failed", false);
+                });
+        } else {
+            output("Service Worker: Unsupported.");
+            setStatus(els.swStatus, "❌ Unsupported", false);
+        }
+
+        // 2. SharedArrayBuffer
+        output("Checking SharedArrayBuffer...");
+        if (typeof SharedArrayBuffer === "function") {
+            try {
+                new SharedArrayBuffer(1024);
+                output("SharedArrayBuffer: OK.");
+                setStatus(els.sabStatus, "✔️ OK", true);
+            } catch (error) {
+                output(`Cannot create SharedArrayBuffer: ${error}`, 'error');
+                setStatus(els.sabStatus, "❌ Error", false);
+            }
+        } else {
+            output("SharedArrayBuffer: Unsupported.");
+            setStatus(els.sabStatus, "❌ Unsupported", false);
+        }
+
+        // 3. OffscreenCanvas
+        output("Checking OffscreenCanvas...");
+        if (typeof OffscreenCanvas === "function") {
+            try {
+                new OffscreenCanvas(1, 1);
+                output("OffscreenCanvas: OK.");
+                setStatus(els.offscreenCanvasStatus, "✔️ OK", true);
+            } catch (error) {
+                output(`Cannot create OffscreenCanvas: ${error}`, 'error');
+                setStatus(els.offscreenCanvasStatus, "❌ Error", false);
+            }
+        } else {
+            output("OffscreenCanvas: Unsupported.");
+            setStatus(els.offscreenCanvasStatus, "❌ Unsupported", false);
+        }
+
+        // 4. CacheStorage
+        output("Checking CacheStorage...");
+        if (typeof CacheStorage === "function" && globalThis.caches) {
+            try {
+                let cacheCount = 0;
+                const keys = await caches.keys();
+                for (const key of keys) {
+                    const cache = await caches.open(key);
+                    cacheCount += (await cache.keys()).length;
+                }
+                output(`CacheStorage: ${cacheCount} items.`);
+                setStatus(els.cacheStorageStatus, `✔️ ${cacheCount} Items`, true);
+            } catch (error) {
+                output(`Access CacheStorage failed: ${error}`, 'error');
+                setStatus(els.cacheStorageStatus, "❌ Error", false);
+            }
+        } else {
+            output("CacheStorage: Unsupported.");
+            setStatus(els.cacheStorageStatus, "❌ Unsupported", false);
+        }
+
+        // 5. OPFS
+        await checkOpfs();
+    }
+
+    checkAll();
+</script>
+</body>
+</html>

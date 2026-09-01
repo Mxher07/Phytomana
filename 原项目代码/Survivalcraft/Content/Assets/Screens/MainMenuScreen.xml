@@ -1,0 +1,75 @@
+﻿<Screen xmlns="runtime-namespace:Game">
+
+	<PanoramaWidget Name="Background"/>
+
+	<StackPanelWidget Name="MainStackPanelWidget" Direction="Vertical">
+
+		<CanvasWidget Size="0, Infinity" />
+
+		<StackPanelWidget Name="TopArea" Direction="Vertical" HorizontalAlignment="Center">
+			<RectangleWidget Name="Logo" Size="800, 100" OutlineColor="0, 0, 0, 0" HorizontalAlignment="Center" FillColor="255, 255, 255" Margin="0, 0" Subtexture="{Textures/Gui/Logo}" />
+			<CanvasWidget Size="0, 5" />
+			<LabelWidget Name="Version" FontScale="0.5" HorizontalAlignment="Center" Color="64, 192, 64" DropShadow="true" />
+		</StackPanelWidget>
+
+		<CanvasWidget Size="0, Infinity" />
+
+		<MotdWidget Size="Infinity, 60"/>
+
+		<CanvasWidget Size="0, Infinity" />
+
+		<StackPanelWidget Name="CenterButtons" HorizontalAlignment="Center" Direction="Vertical" Margin="0, 0">
+			<StackPanelWidget HorizontalAlignment="Center" >
+				<BevelledButtonWidget Name="Play" Style="{Styles/ButtonStyle_310x60}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[MainMenuScreen:2]" />
+				<BevelledButtonWidget Name="Content" Style="{Styles/ButtonStyle_310x60}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[MainMenuScreen:3]" />
+			</StackPanelWidget>
+			<StackPanelWidget HorizontalAlignment="Center">
+				<BevelledButtonWidget Name="Settings" Style="{Styles/ButtonStyle_310x60}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[MainMenuScreen:4]" />
+				<BevelledButtonWidget Name="Help" Style="{Styles/ButtonStyle_310x60}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[MainMenuScreen:5]" />
+			</StackPanelWidget>
+			<StackPanelWidget HorizontalAlignment="Center">
+				<BevelledButtonWidget Name="Buy" Style="{Styles/ButtonStyle_310x60}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[MainMenuScreen:6]" IsVisible="false" />
+				<BevelledButtonWidget Name="DisableSafeModeButton" Style="{Styles/ButtonStyle_310x60}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[MainMenuScreen:13]" IsVisible="false" />
+			</StackPanelWidget>
+		</StackPanelWidget>
+
+		<CanvasWidget Size="0, Infinity" />
+
+		<StackPanelWidget Name="BottomInfos" Direction="Vertical" HorizontalAlignment="Center" Margin="0, 4">
+			<LabelWidget Name="CopyrightLabel" Text="[MainMenuScreen:7]" Color="64, 192, 64" HorizontalAlignment="Center" VerticalAlignment="Center" FontScale="0.7" DropShadow="true"/>
+			<StackPanelWidget HorizontalAlignment="Center">
+				<LabelWidget Text="[MainMenuScreen:8]" Color="64, 192, 64" VerticalAlignment="Center" FontScale="0.7" DropShadow="true" _ExcludePlatforms="Ios" />
+				<LinkWidget Name="Link" Text="[MainMenuScreen:9]" Color="255, 255, 255, 255" FontScale="0.7" VerticalAlignment="Center" Url="http://kaalus.wordpress.com" DropShadow="true" _ExcludePlatforms="Ios" />
+				<LabelWidget Text="[MainMenuScreen:10]" Color="64, 192, 64" VerticalAlignment="Center" FontScale="0.7" DropShadow="true" _ExcludePlatforms="Ios" />
+			</StackPanelWidget>
+			<StackPanelWidget HorizontalAlignment="Center">
+				<LabelWidget Text="[MainMenuScreen:12]" Color="64, 192, 64" VerticalAlignment="Center" FontScale="0.7" DropShadow="true"/>
+				<LinkWidget Name="ApiLink" Text="https://gitee.com/SC-SPM/SurvivalcraftApi" Color="255, 255, 255, 255" FontScale="0.7" VerticalAlignment="Center" Url="https://gitee.com/SC-SPM/SurvivalcraftApi" DropShadow="true" _ExcludePlatforms="Ios" />
+			</StackPanelWidget>
+
+		</StackPanelWidget>
+
+	</StackPanelWidget>
+
+	<StackPanelWidget Name="LeftBottomBar" HorizontalAlignment="Near" VerticalAlignment="Far" Direction="Vertical" Margin="8, 8">
+		<BevelledButtonWidget Size="60, 60" Name="UpdateCheckButton">
+			<RectangleWidget Size="28, 28" Name="UpdateIcon" TextureLinearFilter="true" HorizontalAlignment="Center" VerticalAlignment="Center" Subtexture="{Textures/Gui/UpdateChecking}" OutlineColor="0, 0, 0, 0" FillColor="255, 255, 255" IsVisible="true" TextureAnisotropicFilter="true" BlendState="NonPremultiplied"/>
+		</BevelledButtonWidget>
+		<BevelledButtonWidget Size="60, 60" Name="LanguageSwitchButton">
+			<RectangleWidget Size="28, 28" TextureLinearFilter="true" HorizontalAlignment="Center" VerticalAlignment="Center" Subtexture="{Textures/Gui/Language}" OutlineColor="0, 0, 0, 0" FillColor="255, 255, 255" IsVisible="true" TextureAnisotropicFilter="true" BlendState="NonPremultiplied"/>
+		</BevelledButtonWidget>
+		<BevelledButtonWidget Size="60, 60" Name="BulletinButton">
+			<RectangleWidget Size="28, 28" TextureLinearFilter="true" HorizontalAlignment="Center" VerticalAlignment="Center" Subtexture="{Textures/Gui/Bulletin}" OutlineColor="0, 0, 0, 0" FillColor="255, 255, 255" IsVisible="true" TextureAnisotropicFilter="true" BlendState="NonPremultiplied"/>
+		</BevelledButtonWidget>
+	</StackPanelWidget>
+
+	<StackPanelWidget Name="RightBottomBar" HorizontalAlignment="Far" VerticalAlignment="Far" Direction="Vertical" Margin="8, 8">
+		<BevelledButtonWidget Size="60, 60" Name="FullscreenButton" IsVisible="false">
+			<RectangleWidget Size="28, 28" TextureLinearFilter="true" HorizontalAlignment="Center" VerticalAlignment="Center" Subtexture="{Textures/Gui/Fullscreen}" OutlineColor="0, 0, 0, 0" FillColor="255, 255, 255" IsVisible="true" TextureAnisotropicFilter="true" BlendState="NonPremultiplied"/>
+		</BevelledButtonWidget>
+		<BevelledButtonWidget Size="60, 60" Name="DashboardButton" IsVisible="false">
+			<RectangleWidget Size="28, 28" TextureLinearFilter="true" HorizontalAlignment="Center" VerticalAlignment="Center" Subtexture="{Textures/Gui/BugReport}" OutlineColor="0, 0, 0, 0" FillColor="255, 255, 255" IsVisible="true" TextureAnisotropicFilter="true" BlendState="NonPremultiplied"/>
+		</BevelledButtonWidget>
+	</StackPanelWidget>
+
+</Screen>

@@ -1,0 +1,81 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[PlayerScreen:1]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+
+      <StackPanelWidget Direction="Horizontal">
+
+        <CanvasWidget Size="150, 350">
+          <PlayerModelWidget Name="Model" AnimateHeadSeed="1" AnimateHandsSeed="1" VerticalAlignment="Center" IsHitTestVisible="true"/>
+        </CanvasWidget>
+
+        <StackPanelWidget Direction="Vertical" ClampToBounds="true">
+
+          <StackPanelWidget Direction="Horizontal">
+            <LabelWidget Size="170, -1" Text="[PlayerScreen:2]" TextAnchor="Right" VerticalAlignment="Center" />
+            <CanvasWidget Size="24, 0" />
+            <BevelledButtonWidget Name="PlayerClassButton" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" />
+          </StackPanelWidget>
+
+          <StackPanelWidget Direction="Horizontal">
+            <LabelWidget Size="170, -1" Text="[PlayerScreen:3]" TextAnchor="Right" VerticalAlignment="Center" />
+            <CanvasWidget Size="30, 0" />
+            <StackPanelWidget Direction="Horizontal" Margin="0, 7">
+              <CanvasWidget VerticalAlignment="Center" Size="Infinity, 50" >
+                <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+                <TextBoxWidget Name="Name" Title="玩家名称" Size="Infinity, 50" VerticalAlignment="Center" MaximumLength="14" Margin="10, 0" />
+              </CanvasWidget>
+              <CanvasWidget Size="6, 0" />
+            </StackPanelWidget>
+          </StackPanelWidget>
+
+          <StackPanelWidget Direction="Horizontal">
+            <LabelWidget Size="170, -1" Text="[PlayerScreen:4]" TextAnchor="Right" VerticalAlignment="Center" />
+            <CanvasWidget Size="30, 0" />
+            <StackPanelWidget Direction="Horizontal">
+              <LabelWidget Name="CharacterSkinLabel" VerticalAlignment="Center"/>
+              <CanvasWidget Size="Infinity, 0"/>
+              <BevelledButtonWidget Name="CharacterSkinButton" Style="{Styles/ButtonStyle_70x60}" Text="[PlayerScreen:5]" VerticalAlignment="Center" />
+            </StackPanelWidget>
+          </StackPanelWidget>
+
+          <StackPanelWidget Direction="Horizontal">
+            <LabelWidget Size="170, -1" Text="[PlayerScreen:6]" TextAnchor="Right" VerticalAlignment="Center" />
+            <CanvasWidget Size="30, 0" />
+            <StackPanelWidget Direction="Horizontal">
+              <LabelWidget Name="ControlsLabel" VerticalAlignment="Center"/>
+              <CanvasWidget Size="Infinity, 0" />
+              <BevelledButtonWidget Name="ControlsButton" Style="{Styles/ButtonStyle_70x60}" Text="[PlayerScreen:7]" VerticalAlignment="Center" />
+            </StackPanelWidget>
+          </StackPanelWidget>
+
+          <LabelWidget Name="DescriptionLabel" Color="128, 128, 128" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true" Margin="40, 20"/>
+
+        </StackPanelWidget>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, Infinity"/>
+        
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="AddButton" Text="[PlayerScreen:8]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0"/>
+        <BevelledButtonWidget Name="DeleteButton" Text="[PlayerScreen:9]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0"/>
+        <BevelledButtonWidget Name="PlayButton" Style="{Styles/ButtonStyle_310x60}" Text="[PlayerScreen:10]" VerticalAlignment="Far" HorizontalAlignment="Center" Margin="20, 0">
+          <BevelledRectangleWidget Name="BevelledButton.Rectangle" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+        </BevelledButtonWidget>
+        <BevelledButtonWidget Name="AddAnotherButton" Text="[PlayerScreen:11]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="20, 0"/>
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+  </StackPanelWidget>
+
+  <!--So that model widgets on top of the screen work-->
+  <ClearWidget ClearColor="false" ClearDepth="true" Depth="1"/>
+
+</CanvasWidget>

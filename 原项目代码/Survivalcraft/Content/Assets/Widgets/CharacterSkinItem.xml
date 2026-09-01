@@ -1,0 +1,10 @@
+<StackPanelWidget xmlns="runtime-namespace:Game" Direction="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+  <CanvasWidget Margin="15, 0" VerticalAlignment="Center">
+    <RectangleWidget FillColor="0, 0, 0, 0" OutlineColor="255, 255, 255, 48" Size="56, 56"/>
+    <PlayerModelWidget Name="CharacterSkinItem.Model" AnimateHandsSeed="-1" AnimateHeadSeed="-1" Size="28, 56" HorizontalAlignment="Center" />
+  </CanvasWidget>
+  <StackPanelWidget Direction="Vertical" VerticalAlignment="Center">
+    <LabelWidget Name="CharacterSkinItem.Text" Color="255, 255, 255" />
+    <LabelWidget Name="CharacterSkinItem.Details" Color="128, 128, 128" VerticalAlignment="Center" />
+  </StackPanelWidget>
+</StackPanelWidget>

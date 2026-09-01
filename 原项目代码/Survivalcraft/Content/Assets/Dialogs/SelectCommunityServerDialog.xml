@@ -1,0 +1,20 @@
+<CanvasWidget xmlns="runtime-namespace:Game" Size="600, 360" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+  <StackPanelWidget Direction="Vertical">
+    <LabelWidget Color="255, 255, 255" Text="[SelectCommunityServerDialog:1]" HorizontalAlignment="Center" DropShadow="true"/>
+    <CanvasWidget Size="0, 15" />
+    <CanvasWidget>
+      <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+      <StackPanelWidget Direction="Vertical" Margin="0, 5">
+        <ListPanelWidget Name="SelectCommunityServerDialog.ListPanel" Direction="Vertical" HorizontalAlignment="Center" Margin="5, 0" SelectionColor="10, 70, 0, 90"/>
+        <CanvasWidget Size="0, 15" />
+        <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+          <BevelledButtonWidget Style="{Styles/ButtonStyle_160x60}" Name="SelectCommunityServerDialog.Open"  Text="[SelectCommunityServerDialog:2]" />
+          <CanvasWidget Size="40, 0" />
+          <BevelledButtonWidget Style="{Styles/ButtonStyle_160x60}" Name="SelectCommunityServerDialog.Add"  Text="[SelectCommunityServerDialog:3]" />
+          <CanvasWidget Size="40, 0" />
+          <BevelledButtonWidget Style="{Styles/ButtonStyle_160x60}" Name="SelectCommunityServerDialog.Edit"  Text="[SelectCommunityServerDialog:4]"/>
+        </StackPanelWidget>
+      </StackPanelWidget>
+    </CanvasWidget>
+  </StackPanelWidget>
+</CanvasWidget>

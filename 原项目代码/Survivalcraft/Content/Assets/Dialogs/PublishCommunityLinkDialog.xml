@@ -1,0 +1,62 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="680, 460" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0, 15">
+      
+      <LabelWidget  Text="[PublishCommunityLinkDialog:1]" HorizontalAlignment="Center"/>
+
+      <CanvasWidget Size="0, 5" />
+
+        <LabelWidget  Color="128, 128, 128" Text="[PublishCommunityLinkDialog:2]" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true" Margin="20, 0"/>
+
+      <CanvasWidget Size="0, Infinity" />
+
+      <StackPanelWidget>
+        <CanvasWidget Size="180, 70">
+          <LabelWidget Text="[PublishCommunityLinkDialog:3]" Color="128, 128, 128" HorizontalAlignment="Far" VerticalAlignment="Center"/>
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <CanvasWidget Size="Infinity, 45" VerticalAlignment="Center">
+          <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+          <TextBoxWidget Name="PublishCommunityLinkDialog.Link" Size="Infinity, 45" Margin="10, 0" MaximumLength="1024"/>
+        </CanvasWidget>
+        <CanvasWidget Size="30, 0" />
+      </StackPanelWidget>
+
+      <StackPanelWidget>
+        <CanvasWidget Size="180, 70">
+          <LabelWidget Text="[PublishCommunityLinkDialog:4]" Color="128, 128, 128" HorizontalAlignment="Far" VerticalAlignment="Center"/>
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <CanvasWidget Size="Infinity, 45" VerticalAlignment="Center">
+          <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+          <TextBoxWidget Name="PublishCommunityLinkDialog.Name" Size="Infinity, 45" Margin="10, 0" MaximumLength="50"/>
+        </CanvasWidget>
+        <CanvasWidget Size="30, 0" />
+      </StackPanelWidget>
+
+      <StackPanelWidget>
+        <CanvasWidget Size="180, 70">
+          <LabelWidget Text="[PublishCommunityLinkDialog:5]" Color="128, 128, 128" HorizontalAlignment="Far" VerticalAlignment="Center"/>
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <RectangleWidget Name="PublishCommunityLinkDialog.TypeIcon" FillColor="255, 255, 255" OutlineColor="0, 0, 0, 0" Size="64, 64" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 0"/>
+        <CanvasWidget Size="8, 0" />
+        <LabelWidget Name="PublishCommunityLinkDialog.Type" VerticalAlignment="Center"/>
+        <CanvasWidget Size="10, 0" />
+        <BevelledButtonWidget Name="PublishCommunityLinkDialog.ChangeType" Text="[PublishCommunityLinkDialog:6]" Style="{Styles/ButtonStyle_70x60}" VerticalAlignment="Center"/>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, Infinity" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="PublishCommunityLinkDialog.Publish" Style="{Styles/ButtonStyle_310x60}" Text="[PublishCommunityLinkDialog:7]" />
+        <CanvasWidget Size="40, 0" />
+        <BevelledButtonWidget Name="PublishCommunityLinkDialog.Cancel" Style="{Styles/ButtonStyle_160x60}" Text="[PublishCommunityLinkDialog:8]"/>
+      </StackPanelWidget>
+      
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

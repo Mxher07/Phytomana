@@ -1,0 +1,106 @@
+{
+  "template": "FlightlessBird",
+
+  "layers": {
+    "Base": {
+      "driver": {
+        "type": "FlightlessBirdWalk",
+        "properties": {
+          "WalkLegAngle": 0.55,
+          "HeadBobAmount": 0.3,
+          "SmoothSpeed": 12.0
+        }
+      }
+    },
+    "Head": {
+      "driver": {
+        "type": "FlightlessBirdFeed",
+        "properties": {
+          "PeckAngle": 1.25
+        }
+      }
+    },
+    "Death": {
+      "driver": {
+        "type": "FlightlessBirdDeath",
+        "properties": {
+          "DeathRollAngle": 90.0
+        }
+      }
+    }
+  },
+
+  "states": {
+    "locomotion": {
+      "layer": "Base",
+      "rules": [
+        {
+          "condition": "true",
+          "animation": {
+            "source": "driver:FlightlessBirdWalk"
+          }
+        }
+      ]
+    },
+    "activity": {
+      "layer": "Head",
+      "rules": [
+        {
+          "condition": "[FeedFactor] > 0",
+          "animation": {
+            "source": "driver:FlightlessBirdFeed"
+          }
+        },
+        {
+          "condition": "true",
+          "animation": null
+        }
+      ]
+    },
+    "death": {
+      "layer": "Death",
+      "rules": [
+        {
+          "condition": "[DeathPhase] > 0",
+          "animation": {
+            "source": "driver:FlightlessBirdDeath"
+          }
+        },
+        {
+          "condition": "true",
+          "animation": null
+        }
+      ]
+    }
+  },
+
+  "parameters": {
+    "WalkAnimationSpeed": 1.0,
+    "WalkLegsAngle": 0.55,
+    "WalkBobHeight": 0.025,
+    "WalkSpeed": 1.0,
+    "Speed": 0.0,
+
+    "MovementPhase": 0.0,
+    "Bob": 0.0,
+    "RotationY": 0.0,
+    "Position": [0, 0, 0],
+
+    "FeedFactor": 0.0,
+    "KickPhase": 0.0,
+    "KickFactor": 0.0,
+    "AttackFactor": 0.0,
+
+    "LookAngleX": 0.0,
+    "LookAngleY": 0.0,
+
+    "IsOnGround": true,
+    "ImmersionFactor": 0.0,
+
+    "DeathPhase": 0.0,
+    "DeathCauseOffset": [0, 0, 0],
+    "BodyHeight": 1.0,
+    "DeathSpeed": 3.0,
+    "GameTime": 0.0
+  }
+}

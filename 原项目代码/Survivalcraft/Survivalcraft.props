@@ -1,0 +1,23 @@
+﻿<Project>
+    <Import Project="$(MSBuildThisFileDirectory)..\build\Common.props" />
+    <PropertyGroup>
+        <RootNamespace>Game</RootNamespace>
+        <AssemblyName>Survivalcraft</AssemblyName>
+        <PackageId>SurvivalcraftAPI.Survivalcraft</PackageId>
+        <Product>Survivalcraft</Product>
+        <Title>SurvivalcraftAPI.Survivalcraft</Title><!--For NuGet Package-->
+        <ApplicationVersion>2.4.0.0</ApplicationVersion>
+        <AssemblyVersion>2.4.0.0</AssemblyVersion>
+        <FileVersion>2.4.0.0</FileVersion>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="NuGet.Versioning" Version="7.6.0" />
+        <PackageReference Include="Jint" Version="4.15.3" />
+        <PackageReference Include="NAudio.Flac.Unknown.Mod" Version="1.0.4" /><!--Source: https://github.com/XiaofengdiZhu/NAudio.Flac/ -->
+        <PackageReference Include="HarmonyX" Version="2.16.1" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)**\*.cs" Exclude="$(MSBuildThisFileDirectory)obj\**\*.cs"/>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,54 @@
+﻿{
+  "name": "Survivalcraft 2.4 - API 1.9",
+  "short_name": "SC API",
+  "description": "",
+  "id": "com.candy.survivalcraftAPI1_8",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "display_override": ["fullscreen", "standalone"],
+  "lang": "en",
+  "theme_color": "#108C00",
+  "background_color": "#000000",
+  "orientation": "landscape",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "./assets/icon-192.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "./assets/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    },
+    {
+      "src": "./assets/icon-maskable-192.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./assets/icon-maskable-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./assets/screenshot-wide.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Wide Screenshot"
+    },
+    {
+      "src": "./assets/screenshot-narrow.webp",
+      "sizes": "608x1080",
+      "type": "image/webp",
+      "label": "Narrow Screenshot"
+    }
+  ]
+}

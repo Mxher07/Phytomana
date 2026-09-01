@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\EntitySystem\EntitySystem.props" />
+    <Import Project="..\build\Browser.props" />
+    <ItemGroup>
+        <ProjectReference Include="..\Engine.Browser\Engine.Browser.csproj" />
+    </ItemGroup>
+</Project>

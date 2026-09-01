@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Survivalcraft\Survivalcraft.props" />
+    <Import Project="..\build\Windows.props" />
+    <PropertyGroup>
+        <ApplicationIcon>icon.ico</ApplicationIcon>
+        <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+        <OutputType>WinExe</OutputType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\EntitySystem.Windows\EntitySystem.Windows.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="TextCopy" Version="6.2.1" />
+        <PackageReference Include="ImeSharp.ImmOnly" Version="1.0.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\Survivalcraft\Content.zip">
+            <Link>Content.zip</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="..\Survivalcraft\init.js">
+            <Link>init.js</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="openal32.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="wrap_oal.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <!-- 来自 https://github.com/KhronosGroup/OpenXR-SDK/releases/tag/release-1.1.60 -->
+        <None Update="openxr_loader.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="..\README.md">
+            <Link>Readme 请读我.md</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Launch Game 启动游戏.bat">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <!-- 来自 https://github.com/mmozeiko/build-angle/releases/tag/2026-01-04 -->
+    </ItemGroup>
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <ZipDirectory SourceDirectory="..\Survivalcraft\Content" DestinationFile="..\Survivalcraft\Content.zip" Overwrite="true" />
+    </Target>
+</Project>

@@ -1,0 +1,79 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="680, 420" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0, 15">
+
+      <LabelWidget  Text="[GamepadHelpDialog:1]" HorizontalAlignment="Center"/>
+
+      <CanvasWidget Margin="20, 15">
+
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+
+        <ScrollPanelWidget Margin="4, 4" Direction="Vertical">
+
+          <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+
+            <StackPanelWidget Direction="Vertical">
+              <LabelWidget Text="[GamepadHelpDialog:2]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:3]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:4]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:5]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:6]" HorizontalAlignment="Center" _ExcludePlatforms="Ios"/>
+              <LabelWidget Text="[GamepadHelpDialog:7]" HorizontalAlignment="Center" _ExcludePlatforms="Ios"/>
+              <LabelWidget Text="[GamepadHelpDialog:8]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:9]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:10]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:11]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:12]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:13]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:14]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:15]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:16]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:17]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:18]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:19]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:20]" HorizontalAlignment="Center" />
+              <LabelWidget Text="[GamepadHelpDialog:21]" HorizontalAlignment="Center" />
+            </StackPanelWidget>
+
+            <CanvasWidget Size="16, 0" />
+
+           <StackPanelWidget Direction="Vertical">
+              <LabelWidget Text="[GamepadHelpDialog:22]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:23]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:24]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:25]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:26]" Color="160, 160, 160" _ExcludePlatforms="Ios"/>
+              <LabelWidget Text="[GamepadHelpDialog:27]" Color="160, 160, 160" _ExcludePlatforms="Ios"/>
+              <LabelWidget Text="[GamepadHelpDialog:28]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:29]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:30]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:31]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:32]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:33]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:34]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:35]" Color="160, 160, 160"/>
+              <LabelWidget Text="[GamepadHelpDialog:36]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:37]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:38]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:39]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:40]" Color="160, 160, 160" />
+              <LabelWidget Text="[GamepadHelpDialog:41]" Color="160, 160, 160" />
+            </StackPanelWidget>
+          </StackPanelWidget>
+
+        </ScrollPanelWidget>
+
+      </CanvasWidget>
+
+      <StackPanelWidget HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="OkButton" Text="[GamepadHelpDialog:42]" Style="{Styles/ButtonStyle_160x60}" />
+        <CanvasWidget Size="40, 0" />
+        <BevelledButtonWidget Name="HelpButton" Text="[GamepadHelpDialog:43]" Style="{Styles/ButtonStyle_160x60}" />
+      </StackPanelWidget>
+      
+    </StackPanelWidget>
+
+  </CanvasWidget>
+</CanvasWidget>

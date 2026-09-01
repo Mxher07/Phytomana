@@ -1,0 +1,46 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+    <CanvasWidget Size="720, 480" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+        <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+            <LabelWidget Text="[RunJsDialog:3]" Color="255, 255, 255" HorizontalAlignment="Center" Margin="0, 5" />
+            <CanvasWidget Size="0, Infinity" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <CanvasWidget Size="70, 45" VerticalAlignment="Center">
+                    <LabelWidget Text="[RunJsDialog:4]" Color="255, 255, 255" VerticalAlignment="Center" Margin="4, 0" />
+                </CanvasWidget>
+                <CanvasWidget Size="Infinity, 45" Margin="10, 0">
+                    <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+                    <TextBoxWidget Name="RunJsDialog.Input" Color="255, 255, 255" Size="Infinity, 45" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch" MaximumLength="100000" MaximumLinesCount="100000" EnterAsNewLine="True"/>
+                </CanvasWidget>
+            </StackPanelWidget>
+            <CanvasWidget Size="0, 10" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <CanvasWidget Size="70, 45" VerticalAlignment="Near">
+                    <LabelWidget Text="[RunJsDialog:5]" Color="255, 255, 255" VerticalAlignment="Center" Margin="4, 0" />
+                </CanvasWidget>
+                <CanvasWidget Size="Infinity, 120" Margin="10, 0">
+                    <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+                    <ScrollPanelWidget Direction="Vertical" ClampToBounds="true">
+                        <LabelWidget Name="RunJsDialog.Output" Color="255, 255, 255" Margin="10, 0" HorizontalAlignment="Stretch"/>
+                    </ScrollPanelWidget>
+                </CanvasWidget>
+            </StackPanelWidget>
+            <CanvasWidget Size="0, 10" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Near">
+                <LabelWidget Text="[RunJsDialog:6]" Color="255, 255, 255" HorizontalAlignment="Near" Margin="4, 0" />
+                <LabelWidget Name="RunJsDialog.TimeCosted" Color="255, 255, 255" HorizontalAlignment="Center" Margin="4, 0" />
+            </StackPanelWidget>
+            <CanvasWidget Size="0, Infinity" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <BevelledButtonWidget Name="RunJsDialog.RunButton" Text="[RunJsDialog:1]" Style="{Styles/ButtonStyle_250x60}" />
+                <CanvasWidget Size="20, 0" />
+                <BevelledButtonWidget Name="RunJsDialog.CopyOutputButton" Text="[RunJsDialog:8]" Style="{Styles/ButtonStyle_250x60}" />
+            </StackPanelWidget>
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <BevelledButtonWidget Name="RunJsDialog.ServerButton" Text="[RunJsDialog:7]" Style="{Styles/ButtonStyle_250x60}" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+                <CanvasWidget Size="20, 0" />
+                <BevelledButtonWidget Name="RunJsDialog.CloseButton" Text="[RunJsDialog:2]" Style="{Styles/ButtonStyle_250x60}" />
+            </StackPanelWidget>
+        </StackPanelWidget>
+    </CanvasWidget>
+</CanvasWidget>

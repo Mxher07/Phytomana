@@ -1,0 +1,73 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[ContentScreen:1]" />
+    </CanvasWidget>
+
+    <ScrollPanelWidget Direction="Vertical">
+    
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+      <CanvasWidget Size="0, 25"/>
+
+      <StackPanelWidget Direction="Horizontal">
+        <CanvasWidget Size="350, 90">
+          <LabelWidget Text="[ContentScreen:2]" FontScale="0.7" Color="128, 128, 128" WordWrap="true" HorizontalAlignment="Far" VerticalAlignment="Center" TextAnchor="VerticalCenter,HorizontalCenter" />
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <BevelledButtonWidget Name="External" Text="[ContentScreen:3]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <StackPanelWidget Direction="Horizontal">
+        <CanvasWidget Size="350, 90">
+          <LabelWidget Text="[ContentScreen:14]" FontScale="0.7" Color="128, 128, 128" WordWrap="true" HorizontalAlignment="Far" VerticalAlignment="Center" TextAnchor="VerticalCenter,HorizontalCenter" />
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <BevelledButtonWidget Name="Device" Text="[ContentScreen:15]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <StackPanelWidget Direction="Horizontal">
+        <CanvasWidget Size="350, 90">
+          <LabelWidget Text="[ContentScreen:4]" FontScale="0.7" Color="128, 128, 128" WordWrap="true" HorizontalAlignment="Far" VerticalAlignment="Center" TextAnchor="VerticalCenter,HorizontalCenter" />
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <BevelledButtonWidget Name="Community" Text="[ContentScreen:5]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <StackPanelWidget Direction="Horizontal">
+        <CanvasWidget Size="350, 90">
+          <LabelWidget Text="[ContentScreen:6]" FontScale="0.7" Color="128, 128, 128" WordWrap="true" HorizontalAlignment="Far" VerticalAlignment="Center" TextAnchor="VerticalCenter, HorizontalCenter" />
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <BevelledButtonWidget Name="Link" Text="[ContentScreen:7]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <StackPanelWidget Direction="Horizontal">
+        <CanvasWidget Size="350, 90">
+          <LabelWidget Text="[ContentScreen:8]" FontScale="0.7" Color="128, 128, 128" WordWrap="true" HorizontalAlignment="Far" VerticalAlignment="Center" TextAnchor="VerticalCenter, HorizontalCenter" />
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <BevelledButtonWidget Name="Manage" Text="[ContentScreen:9]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <StackPanelWidget Direction="Horizontal">
+        <CanvasWidget Size="350, 90">
+          <LabelWidget Text="[ContentScreen:12]" FontScale="0.7" Color="128, 128, 128" WordWrap="true" HorizontalAlignment="Far" VerticalAlignment="Center" TextAnchor="VerticalCenter, HorizontalCenter" />
+        </CanvasWidget>
+        <CanvasWidget Size="20, 0" />
+        <BevelledButtonWidget Name="ManageMod" Text="[ContentScreen:13]" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 25"/>
+
+    </StackPanelWidget>
+
+    </ScrollPanelWidget>
+  
+  </StackPanelWidget>
+
+</Screen>

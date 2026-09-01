@@ -1,0 +1,7 @@
+<StackPanelWidget xmlns="runtime-namespace:Game" Direction="Horizontal">
+  <ModelWidget Name="BestiaryItem.Model" Size="150, 120" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+  <StackPanelWidget Direction="Vertical" VerticalAlignment="Center" Margin="0, 10">
+    <LabelWidget Name="BestiaryItem.Text" Color="255, 255, 255" VerticalAlignment="Center" Margin="10, 0"/>
+    <LabelWidget Name="BestiaryItem.Details" Color="128, 128, 128" VerticalAlignment="Center" WordWrap="true" Ellipsis="true" Margin="10, 0"/>
+  </StackPanelWidget>
+</StackPanelWidget>

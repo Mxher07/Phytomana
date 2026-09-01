@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Survivalcraft\Survivalcraft.props" />
+    <Import Project="..\build\Browser.props" />
+    <PropertyGroup>
+        <EmccFlags>-s FULL_ES3=1 -lopenal -lGL -s USE_PTHREADS=1 -s OFFSCREENCANVAS_SUPPORT=1 -s OFFSCREENCANVASES_TO_PTHREAD=#canvas -s OFFSCREEN_FRAMEBUFFER=1 -lopfs.js -s WASMFS -s FORCE_FILESYSTEM</EmccFlags>
+        <EmccInitialHeapSize>386662400</EmccInitialHeapSize>
+        <WasmMainJSPath>wwwroot\main.js</WasmMainJSPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\EntitySystem.Browser\EntitySystem.Browser.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Remove="Jint" />
+        <PackageReference Remove="HarmonyX" />
+    </ItemGroup>
+    <ItemGroup>
+        <NativeFileReference Include="Native/libEGL.c" ScanForPInvokes="true" />
+        <NativeFileReference Include="Native/openal32.c" ScanForPInvokes="true" />
+        <NativeFileReference Include="Native/emscripten.c" ScanForPInvokes="true" />
+        <NativeFileReference Include="Native/wasmfsHelper.c" ScanForPInvokes="true" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="ContentFileBridge.cs" />
+        <Compile Include="ContentFileInfo.g.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <WasmExtraFilesToDeploy Include="wwwroot\index.html" TargetPath="%(RecursiveDir)index.html" />
+        <WasmExtraFilesToDeploy Include="wwwroot\main.js" TargetPath="%(RecursiveDir)main.js" />
+        <WasmExtraFilesToDeploy Include="wwwroot\favicon.webp" TargetPath="%(RecursiveDir)favicon.webp" />
+        <WasmExtraFilesToDeploy Include="wwwroot\manifest.json" TargetPath="%(RecursiveDir)manifest.json" />
+        <WasmExtraFilesToDeploy Include="wwwroot\_headers" TargetPath="%(RecursiveDir)_headers" />
+        <WasmExtraFilesToDeploy Include="wwwroot\dashboard.html" TargetPath="%(RecursiveDir)dashboard.html" />
+        <WasmExtraFilesToDeploy Include="wwwroot\service-worker.js" TargetPath="%(RecursiveDir)service-worker.js" />
+        <WasmExtraFilesToDeploy Include="wwwroot\assets\**" TargetPath="%(RecursiveDir)assets\%(Filename)%(Extension)" />
+        <WasmExtraFilesToDeploy Include="wwwroot\.netlify\**" TargetPath="%(RecursiveDir).netlify\%(Filename)%(Extension)" />
+        <WasmExtraFilesToDeploy Include="..\Survivalcraft\Content.zip" TargetPath="%(RecursiveDir)assets\Content.zip" />
+    </ItemGroup>
+    <ItemGroup>
+        <TrimmerRootAssembly Include="Survivalcraft" />
+        <TrimmerRootAssembly Include="Engine" />
+    </ItemGroup>
+    <UsingTask TaskName="GenerateContentInfoTask" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <ContentFilePath ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System.IO" />
+            <Code Type="Fragment" Language="cs" Source="$(MSBuildProjectDirectory)\GenerateContentInfo.csx" />
+        </Task>
+    </UsingTask>
+    <Target Name="UpdateContentFileSize" BeforeTargets="BeforeBuild">
+        <Error Condition="'$(Configuration)' == 'Debug'" Text="Debug is disabled for this project! Set Configuration to Release to build." />
+        <GenerateContentInfoTask ContentFilePath="..\Survivalcraft\Content.zip" />
+        <Message Text="Updated ContentFileInfo.g.cs" Importance="high" />
+    </Target>
+    <UsingTask TaskName="PatchJsTask" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <DotnetNativePath ParameterType="System.String" Required="true" />
+            <DotnetNativeWorkerPath ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.Text" />
+            <Using Namespace="System.Collections.Generic" />
+            <Code Type="Fragment" Language="cs" Source="$(MSBuildProjectDirectory)\PatchJs.csx" />
+        </Task>
+    </UsingTask>
+    <Target Name="PatchJs" AfterTargets="_WasmGenerateAppBundle">
+        <PatchJsTask DotnetNativePath="$(TargetDir)AppBundle\_framework\dotnet.native.js" DotnetNativeWorkerPath="$(TargetDir)AppBundle\_framework\dotnet.native.worker.mjs" />
+        <Message Text="Patched dotnet.native.js and dotnet.native.worker.mjs" Importance="high" />
+    </Target>
+</Project>

@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\EntitySystem\EntitySystem.props" />
+    <Import Project="..\build\Linux.props" />
+    <ItemGroup>
+        <ProjectReference Include="..\Engine.Linux\Engine.Linux.csproj" />
+    </ItemGroup>
+</Project>

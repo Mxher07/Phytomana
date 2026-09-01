@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:complexType name="RecipesFolderType">
+        <xs:sequence>
+            <xs:element ref="Recipe" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RecipesType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Smelting" type="RecipesFolderType" />
+            <xs:element name="Pigments" type="RecipesFolderType" />
+            <xs:element name="Food" type="RecipesFolderType" />
+            <xs:element name="Materials" type="RecipesFolderType" />
+            <xs:element name="Dismantling" type="RecipesFolderType" />
+            <xs:element name="Plants" type="RecipesFolderType" />
+            <xs:element name="WoodenTools" type="RecipesFolderType" />
+            <xs:element name="StoneTools" type="RecipesFolderType" />
+            <xs:element name="CopperTools" type="RecipesFolderType" />
+            <xs:element name="IronTools" type="RecipesFolderType" />
+            <xs:element name="DiamondTools" type="RecipesFolderType" />
+            <xs:element name="OtherTools" type="RecipesFolderType" />
+            <xs:element name="Weapons" type="RecipesFolderType" />
+            <xs:element name="Explosives" type="RecipesFolderType" />
+            <xs:element name="Items" type="RecipesFolderType" />
+            <xs:element name="Electrics" type="RecipesFolderType" />
+            <xs:element name="Clothes" type="RecipesFolderType" />
+            <xs:element ref="Recipe" minOccurs="0" maxOccurs="unbounded" />
+            <xs:any />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="Recipes" type="RecipesType" />
+    <xs:element name="Mod" type="RecipesType" />
+
+    <xs:element name="Recipe">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="RecipeContentType">
+                    <xs:attribute name="Result" type="xs:string" />
+                    <xs:attribute name="New-Result" type="xs:string" />
+                    <xs:attribute name="ResultCount" type="xs:unsignedInt" />
+                    <xs:attribute name="New-ResultCount" type="xs:unsignedInt" />
+                    <xs:attribute name="RequiredHeatLevel" type="xs:int" />
+                    <xs:attribute name="New-RequiredHeatLevel" type="xs:int" />
+                    <xs:attribute name="RequiredPlayerLevel" type="xs:float" default="1" />
+                    <xs:attribute name="New-RequiredPlayerLevel" type="xs:float" default="1" />
+                    <xs:attribute name="Description" type="xs:string" />
+                    <xs:attribute name="New-Description" type="xs:string" />
+                    <xs:attribute name="Message" type="xs:string" />
+                    <xs:attribute name="New-Message" type="xs:string" />
+                    <xs:attribute name="Remains" type="xs:string" />
+                    <xs:attribute name="New-Remains" type="xs:string" />
+                    <xs:attribute name="RemainsCount" type="xs:unsignedInt" />
+                    <xs:attribute name="New-RemainsCount" type="xs:unsignedInt" />
+                    <xs:attribute name="a" type="xs:string" />
+                    <xs:attribute name="New-a" type="xs:string" />
+                    <xs:attribute name="b" type="xs:string" />
+                    <xs:attribute name="New-b" type="xs:string" />
+                    <xs:attribute name="c" type="xs:string" />
+                    <xs:attribute name="New-c" type="xs:string" />
+                    <xs:attribute name="d" type="xs:string" />
+                    <xs:attribute name="New-d" type="xs:string" />
+                    <xs:attribute name="e" type="xs:string" />
+                    <xs:attribute name="New-e" type="xs:string" />
+                    <xs:attribute name="f" type="xs:string" />
+                    <xs:attribute name="New-f" type="xs:string" />
+                    <xs:attribute name="g" type="xs:string" />
+                    <xs:attribute name="New-g" type="xs:string" />
+                    <xs:attribute name="h" type="xs:string" />
+                    <xs:attribute name="New-h" type="xs:string" />
+                    <xs:attribute name="i" type="xs:string" />
+                    <xs:attribute name="New-i" type="xs:string" />
+                    <xs:attribute name="j" type="xs:string" />
+                    <xs:attribute name="New-j" type="xs:string" />
+                    <xs:attribute name="k" type="xs:string" />
+                    <xs:attribute name="New-k" type="xs:string" />
+                    <xs:attribute name="l" type="xs:string" />
+                    <xs:attribute name="New-l" type="xs:string" />
+                    <xs:attribute name="m" type="xs:string" />
+                    <xs:attribute name="New-m" type="xs:string" />
+                    <xs:attribute name="n" type="xs:string" />
+                    <xs:attribute name="New-n" type="xs:string" />
+                    <xs:attribute name="o" type="xs:string" />
+                    <xs:attribute name="New-o" type="xs:string" />
+                    <xs:attribute name="p" type="xs:string" />
+                    <xs:attribute name="New-p" type="xs:string" />
+                    <xs:attribute name="q" type="xs:string" />
+                    <xs:attribute name="New-q" type="xs:string" />
+                    <xs:attribute name="r" type="xs:string" />
+                    <xs:attribute name="New-r" type="xs:string" />
+                    <xs:attribute name="s" type="xs:string" />
+                    <xs:attribute name="New-s" type="xs:string" />
+                    <xs:attribute name="t" type="xs:string" />
+                    <xs:attribute name="New-t" type="xs:string" />
+                    <xs:attribute name="u" type="xs:string" />
+                    <xs:attribute name="New-u" type="xs:string" />
+                    <xs:attribute name="v" type="xs:string" />
+                    <xs:attribute name="New-v" type="xs:string" />
+                    <xs:attribute name="w" type="xs:string" />
+                    <xs:attribute name="New-w" type="xs:string" />
+                    <xs:attribute name="x" type="xs:string" />
+                    <xs:attribute name="New-x" type="xs:string" />
+                    <xs:attribute name="y" type="xs:string" />
+                    <xs:attribute name="New-y" type="xs:string" />
+                    <xs:attribute name="z" type="xs:string" />
+                    <xs:attribute name="New-z" type="xs:string" />
+                    <xs:attribute name="Remove" type="xs:string" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="RecipeContentType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\n?([ \t]*&quot;[a-z ]*&quot;\n?)+[ \t]*" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

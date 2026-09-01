@@ -1,0 +1,28 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}">
+      <LabelWidget Name="TopBar.Label" Text="[SettingsControlsScreen:22]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+      <CanvasWidget Size="Infinity, 10" />
+      <CanvasWidget Margin="10, 20">
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+        <ListPanelWidget Name="KeysList" Direction="Vertical" HorizontalAlignment="Center" Margin="3, 3" ItemSize="56" SelectionColor="10, 70, 0, 90" />
+      </CanvasWidget>
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="4, 10">
+        <BevelledButtonWidget Name="SetKey" Size="Infinity, 60" Margin="5, 0" Text="[KeyboardMappingScreen:SetKey]" VerticalAlignment="Center" />
+        <BevelledButtonWidget Name="DisableKey" Size="Infinity, 60" Margin="5, 0" Text="[KeyboardMappingScreen:DisableKey]" VerticalAlignment="Center" />
+        <BevelledButtonWidget Name="Reset" Size="Infinity, 60" Margin="5, 0" Text="[KeyboardMappingScreen:Reset]" VerticalAlignment="Center" />
+        <BevelledButtonWidget Name="GameHelp" Size="Infinity, 60" Margin="5, 0" Text="[KeyboardMappingScreen:GameHelp]" VerticalAlignment="Center" />
+      </StackPanelWidget>
+    </StackPanelWidget>
+  </StackPanelWidget>
+
+</Screen>

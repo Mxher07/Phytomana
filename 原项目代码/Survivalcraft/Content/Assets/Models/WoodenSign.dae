@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Sign-mesh" name="Sign">
+      <mesh>
+        <source id="Sign-mesh-positions">
+          <float_array id="Sign-mesh-positions-array" count="24">-3.125 -50 0 3.125 50 0 -3.125 50 0 3.125 -50 0 -3.125 -50 43.75 3.125 50 43.75 3.125 -50 43.75 -3.125 50 43.75</float_array>
+          <technique_common>
+            <accessor source="#Sign-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sign-mesh-normals">
+          <float_array id="Sign-mesh-normals-array" count="18">0 0 -1 0 0 1 0 -1 0 1 0 0 0 1 0 -1 0 0</float_array>
+          <technique_common>
+            <accessor source="#Sign-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sign-mesh-map">
+          <float_array id="Sign-mesh-map-array" count="72">0.062173 0.973312 0.000374 0.975758 0.000374 0.973312 0.000374 0.975758 0.062173 0.973312 0.062173 0.975758 0.062164 0.973297 0.000323 0.975701 0.062164 0.975701 0.000323 0.975701 0.062164 0.973297 0.000323 0.973297 0 0.976563 0.003906 1 0.003906 0.976563 0.003906 1 0 0.976563 0 1 0 0.976563 0.0625 1 0.0625 0.976563 0.0625 1 0 0.976563 0 1 0 0.976563 0.003906 1 0.003906 0.976563 0.003906 1 0 0.976563 0 1 0 0.976563 0.0625 1 0.0625 0.976563 0.0625 1 0 0.976563 0 1</float_array>
+          <technique_common>
+            <accessor source="#Sign-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Sign-mesh-vertices">
+          <input semantic="POSITION" source="#Sign-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#Sign-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Sign-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Sign-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 3 3 18 1 3 20 5 3 19 5 3 21 6 3 23 3 3 22 1 4 24 2 4 26 7 4 25 7 4 27 5 4 29 1 4 28 2 5 30 0 5 32 4 5 31 4 5 33 7 5 35 2 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Post-mesh" name="Post">
+      <mesh>
+        <source id="Post-mesh-positions">
+          <float_array id="Post-mesh-positions-array" count="24">-3.125 -3.13 0 3.125 3.13 0 -3.125 3.13 0 3.125 -3.13 0 -3.125 -3.13 56.25 3.125 3.13 56.25 3.125 -3.13 56.25 -3.125 3.13 56.25</float_array>
+          <technique_common>
+            <accessor source="#Post-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Post-mesh-normals">
+          <float_array id="Post-mesh-normals-array" count="18">0 0 -1 0 0 1 0 -1 0 1 0 0 0 1 0 -1 0 0</float_array>
+          <technique_common>
+            <accessor source="#Post-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Post-mesh-map">
+          <float_array id="Post-mesh-map-array" count="72">0.003906 0.980469 -0 0.984375 0.003906 0.984375 -0 0.984375 0.003906 0.980469 -0 0.980469 -0 0.980469 0.003906 0.984375 0.003906 0.980469 0.003906 0.984375 -0 0.980469 -0 0.984375 -0 0.96875 0.003906 1 0.003906 0.96875 0.003906 1 -0 0.96875 -0 1 -0 0.96875 0.003906 1 0.003906 0.96875 0.003906 1 -0 0.96875 -0 1 -0 0.96875 0.003906 1 0.003906 0.96875 0.003906 1 -0 0.96875 -0 1 -0 0.96875 0.003906 1 0.003906 0.96875 0.003906 1 -0 0.96875 -0 1</float_array>
+          <technique_common>
+            <accessor source="#Post-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Post-mesh-vertices">
+          <input semantic="POSITION" source="#Post-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#Post-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Post-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Post-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 3 3 18 1 3 20 5 3 19 5 3 21 6 3 23 3 3 22 1 4 24 2 4 26 7 4 25 7 4 27 5 4 29 1 4 28 2 5 30 0 5 32 4 5 31 4 5 33 7 5 35 2 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Surface-mesh" name="Surface">
+      <mesh>
+        <source id="Surface-mesh-positions">
+          <float_array id="Surface-mesh-positions-array" count="12">-18.839533 -48 2E-06 18.244362 48.000004 -2E-06 -18.839533 48 2E-06 18.244362 -47.999996 -2E-06</float_array>
+          <technique_common>
+            <accessor source="#Surface-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Surface-mesh-normals">
+          <float_array id="Surface-mesh-normals-array" count="3">-0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#Surface-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Surface-mesh-map">
+          <float_array id="Surface-mesh-map-array" count="12">1 1 0 0 0 1 0 0 1 1 1 0</float_array>
+          <technique_common>
+            <accessor source="#Surface-mesh-map-array" count="6" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Surface-mesh-vertices">
+          <input semantic="POSITION" source="#Surface-mesh-positions" />
+        </vertices>
+        <triangles count="2">
+          <input semantic="VERTEX" source="#Surface-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Surface-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Surface-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Sign" name="Sign" type="NODE">
+          <matrix sid="transform">0 -0.01 0 0 0 0 0.01 0.5625 -0.01 0 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Sign-mesh" name="Sign" />
+        </node>
+        <node id="Post" name="Post" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Post-mesh" name="Post" />
+        </node>
+        <node id="Surface" name="Surface" type="NODE">
+          <matrix sid="transform">0 -0.01 0 -1E-08 -0.01 0 0 0.7825264 0 0 -0.01 0.03125 0 0 0 1</matrix>
+          <instance_geometry url="#Surface-mesh" name="Surface" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

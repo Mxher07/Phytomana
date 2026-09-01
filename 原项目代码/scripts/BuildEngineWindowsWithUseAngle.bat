@@ -1,0 +1,1 @@
+dotnet build Engine.Windows -c Release -p:UseAngle=true

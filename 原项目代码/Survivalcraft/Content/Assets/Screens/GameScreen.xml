@@ -1,0 +1,3 @@
+<Screen xmlns="runtime-namespace:Game">
+  <GamesWidget Name="GamesWidget" />
+</Screen>

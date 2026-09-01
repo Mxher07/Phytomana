@@ -1,0 +1,18 @@
+﻿<resources>
+  <string name="ApiTitle">生存战争2.4 API插件版1.9</string>
+  <string name="ShortTitle">[API1.9]生存战争2插件版</string>
+  <string name="ImportExternalContentActivityLabel">导入额外内容</string>
+  <string name="Yes">是</string>
+  <string name="No">否</string>
+  <string name="Ok">OK</string>
+  <string name="NeedPermission">需要权限</string>
+  <string name="FileNotFound">未找到文件</string>
+  <string name="Import">导入</string>
+  <string name="InsureImporting">是否导入文件 {0}？</string>
+  <string name="NotSupportedType">不支持的类型</string>
+  <string name="FileTypeIsNotSupported">文件类型 {0} 不支持</string>
+  <string name="Importing">导入中...</string>
+  <string name="ImportedSuccessfully">导入成功</string>
+  <string name="InsureLaunchingGame">是否启动游戏？</string>
+  <string name="FailedToImport">导入失败</string>
+</resources>

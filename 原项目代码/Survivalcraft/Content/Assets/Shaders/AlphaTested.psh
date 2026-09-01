@@ -1,0 +1,76 @@
+#ifdef HLSL
+
+Texture2D u_texture;
+SamplerState u_samplerState;
+float3 u_fogColor;
+#ifdef ALPHATESTED
+float u_alphaThreshold;
+#endif
+
+void main(
+	in float4 v_color : COLOR,
+	in float2 v_texcoord: TEXCOORD,
+	in float v_fog: FOG,
+	out float4 svTarget: SV_TARGET
+)
+{
+	// Color
+	float4 result = v_color;
+
+	// Texture
+	result *= u_texture.Sample(u_samplerState, v_texcoord);
+	
+	// Alpha threshold
+#ifdef ALPHATESTED
+	if (result.a <= u_alphaThreshold)
+		discard;
+#endif
+
+	// Fog
+	result.rgb = lerp(result.rgb, u_fogColor * v_color.a, v_fog);
+	
+	// Return
+	svTarget = result;
+}
+
+#endif
+#ifdef GLSL
+
+// <Sampler Name='u_samplerState' Texture='u_texture' />
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform sampler2D u_texture;
+uniform vec3 u_fogColor;
+#ifdef ALPHATESTED
+uniform float u_alphaThreshold;
+#endif
+
+varying vec4 v_color;
+varying vec2 v_texcoord;
+varying float v_fog;
+	
+void main()
+{
+	// Color
+	vec4 result = v_color;
+
+	// Texture
+	result *= texture2D(u_texture, v_texcoord);
+	
+	// Alpha threshold
+#ifdef ALPHATESTED
+	if (result.a <= u_alphaThreshold)
+		discard;
+#endif
+
+	// Fog
+	result.rgb = mix(result.rgb, u_fogColor * v_color.a, v_fog);
+	
+	// Return
+	gl_FragColor = result;
+}
+
+#endif

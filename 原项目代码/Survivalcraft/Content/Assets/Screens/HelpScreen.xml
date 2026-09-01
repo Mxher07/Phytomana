@@ -1,0 +1,42 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[HelpScreen:1]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+      <CanvasWidget Size="0, 20" />
+      
+      <StackPanelWidget Direction="Vertical" Margin="20, 0">
+        <CanvasWidget>
+          <BevelledRectangleWidget Style="{Styles/Area}" />
+          <ListPanelWidget Name="TopicsList" Direction="Vertical" Margin="5, 3" ItemSize="56" SelectionColor="10, 70, 0, 90"/>
+        </CanvasWidget>
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 10" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="20, 0">
+        <BevelledButtonWidget Name="ReportButton" Text="[HelpScreen:4]" Size="Infinity, 60" FontScale="1.25"/>
+        <CanvasWidget Size="10, 0" />
+        <BevelledButtonWidget Name="BestiaryButton" Text="[HelpScreen:2]" Size="Infinity, 60" FontScale="1.25">
+          <BevelledRectangleWidget Name="BevelledButton.Rectangle" CenterColor="120, 65, 30" BevelColor="120, 65, 30" />
+        </BevelledButtonWidget>
+        <CanvasWidget Size="10, 0" />
+        <BevelledButtonWidget Name="RecipaediaButton" Text="[HelpScreen:3]" Size="Infinity, 60" FontScale="1.25">
+          <BevelledRectangleWidget Name="BevelledButton.Rectangle" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+        </BevelledButtonWidget>
+      </StackPanelWidget>
+      
+      <CanvasWidget Size="0, 10" />
+
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+  
+</Screen>

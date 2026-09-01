@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:complexType name="ClothesType">
+        <xs:sequence>
+            <xs:element ref="ClothingData" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Clothes" type="ClothesType" />
+    <xs:element name="Mod" type="ClothesType" />
+
+    <xs:element name="ClothingData">
+        <xs:complexType>
+            <xs:attribute name="Class" type="xs:string" default="Game.ClothingData" />
+            <xs:attribute name="New-Class" type="xs:string" default="Game.ClothingData" />
+            <xs:attribute name="Index" use="required" type="IndexType" />
+            <xs:attribute name="DisplayIndex" type="IndexType" />
+            <xs:attribute name="New-DisplayIndex" type="IndexType" />
+            <xs:attribute name="DisplayName" type="xs:string" />
+            <xs:attribute name="New-DisplayName" type="xs:string" />
+            <xs:attribute name="Description" type="xs:string" />
+            <xs:attribute name="New-Description" type="xs:string" />
+            <xs:attribute name="Slot" type="SlotType" />
+            <xs:attribute name="New-Slot" type="SlotType" />
+            <xs:attribute name="ArmorProtection" type="xs:float" />
+            <xs:attribute name="New-ArmorProtection" type="xs:float" />
+            <xs:attribute name="Sturdiness" type="xs:float" />
+            <xs:attribute name="New-Sturdiness" type="xs:float" />
+            <xs:attribute name="Insulation" type="xs:float" />
+            <xs:attribute name="New-Insulation" type="xs:float" />
+            <xs:attribute name="MovementSpeedFactor" type="xs:float" />
+            <xs:attribute name="New-MovementSpeedFactor" type="xs:float" />
+            <xs:attribute name="SteedMovementSpeedFactor" type="xs:float" />
+            <xs:attribute name="New-SteedMovementSpeedFactor" type="xs:float" />
+            <xs:attribute name="DensityModifier" type="xs:float" />
+            <xs:attribute name="New-DensityModifier" type="xs:float" />
+            <xs:attribute name="IsOuter" type="Bollean" />
+            <xs:attribute name="New-IsOuter" type="Bollean" />
+            <xs:attribute name="CanBeDyed" type="Bollean" />
+            <xs:attribute name="New-CanBeDyed" type="Bollean" />
+            <xs:attribute name="Layer" type="xs:int" />
+            <xs:attribute name="New-Layer" type="xs:int" />
+            <xs:attribute name="PlayerLevelRequired" type="xs:int" />
+            <xs:attribute name="New-PlayerLevelRequired" type="xs:int" />
+            <xs:attribute name="TextureName" type="xs:string" />
+            <xs:attribute name="New-TextureName" type="xs:string" />
+            <xs:attribute name="ImpactSoundsFolder" type="xs:string" />
+            <xs:attribute name="New-ImpactSoundsFolder" type="xs:string" />
+            <xs:attribute name="Remove" type="xs:string" />
+            <xs:anyAttribute />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="Bollean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="True" />
+            <xs:enumeration value="False" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="IndexType">
+        <xs:restriction base="xs:unsignedInt">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="1023" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SlotType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Head" />
+            <xs:enumeration value="Torso" />
+            <xs:enumeration value="Legs" />
+            <xs:enumeration value="Feet" />
+            <xs:pattern value=".*" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

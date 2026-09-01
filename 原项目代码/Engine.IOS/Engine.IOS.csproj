@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Engine\Engine.props" />
+    <Import Project="..\build\IOS.props" />
+    <ItemGroup>
+        <PackageReference Remove="NAudio.Flac.Unknown.Mod" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Bass.Net" HintPath="Bass.Net.dll" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,12 @@
+﻿<Project>
+    <PropertyGroup>
+        <TargetFramework>net10.0-ios</TargetFramework>
+        <DefineConstants>$(DefineConstants);IOS;MOBILE</DefineConstants>
+        <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <Optimize>true</Optimize>
+        <IsTrimmable>true</IsTrimmable>
+        <MtouchLink>None</MtouchLink>
+    </PropertyGroup>
+</Project>

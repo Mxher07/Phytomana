@@ -1,0 +1,42 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="640, 400" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}"/>
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+      <LabelWidget Text="[EditWorldSeedDialog:1]" Color="255, 255, 255" HorizontalAlignment="Center" Margin="0, 5"/>
+      <CanvasWidget Size="0, Infinity"/>
+      <LabelWidget Text="[EditWorldSeedDialog:2]" Color="128, 128, 128" HorizontalAlignment="Center" WordWrap="true"/>
+      <CanvasWidget Size="0, Infinity"/>
+      <StackPanelWidget HorizontalAlignment="Center">
+        <StackPanelWidget Direction="Vertical">
+          <CanvasWidget Size="-1, 70" HorizontalAlignment="Far">
+            <LabelWidget Text="[EditWorldSeedDialog:3]" VerticalAlignment="Center"/>
+          </CanvasWidget>
+          <CanvasWidget Size="-1, 70" HorizontalAlignment="Far">
+            <LabelWidget Text="[EditWorldSeedDialog:4]" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+        <StackPanelWidget Direction="Vertical">
+          <CanvasWidget Size="400, 50" Margin="10, 10">
+            <BevelledRectangleWidget Style="{Styles/TextBoxArea}"/>
+            <TextBoxWidget Name="EditWorldSeedDialog.WorldSeedTextBox" MaximumLength="14" Color="255, 255, 255" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <LabelWidget Name="EditWorldSeedDialog.WorldSeedLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Color="96, 96, 96" IsVisible="false"/>
+          </CanvasWidget>
+          <CanvasWidget Size="400, 50" Margin="10, 10">
+            <BevelledRectangleWidget Style="{Styles/TextBoxArea}"/>
+            <TextBoxWidget Name="EditWorldSeedDialog.TrueWorldSeedTextBox" MaximumLength="11" Color="255, 255, 255" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+      </StackPanelWidget>
+      <CanvasWidget Size="0, Infinity"/>
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="EditWorldSeedDialog.ResetButton" Text="[EditWorldSeedDialog:5]" Style="{Styles/ButtonStyle_160x60}"/>
+        <CanvasWidget Size="40, 0"/>
+        <BevelledButtonWidget Name="EditWorldSeedDialog.OkButton" Text="[EditWorldSeedDialog:6]" Style="{Styles/ButtonStyle_160x60}"/>
+        <CanvasWidget Size="40, 0"/>
+        <BevelledButtonWidget Name="EditWorldSeedDialog.CancelButton" Text="[EditWorldSeedDialog:7]" Style="{Styles/ButtonStyle_160x60}"/>
+      </StackPanelWidget>
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

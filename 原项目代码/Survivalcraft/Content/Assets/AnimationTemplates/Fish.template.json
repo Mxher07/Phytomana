@@ -1,0 +1,18 @@
+{
+    "name": "Fish",
+    "layers": {
+        "Base": {
+            "index": 0,
+            "blendMode": "Override"
+        },
+        "Head": {
+            "index": 1,
+            "blendMode": "Override",
+            "boneMask": [ "Jaw" ]
+        },
+        "Death": {
+            "index": 2,
+            "blendMode": "Override"
+        }
+    }
+}

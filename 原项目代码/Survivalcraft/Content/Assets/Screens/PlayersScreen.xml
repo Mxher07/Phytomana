@@ -1,0 +1,39 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[PlayersScreen:0]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" Margin="10, 0">
+
+      <CanvasWidget Size="0, 10"/>
+
+      <CanvasWidget>
+        <BevelledRectangleWidget Style="{Styles/Area}" />
+        <ScrollPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3, 3">
+          <StackPanelWidget Name="PlayersPanel" Direction="Vertical" Margin="20, 0"/>
+        </ScrollPanelWidget>
+      </CanvasWidget>
+
+      <CanvasWidget Size="0, 10"/>
+
+      <StackPanelWidget HorizontalAlignment="Center" VerticalAlignment="Center">
+        <BevelledButtonWidget Name="ScreenLayoutButton" Style="{Styles/ButtonStyle_310x60}" Text="[PlayersScreen:1]" VerticalAlignment="Center" />
+        <CanvasWidget Size="40, 0"/>
+        <BevelledButtonWidget Name="AddPlayerButton" Style="{Styles/ButtonStyle_310x60}" Text="[PlayersScreen:2]" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, 10"/>
+
+    </StackPanelWidget>
+    
+  </StackPanelWidget>
+
+  <!--So that model widgets on top of the screen work-->
+  <ClearWidget ClearColor="false" ClearDepth="true" Depth="1"/>
+
+</CanvasWidget>

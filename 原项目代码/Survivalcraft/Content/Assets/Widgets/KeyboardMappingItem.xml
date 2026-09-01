@@ -1,0 +1,4 @@
+<UniformSpacingPanelWidget xmlns="runtime-namespace:Game" Direction="Horizontal" Margin="0, 3" VerticalAlignment="Center">
+	<LabelWidget Name="Name" HorizontalAlignment="Far" VerticalAlignment="Center" Margin="20, 0" Color="128, 128, 128" />
+	<LabelWidget Name="BoundKey" VerticalAlignment="Center" Margin="20, 0" />
+</UniformSpacingPanelWidget>

@@ -1,0 +1,15 @@
+<CanvasWidget xmlns="runtime-namespace:Game" Size="600, 460" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+  <StackPanelWidget Direction="Vertical">
+    <LabelWidget Color="255, 255, 255" Text="[SelectClassSubstituteDialog:1]" HorizontalAlignment="Center" DropShadow="true"/>
+    <CanvasWidget Size="0, 15" />
+    <CanvasWidget>
+      <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+      <StackPanelWidget Direction="Vertical" Margin="10, 10">
+        <ListPanelWidget Name="SelectClassSubstituteDialog.ListPanel" Direction="Vertical" HorizontalAlignment="Center" SelectionColor="10, 70, 0, 90"/>
+        <CanvasWidget Size="0, 15" />
+        <LabelWidget Name="SelectClassSubstituteDialog.Description" Color="192, 192, 192" WordWrap="true"/>
+        <LabelWidget Text="[SelectClassSubstituteDialog:2]" Color="192, 192, 192"/>
+      </StackPanelWidget>
+    </CanvasWidget>
+  </StackPanelWidget>
+</CanvasWidget>

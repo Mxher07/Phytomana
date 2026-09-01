@@ -1,0 +1,59 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[ModifyWorldScreen:1]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[ModifyWorldScreen:2]" Margin="10, 0"/>
+        <CanvasWidget VerticalAlignment="Center" Size="Infinity, 50" Margin="9, 5" >
+          <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+          <TextBoxWidget Name="Name" Title="[ModifyWorldScreen:2]" Size="Infinity, 50" VerticalAlignment="Center" MaximumLength="14" Margin="10, 0" />
+        </CanvasWidget>
+      </UniformSpacingPanelWidget>
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[ModifyWorldScreen:3]" Margin="10, 0" />
+        <CanvasWidget VerticalAlignment="Center" Size="Infinity, 50" Margin="9, 5">
+          <BevelledRectangleWidget Style="{Styles/Area}" />
+          <LabelWidget Name="Seed" VerticalAlignment="Center" Margin="10, 0" Color="128, 128, 128" />
+        </CanvasWidget>
+      </UniformSpacingPanelWidget>
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[ModifyWorldScreen:4]" Margin="10, 0" />
+        <BevelledButtonWidget Name="GameMode" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="5, 0" />
+      </UniformSpacingPanelWidget>
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[ModifyWorldScreen:5]" Margin="10, 0" />
+        <BevelledButtonWidget Name="WorldOptions" Style="{Styles/ButtonStyle_310x60}" Text="[ModifyWorldScreen:6]" VerticalAlignment="Center" Margin="5, 0" />
+      </UniformSpacingPanelWidget>
+
+      <CanvasWidget Size="0, Infinity"/>
+
+      <CanvasWidget HorizontalAlignment="Center">
+        <LabelWidget Name="Error" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[ModifyWorldScreen:7]" Color="255, 0, 0"/>
+        <LabelWidget Name="Description" HorizontalAlignment="Center" VerticalAlignment="Center" TextAnchor="HorizontalCenter, VerticalCenter" Color="128, 128, 128" WordWrap="true" Margin="10, 0" />
+      </CanvasWidget>
+
+      <CanvasWidget Size="0, Infinity"/>
+
+      <StackPanelWidget HorizontalAlignment="Center" VerticalAlignment="Far">
+        <BevelledButtonWidget Name="Delete" Style="{Styles/ButtonStyle_160x60}" Text="[ModifyWorldScreen:8]" Margin="6, 0"/>
+        <BevelledButtonWidget Name="Upload" Style="{Styles/ButtonStyle_160x60}" Text="[ModifyWorldScreen:9]" Margin="6, 0"/>
+        <CanvasWidget Size="Infinity, 0"/>
+        <BevelledButtonWidget Name="Apply" Style="{Styles/ButtonStyle_310x60}" Text="[ModifyWorldScreen:10]" Margin="6, 0"/>
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+
+</Screen>

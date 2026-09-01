@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Case-mesh" name="Case">
+      <mesh>
+        <source id="Case-mesh-positions">
+          <float_array id="Case-mesh-positions-array" count="39">-0.601849 -6.024017 5.340825 -0.601848 -6.024018 0.631315 -0.601849 1E-06 0.644343 -0.601848 -2.495228 8.869612 -0.601849 2.495231 8.869612 -0.601848 6.024019 5.340823 -0.601848 6.024019 0.644343 1.125114 -6.837436 5.677753 1.125114 -6.837435 0.013436 1.125115 -2.832155 9.68303 1.125114 2.83216 9.683029 1.125114 6.837437 5.677752 1.125114 6.837437 0.013434</float_array>
+          <technique_common>
+            <accessor source="#Case-mesh-positions-array" count="13" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Case-mesh-normals">
+          <float_array id="Case-mesh-normals-array" count="36">-1 -0 -0 -0.42610893 -0.9046719 -0 -0.42611015 -0.9046713 0 -0.4261099 -0.6396988 0.6396998 -0.42611015 0 0.9046713 -0.42610973 -0 0.9046715 -0.42611015 0.6396992 0.6396992 -0.42610973 0.9046715 0 -0.42611015 0.9046713 0 -0.34314692 0 -0.93928176 -0.34314603 -0 -0.9392821 -0.3360199 0.0020369994 -0.94185275</float_array>
+          <technique_common>
+            <accessor source="#Case-mesh-normals-array" count="12" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Case-mesh-map">
+          <float_array id="Case-mesh-map-array" count="108">0.119397 0.47781003 0.119397 0.45484102 0.091922 0.45485997 0.103303 0.494052 0.119397 0.47781003 0.091922 0.45485997 0.080542 0.494052 0.103303 0.494052 0.091922 0.45485997 0.064448 0.47781003 0.080542 0.494052 0.091922 0.45485997 0.064448 0.45484102 0.064448 0.47781003 0.091922 0.45485997 0.106933 0.45447803 0.076611 0.45447803 0.076611 0.439754 0.106933 0.439754 0.106933 0.45447803 0.076611 0.439754 0.076611 0.45447803 0.106933 0.45447803 0.106933 0.439754 0.076611 0.439754 0.076611 0.45447803 0.106933 0.439754 0.076611 0.45447803 0.106933 0.45447803 0.106933 0.439754 0.076611 0.439754 0.076611 0.45447803 0.106933 0.439754 0.106933 0.45447803 0.076611 0.45447803 0.076611 0.439754 0.106933 0.439754 0.106933 0.45447803 0.076611 0.439754 0.106933 0.45447803 0.076611 0.45447803 0.076611 0.439754 0.106933 0.439754 0.106933 0.45447803 0.076611 0.439754 0.091906 0.459516 0.063074 0.43770504 0.066504 0.454036 0.091906 0.459516 0.120737 0.43770504 0.063074 0.43770504 0.091906 0.459516 0.117307 0.454036 0.120737 0.43770504</float_array>
+          <technique_common>
+            <accessor source="#Case-mesh-map-array" count="54" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Case-mesh-vertices">
+          <input semantic="POSITION" source="#Case-mesh-positions" />
+        </vertices>
+        <triangles count="18">
+          <input semantic="VERTEX" source="#Case-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Case-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Case-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 3 0 3 2 0 5 0 0 4 4 0 6 2 0 8 3 0 7 5 0 9 2 0 11 4 0 10 6 0 12 2 0 14 5 0 13 7 1 15 1 1 17 8 1 16 0 2 18 1 2 20 7 2 19 9 3 21 0 3 23 7 3 22 3 3 24 0 3 26 9 3 25 10 4 27 3 4 29 9 4 28 4 5 30 3 5 32 10 4 31 11 6 33 4 6 35 10 6 34 5 6 36 4 6 38 11 6 37 12 7 39 5 8 41 11 8 40 6 8 42 5 8 44 12 8 43 2 9 45 6 9 47 12 9 46 2 10 48 12 10 50 8 10 49 2 11 51 8 11 53 1 11 52</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Pointer-mesh" name="Pointer">
+      <mesh>
+        <source id="Pointer-mesh-positions">
+          <float_array id="Pointer-mesh-positions-array" count="18">-0 -0.085478 -0.620194 -0 0.089619 -0.620194 0 -0.768332 0.015054 0 0.029188 5.021218 0 -0.025047 5.021218 -0 0.768332 0.015054</float_array>
+          <technique_common>
+            <accessor source="#Pointer-mesh-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Pointer-mesh-normals">
+          <float_array id="Pointer-mesh-normals-array" count="3">-1 0 0</float_array>
+          <technique_common>
+            <accessor source="#Pointer-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Pointer-mesh-map">
+          <float_array id="Pointer-mesh-map-array" count="24">0.062708 0.49783504 0.062708 0.49823797 0.06409 0.496265 0.074975 0.49809897 0.074975 0.49797404 0.06409 0.499799 0.06409 0.499799 0.074975 0.49797404 0.06409 0.496265 0.06409 0.499799 0.06409 0.496265 0.062708 0.49823797</float_array>
+          <technique_common>
+            <accessor source="#Pointer-mesh-map-array" count="12" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Pointer-mesh-vertices">
+          <input semantic="POSITION" source="#Pointer-mesh-positions" />
+        </vertices>
+        <triangles count="4">
+          <input semantic="VERTEX" source="#Pointer-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Pointer-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Pointer-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 3 0 3 5 0 5 4 0 4 5 0 6 2 0 8 4 0 7 5 0 9 1 0 11 2 0 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Case" name="Case" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Case-mesh" name="Case" />
+        </node>
+        <node id="Pointer" name="Pointer" type="NODE">
+          <matrix sid="transform">0.01 0 0 -0.014126319 0 0 0.01 0.035485778 0 -0.01 0 2.04E-06 0 0 0 1</matrix>
+          <instance_geometry url="#Pointer-mesh" name="Pointer" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

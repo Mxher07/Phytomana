@@ -1,0 +1,4 @@
+<LinkWidget xmlns="runtime-namespace:Game">
+  <LabelWidget Name="Label" />
+  <ClickableWidget Name="Clickable" SoundName="Audio/UI/ButtonClick" />
+</LinkWidget>

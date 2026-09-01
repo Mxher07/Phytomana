@@ -1,0 +1,4 @@
+<StackPanelWidget xmlns="runtime-namespace:Game" Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="5, 0">
+  <LabelWidget Name="SelectGameModeItem.Name" Font="{Fonts/Pericles}" Color="255, 255, 255" HorizontalAlignment="Center" Margin="0, 5"/>
+  <LabelWidget Name="SelectGameModeItem.Description" Font="{Fonts/Pericles}" WordWrap="true" Color="128, 128, 128" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" Margin="0, 0"/>
+</StackPanelWidget>

@@ -1,0 +1,7 @@
+<Screen xmlns="runtime-namespace:Game">
+  <RectangleWidget FillColor="0, 0, 0" OutlineColor="0, 0, 0, 0" Size="Infinity, Infinity"/>
+  <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" >
+    <LabelWidget HorizontalAlignment="Center" Text="[RespawningScreen:1]" Margin="0, 10" />
+    <LabelWidget HorizontalAlignment="Center" Color="128, 128, 128" Text="[RespawningScreen:2]" />
+  </StackPanelWidget>
+</Screen>

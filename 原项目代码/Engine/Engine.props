@@ -1,0 +1,44 @@
+﻿<Project>
+    <Import Project="$(MSBuildThisFileDirectory)..\build\Common.props" />
+    <PropertyGroup>
+        <RootNamespace>Engine</RootNamespace>
+        <AssemblyName>Engine</AssemblyName>
+        <PackageId>SurvivalcraftAPI.Engine</PackageId>
+        <Title>SurvivalcraftAPI.Engine</Title><!--For NuGet Package-->
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)**\*.cs" Exclude="$(MSBuildThisFileDirectory)obj\**\*.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Lit.psh" Link="Resources\Lit.psh" />
+        <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Lit.vsh" Link="Resources\Lit.vsh" />
+        <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Unlit.psh" Link="Resources\Unlit.psh" />
+        <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Unlit.vsh" Link="Resources\Unlit.vsh" />
+        <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Debugfont.lst" Link="Resources\Debugfont.lst" />
+        <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Debugfont.png" Link="Resources\Debugfont.png" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NVorbis" Version="0.10.5" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" /><!--An powerful and popular audio libaury-->
+        <PackageReference Include="NLayer.NAudioSupport" Version="2.0.1" /><!--MP3 support-->
+        <PackageReference Include="NAudio.Flac.Unknown.Mod" Version="1.0.4" PrivateAssets="all" /><!--Source: https://github.com/XiaofengdiZhu/NAudio.Flac/ -->
+        <PackageReference Include="NAudio.Core" Version="2.3.0" /><!--Resolve reference confliction between NLayer.NAudioSupport and NAudio.Flac.Unknown.Mod-->
+        <PackageReference Include="Silk.NET.Windowing" Version="2.23.0" />
+        <PackageReference Include="Silk.NET.OpenGLES" Version="2.23.0" />
+        <PackageReference Include="Silk.NET.OpenAL" Version="2.23.0" />
+        <PackageReference Include="Silk.NET.Input" Version="2.23.0" />
+        <!--SharpGLTF for glTF model loading-->
+        <PackageReference Include="SharpGLTF.Core" Version="1.0.6" />
+        <PackageReference Include="SharpGLTF.Toolkit" Version="1.0.6" />
+        <!--Belows are for solving the warning of implicit useing the old version of these packages-->
+        <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="10.0.10" />
+        <PackageReference Include="System.Net.Http" Version="4.3.4" />
+        <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+        <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+        <!--NCalc for animation expression evaluation-->
+        <PackageReference Include="NCalcSync" Version="7.0.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="$(MSBuildThisFileDirectory)Engine.Graphics\EGL.cs" />
+    </ItemGroup>
+</Project>

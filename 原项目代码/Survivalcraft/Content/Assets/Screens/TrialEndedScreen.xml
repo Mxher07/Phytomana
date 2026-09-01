@@ -1,0 +1,37 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <CanvasWidget Size="720, 340" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <RectangleWidget FillColor="0, 0, 0, 255" OutlineColor="255, 255, 255, 255" />
+
+    <UniformSpacingPanelWidget Direction="Vertical" HorizontalAlignment="Center" _ExcludePlatforms="Ios">
+      <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <LabelWidget Text="[TrialEndedScreen:1]" HorizontalAlignment="Center" Margin="0, 20" />
+        <LabelWidget Text="[TrialEndedScreen:2]" Color="128, 128, 128" HorizontalAlignment="Center" Margin="0, 0" />
+        <LabelWidget Text="[TrialEndedScreen:3]" Color="128, 128, 128" HorizontalAlignment="Center" Margin="0, 0" />
+      </StackPanelWidget>
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <BevelledButtonWidget Name="Buy" Style="{Styles/ButtonStyle_310x60}" Text="[TrialEndedScreen:4]" HorizontalAlignment="Center" Margin="20, 0" />
+        <BevelledButtonWidget Name="Quit" Style="{Styles/ButtonStyle_160x60}" Text="[TrialEndedScreen:5]" HorizontalAlignment="Center" Margin="20, 0" />
+      </StackPanelWidget>
+    </UniformSpacingPanelWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" _IncludePlatforms="Ios">
+      <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+        <LabelWidget Text="[TrialEndedScreen:6]" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" Margin="0, 30" />
+        <LabelWidget Text="[TrialEndedScreen:7]" WordWrap="true" Color="128, 128, 128" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" Margin="100, 0" />
+      </StackPanelWidget>
+      <CanvasWidget Size="0, Infinity"/>
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <BevelledButtonWidget Name="Buy" Style="{Styles/ButtonStyle_310x60}" Text="[TrialEndedScreen:8]" HorizontalAlignment="Center" Margin="20, 0" >
+        	<BevelledRectangleWidget Name="BevelledButton.Rectangle" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+        </BevelledButtonWidget>
+        <BevelledButtonWidget Name="NewWorld" Style="{Styles/ButtonStyle_310x60}" Text="[TrialEndedScreen:9]" HorizontalAlignment="Center" Margin="20, 0" />
+      </StackPanelWidget>
+      <CanvasWidget Size="0, 30"/>
+    </StackPanelWidget>
+
+  </CanvasWidget>
+
+</Screen>

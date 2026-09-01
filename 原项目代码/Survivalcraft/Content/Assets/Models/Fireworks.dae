@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Body-mesh" name="Body">
+      <mesh>
+        <source id="Body-mesh-positions">
+          <float_array id="Body-mesh-positions-array" count="51">0 0 0 10 0 0 7.071068 7.071068 0 -0 10 0 -7.071068 7.071068 0 -10 -1E-06 0 -7.071066 -7.071069 0 0 -10 0 7.071067 -7.071069 0 10 0 72.6736 7.071068 7.071068 72.6736 -0 10 72.6736 -7.071068 7.071068 72.6736 -10 -1E-06 72.6736 -7.071066 -7.071069 72.6736 0 -10 72.6736 7.071067 -7.071069 72.6736</float_array>
+          <technique_common>
+            <accessor source="#Body-mesh-positions-array" count="17" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Body-mesh-normals">
+          <float_array id="Body-mesh-normals-array" count="27">0 0 -1 1 0 0 0.7071068 0.7071068 0 0 1 0 -0.7071068 0.7071068 0 -1 -0 0 -0.7071068 -0.7071068 0 -0 -1 0 0.7071068 -0.7071068 0</float_array>
+          <technique_common>
+            <accessor source="#Body-mesh-normals-array" count="9" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Body-mesh-map">
+          <float_array id="Body-mesh-map-array" count="144">0.914631 0.76494 0.926818 0.76494 0.923249 0.773557 0.914631 0.76494 0.923249 0.773557 0.914631 0.777126 0.914631 0.76494 0.914631 0.777126 0.906014 0.773557 0.914631 0.76494 0.906014 0.773557 0.902445 0.76494 0.914631 0.76494 0.902445 0.76494 0.906014 0.756322 0.914631 0.76494 0.906014 0.756322 0.914631 0.752753 0.914631 0.76494 0.914631 0.752753 0.923249 0.756322 0.914631 0.76494 0.923249 0.756322 0.926818 0.76494 0.117129 0.187621 0.117129 0.24968702 0.124888 0.24968702 0.117129 0.187621 0.124888 0.24968702 0.124888 0.187621 0.062821 0.187621 0.062821 0.24968702 0.070579 0.24968702 0.062821 0.187621 0.070579 0.24968702 0.070579 0.187621 0.070579 0.187621 0.070579 0.24968702 0.078338 0.24968702 0.070579 0.187621 0.078338 0.24968702 0.078338 0.187621 0.078338 0.187621 0.078338 0.24968702 0.086096 0.24968702 0.078338 0.187621 0.086096 0.24968702 0.086096 0.187621 0.086096 0.187621 0.086096 0.24968702 0.093854 0.24968702 0.086096 0.187621 0.093854 0.24968702 0.093854 0.187621 0.093854 0.187621 0.093854 0.24968702 0.101613 0.24968702 0.093854 0.187621 0.101613 0.24968702 0.101613 0.187621 0.101613 0.187621 0.101613 0.24968702 0.109371 0.24968702 0.101613 0.187621 0.109371 0.24968702 0.109371 0.187621 0.109371 0.187621 0.109371 0.24968702 0.117129 0.24968702 0.109371 0.187621 0.117129 0.24968702 0.117129 0.187621</float_array>
+          <technique_common>
+            <accessor source="#Body-mesh-map-array" count="72" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Body-mesh-vertices">
+          <input semantic="POSITION" source="#Body-mesh-positions" />
+        </vertices>
+        <triangles count="24">
+          <input semantic="VERTEX" source="#Body-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Body-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Body-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 10 2 26 9 1 25 1 1 27 2 2 29 10 2 28 2 2 30 11 3 32 10 2 31 2 2 33 3 3 35 11 3 34 3 3 36 12 4 38 11 3 37 3 3 39 4 4 41 12 4 40 4 4 42 13 5 44 12 4 43 4 4 45 5 5 47 13 5 46 5 5 48 14 6 50 13 5 49 5 5 51 6 6 53 14 6 52 6 6 54 15 7 56 14 6 55 6 6 57 7 7 59 15 7 58 7 7 60 16 8 62 15 7 61 7 7 63 8 8 65 16 8 64 8 8 66 9 1 68 16 8 67 8 8 69 1 1 71 9 1 70</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadConeSmall-mesh" name="HeadConeSmall">
+      <mesh>
+        <source id="HeadConeSmall-mesh-positions">
+          <float_array id="HeadConeSmall-mesh-positions-array" count="30">0 -0 -12.22068 11.829309 -0 -12.22068 8.364585 8.364585 -12.22068 -0 11.829309 -12.22068 -8.364585 8.364585 -12.22068 -11.829309 -1E-06 -12.22068 -8.364582 -8.364586 -12.22068 0 -11.829309 -12.22068 8.364584 -8.364585 -12.22068 -0 -0 10.347321</float_array>
+          <technique_common>
+            <accessor source="#HeadConeSmall-mesh-positions-array" count="10" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadConeSmall-mesh-normals">
+          <float_array id="HeadConeSmall-mesh-normals-array" count="45">0 0 -1 0.8857027 -0 0.46425283 0.83151084 -0.3444229 0.43584692 0.83151084 0.3444229 0.43584692 0.62628645 0.62628645 0.46425262 0.3444229 0.83151084 0.43584692 -0 0.8857027 0.46425283 -0.3444229 0.83151084 0.43584692 1 0 0 -0.83151084 0.3444229 0.43584692 -0.83151084 -0.3444229 0.43584692 -0.3444229 -0.83151084 0.43584692 0 -0.8857027 0.46425283 0.3444229 -0.83151084 0.43584692 0.6262859 -0.6262869 0.46425295</float_array>
+          <technique_common>
+            <accessor source="#HeadConeSmall-mesh-normals-array" count="15" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadConeSmall-mesh-map">
+          <float_array id="HeadConeSmall-mesh-map-array" count="192">0.906031 0.780852 0.934741 0.780852 0.926332 0.801153 0.906031 0.780852 0.926332 0.801153 0.906031 0.809561 0.906031 0.780852 0.906031 0.809561 0.885731 0.801153 0.906031 0.780852 0.885731 0.801153 0.877322 0.780852 0.906031 0.780852 0.877322 0.780852 0.885731 0.760552 0.906031 0.780852 0.885731 0.760552 0.906031 0.752143 0.906031 0.780852 0.906031 0.752143 0.926332 0.760552 0.906031 0.780852 0.926332 0.760552 0.934741 0.780852 0.953353 0.970594 0.953353 0.944424 0.953353 0.944424 0.953353 0.970594 0.953353 0.944424 0.942403 0.970594 0.942403 0.970594 0.953353 0.944424 0.953353 0.944424 0.970405 0.955373 0.996575 0.944424 0.970405 0.944424 0.937868 0.970594 0.953353 0.944424 0.953353 0.944424 0.937868 0.997955 0.967693 0.992029 0.937868 0.986104 0.942403 0.970594 0.953353 0.944424 0.953353 0.944424 0.969783 0.997053 0.995954 0.986104 0.969783 0.986104 0.953353 0.970594 0.953353 0.944424 0.953353 0.944424 0.937868 0.984013 0.967693 0.978088 0.937868 0.972162 0.964302 0.970594 0.953353 0.944424 0.953353 0.944424 0.969783 0.984013 0.999609 0.978088 0.969783 0.972162 0.968837 0.970594 0.953353 0.944424 0.953353 0.944424 0.970405 0.968413 0.996575 0.968413 0.970405 0.957464 0.964302 0.970594 0.953353 0.944424 0.953353 0.944424 0.964302 0.970594 0.953353 0.944424 0.953353 0.970594 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424</float_array>
+          <technique_common>
+            <accessor source="#HeadConeSmall-mesh-map-array" count="96" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadConeSmall-mesh-vertices">
+          <input semantic="POSITION" source="#HeadConeSmall-mesh-positions" />
+        </vertices>
+        <triangles count="32">
+          <input semantic="VERTEX" source="#HeadConeSmall-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadConeSmall-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadConeSmall-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 9 3 26 9 2 25 1 1 27 2 4 29 9 3 28 2 4 30 9 5 32 9 3 31 2 4 33 3 6 35 9 5 34 3 6 36 9 7 38 9 5 37 3 6 39 4 7 41 9 7 40 4 7 42 9 8 44 9 7 43 4 9 45 5 9 47 9 9 46 5 8 48 9 8 50 9 8 49 5 10 51 6 10 53 9 10 52 6 11 54 9 11 56 9 8 55 6 11 57 7 12 59 9 11 58 7 12 60 9 13 62 9 11 61 7 12 63 8 14 65 9 13 64 8 14 66 9 2 68 9 13 67 8 14 69 1 1 71 9 2 70 9 8 72 9 2 74 9 3 73 9 8 75 9 3 77 9 5 76 9 8 78 9 5 80 9 7 79 9 8 81 9 7 83 9 8 82 9 8 84 9 8 86 9 8 85 9 8 87 9 8 89 9 11 88 9 8 90 9 11 92 9 13 91 9 8 93 9 13 95 9 2 94</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Fins-mesh" name="Fins">
+      <mesh>
+        <source id="Fins-mesh-positions">
+          <float_array id="Fins-mesh-positions-array" count="48">1.972759 0.007652 41.277946 1.973833 0.070956 0.010916 29.566021 0.002937 0.010916 1.973833 -0.055651 0.010916 0.002108 -1.960885 41.277946 0.065412 -1.96196 0.010916 0.004998 -29.547758 0.010916 -0.061195 -1.96196 0.010916 -1.970716 0.007653 41.277946 -1.971791 -0.055651 0.010916 -29.568731 0.001907 0.010916 -1.971791 0.070957 0.010916 0.002108 1.980972 41.277946 -0.061195 1.982047 0.010916 0.003971 29.5783 0.010916 0.065412 1.982047 0.010916</float_array>
+          <technique_common>
+            <accessor source="#Fins-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Fins-mesh-normals">
+          <float_array id="Fins-mesh-normals-array" count="27">0.0024649992 0.99999577 0.0015339997 0.0021229992 -0.99999654 0.0015339993 0 0 -1 0.9999965 -0.0021900008 0.0015340007 -0.999996 -0.0024 0.001534 -0.0020859994 -0.99999666 0.0015339995 -0.0025019993 0.99999577 0.0015339997 -0.9999961 0.0023610003 0.0015340003 0.99999636 0.0022260007 0.0015340006</float_array>
+          <technique_common>
+            <accessor source="#Fins-mesh-normals-array" count="9" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Fins-mesh-map">
+          <float_array id="Fins-mesh-map-array" count="72">0.124437 0.249102 0.124437 0.248779 0.124667 0.248779 0.124437 0.249102 0.124667 0.248779 0.124437 0.248779 0.124667 0.24920201 0.124437 0.249205 0.124437 0.24919802 0.124207 0.249102 0.124207 0.248779 0.123978 0.248779 0.124207 0.249102 0.123978 0.248779 0.124207 0.248779 0.124322 0.24885702 0.124326 0.24908698 0.124319 0.24908698 0.124207 0.249102 0.124207 0.248779 0.123978 0.248779 0.124207 0.249102 0.123978 0.248779 0.124207 0.248779 0.123978 0.24920201 0.124207 0.24919802 0.124207 0.249205 0.124437 0.24910098 0.124437 0.24877799 0.124666 0.24877799 0.124437 0.249102 0.124667 0.248779 0.124437 0.248779 0.124322 0.24954599 0.124319 0.24931699 0.124326 0.24931699</float_array>
+          <technique_common>
+            <accessor source="#Fins-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Fins-mesh-vertices">
+          <input semantic="POSITION" source="#Fins-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#Fins-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Fins-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Fins-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 1 3 3 1 5 2 1 4 2 2 6 3 2 8 1 2 7 4 3 9 6 3 11 5 3 10 4 4 12 7 4 14 6 4 13 6 2 15 7 2 17 5 2 16 8 5 18 10 5 20 9 5 19 8 6 21 11 6 23 10 6 22 10 2 24 11 2 26 9 2 25 12 7 27 14 7 29 13 7 28 12 8 30 15 8 32 14 8 31 14 2 33 15 2 35 13 2 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadCylinderLarge-mesh" name="HeadCylinderLarge">
+      <mesh>
+        <source id="HeadCylinderLarge-mesh-positions">
+          <float_array id="HeadCylinderLarge-mesh-positions-array" count="54">-0 0 -0.698431 13.857599 0 -0.698431 9.798802 9.798803 -0.698431 -1E-06 13.857599 -0.698431 -9.798802 9.798802 -0.698431 -13.857599 -1E-06 -0.698431 -9.7988 -9.798804 -0.698431 0 -13.857599 -0.698431 9.7988 -9.798804 -0.698431 9.462051 -0 10.304012 6.690681 6.690682 10.304012 -0 9.462051 10.304012 -6.690681 6.690681 10.304012 -9.462051 -1E-06 10.304012 -6.690681 -6.690682 10.304012 0 -9.462053 10.304012 6.690681 -6.690682 10.304012 0 -0 10.304012</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderLarge-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadCylinderLarge-mesh-normals">
+          <float_array id="HeadCylinderLarge-mesh-normals-array" count="36">0 0 -1 0.9286346 -0 0.37099582 0.65664375 0.65664375 0.37099588 -0 0.9286346 0.37099582 -0.65664375 0.65664375 0.37099588 -0.9286346 -0 0.37099582 -0.65664375 -0.65664375 0.37099588 -0.65664405 -0.65664405 0.37099501 0 -0.9286349 0.37099496 0.65664405 -0.65664405 0.37099501 0.65664375 -0.65664375 0.37099588 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderLarge-mesh-normals-array" count="12" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadCylinderLarge-mesh-map">
+          <float_array id="HeadCylinderLarge-mesh-map-array" count="192">0.947679 0.990627 0.949666 0.990627 0.950659 0.990627 0.947679 0.990627 0.942713 0.990627 0.943706 0.990627 0.947679 0.990627 0.943706 0.990627 0.9447 0.990627 0.947679 0.990627 0.9447 0.990627 0.945693 0.990627 0.947679 0.990627 0.945693 0.990627 0.946686 0.990627 0.947679 0.990627 0.946686 0.990627 0.947679 0.990627 0.947679 0.990627 0.947679 0.990627 0.948672 0.990627 0.947679 0.990627 0.948672 0.990627 0.949666 0.990627 0.949666 0.990627 0.949666 0.998573 0.950659 0.998573 0.949666 0.990627 0.950659 0.998573 0.950659 0.990627 0.942713 0.990627 0.942713 0.998573 0.943706 0.998573 0.942713 0.990627 0.943706 0.998573 0.943706 0.990627 0.943706 0.990627 0.943706 0.998573 0.9447 0.998573 0.943706 0.990627 0.9447 0.998573 0.9447 0.990627 0.9447 0.990627 0.9447 0.998573 0.945693 0.998573 0.9447 0.990627 0.945693 0.998573 0.945693 0.990627 0.945693 0.990627 0.945693 0.998573 0.946686 0.998573 0.945693 0.990627 0.946686 0.998573 0.946686 0.990627 0.946686 0.990627 0.946686 0.998573 0.947679 0.998573 0.946686 0.990627 0.947679 0.998573 0.947679 0.990627 0.947679 0.990627 0.947679 0.998573 0.948672 0.998573 0.947679 0.990627 0.948672 0.998573 0.948672 0.990627 0.948672 0.990627 0.948672 0.998573 0.949666 0.998573 0.948672 0.990627 0.949666 0.998573 0.949666 0.990627 0.947679 0.998573 0.950659 0.998573 0.949666 0.998573 0.947679 0.998573 0.943706 0.998573 0.942713 0.998573 0.947679 0.998573 0.9447 0.998573 0.943706 0.998573 0.947679 0.998573 0.945693 0.998573 0.9447 0.998573 0.947679 0.998573 0.946686 0.998573 0.945693 0.998573 0.947679 0.998573 0.947679 0.998573 0.946686 0.998573 0.947679 0.998573 0.948672 0.998573 0.947679 0.998573 0.947679 0.998573 0.949666 0.998573 0.948672 0.998573</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderLarge-mesh-map-array" count="96" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadCylinderLarge-mesh-vertices">
+          <input semantic="POSITION" source="#HeadCylinderLarge-mesh-positions" />
+        </vertices>
+        <triangles count="32">
+          <input semantic="VERTEX" source="#HeadCylinderLarge-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadCylinderLarge-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadCylinderLarge-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 10 2 26 9 1 25 1 1 27 2 2 29 10 2 28 2 2 30 11 3 32 10 2 31 2 2 33 3 3 35 11 3 34 3 3 36 12 4 38 11 3 37 3 3 39 4 4 41 12 4 40 4 4 42 13 5 44 12 4 43 4 4 45 5 5 47 13 5 46 5 5 48 14 6 50 13 5 49 5 5 51 6 7 53 14 6 52 6 7 54 15 8 56 14 6 55 6 7 57 7 8 59 15 8 58 7 8 60 16 9 62 15 8 61 7 8 63 8 10 65 16 9 64 8 10 66 9 1 68 16 9 67 8 10 69 1 1 71 9 1 70 17 11 72 9 11 74 10 11 73 17 11 75 10 11 77 11 11 76 17 11 78 11 11 80 12 11 79 17 11 81 12 11 83 13 11 82 17 11 84 13 11 86 14 11 85 17 11 87 14 11 89 15 11 88 17 11 90 15 11 92 16 11 91 17 11 93 16 11 95 9 11 94</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadConeLarge-mesh" name="HeadConeLarge">
+      <mesh>
+        <source id="HeadConeLarge-mesh-positions">
+          <float_array id="HeadConeLarge-mesh-positions-array" count="30">-0 -0 -12.22068 16.280537 -0 -12.22068 11.512078 11.512078 -12.22068 -1E-06 16.280537 -12.22068 -11.512078 11.512078 -12.22068 -16.280537 -1E-06 -12.22068 -11.512075 -11.51208 -12.22068 0 -16.280537 -12.22068 11.512077 -11.51208 -12.22068 -0 -0 13.400948</float_array>
+          <technique_common>
+            <accessor source="#HeadConeLarge-mesh-positions-array" count="10" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadConeLarge-mesh-normals">
+          <float_array id="HeadConeLarge-mesh-normals-array" count="45">0 0 -1 0.8440215 -0 0.5363093 0.7967351 -0.33001804 0.50626206 0.7967351 0.33001804 0.50626206 0.5968134 0.5968134 0.5363093 0.33001804 0.7967351 0.50626206 -0 0.8440215 0.5363093 -0.33001804 0.7967351 0.50626206 1 0 0 -0.7967351 0.33001804 0.50626206 -0.7967351 -0.33001804 0.50626206 -0.33001804 -0.7967351 0.50626206 -0 -0.8440215 0.5363093 0.33001804 -0.7967351 0.50626206 0.5968134 -0.5968134 0.5363093</float_array>
+          <technique_common>
+            <accessor source="#HeadConeLarge-mesh-normals-array" count="15" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadConeLarge-mesh-map">
+          <float_array id="HeadConeLarge-mesh-map-array" count="192">0.906031 0.780852 0.934741 0.780852 0.926332 0.801153 0.906031 0.780852 0.926332 0.801153 0.906031 0.809561 0.906031 0.780852 0.906031 0.809561 0.885731 0.801153 0.906031 0.780852 0.885731 0.801153 0.877322 0.780852 0.906031 0.780852 0.877322 0.780852 0.885731 0.760552 0.906031 0.780852 0.885731 0.760552 0.906031 0.752143 0.906031 0.780852 0.906031 0.752143 0.926332 0.760552 0.906031 0.780852 0.926332 0.760552 0.934741 0.780852 0.953353 0.970594 0.953353 0.944424 0.953353 0.944424 0.953353 0.970594 0.953353 0.944424 0.942403 0.970594 0.942403 0.970594 0.953353 0.944424 0.953353 0.944424 0.970405 0.955373 0.996575 0.944424 0.970405 0.944424 0.937868 0.970594 0.953353 0.944424 0.953353 0.944424 0.937868 0.997955 0.967693 0.992029 0.937868 0.986104 0.942403 0.970594 0.953353 0.944424 0.953353 0.944424 0.969783 0.997053 0.995954 0.986104 0.969783 0.986104 0.953353 0.970594 0.953353 0.944424 0.953353 0.944424 0.937868 0.984013 0.967693 0.978088 0.937868 0.972162 0.964302 0.970594 0.953353 0.944424 0.953353 0.944424 0.969783 0.984013 0.999609 0.978088 0.969783 0.972162 0.968837 0.970594 0.953353 0.944424 0.953353 0.944424 0.970405 0.968413 0.996575 0.968413 0.970405 0.957464 0.964302 0.970594 0.953353 0.944424 0.953353 0.944424 0.964302 0.970594 0.953353 0.944424 0.953353 0.970594 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424 0.953353 0.944424</float_array>
+          <technique_common>
+            <accessor source="#HeadConeLarge-mesh-map-array" count="96" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadConeLarge-mesh-vertices">
+          <input semantic="POSITION" source="#HeadConeLarge-mesh-positions" />
+        </vertices>
+        <triangles count="32">
+          <input semantic="VERTEX" source="#HeadConeLarge-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadConeLarge-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadConeLarge-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 9 3 26 9 2 25 1 1 27 2 4 29 9 3 28 2 4 30 9 5 32 9 3 31 2 4 33 3 6 35 9 5 34 3 6 36 9 7 38 9 5 37 3 6 39 4 7 41 9 7 40 4 7 42 9 8 44 9 7 43 4 9 45 5 9 47 9 9 46 5 8 48 9 8 50 9 8 49 5 10 51 6 10 53 9 10 52 6 11 54 9 11 56 9 8 55 6 11 57 7 12 59 9 11 58 7 12 60 9 13 62 9 11 61 7 12 63 8 14 65 9 13 64 8 14 66 9 2 68 9 13 67 8 14 69 1 1 71 9 2 70 9 8 72 9 2 74 9 3 73 9 8 75 9 3 77 9 5 76 9 8 78 9 5 80 9 7 79 9 8 81 9 7 83 9 8 82 9 8 84 9 8 86 9 8 85 9 8 87 9 8 89 9 11 88 9 8 90 9 11 92 9 13 91 9 8 93 9 13 95 9 2 94</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadDiamondLarge-mesh" name="HeadDiamondLarge">
+      <mesh>
+        <source id="HeadDiamondLarge-mesh-positions">
+          <float_array id="HeadDiamondLarge-mesh-positions-array" count="18">0 0 16 0 16 0 16 0 0 -16 0 0 0 -16 0 0 0 -16</float_array>
+          <technique_common>
+            <accessor source="#HeadDiamondLarge-mesh-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadDiamondLarge-mesh-normals">
+          <float_array id="HeadDiamondLarge-mesh-normals-array" count="24">0.5773503 0.5773503 0.5773503 -0.5773503 0.5773503 0.5773503 -0.5773503 -0.5773503 0.5773503 0.5773503 -0.5773503 0.5773503 0.5773503 0.5773503 -0.5773503 -0.5773503 0.5773503 -0.5773503 -0.5773503 -0.5773503 -0.5773503 0.5773503 -0.5773503 -0.5773503</float_array>
+          <technique_common>
+            <accessor source="#HeadDiamondLarge-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadDiamondLarge-mesh-map">
+          <float_array id="HeadDiamondLarge-mesh-map-array" count="48">0.947271 0.99701 0.948683 0.991365 0.94586 0.991365 0.950094 0.99701 0.951505 0.991365 0.948683 0.991365 0.941626 0.99701 0.943038 0.991365 0.940215 0.991365 0.944449 0.99701 0.94586 0.991365 0.943038 0.991365 0.947271 0.98572 0.94586 0.991365 0.948683 0.991365 0.950094 0.98572 0.948683 0.991365 0.951505 0.991365 0.941626 0.98572 0.940215 0.991365 0.943038 0.991365 0.944449 0.98572 0.943038 0.991365 0.94586 0.991365</float_array>
+          <technique_common>
+            <accessor source="#HeadDiamondLarge-mesh-map-array" count="24" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadDiamondLarge-mesh-vertices">
+          <input semantic="POSITION" source="#HeadDiamondLarge-mesh-positions" />
+        </vertices>
+        <triangles count="8">
+          <input semantic="VERTEX" source="#HeadDiamondLarge-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadDiamondLarge-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadDiamondLarge-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 1 3 1 1 5 3 1 4 0 2 6 3 2 8 4 2 7 0 3 9 4 3 11 2 3 10 5 4 12 1 4 14 2 4 13 5 5 15 3 5 17 1 5 16 5 6 18 4 6 20 3 6 19 5 7 21 2 7 23 4 7 22</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadDiamondSmall-mesh" name="HeadDiamondSmall">
+      <mesh>
+        <source id="HeadDiamondSmall-mesh-positions">
+          <float_array id="HeadDiamondSmall-mesh-positions-array" count="18">0 0 16 0 16 0 16 0 0 -16 0 0 0 -16 0 0 0 -16</float_array>
+          <technique_common>
+            <accessor source="#HeadDiamondSmall-mesh-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadDiamondSmall-mesh-normals">
+          <float_array id="HeadDiamondSmall-mesh-normals-array" count="24">0.5773503 0.5773503 0.5773503 -0.5773503 0.5773503 0.5773503 -0.5773503 -0.5773503 0.5773503 0.5773503 -0.5773503 0.5773503 0.5773503 0.5773503 -0.5773503 -0.5773503 0.5773503 -0.5773503 -0.5773503 -0.5773503 -0.5773503 0.5773503 -0.5773503 -0.5773503</float_array>
+          <technique_common>
+            <accessor source="#HeadDiamondSmall-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadDiamondSmall-mesh-map">
+          <float_array id="HeadDiamondSmall-mesh-map-array" count="48">0.947271 0.99701 0.948683 0.991365 0.94586 0.991365 0.950094 0.99701 0.951505 0.991365 0.948683 0.991365 0.941626 0.99701 0.943038 0.991365 0.940215 0.991365 0.944449 0.99701 0.94586 0.991365 0.943038 0.991365 0.947271 0.98572 0.94586 0.991365 0.948683 0.991365 0.950094 0.98572 0.948683 0.991365 0.951505 0.991365 0.941626 0.98572 0.940215 0.991365 0.943038 0.991365 0.944449 0.98572 0.943038 0.991365 0.94586 0.991365</float_array>
+          <technique_common>
+            <accessor source="#HeadDiamondSmall-mesh-map-array" count="24" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadDiamondSmall-mesh-vertices">
+          <input semantic="POSITION" source="#HeadDiamondSmall-mesh-positions" />
+        </vertices>
+        <triangles count="8">
+          <input semantic="VERTEX" source="#HeadDiamondSmall-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadDiamondSmall-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadDiamondSmall-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 1 3 1 1 5 3 1 4 0 2 6 3 2 8 4 2 7 0 3 9 4 3 11 2 3 10 5 4 12 1 4 14 2 4 13 5 5 15 3 5 17 1 5 16 5 6 18 4 6 20 3 6 19 5 7 21 2 7 23 4 7 22</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadCylinderSmall-mesh" name="HeadCylinderSmall">
+      <mesh>
+        <source id="HeadCylinderSmall-mesh-positions">
+          <float_array id="HeadCylinderSmall-mesh-positions-array" count="54">0 -0 -0.698431 12.281858 -0 -0.698431 8.684586 8.684587 -0.698431 -1E-06 12.281858 -0.698431 -8.684586 8.684587 -0.698431 -12.281858 -1E-06 -0.698431 -8.684585 -8.684587 -0.698431 0 -12.281858 -0.698431 8.684585 -8.684587 -0.698431 7.854201 -0 8.747646 5.55376 5.55376 8.747646 -0 7.854202 8.747646 -5.55376 5.55376 8.747646 -7.854201 -1E-06 8.747646 -5.553759 -5.55376 8.747646 0 -7.854203 8.747646 5.553759 -5.55376 8.747646 0 -0 8.747646</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderSmall-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadCylinderSmall-mesh-normals">
+          <float_array id="HeadCylinderSmall-mesh-normals-array" count="30">0 0 -1 0.905466 -0 0.424419 0.64026105 0.64026105 0.42441905 -0 0.905466 0.424419 -0.64026105 0.64026105 0.42441905 -0.905466 -0 0.424419 -0.64026105 -0.64026105 0.42441905 0 -0.905466 0.424419 0.64026105 -0.64026105 0.42441905 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderSmall-mesh-normals-array" count="10" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadCylinderSmall-mesh-map">
+          <float_array id="HeadCylinderSmall-mesh-map-array" count="192">0.947679 0.990627 0.949666 0.990627 0.950659 0.990627 0.947679 0.990627 0.942713 0.990627 0.943706 0.990627 0.947679 0.990627 0.943706 0.990627 0.9447 0.990627 0.947679 0.990627 0.9447 0.990627 0.945693 0.990627 0.947679 0.990627 0.945693 0.990627 0.946686 0.990627 0.947679 0.990627 0.946686 0.990627 0.947679 0.990627 0.947679 0.990627 0.947679 0.990627 0.948672 0.990627 0.947679 0.990627 0.948672 0.990627 0.949666 0.990627 0.949666 0.990627 0.949666 0.998573 0.950659 0.998573 0.949666 0.990627 0.950659 0.998573 0.950659 0.990627 0.942713 0.990627 0.942713 0.998573 0.943706 0.998573 0.942713 0.990627 0.943706 0.998573 0.943706 0.990627 0.943706 0.990627 0.943706 0.998573 0.9447 0.998573 0.943706 0.990627 0.9447 0.998573 0.9447 0.990627 0.9447 0.990627 0.9447 0.998573 0.945693 0.998573 0.9447 0.990627 0.945693 0.998573 0.945693 0.990627 0.945693 0.990627 0.945693 0.998573 0.946686 0.998573 0.945693 0.990627 0.946686 0.998573 0.946686 0.990627 0.946686 0.990627 0.946686 0.998573 0.947679 0.998573 0.946686 0.990627 0.947679 0.998573 0.947679 0.990627 0.947679 0.990627 0.947679 0.998573 0.948672 0.998573 0.947679 0.990627 0.948672 0.998573 0.948672 0.990627 0.948672 0.990627 0.948672 0.998573 0.949666 0.998573 0.948672 0.990627 0.949666 0.998573 0.949666 0.990627 0.947679 0.998573 0.950659 0.998573 0.949666 0.998573 0.947679 0.998573 0.943706 0.998573 0.942713 0.998573 0.947679 0.998573 0.9447 0.998573 0.943706 0.998573 0.947679 0.998573 0.945693 0.998573 0.9447 0.998573 0.947679 0.998573 0.946686 0.998573 0.945693 0.998573 0.947679 0.998573 0.947679 0.998573 0.946686 0.998573 0.947679 0.998573 0.948672 0.998573 0.947679 0.998573 0.947679 0.998573 0.949666 0.998573 0.948672 0.998573</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderSmall-mesh-map-array" count="96" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadCylinderSmall-mesh-vertices">
+          <input semantic="POSITION" source="#HeadCylinderSmall-mesh-positions" />
+        </vertices>
+        <triangles count="32">
+          <input semantic="VERTEX" source="#HeadCylinderSmall-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadCylinderSmall-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadCylinderSmall-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 10 2 26 9 1 25 1 1 27 2 2 29 10 2 28 2 2 30 11 3 32 10 2 31 2 2 33 3 3 35 11 3 34 3 3 36 12 4 38 11 3 37 3 3 39 4 4 41 12 4 40 4 4 42 13 5 44 12 4 43 4 4 45 5 5 47 13 5 46 5 5 48 14 6 50 13 5 49 5 5 51 6 6 53 14 6 52 6 6 54 15 7 56 14 6 55 6 6 57 7 7 59 15 7 58 7 7 60 16 8 62 15 7 61 7 7 63 8 8 65 16 8 64 8 8 66 9 1 68 16 8 67 8 8 69 1 1 71 9 1 70 17 9 72 9 9 74 10 9 73 17 9 75 10 9 77 11 9 76 17 9 78 11 9 80 12 9 79 17 9 81 12 9 83 13 9 82 17 9 84 13 9 86 14 9 85 17 9 87 14 9 89 15 9 88 17 9 90 15 9 92 16 9 91 17 9 93 16 9 95 9 9 94</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadSphere-mesh" name="HeadSphere">
+      <mesh>
+        <source id="HeadSphere-mesh-positions">
+          <float_array id="HeadSphere-mesh-positions-array" count="54">0 0 13.559884 0 9.588285 9.588285 9.588285 0 9.588285 9.588285 9.588285 0 13.559884 0 0 0 13.559884 0 -9.588285 0 9.588285 -9.588285 9.588285 0 -13.559884 0 0 0 -9.588285 9.588285 -9.588285 -9.588285 0 0 -13.559884 0 9.588285 -9.588285 0 0 0 -13.559884 9.588285 0 -9.588285 0 9.588285 -9.588285 -9.588285 0 -9.588285 0 -9.588285 -9.588285</float_array>
+          <technique_common>
+            <accessor source="#HeadSphere-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadSphere-mesh-normals">
+          <float_array id="HeadSphere-mesh-normals-array" count="54">0 0 1 0 0.7071068 0.7071068 0.7071068 -0 0.7071068 0.7071068 0.7071068 -0 1 0 0 0 1 0 -0.7071068 0 0.7071068 -0.7071068 0.7071068 -0 -1 0 0 0 -0.7071068 0.7071068 -0.7071068 -0.7071068 -0 0 -1 0 0.7071068 -0.7071068 -0 0 0 -1 0.7071068 0 -0.7071068 -0 0.7071068 -0.7071068 -0.7071068 -0 -0.7071068 0 -0.7071068 -0.7071068</float_array>
+          <technique_common>
+            <accessor source="#HeadSphere-mesh-normals-array" count="18" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadSphere-mesh-map">
+          <float_array id="HeadSphere-mesh-map-array" count="192">0.949312 0.996377 0.950472 0.994057 0.948152 0.994057 0.948152 0.994057 0.949312 0.991737 0.948152 0.991737 0.948152 0.994057 0.950472 0.994057 0.949312 0.991737 0.950472 0.994057 0.950472 0.991737 0.949312 0.991737 0.951632 0.996377 0.952792 0.994057 0.950472 0.994057 0.950472 0.994057 0.951632 0.991737 0.950472 0.991737 0.950472 0.994057 0.952792 0.994057 0.951632 0.991737 0.952792 0.994057 0.952792 0.991737 0.951632 0.991737 0.944672 0.996377 0.945832 0.994057 0.943512 0.994057 0.943512 0.994057 0.944672 0.991737 0.943512 0.991737 0.943512 0.994057 0.945832 0.994057 0.944672 0.991737 0.945832 0.994057 0.945832 0.991737 0.944672 0.991737 0.946992 0.996377 0.948152 0.994057 0.945832 0.994057 0.945832 0.994057 0.946992 0.991737 0.945832 0.991737 0.945832 0.994057 0.948152 0.994057 0.946992 0.991737 0.948152 0.994057 0.948152 0.991737 0.946992 0.991737 0.949312 0.987097 0.948152 0.989417 0.950472 0.989417 0.950472 0.989417 0.949312 0.991737 0.950472 0.991737 0.950472 0.989417 0.948152 0.989417 0.949312 0.991737 0.948152 0.989417 0.948152 0.991737 0.949312 0.991737 0.951632 0.987097 0.950472 0.989417 0.952792 0.989417 0.952792 0.989417 0.951632 0.991737 0.952792 0.991737 0.952792 0.989417 0.950472 0.989417 0.951632 0.991737 0.950472 0.989417 0.950472 0.991737 0.951632 0.991737 0.944672 0.987097 0.943512 0.989417 0.945832 0.989417 0.945832 0.989417 0.944672 0.991737 0.945832 0.991737 0.945832 0.989417 0.943512 0.989417 0.944672 0.991737 0.943512 0.989417 0.943512 0.991737 0.944672 0.991737 0.946992 0.987097 0.945832 0.989417 0.948152 0.989417 0.948152 0.989417 0.946992 0.991737 0.948152 0.991737 0.948152 0.989417 0.945832 0.989417 0.946992 0.991737 0.945832 0.989417 0.945832 0.991737 0.946992 0.991737</float_array>
+          <technique_common>
+            <accessor source="#HeadSphere-mesh-map-array" count="96" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadSphere-mesh-vertices">
+          <input semantic="POSITION" source="#HeadSphere-mesh-positions" />
+        </vertices>
+        <triangles count="32">
+          <input semantic="VERTEX" source="#HeadSphere-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadSphere-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadSphere-mesh-map" offset="2" />
+          <p>0 0 0 2 2 2 1 1 1 2 2 3 4 4 5 3 3 4 2 2 6 3 3 8 1 1 7 1 1 9 3 3 11 5 5 10 0 0 12 1 1 14 6 6 13 1 1 15 5 5 17 7 7 16 1 1 18 7 7 20 6 6 19 6 6 21 7 7 23 8 8 22 0 0 24 6 6 26 9 9 25 6 6 27 8 8 29 10 10 28 6 6 30 10 10 32 9 9 31 9 9 33 10 10 35 11 11 34 0 0 36 9 9 38 2 2 37 9 9 39 11 11 41 12 12 40 9 9 42 12 12 44 2 2 43 2 2 45 12 12 47 4 4 46 13 13 48 15 15 50 14 14 49 15 15 51 5 5 53 3 3 52 15 15 54 3 3 56 14 14 55 14 14 57 3 3 59 4 4 58 13 13 60 16 16 62 15 15 61 16 16 63 8 8 65 7 7 64 16 16 66 7 7 68 15 15 67 15 15 69 7 7 71 5 5 70 13 13 72 17 17 74 16 16 73 17 17 75 11 11 77 10 10 76 17 17 78 10 10 80 16 16 79 16 16 81 10 10 83 8 8 82 13 13 84 14 14 86 17 17 85 14 14 87 4 4 89 12 12 88 14 14 90 12 12 92 17 17 91 17 17 93 12 12 95 11 11 94</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="HeadCylinderFlat-mesh" name="HeadCylinderFlat">
+      <mesh>
+        <source id="HeadCylinderFlat-mesh-positions">
+          <float_array id="HeadCylinderFlat-mesh-positions-array" count="54">-0 0 -0.698431 13.857599 0 -0.698431 9.798802 9.798803 -0.698431 -1E-06 13.857599 -0.698431 -9.798802 9.798802 -0.698431 -13.857599 -1E-06 -0.698431 -9.7988 -9.798804 -0.698431 0 -13.857599 -0.698431 9.7988 -9.798804 -0.698431 11.384504 -1E-06 4.264317 8.050059 8.050062 4.264317 -1E-06 11.384504 4.264317 -8.050059 8.05006 4.264317 -11.384504 -1E-06 4.264317 -8.050059 -8.050062 4.264317 0 -11.384506 4.264317 8.05006 -8.050061 4.264317 0 -0 4.264317</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderFlat-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadCylinderFlat-mesh-normals">
+          <float_array id="HeadCylinderFlat-mesh-normals-array" count="33">0 0 -1 0.8950236 -0 0.4460188 0.6328772 0.6328772 0.4460191 -0 0.8950236 0.4460188 -0.6328772 0.6328772 0.4460191 -0.8950236 -0 0.4460188 -0.6328772 -0.6328772 0.4460191 0 -0.8950236 0.4460188 0 -0.895024 0.446018 0.6328772 -0.6328772 0.4460191 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderFlat-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HeadCylinderFlat-mesh-map">
+          <float_array id="HeadCylinderFlat-mesh-map-array" count="192">0.947679 0.990627 0.949666 0.990627 0.950659 0.990627 0.947679 0.990627 0.942713 0.990627 0.943706 0.990627 0.947679 0.990627 0.943706 0.990627 0.9447 0.990627 0.947679 0.990627 0.9447 0.990627 0.945693 0.990627 0.947679 0.990627 0.945693 0.990627 0.946686 0.990627 0.947679 0.990627 0.946686 0.990627 0.947679 0.990627 0.947679 0.990627 0.947679 0.990627 0.948672 0.990627 0.947679 0.990627 0.948672 0.990627 0.949666 0.990627 0.949666 0.990627 0.949666 0.998573 0.950659 0.998573 0.949666 0.990627 0.950659 0.998573 0.950659 0.990627 0.942713 0.990627 0.942713 0.998573 0.943706 0.998573 0.942713 0.990627 0.943706 0.998573 0.943706 0.990627 0.943706 0.990627 0.943706 0.998573 0.9447 0.998573 0.943706 0.990627 0.9447 0.998573 0.9447 0.990627 0.9447 0.990627 0.9447 0.998573 0.945693 0.998573 0.9447 0.990627 0.945693 0.998573 0.945693 0.990627 0.945693 0.990627 0.945693 0.998573 0.946686 0.998573 0.945693 0.990627 0.946686 0.998573 0.946686 0.990627 0.946686 0.990627 0.946686 0.998573 0.947679 0.998573 0.946686 0.990627 0.947679 0.998573 0.947679 0.990627 0.947679 0.990627 0.947679 0.998573 0.948672 0.998573 0.947679 0.990627 0.948672 0.998573 0.948672 0.990627 0.948672 0.990627 0.948672 0.998573 0.949666 0.998573 0.948672 0.990627 0.949666 0.998573 0.949666 0.990627 0.947679 0.998573 0.950659 0.998573 0.949666 0.998573 0.947679 0.998573 0.943706 0.998573 0.942713 0.998573 0.947679 0.998573 0.9447 0.998573 0.943706 0.998573 0.947679 0.998573 0.945693 0.998573 0.9447 0.998573 0.947679 0.998573 0.946686 0.998573 0.945693 0.998573 0.947679 0.998573 0.947679 0.998573 0.946686 0.998573 0.947679 0.998573 0.948672 0.998573 0.947679 0.998573 0.947679 0.998573 0.949666 0.998573 0.948672 0.998573</float_array>
+          <technique_common>
+            <accessor source="#HeadCylinderFlat-mesh-map-array" count="96" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HeadCylinderFlat-mesh-vertices">
+          <input semantic="POSITION" source="#HeadCylinderFlat-mesh-positions" />
+        </vertices>
+        <triangles count="32">
+          <input semantic="VERTEX" source="#HeadCylinderFlat-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#HeadCylinderFlat-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#HeadCylinderFlat-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 10 2 26 9 1 25 1 1 27 2 2 29 10 2 28 2 2 30 11 3 32 10 2 31 2 2 33 3 3 35 11 3 34 3 3 36 12 4 38 11 3 37 3 3 39 4 4 41 12 4 40 4 4 42 13 5 44 12 4 43 4 4 45 5 5 47 13 5 46 5 5 48 14 6 50 13 5 49 5 5 51 6 6 53 14 6 52 6 6 54 15 7 56 14 6 55 6 6 57 7 8 59 15 7 58 7 8 60 16 9 62 15 7 61 7 8 63 8 9 65 16 9 64 8 9 66 9 1 68 16 9 67 8 9 69 1 1 71 9 1 70 17 10 72 9 10 74 10 10 73 17 10 75 10 10 77 11 10 76 17 10 78 11 10 80 12 10 79 17 10 81 12 10 83 13 10 82 17 10 84 13 10 86 14 10 85 17 10 87 14 10 89 15 10 88 17 10 90 15 10 92 16 10 91 17 10 93 16 10 95 9 10 94</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Body" name="Body" type="NODE">
+          <matrix sid="transform">0.00752474 0 0 -1.68E-06 0 0 0.00752474 0 0 -0.00752474 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Body-mesh" name="Body" />
+        </node>
+        <node id="HeadConeSmall" name="HeadConeSmall" type="NODE">
+          <matrix sid="transform">0.00593354 -0.00593354 0 -1.3099999E-06 0 0 0.00752474 0.63831913 -0.00593354 -0.00593354 0 8.8999997E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadConeSmall-mesh" name="HeadConeSmall" />
+        </node>
+        <node id="Fins" name="Fins" type="NODE">
+          <matrix sid="transform">0.00752474 0 0 -1.68E-06 0 0 0.00752474 0 0 -0.00752474 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Fins-mesh" name="Fins" />
+        </node>
+        <node id="HeadCylinderLarge" name="HeadCylinderLarge" type="NODE">
+          <matrix sid="transform">0.00707107 -0.00707107 0 0 0 0 0.01 0.54641235 -0.00707107 -0.00707107 0 -2.9999998E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadCylinderLarge-mesh" name="HeadCylinderLarge" />
+        </node>
+        <node id="HeadConeLarge" name="HeadConeLarge" type="NODE">
+          <matrix sid="transform">0.00593354 -0.00593354 0 -1.3099999E-06 0 0 0.00752474 0.63831913 -0.00593354 -0.00593354 0 8.8999997E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadConeLarge-mesh" name="HeadConeLarge" />
+        </node>
+        <node id="HeadDiamondLarge" name="HeadDiamondLarge" type="NODE">
+          <matrix sid="transform">0.0069525097 -0.0069525097 0 -1.2E-07 0 0 0.009832329 0.5921613 -0.0069525097 -0.0069525097 0 -2.9999998E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadDiamondLarge-mesh" name="HeadDiamondLarge" />
+        </node>
+        <node id="HeadDiamondSmall" name="HeadDiamondSmall" type="NODE">
+          <matrix sid="transform">0.00512133 -0.00512133 0 -1.2E-07 0 0 0.0072426596 0.5467167 -0.00512133 -0.00512133 0 -2.9999998E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadDiamondSmall-mesh" name="HeadDiamondSmall" />
+        </node>
+        <node id="HeadCylinderSmall" name="HeadCylinderSmall" type="NODE">
+          <matrix sid="transform">0.0061124996 -0.0061124996 0 -1.2E-07 0 0 0.00804856 0.5522425 -0.0061124996 -0.0061124996 0 -2.9999998E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadCylinderSmall-mesh" name="HeadCylinderSmall" />
+        </node>
+        <node id="HeadSphere" name="HeadSphere" type="NODE">
+          <matrix sid="transform">0.00707107 -0.00707107 0 -1.2E-07 0 0 0.01 0.6203164 -0.00707107 -0.00707107 0 -2.9999998E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadSphere-mesh" name="HeadSphere" />
+        </node>
+        <node id="HeadCylinderFlat" name="HeadCylinderFlat" type="NODE">
+          <matrix sid="transform">0.00707107 -0.00707107 0 0 0 0 0.01 0.54641235 -0.00707107 -0.00707107 0 -2.9999998E-07 0 0 0 1</matrix>
+          <instance_geometry url="#HeadCylinderFlat-mesh" name="HeadCylinderFlat" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

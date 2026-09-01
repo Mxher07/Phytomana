@@ -1,0 +1,8 @@
+﻿<Project>
+    <PropertyGroup>
+        <TargetFramework>net10.0-android</TargetFramework>
+        <RuntimeIdentifier>android-arm64</RuntimeIdentifier>
+        <SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
+        <DefineConstants>$(DefineConstants);MOBILE</DefineConstants>
+    </PropertyGroup>
+</Project>

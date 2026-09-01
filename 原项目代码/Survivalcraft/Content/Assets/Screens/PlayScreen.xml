@@ -1,0 +1,35 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[PlayScreen:1]" />
+    </CanvasWidget>
+
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+      <CanvasWidget Size="Infinity, 10" />
+
+      <StackPanelWidget Direction="Vertical">
+        <CanvasWidget Margin="10, 0">
+          <BevelledRectangleWidget Style="{Styles/Area}" />
+          <ListPanelWidget Name="WorldsList" Direction="Vertical" HorizontalAlignment="Center" Margin="3, 3" ItemSize="56" SelectionColor="10, 70, 0, 90"/>
+        </CanvasWidget>
+      </StackPanelWidget>
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="4, 10">
+        <BevelledButtonWidget Name="Play" Style="{Styles/ButtonStyle_310x60}" Text="[PlayScreen:2]" VerticalAlignment="Center" >
+          <BevelledRectangleWidget Name="BevelledButton.Rectangle" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+        </BevelledButtonWidget>
+        <BevelledButtonWidget Name="NewWorld" Style="{Styles/ButtonStyle_310x60}" Text="[PlayScreen:3]" VerticalAlignment="Center" />
+        <CanvasWidget Size="Infinity, 0" />
+        <BevelledButtonWidget Name="Properties" Style="{Styles/ButtonStyle_160x60}" Text="[PlayScreen:4]" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+
+</Screen>

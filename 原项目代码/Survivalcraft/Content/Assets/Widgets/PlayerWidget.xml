@@ -1,0 +1,20 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Size="150, 150" VerticalAlignment="Center">
+      <BevelledButtonWidget Name="EditButton"/>
+      <PlayerModelWidget Name="PlayerModel" CameraShot="Bust" HorizontalAlignment="Center" VerticalAlignment="Center" ClampToBounds="true" Margin="10, 10"/>
+    </CanvasWidget>
+
+    <CanvasWidget Size="30, 0"/>
+
+    <StackPanelWidget Direction="Vertical" VerticalAlignment="Center">
+      <LabelWidget Name="Name"/>
+      <CanvasWidget Size="0, 2"/>
+      <LabelWidget Name="Details" FontSpacing="0, 2" Color="128, 128, 128, 128" />
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+
+</CanvasWidget>

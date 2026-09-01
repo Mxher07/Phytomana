@@ -1,0 +1,64 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Horizontal">
+
+    <CanvasWidget Style="{Widgets/TopBarContents}" >
+      <LabelWidget Name="TopBar.Label" Text="[NewWorldScreen:1]" />
+    </CanvasWidget>
+    
+    <StackPanelWidget Direction="Vertical" VerticalAlignment="Center" Margin="10, 5">
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[NewWorldScreen:2]" Margin="10, 0"/>
+        <CanvasWidget VerticalAlignment="Center" Size="Infinity, 50" Margin="9, 5" >
+          <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+          <TextBoxWidget Name="Name" Title="[NewWorldScreen:2]" Size="Infinity, 50" VerticalAlignment="Center" MaximumLength="14" Margin="10, 0" />
+        </CanvasWidget>
+      </UniformSpacingPanelWidget>
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[NewWorldScreen:3]" Margin="10, 0" />
+        <StackPanelWidget>
+          <CanvasWidget VerticalAlignment="Center" Size="Infinity, 50" Margin="9, 5">
+            <BevelledRectangleWidget Style="{Styles/TextBoxArea}" />
+            <TextBoxWidget Name="Seed" Title="[NewWorldScreen:11]" Description="[NewWorldScreen:12]" Size="380, 50" VerticalAlignment="Center" MaximumLength="14" Margin="10, 0" />
+            <LabelWidget Name="BlankSeed" HorizontalAlignment="Center" VerticalAlignment="Center" Text="[NewWorldScreen:4]" Color="96, 96, 96"/>
+          </CanvasWidget>
+          <BevelledButtonWidget Name="SeedButton" VerticalAlignment="Center" Text="..." Style="{Styles/ButtonStyle_70x60}" Margin="10, 0" />
+        </StackPanelWidget>
+
+      </UniformSpacingPanelWidget>
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[NewWorldScreen:5]" Margin="10, 0" />
+        <BevelledButtonWidget Name="GameMode" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="5, 0" />
+      </UniformSpacingPanelWidget>
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[NewWorldScreen:6]" Margin="10, 0" />
+        <BevelledButtonWidget Name="StartingPosition" Style="{Styles/ButtonStyle_310x60}" VerticalAlignment="Center" Margin="5, 0" />
+      </UniformSpacingPanelWidget>
+
+      <UniformSpacingPanelWidget Direction="Horizontal" VerticalAlignment="Center">
+        <LabelWidget HorizontalAlignment="Far" VerticalAlignment="Center" Text="[NewWorldScreen:7]" Margin="10, 0" />
+        <BevelledButtonWidget Name="WorldOptions" Style="{Styles/ButtonStyle_310x60}" Text="[NewWorldScreen:8]" VerticalAlignment="Center" Margin="5, 0" />
+      </UniformSpacingPanelWidget>
+
+      <CanvasWidget Size="Infinity, Infinity">
+        <LabelWidget Name="Description" HorizontalAlignment="Center" VerticalAlignment="Center" TextAnchor="HorizontalCenter, VerticalCenter" Color="128, 128, 128" WordWrap="true" Margin="10, 0" />
+      </CanvasWidget>
+
+      <CanvasWidget HorizontalAlignment="Center" Margin="0, 2">
+        <LabelWidget Name="Error" Text="[NewWorldScreen:9]" Color="255, 0, 0" VerticalAlignment="Far" HorizontalAlignment="Center" />
+        <BevelledButtonWidget Name="Play" Style="{Styles/ButtonStyle_310x60}" Text="[NewWorldScreen:10]" VerticalAlignment="Far" HorizontalAlignment="Center">
+          <BevelledRectangleWidget Name="BevelledButton.Rectangle" CenterColor="50, 150, 35" BevelColor="50, 150, 35" />
+        </BevelledButtonWidget>
+      </CanvasWidget>
+
+    </StackPanelWidget>
+
+  </StackPanelWidget>
+
+</Screen>

@@ -1,0 +1,43 @@
+name: Build iOS Debug IPA
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: macos-26  # macOS ARM64 runner
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install MAUI workload
+      run: dotnet workload install maui ios
+
+    - name: Install certificate to keychain
+      run: |
+        security create-keychain -p "1" build.keychain
+        security default-keychain -s build.keychain
+        security unlock-keychain -p "1" build.keychain
+        security import Survivalcraft.IOS/app.p12 -k build.keychain -P "1" -A
+
+    - name: Install Provisioning Profile
+      run: |
+        mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+        cp Survivalcraft.IOS/app.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
+
+    - name: Archive ContentPak
+      run: |
+        cd Survivalcraft/Content
+        zip -r ../Content.zip *
+        cd ../../
+
+    - name: Build IPA
+      run: |
+        dotnet publish "Survivalcraft.IOS/Survivalcraft.IOS.csproj" -c Debug -p:CodesignKey="Apple Development: 1144822034@qq.com (YZ3PDQZTKN)" -p:CodesignProvision=dac32268-04a1-4a17-8304-143d0ce4c49e -p:RuntimeIdentifier=ios-arm64 -nowarn:CS8618,CS8765,CS8625,CS8600,CS8602,CS8603 /p:Codesign=false /p:EnableCodeSigning=false
+
+    - name: Upload IPA artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: Survivalcraft.ipa
+        path: "Survivalcraft.IOS/bin/Debug/net10.0-ios/ios-arm64/publish/Survivalcraft.ipa"

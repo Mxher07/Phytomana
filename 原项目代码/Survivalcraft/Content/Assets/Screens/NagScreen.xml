@@ -1,0 +1,29 @@
+<Screen xmlns="runtime-namespace:Game">
+
+  <PanoramaWidget />
+
+  <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+    <CanvasWidget />
+
+    <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="0, 5">
+      <LabelWidget HorizontalAlignment="Center" Text="[NagScreen:1]"/>
+      <LabelWidget HorizontalAlignment="Center" Text="[NagScreen:2]" Color="0, 180, 0"/>
+      <LabelWidget HorizontalAlignment="Center" Text="[NagScreen:3]"/>
+    </StackPanelWidget>
+    
+    <LabelWidget HorizontalAlignment="Center" Text="[NagScreen:4]" Margin="0, 5"/>
+
+    <StackPanelWidget HorizontalAlignment="Center" VerticalAlignment="Far" Direction="Horizontal" Margin="0, 20">
+      <BevelledButtonWidget Name="Buy" Style="{Styles/ButtonStyle_160x60}" Text="[NagScreen:5]" Margin="40, 0" />
+      <BevelledButtonWidget Name="Quit" Style="{Styles/ButtonStyle_160x60}" Text="[NagScreen:6]" Margin="40, 0" />
+    </StackPanelWidget>
+
+    <LabelWidget Name="QuitLabel_Wp81" HorizontalAlignment="Center" Text="[NagScreen:7]" Margin="0, 60"/>
+    <LabelWidget Name="QuitLabel_Win81" HorizontalAlignment="Center" Text="[NagScreen:8]" Margin="0, 60"/>
+
+    <CanvasWidget />
+
+  </StackPanelWidget>
+
+</Screen>

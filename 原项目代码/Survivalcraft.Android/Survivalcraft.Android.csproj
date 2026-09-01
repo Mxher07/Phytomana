@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Survivalcraft\Survivalcraft.props" />
+    <Import Project="..\build\Android.props" />
+    <PropertyGroup>
+        <NoWarn>$(NoWarn);XA0141;XA4301;NU1605</NoWarn>
+        <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+        <AndroidApplication>true</AndroidApplication>
+        <ApplicationId>com.candy.SurvivalcraftAPI1_8</ApplicationId>
+        <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
+        <AndroidUseDesignerAssembly>true</AndroidUseDesignerAssembly>
+        <!--签名-->
+        <AndroidKeyStore>true</AndroidKeyStore>
+        <AndroidSigningKeyAlias>androiddebugkey</AndroidSigningKeyAlias>
+        <AndroidSigningKeyStore>Signing.keystore</AndroidSigningKeyStore>
+        <AndroidSigningStorePass>android</AndroidSigningStorePass>
+        <AndroidSigningKeyPass>android</AndroidSigningKeyPass>
+        <!--优化-->
+        <PublishTrimmed>false</PublishTrimmed><!--切记不要修改，如果修改会导致运行时不完整-->
+        <TrimMode>partial</TrimMode>
+        <AndroidDexTool>d8</AndroidDexTool>
+        <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+        <AndroidLinkMode>None</AndroidLinkMode>
+        <AndroidLintEnabled>false</AndroidLintEnabled>
+        <AndroidStripILAfterAOT>true</AndroidStripILAfterAOT>
+        <AndroidUseInterpreter>false</AndroidUseInterpreter>
+        <EnableLLVM>true</EnableLLVM>
+        <RunAOTCompilation>false</RunAOTCompilation>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\EntitySystem.Android\EntitySystem.Android.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MonoMod.Core" Version="1.3.3-daily.26.3.1.2.1" /><!--Source: https://github.com/XiaofengdiZhu/MonoMod.Android/ -->
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidAsset Include="..\Survivalcraft\Content.zip">
+            <Link>Assets\Content.zip</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AndroidAsset>
+        <AndroidAsset Include="..\Survivalcraft\init.js">
+            <Link>Assets\init.js</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AndroidAsset>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="MainActivity.cs"/>
+        <Compile Include="ImportExternalContentActivity.cs"/>
+    </ItemGroup>
+</Project>

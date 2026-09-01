@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Keg-mesh" name="Keg">
+      <mesh>
+        <source id="Keg-mesh-positions">
+          <float_array id="Keg-mesh-positions-array" count="78">0 -1E-06 0.051193 16.781557 -1E-06 0.051193 11.866352 11.866352 0.051193 -1E-06 16.781555 0.051193 -11.866352 11.866352 0.051193 -16.781557 -2E-06 0.051193 -11.866349 -11.866355 0.051197 0 -16.781559 0.051197 11.866351 -11.866353 0.051197 19.64538 -1E-06 21.760838 13.891381 13.891382 21.760838 -1E-06 19.645378 21.760838 -13.891381 13.891382 21.760838 -19.64538 -2E-06 21.760838 -13.891377 -13.891383 21.760838 0 -19.645382 21.760838 13.891379 -13.891382 21.760838 16.636086 -1E-06 43.470478 11.763489 11.76349 43.470478 -0 16.636082 43.470478 -11.763489 11.76349 43.470478 -16.636086 -2E-06 43.470478 -11.763485 -11.763489 43.470478 0 -16.636087 43.470478 11.763487 -11.763489 43.470478 0 -1E-06 43.470478</float_array>
+          <technique_common>
+            <accessor source="#Keg-mesh-positions-array" count="26" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Keg-mesh-normals">
+          <float_array id="Keg-mesh-normals-array" count="66">0 0 -1 0.91709375 0.37987292 -0.12097797 0.37987292 0.91709375 -0.12097797 -0.37987292 0.91709375 -0.12097797 -0.91709375 0.37987292 -0.12097797 -0.91709375 -0.37987292 -0.12097797 -0.37987292 -0.91709375 -0.12097797 0.37987292 -0.91709375 -0.12097797 0.91709375 -0.37987292 -0.12097797 0.91639555 0.37958324 0.12702708 0.9163957 0.37958285 0.12702696 0.37958285 0.9163957 0.12702696 0.37958324 0.91639555 0.12702708 -0.37958285 0.9163957 0.12702696 -0.37958324 0.91639555 0.12702708 -0.9163957 0.37958285 0.12702696 -0.91639555 0.37958324 0.12702708 -0.91639525 -0.3795841 0.12702703 -0.3795841 -0.91639525 0.12702703 0.3795841 -0.91639525 0.12702703 0.91639525 -0.3795841 0.12702703 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Keg-mesh-normals-array" count="22" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Keg-mesh-map">
+          <float_array id="Keg-mesh-map-array" count="288">0.859375 0.765625 0.859375 0.75 0.871094 0.753906 0.859375 0.765625 0.871094 0.753906 0.875 0.765625 0.859375 0.765625 0.875 0.765625 0.871094 0.777344 0.859375 0.765625 0.871094 0.777344 0.859375 0.78125 0.859375 0.765625 0.859375 0.78125 0.847656 0.777344 0.859375 0.765625 0.847656 0.777344 0.84375 0.765625 0.859375 0.765625 0.84375 0.765625 0.847656 0.753906 0.859375 0.765625 0.847656 0.753906 0.859375 0.75 0.828125 0.75 0.828125 0.78125 0.84375 0.78125 0.828125 0.75 0.84375 0.78125 0.84375 0.75 0.8125 0.75 0.8125 0.78125 0.828125 0.78125 0.8125 0.75 0.828125 0.78125 0.828125 0.75 0.828125 0.75 0.828125 0.78125 0.84375 0.78125 0.828125 0.75 0.84375 0.78125 0.84375 0.75 0.8125 0.75 0.8125 0.78125 0.828125 0.78125 0.8125 0.75 0.828125 0.78125 0.828125 0.75 0.828125 0.75 0.828125 0.78125 0.84375 0.78125 0.828125 0.75 0.84375 0.78125 0.84375 0.75 0.8125 0.75 0.8125 0.78125 0.828125 0.78125 0.8125 0.75 0.828125 0.78125 0.828125 0.75 0.828125 0.75 0.828125 0.78125 0.84375 0.78125 0.828125 0.75 0.84375 0.78125 0.84375 0.75 0.8125 0.75 0.8125 0.78125 0.828125 0.78125 0.8125 0.75 0.828125 0.78125 0.828125 0.75 0.828125 0.78125 0.828125 0.8125 0.84375 0.8125 0.828125 0.78125 0.84375 0.8125 0.84375 0.78125 0.8125 0.78125 0.8125 0.8125 0.828125 0.8125 0.8125 0.78125 0.828125 0.8125 0.828125 0.78125 0.828125 0.78125 0.828125 0.8125 0.84375 0.8125 0.828125 0.78125 0.84375 0.8125 0.84375 0.78125 0.8125 0.78125 0.8125 0.8125 0.828125 0.8125 0.8125 0.78125 0.828125 0.8125 0.828125 0.78125 0.828125 0.78125 0.828125 0.8125 0.84375 0.8125 0.828125 0.78125 0.84375 0.8125 0.84375 0.78125 0.8125 0.78125 0.8125 0.8125 0.828125 0.8125 0.8125 0.78125 0.828125 0.8125 0.828125 0.78125 0.828125 0.78125 0.828125 0.8125 0.84375 0.8125 0.828125 0.78125 0.84375 0.8125 0.84375 0.78125 0.8125 0.78125 0.8125 0.8125 0.828125 0.8125 0.8125 0.78125 0.828125 0.8125 0.828125 0.78125 0.859375 0.796875 0.871094 0.785156 0.859375 0.78125 0.859375 0.796875 0.875 0.796875 0.871094 0.785156 0.859375 0.796875 0.871094 0.808594 0.875 0.796875 0.859375 0.796875 0.859375 0.8125 0.871094 0.808594 0.859375 0.796875 0.847656 0.808594 0.859375 0.8125 0.859375 0.796875 0.84375 0.796875 0.847656 0.808594 0.859375 0.796875 0.847656 0.785156 0.84375 0.796875 0.859375 0.796875 0.859375 0.78125 0.847656 0.785156</float_array>
+          <technique_common>
+            <accessor source="#Keg-mesh-map-array" count="144" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Keg-mesh-vertices">
+          <input semantic="POSITION" source="#Keg-mesh-positions" />
+        </vertices>
+        <triangles count="48">
+          <input semantic="VERTEX" source="#Keg-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Keg-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Keg-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 10 1 26 9 1 25 1 1 27 2 1 29 10 1 28 2 2 30 11 2 32 10 2 31 2 2 33 3 2 35 11 2 34 3 3 36 12 3 38 11 3 37 3 3 39 4 3 41 12 3 40 4 4 42 13 4 44 12 4 43 4 4 45 5 4 47 13 4 46 5 5 48 14 5 50 13 5 49 5 5 51 6 5 53 14 5 52 6 6 54 15 6 56 14 6 55 6 6 57 7 6 59 15 6 58 7 7 60 16 7 62 15 7 61 7 7 63 8 7 65 16 7 64 8 8 66 9 8 68 16 8 67 8 8 69 1 8 71 9 8 70 9 9 72 18 9 74 17 9 73 9 9 75 10 10 77 18 9 76 10 11 78 19 11 80 18 11 79 10 12 81 11 11 83 19 12 82 11 13 84 20 13 86 19 13 85 11 14 87 12 13 89 20 13 88 12 15 90 21 16 92 20 15 91 12 16 93 13 16 95 21 16 94 13 17 96 22 17 98 21 17 97 13 17 99 14 17 101 22 17 100 14 18 102 23 18 104 22 18 103 14 18 105 15 18 107 23 18 106 15 19 108 24 19 110 23 19 109 15 19 111 16 19 113 24 19 112 16 20 114 17 20 116 24 20 115 16 20 117 9 20 119 17 20 118 25 21 120 17 21 122 18 21 121 25 21 123 18 21 125 19 21 124 25 21 126 19 21 128 20 21 127 25 21 129 20 21 131 21 21 130 25 21 132 21 21 134 22 21 133 25 21 135 22 21 137 23 21 136 25 21 138 23 21 140 24 21 139 25 21 141 24 21 143 17 21 142</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Fuse-mesh" name="Fuse">
+      <mesh>
+        <source id="Fuse-mesh-positions">
+          <float_array id="Fuse-mesh-positions-array" count="24">-5 -5 0 5 5 0 -5 5 0 5 -5 0 -5 -5 10 5 5 10 5 -5 10 -5 5 10</float_array>
+          <technique_common>
+            <accessor source="#Fuse-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Fuse-mesh-normals">
+          <float_array id="Fuse-mesh-normals-array" count="18">0 0 -1 0 0 1 0 -1 0 1 0 0 0 1 0 -1 0 0</float_array>
+          <technique_common>
+            <accessor source="#Fuse-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Fuse-mesh-map">
+          <float_array id="Fuse-mesh-map-array" count="72">1 0 0 1 1 1 0 1 1 0 0 0 0 0 1 1 1 0 1 1 0 0 0 1 0 0 1 1 1 0 1 1 0 0 0 1 0 0 1 1 1 0 1 1 0 0 0 1 0 0 1 1 1 0 1 1 0 0 0 1 0 0 1 1 1 0 1 1 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Fuse-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Fuse-mesh-vertices">
+          <input semantic="POSITION" source="#Fuse-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#Fuse-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Fuse-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Fuse-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 3 3 18 1 3 20 5 3 19 5 3 21 6 3 23 3 3 22 1 4 24 2 4 26 7 4 25 7 4 27 5 4 29 1 4 28 2 5 30 0 5 32 4 5 31 4 5 33 7 5 35 2 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Keg" name="Keg" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Keg-mesh" name="Keg" />
+        </node>
+        <node id="Fuse" name="Fuse" type="NODE">
+          <matrix sid="transform">0.01 0 0 0.09228876 0 0 0.01 0.43257204 0 -0.01 0 0.02355655 0 0 0 1</matrix>
+          <instance_geometry url="#Fuse-mesh" name="Fuse" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

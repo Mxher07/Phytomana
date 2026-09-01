@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Sides-mesh" name="Sides">
+      <mesh>
+        <source id="Sides-mesh-positions">
+          <float_array id="Sides-mesh-positions-array" count="36">-43.75 -43.75 0 43.75 -43.75 12.5 43.75 -43.75 0 -43.75 -43.75 12.5 43.75 43.75 12.5 43.75 43.75 0 -43.75 43.75 12.5 -43.75 43.75 0 -37.5 37.5 12.5 37.5 37.5 12.5 37.5 -37.5 12.5 -37.5 -37.5 12.5</float_array>
+          <technique_common>
+            <accessor source="#Sides-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sides-mesh-normals">
+          <float_array id="Sides-mesh-normals-array" count="15">0 -1 0 1 0 0 0 1 0 -1 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Sides-mesh-normals-array" count="5" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sides-mesh-map">
+          <float_array id="Sides-mesh-map-array" count="96">6.6E-05 0.996092 0.05462 0.988559 0.05462 0.996092 0.05462 0.988559 6.6E-05 0.996092 6.6E-05 0.988559 6.6E-05 0.996092 0.05462 0.988559 0.05462 0.996092 0.05462 0.988559 6.6E-05 0.996092 6.6E-05 0.988559 0.05462 0.996092 6.6E-05 0.988559 6.6E-05 0.996092 6.6E-05 0.988559 0.05462 0.996092 0.05462 0.988559 0.05462 0.996092 6.6E-05 0.988559 6.6E-05 0.996092 6.6E-05 0.988559 0.05462 0.996092 0.05462 0.988559 0.003935 0.996065 0.054638 0.999965 0.050738 0.996065 0.003935 0.996065 3.5E-05 0.999965 0.054638 0.999965 0.050738 0.996065 0.054638 0.945362 0.050738 0.949262 0.050738 0.996065 0.054638 0.999965 0.054638 0.945362 0.050738 0.949262 3.5E-05 0.945362 0.003935 0.949262 0.050738 0.949262 0.054638 0.945362 3.5E-05 0.945362 0.003935 0.949262 3.5E-05 0.999965 0.003935 0.996065 0.003935 0.949262 3.5E-05 0.945362 3.5E-05 0.999965</float_array>
+          <technique_common>
+            <accessor source="#Sides-mesh-map-array" count="48" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Sides-mesh-vertices">
+          <input semantic="POSITION" source="#Sides-mesh-positions" />
+        </vertices>
+        <triangles count="16">
+          <input semantic="VERTEX" source="#Sides-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Sides-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Sides-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 2 1 6 5 1 8 4 1 7 4 1 9 1 1 11 2 1 10 5 2 12 7 2 14 6 2 13 6 2 15 4 2 17 5 2 16 7 3 18 0 3 20 3 3 19 3 3 21 6 3 23 7 3 22 8 4 24 9 4 26 4 4 25 8 4 27 4 4 29 6 4 28 9 4 30 10 4 32 1 4 31 9 4 33 1 4 35 4 4 34 10 4 36 11 4 38 3 4 37 10 4 39 3 4 41 1 4 40 11 4 42 8 4 44 6 4 43 11 4 45 6 4 47 3 4 46</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Top-mesh" name="Top">
+      <mesh>
+        <source id="Top-mesh-positions">
+          <float_array id="Top-mesh-positions-array" count="12">-37.5375 -37.5375 12.5 37.5375 37.5375 12.5 37.5375 -37.5375 12.5 -37.5375 37.5375 12.5</float_array>
+          <technique_common>
+            <accessor source="#Top-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Top-mesh-normals">
+          <float_array id="Top-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Top-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Top-mesh-map">
+          <float_array id="Top-mesh-map-array" count="12">0.007906 0.945412 0.054595 0.992091 0.054595 0.945412 0.054595 0.992091 0.007906 0.945412 0.007906 0.992091</float_array>
+          <technique_common>
+            <accessor source="#Top-mesh-map-array" count="6" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Top-mesh-vertices">
+          <input semantic="POSITION" source="#Top-mesh-positions" />
+        </vertices>
+        <triangles count="2">
+          <input semantic="VERTEX" source="#Top-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Top-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Top-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Sides" name="Sides" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Sides-mesh" name="Sides" />
+        </node>
+        <node id="Top" name="Top" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Top-mesh" name="Top" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

@@ -1,0 +1,164 @@
+<ClothingWidget xmlns="runtime-namespace:Game" Size="614, 382">
+  <BevelledRectangleWidget BevelSize="3" />
+
+  <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center">
+
+    <CanvasWidget Size="0, 12"/>
+
+    <LabelWidget Name="TitleLabel" Color="255, 255, 255" HorizontalAlignment="Center"/>
+    <CanvasWidget Size="0, 4" />
+    <LabelWidget Text="[VitalStatsWidget:2]" Color="160, 160, 160, 255" HorizontalAlignment="Center" />
+
+    <CanvasWidget Size="0, Infinity"/>
+    
+    <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" >
+
+      <StackPanelWidget Direction="Vertical">
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="HealthLink" Size="110, -1" Text="[VitalStatsWidget:3]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <ValueBarWidget Name="HealthValueBar" LayoutDirection="Horizontal" BarsCount="10" HalfBars="true" BarBlending="false" LitBarColor="160, 32, 0" UnlitBarColor="48, 48, 48, 80" BarSize="14, 28" BarSubtexture="{Textures/Atlas/ProgressBarTall}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="StaminaLink" Size="110, -1" Text="[VitalStatsWidget:4]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <ValueBarWidget Name="StaminaValueBar" LayoutDirection="Horizontal" BarsCount="10" HalfBars="true" BarBlending="false" LitBarColor="0, 128, 0" UnlitBarColor="48, 48, 48, 80" BarSize="14, 28" BarSubtexture="{Textures/Atlas/ProgressBarTall}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="SleepLink" Size="110, -1" Text="[VitalStatsWidget:5]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <ValueBarWidget Name="SleepValueBar" LayoutDirection="Horizontal" BarsCount="10" HalfBars="true" BarBlending="false" LitBarColor="112, 112, 136" UnlitBarColor="48, 48, 48, 80" BarSize="14, 28" BarSubtexture="{Textures/Atlas/ProgressBarTall}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="FoodLink" Size="110, -1" Text="[VitalStatsWidget:6]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <ValueBarWidget Name="FoodValueBar" LayoutDirection="Horizontal" BarsCount="10" HalfBars="true" BarBlending="false" LitBarColor="112, 64, 0" UnlitBarColor="48, 48, 48, 80" BarSize="14, 28" BarSubtexture="{Textures/Atlas/ProgressBarTall}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="WetnessLink" Size="110, -1" Text="[VitalStatsWidget:7]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <ValueBarWidget Name="WetnessValueBar" LayoutDirection="Horizontal" BarsCount="10" HalfBars="true" BarBlending="false" LitBarColor="0, 0, 128" UnlitBarColor="48, 48, 48, 80" BarSize="14, 28" BarSubtexture="{Textures/Atlas/ProgressBarTall}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="TemperatureLink" Size="110, -1" Text="[VitalStatsWidget:8]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <ValueBarWidget Name="TemperatureValueBar" LayoutDirection="Horizontal" BarsCount="10" HalfBars="true" BarBlending="false" LitBarColor="0, 96, 255" UnlitBarColor="48, 48, 48, 80" BarSize="14, 28" BarSubtexture="{Textures/Atlas/ProgressBarTall}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+
+      </StackPanelWidget>
+
+      <CanvasWidget Size="30, 0"/>
+
+      <StackPanelWidget Direction="Vertical" VerticalAlignment="Center">
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="ExperienceLink" Size="110, -1" Text="[VitalStatsWidget:9]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <ValueBarWidget Name="ExperienceValueBar" LayoutDirection="Horizontal" BarsCount="10" HalfBars="true" BarBlending="false" LitBarColor="255, 208, 128" UnlitBarColor="48, 48, 48, 80" BarSize="14, 28" BarSubtexture="{Textures/Atlas/ProgressBarTall}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="StrengthLink" Size="110, -1" Text="[VitalStatsWidget:10]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <LabelWidget Name="StrengthLabel" HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="ResilienceLink" Size="110, -1" Text="[VitalStatsWidget:11]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <LabelWidget Name="ResilienceLabel" HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="SpeedLink" Size="110, -1" Text="[VitalStatsWidget:12]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <LabelWidget Name="SpeedLabel" HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="HungerLink" Size="110, -1" Text="[VitalStatsWidget:13]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <LabelWidget Name="HungerLabel" HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </CanvasWidget>
+        </StackPanelWidget>
+
+        <CanvasWidget Size="0, 8" />
+
+        <StackPanelWidget Direction="Horizontal">
+          <LinkWidget Name="InsulationLink" Size="110, -1" Text="[VitalStatsWidget:14]" TextAnchor="Right,VerticalCenter" Color="64, 192, 64" VerticalAlignment="Center" />
+          <CanvasWidget Size="10, 0"/>
+          <CanvasWidget Size="148, 36" >
+            <BevelledRectangleWidget BevelSize="-2" CenterColor="0, 0, 0, 0" />
+            <LabelWidget Name="InsulationLabel" HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </CanvasWidget>
+        </StackPanelWidget>
+
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+
+    <CanvasWidget Size="0, Infinity"/>
+
+  </StackPanelWidget>
+
+  <BevelledButtonWidget Name="ChokeButton" CanvasWidget.Position="535, 12" Style="{Styles/ButtonStyle_70x60}">
+    <RectangleWidget Size="40, 40" OutlineColor="0, 0, 0, 0" FillColor="255, 255, 255" Subtexture="{Textures/Atlas/SkullAndBones}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+  </BevelledButtonWidget>
+  
+</ClothingWidget>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="PressurePlate-mesh" name="PressurePlate">
+      <mesh>
+        <source id="PressurePlate-mesh-positions">
+          <float_array id="PressurePlate-mesh-positions-array" count="24">-38.68429 -38.68429 2.763164 38.68429 38.68429 2.763164 38.68429 -38.68429 2.763164 -38.68429 38.68429 2.763164 -44.210773 -44.210773 0 44.210773 -44.210773 0 44.210773 44.210773 0 -44.210773 44.210773 0</float_array>
+          <technique_common>
+            <accessor source="#PressurePlate-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PressurePlate-mesh-normals">
+          <float_array id="PressurePlate-mesh-normals-array" count="18">0 0 1 0 -0.447204 0.894432 0.447204 0 0.894432 0 0.447204 0.894432 -0.447204 0 0.894432 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#PressurePlate-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PressurePlate-mesh-map">
+          <float_array id="PressurePlate-mesh-map-array" count="72">0.003946 0.941417 0.058583 0.996054 0.058583 0.941417 0.058583 0.996054 0.003946 0.941417 0.003946 0.996054 4.3E-05 0.937514 0.058583 0.941417 0.062486 0.937514 0.058583 0.941417 4.3E-05 0.937514 0.003946 0.941417 0.062486 0.937514 0.058583 0.996054 0.062486 0.999957 0.058583 0.996054 0.062486 0.937514 0.058583 0.941417 0.062486 0.999957 0.003946 0.996054 4.3E-05 0.999957 0.003946 0.996054 0.062486 0.999957 0.058583 0.996054 4.3E-05 0.999957 0.003946 0.941417 4.3E-05 0.937514 0.003946 0.941417 4.3E-05 0.999957 0.003946 0.996054 0.068223 0.994375 0.119591 0.943008 0.068223 0.943008 0.068223 0.994375 0.119591 0.994375 0.119591 0.943008</float_array>
+          <technique_common>
+            <accessor source="#PressurePlate-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="PressurePlate-mesh-vertices">
+          <input semantic="POSITION" source="#PressurePlate-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#PressurePlate-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#PressurePlate-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#PressurePlate-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 5 1 8 2 1 7 2 1 9 0 1 11 4 1 10 5 2 12 6 2 14 1 2 13 1 2 15 2 2 17 5 2 16 6 3 18 7 3 20 3 3 19 3 3 21 1 3 23 6 3 22 7 4 24 4 4 26 0 4 25 0 4 27 3 4 29 7 4 28 4 5 30 7 5 32 6 5 31 4 5 33 6 5 35 5 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="PressurePlate" name="PressurePlate" type="NODE">
+        <matrix sid="transform">0.0113095 0 0 0 0 0 0.0113095 0 0 -0.0113095 0 0 0 0 0 1</matrix>
+        <instance_geometry url="#PressurePlate-mesh" name="PressurePlate" />
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

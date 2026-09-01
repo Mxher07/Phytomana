@@ -1,0 +1,45 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+    <CanvasWidget Size="720, 420" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+        <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+            <LabelWidget Text="[RemoteControlDialog:1]" Color="255, 255, 255" HorizontalAlignment="Center" Margin="0, 5" />
+            <CanvasWidget Size="Infinity, 50" Margin="30, 10">
+                <LabelWidget Color="128, 128, 128" Text="[RemoteControlDialog:2]" HorizontalAlignment="Center" TextAnchor="HorizontalCenter" WordWrap="true"/>
+            </CanvasWidget>
+            <CanvasWidget Size="0, Infinity" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <CanvasWidget Size="120, 60" VerticalAlignment="Center">
+                    <LabelWidget Text="[RemoteControlDialog:3]" Color="255, 255, 255" HorizontalAlignment="Near" VerticalAlignment="Center" Margin="4, 0" />
+                </CanvasWidget>
+                <CanvasWidget Size="Infinity, 60" Margin="10, 0">
+                    <LabelWidget Name="RemoteControlDialog.StatusLabel" Color="255, 255, 255" HorizontalAlignment="Near" VerticalAlignment="Center" />
+                </CanvasWidget>
+                <BevelledButtonWidget Name="RemoteControlDialog.StatusButton" Text="[RemoteControlDialog:6]" Style="{Styles/ButtonStyle_160x60}" />
+            </StackPanelWidget>
+            <CanvasWidget Size="0, 10" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <CanvasWidget Size="120, 60" VerticalAlignment="Center">
+                    <LabelWidget Text="[RemoteControlDialog:7]" Color="255, 255, 255" HorizontalAlignment="Near" VerticalAlignment="Center" Margin="4, 0" />
+                </CanvasWidget>
+                <CanvasWidget Size="Infinity, 60" Margin="10, 0">
+                    <LabelWidget Name="RemoteControlDialog.AddressLabel" Color="255, 255, 255" HorizontalAlignment="Near" VerticalAlignment="Center" />
+                </CanvasWidget>
+                <BevelledButtonWidget Name="RemoteControlDialog.PortButton" Text="[RemoteControlDialog:8]" Style="{Styles/ButtonStyle_160x60}" />
+            </StackPanelWidget>
+            <CanvasWidget Size="0, 10" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <CanvasWidget Size="120, 60" VerticalAlignment="Center">
+                    <LabelWidget Text="[RemoteControlDialog:9]" Color="255, 255, 255" HorizontalAlignment="Near" VerticalAlignment="Center" Margin="4, 0" />
+                </CanvasWidget>
+                <CanvasWidget Size="Infinity, 60" Margin="10, 0">
+                    <LabelWidget Name="RemoteControlDialog.PasswordLabel" Color="255, 255, 255" HorizontalAlignment="Near" VerticalAlignment="Center" />
+                </CanvasWidget>
+                <BevelledButtonWidget Name="RemoteControlDialog.PasswordButton" Text="[RemoteControlDialog:10]" Style="{Styles/ButtonStyle_160x60}" />
+            </StackPanelWidget>
+            <CanvasWidget Size="0, Infinity" />
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+                <BevelledButtonWidget Name="RemoteControlDialog.CloseButton" Text="[RemoteControlDialog:11]" Style="{Styles/ButtonStyle_160x60}" />
+            </StackPanelWidget>
+        </StackPanelWidget>
+    </CanvasWidget>
+</CanvasWidget>

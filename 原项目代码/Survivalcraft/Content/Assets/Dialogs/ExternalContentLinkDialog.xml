@@ -1,0 +1,18 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="700, 240" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="10, 10">
+      <CanvasWidget Size="0, 5" />
+      <LabelWidget Text="[ExternalContentLinkDialog:1]" Color="255, 255, 255" HorizontalAlignment="Center"/>
+      <CanvasWidget Size="0, Infinity" />
+      <CanvasWidget Margin="10, 0">
+        <BevelledRectangleWidget Style="{Styles/TextBoxArea}" Size="Infinity, 40" />
+        <TextBoxWidget Size="Infinity, 40" Name="ExternalContentLinkDialog.TextBox" Color="128, 128, 128" Margin="4, 0" MaximumLength="1024" VerticalAlignment="Center"/>
+      </CanvasWidget>
+      <CanvasWidget Size="0, Infinity" />
+      <BevelledButtonWidget Name="ExternalContentLinkDialog.OkButton" Text="[ExternalContentLinkDialog:2]" Style="{Styles/ButtonStyle_160x60}" HorizontalAlignment="Center"/>
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

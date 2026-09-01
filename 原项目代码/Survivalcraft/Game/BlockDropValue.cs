@@ -1,0 +1,21 @@
+using TemplatesDatabase;
+
+namespace Game {
+    public struct BlockDropValue {
+        public BlockDropValue() { }
+
+        public BlockDropValue(int value, int count) {
+            Value = value;
+            Count = count;
+        }
+
+        public int Value;
+
+        public int Count;
+
+        /// <summary>
+        ///     模组如果需要添加或使用额外信息，可以在这个ValuesDictionary读写元素
+        /// </summary>
+        public ValuesDictionary ValuesDictionaryForMods = new();
+    }
+}

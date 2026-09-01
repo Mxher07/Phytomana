@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Planks-mesh" name="Planks">
+      <mesh>
+        <source id="Planks-mesh-positions">
+          <float_array id="Planks-mesh-positions-array" count="96">50 3.125005 69.0578 -37.5 3.124991 69.0578 -37.5 -3.125008 69.0578 50 3.125005 81.5578 50.000153 -3.124995 81.5578 -37.5 -3.125008 81.5578 -37.5 3.124991 81.5578 50.000153 -3.124995 69.0578 50.000153 3.125005 31.557804 -37.5 3.124991 31.557804 -37.5 -3.125009 31.557804 50.000153 3.125005 44.057804 -37.5 3.124991 44.057804 50.000153 -3.124995 44.057804 -37.5 -3.125008 44.057804 50.000153 -3.124995 31.557804 28.318878 3.124994 69.058 28.318886 -3.125002 44.058 28.318878 3.124997 44.058 40.81888 3.124999 44.058 40.81888 3.124997 69.058 40.81888 -3.125 44.058 40.81888 -3.125002 69.058 28.318878 -3.125004 69.058 39.864037 -3.124994 69.90268 -29.105267 -3.12501 32.30726 -29.105255 -6.250009 32.30726 33.881348 -3.124992 80.878 33.881462 -6.249995 80.87806 -35.08794 -6.250009 43.282578 -35.08795 -3.125008 43.282578 39.864143 -6.249993 69.90275</float_array>
+          <technique_common>
+            <accessor source="#Planks-mesh-positions-array" count="32" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Planks-mesh-normals">
+          <float_array id="Planks-mesh-normals-array" count="48">0 0 -1 0 0 1 -0 1 -0 0 -1 0 -1 -0 -0 -1 -1E-06 -0 1 0 0 1 2.4E-05 0 0.47861493 -2.9999997E-06 -0.8780249 0.47861493 1.9999998E-06 -0.8780249 -0.47861493 9.999999E-07 0.8780249 -0.47861493 -0 0.8780249 0.8780249 4.1999996E-05 0.47861493 0.8780249 4.0999996E-05 0.47861493 -0.8780249 -1.9999998E-06 -0.47861493 -0.8780249 -2.9999997E-06 -0.47861493</float_array>
+          <technique_common>
+            <accessor source="#Planks-mesh-normals-array" count="16" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Planks-mesh-map">
+          <float_array id="Planks-mesh-map-array" count="240">0.0625 0.976563 0.007813 0.976563 0.007813 0.980469 0.007813 0.976563 0.007813 0.980469 0.0625 0.980469 0.007813 0.988281 0.007813 0.996094 0.0625 0.996094 0.007813 0.988281 0.007813 0.996094 0.0625 0.996094 0.007813 0.980469 0.0625 0.980469 0.0625 0.976563 0.0625 0.980469 0.0625 0.976563 0.007813 0.976563 0.0625 0.996094 0.0625 0.988281 0.007813 0.988281 0.0625 0.996094 0.0625 0.988281 0.007813 0.988281 0.0625 0.976563 0.007813 0.976563 0.007813 0.980469 0.007813 0.988281 0.007813 0.996094 0.0625 0.996094 0.007813 0.976563 0.007813 0.980469 0.0625 0.980469 0.0625 0.996094 0.0625 0.988281 0.007813 0.988281 0.007813 0.980469 0.0625 0.980469 0.0625 0.976563 0.0625 0.996094 0.0625 0.988281 0.007813 0.988281 0.0625 0.980469 0.0625 0.976563 0.007813 0.976563 0.007813 0.988281 0.007813 0.996094 0.0625 0.996094 0.042969 0.996094 0.046875 0.980469 0.042969 0.980469 0.050781 0.996094 0.042969 0.980469 0.042969 0.996094 0.042969 0.996094 0.046875 0.980469 0.046875 0.996094 0.042969 0.996094 0.050781 0.980469 0.050781 0.996094 0.046875 0.980469 0.042969 0.996094 0.046875 0.996094 0.042969 0.980469 0.050781 0.996094 0.050781 0.980469 0.046875 0.980469 0.042969 0.996094 0.042969 0.980469 0.050781 0.980469 0.042969 0.996094 0.042969 0.980469 0.0625 0.996094 0.058594 0.988281 0.058594 0.996094 0.0625 0.996094 0.0625 0.988281 0.058594 0.988281 0.0625 0.996094 0.058594 0.988281 0.058594 0.996094 0.0625 0.996094 0.0625 0.988281 0.058594 0.988281 0.050781 0.976563 -0 0.976563 -0 0.980469 -0 0.976563 -0 0.980469 0.050781 0.980469 -0 0.988281 -0 0.996094 0.050781 0.996094 -0 0.988281 -0 0.996094 0.050781 0.996094 -0 0.980469 0.050781 0.980469 0.050781 0.976563 0.050781 0.980469 0.050781 0.976563 -0 0.976563 0.050781 0.996094 0.050781 0.988281 -0 0.988281 0.050781 0.996094 0.050781 0.988281 -0 0.988281 0.0625 0.996094 0.058594 0.988281 0.058594 0.996094 0.0625 0.996094 0.0625 0.988281 0.058594 0.988281 0.0625 0.996094 0.058594 0.988281 0.058594 0.996094 0.0625 0.996094 0.0625 0.988281 0.058594 0.988281</float_array>
+          <technique_common>
+            <accessor source="#Planks-mesh-map-array" count="120" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Planks-mesh-vertices">
+          <input semantic="POSITION" source="#Planks-mesh-positions" />
+        </vertices>
+        <triangles count="40">
+          <input semantic="VERTEX" source="#Planks-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Planks-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Planks-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 3 1 3 5 1 5 4 1 4 0 2 6 6 2 8 3 2 7 2 3 9 4 3 11 5 3 10 2 0 12 0 0 14 7 0 13 5 1 15 3 1 17 6 1 16 6 2 18 0 2 20 1 2 19 4 3 21 2 3 23 7 3 22 8 0 24 10 0 26 9 0 25 8 2 27 12 2 29 11 2 28 11 1 30 14 1 32 13 1 31 13 3 33 10 3 35 15 3 34 10 0 36 8 0 38 15 0 37 12 2 39 8 2 41 9 2 40 14 1 42 11 1 44 12 1 43 10 3 45 13 3 47 14 3 46 16 4 48 18 5 50 17 5 49 16 2 51 20 2 53 19 2 52 20 6 54 22 6 56 21 6 55 22 3 57 23 3 59 17 3 58 17 5 60 23 4 62 16 4 61 19 2 63 18 2 65 16 2 64 21 6 66 19 6 68 20 6 67 17 3 69 21 3 71 22 3 70 3 7 72 4 7 74 7 7 73 3 7 75 7 7 77 0 7 76 11 6 78 13 6 80 15 6 79 11 6 81 15 6 83 8 6 82 24 8 84 26 9 86 25 9 85 27 10 87 29 11 89 28 10 88 24 2 90 30 2 92 27 2 91 26 3 93 28 3 95 29 3 94 26 9 96 24 8 98 31 8 97 29 11 99 27 10 101 30 11 100 30 2 102 24 2 104 25 2 103 28 3 105 26 3 107 31 3 106 27 12 108 28 12 110 31 12 109 27 13 111 31 13 113 24 13 112 29 14 114 30 14 116 25 14 115 29 15 117 25 15 119 26 15 118</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Post-mesh" name="Post">
+      <mesh>
+        <source id="Post-mesh-positions">
+          <float_array id="Post-mesh-positions-array" count="24">-37.5 6.250006 0 -50 -6.249992 0 -37.5 -6.249994 0 -50 6.250008 0 -37.5 6.250006 100 -50 -6.249992 100 -50 6.250008 100 -37.5 -6.249994 100</float_array>
+          <technique_common>
+            <accessor source="#Post-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Post-mesh-normals">
+          <float_array id="Post-mesh-normals-array" count="18">0 0 -1 0 0 1 0 1 0 -1 0 0 -0 -1 0 1 -0 0</float_array>
+          <technique_common>
+            <accessor source="#Post-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Post-mesh-map">
+          <float_array id="Post-mesh-map-array" count="72">-0 0.988281 0.007813 0.996094 -0 0.996094 0.007813 0.996094 -0 0.988281 0.007813 0.988281 -0 0.988281 0.007813 0.996094 0.007813 0.988281 0.007813 0.996094 -0 0.988281 -0 0.996094 -0 0.9375 0.007813 1 0.007813 0.9375 0.007813 1 -0 0.9375 -0 1 -0 0.9375 0.007813 1 0.007813 0.9375 0.007813 1 -0 0.9375 -0 1 0.007813 0.9375 -0 1 -0 0.9375 -0 1 0.007813 0.9375 0.007813 1 0.007813 0.9375 -0 1 -0 0.9375 -0 1 0.007813 0.9375 0.007813 1</float_array>
+          <technique_common>
+            <accessor source="#Post-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Post-mesh-vertices">
+          <input semantic="POSITION" source="#Post-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#Post-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Post-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Post-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 3 3 18 1 3 20 5 3 19 5 3 21 6 3 23 3 3 22 1 4 24 2 4 26 7 4 25 7 4 27 5 4 29 1 4 28 2 5 30 0 5 32 4 5 31 4 5 33 7 5 35 2 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Planks" name="Planks" type="NODE">
+          <matrix sid="transform">-0.01 0 0 0 0 0 0.01 0 0 0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Planks-mesh" name="Planks" />
+        </node>
+        <node id="Post" name="Post" type="NODE">
+          <matrix sid="transform">-0.01 0 0 0 0 0 0.01 0 0 0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#Post-mesh" name="Post" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

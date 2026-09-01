@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="PistonExtended-mesh" name="PistonExtended">
+      <mesh>
+        <source id="PistonExtended-mesh-positions">
+          <float_array id="PistonExtended-mesh-positions-array" count="48">50.000004 -49.999996 0 -50 24.999998 0 -49.999996 -50.000004 0 50 25.000002 0 50.000004 -49.999996 100 -50 24.999998 100 50 25.000002 100 -49.999996 -50.000004 100 18.749994 25 31.25 -18.750004 50 31.25 -18.750006 25 31.25 18.749996 50 31.25 18.749998 25 68.75 -18.750002 50 68.75 18.749998 50 68.75 -18.750002 25 68.75</float_array>
+          <technique_common>
+            <accessor source="#PistonExtended-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonExtended-mesh-normals">
+          <float_array id="PistonExtended-mesh-normals-array" count="18">0 0 -1 0 0 1 1 0 0 -0 1 0 -1 -0 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#PistonExtended-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonExtended-mesh-map">
+          <float_array id="PistonExtended-mesh-map-array" count="132">0.625175 0.37524498 0.67171 0.43725598 0.625175 0.43725598 0.67171 0.43725598 0.625175 0.37524498 0.67171 0.37524498 0.625175 0.37524498 0.67171 0.43725598 0.67171 0.37524498 0.67171 0.43725598 0.625175 0.37524498 0.625175 0.43725598 0.625175 0.37524498 0.67171 0.43725598 0.67171 0.37524498 0.67171 0.43725598 0.625175 0.37524498 0.625175 0.43725598 0.625246 0.312737 0.68727 0.37474 0.68727 0.312737 0.68727 0.37474 0.625246 0.312737 0.625246 0.37474 0.67171 0.37524498 0.625175 0.43725598 0.625175 0.37524498 0.625175 0.43725598 0.67171 0.37524498 0.67171 0.43725598 0.625237 0.31275296 0.68726 0.374758 0.68726 0.31275296 0.68726 0.374758 0.625237 0.31275296 0.625237 0.374758 0.640733 0.34383798 0.625236 0.367001 0.640733 0.367001 0.625236 0.367001 0.640733 0.34383798 0.625236 0.34383798 0.640733 0.34383798 0.625236 0.367001 0.625236 0.34383798 0.625236 0.367001 0.640733 0.34383798 0.640733 0.367001 0.640733 0.34383798 0.625236 0.367001 0.625236 0.34383798 0.625236 0.367001 0.640733 0.34383798 0.640733 0.367001 0.632925 0.34384298 0.656172 0.367006 0.656172 0.34384298 0.656172 0.367006 0.632925 0.34384298 0.632925 0.367006 0.625236 0.34383798 0.640733 0.367001 0.640733 0.34383798 0.640733 0.367001 0.625236 0.34383798 0.625236 0.367001</float_array>
+          <technique_common>
+            <accessor source="#PistonExtended-mesh-map-array" count="66" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="PistonExtended-mesh-vertices">
+          <input semantic="POSITION" source="#PistonExtended-mesh-positions" />
+        </vertices>
+        <triangles count="22">
+          <input semantic="VERTEX" source="#PistonExtended-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#PistonExtended-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#PistonExtended-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 3 3 18 1 3 20 5 3 19 5 3 21 6 3 23 3 3 22 1 4 24 2 4 26 7 4 25 7 4 27 5 4 29 1 4 28 2 5 30 0 5 32 4 5 31 4 5 33 7 5 35 2 5 34 8 0 36 10 0 38 9 0 37 9 0 39 11 0 41 8 0 40 12 1 42 14 1 44 13 1 43 13 1 45 15 1 47 12 1 46 8 2 48 11 2 50 14 2 49 14 2 51 12 2 53 8 2 52 11 3 54 9 3 56 13 3 55 13 3 57 14 3 59 11 3 58 9 4 60 10 4 62 15 4 61 15 4 63 13 4 65 9 4 64</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="PistonRetracted-mesh" name="PistonRetracted">
+      <mesh>
+        <source id="PistonRetracted-mesh-positions">
+          <float_array id="PistonRetracted-mesh-positions-array" count="24">50 -50 0 -50 50 0 -50 -50 0 50 50 0 50 -50 100 -50 50 100 50 50 100 -50 -50 100</float_array>
+          <technique_common>
+            <accessor source="#PistonRetracted-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonRetracted-mesh-normals">
+          <float_array id="PistonRetracted-mesh-normals-array" count="18">0 0 -1 0 0 1 1 0 0 0 1 0 -1 0 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#PistonRetracted-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonRetracted-mesh-map">
+          <float_array id="PistonRetracted-mesh-map-array" count="72">0.625249 0.37524498 0.687249 0.43725097 0.625249 0.43725097 0.687249 0.43725097 0.625249 0.37524498 0.687249 0.37524498 0.625249 0.37524498 0.687249 0.43725097 0.687249 0.37524498 0.687249 0.43725097 0.625249 0.37524498 0.625249 0.43725097 0.625249 0.37524498 0.687249 0.43725097 0.687249 0.37524498 0.687249 0.43725097 0.625249 0.37524498 0.625249 0.43725097 0.625273 0.25022197 0.687267 0.312254 0.687267 0.25022197 0.687267 0.312254 0.625273 0.25022197 0.625273 0.312254 0.687249 0.37524498 0.625249 0.43725097 0.625249 0.37524498 0.625249 0.43725097 0.687249 0.37524498 0.687249 0.43725097 0.625272 0.312755 0.687257 0.37475502 0.687257 0.312755 0.687257 0.37475502 0.625272 0.312755 0.625272 0.37475502</float_array>
+          <technique_common>
+            <accessor source="#PistonRetracted-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="PistonRetracted-mesh-vertices">
+          <input semantic="POSITION" source="#PistonRetracted-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#PistonRetracted-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#PistonRetracted-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#PistonRetracted-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 3 3 18 1 3 20 5 3 19 5 3 21 6 3 23 3 3 22 1 4 24 2 4 26 7 4 25 7 4 27 5 4 29 1 4 28 2 5 30 0 5 32 4 5 31 4 5 33 7 5 35 2 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="PistonHead-mesh" name="PistonHead">
+      <mesh>
+        <source id="PistonHead-mesh-positions">
+          <float_array id="PistonHead-mesh-positions-array" count="48">50 25.000002 0 -50.000004 49.999996 0 -50 24.999998 0 49.999996 50.000004 0 50 25.000002 100 -50.000004 49.999996 100 49.999996 50.000004 100 -50 24.999998 100 12.500002 -50 37.5 -12.500001 25 37.5 -12.499998 -50 37.5 12.499999 25 37.5 12.500002 -50 62.5 -12.500001 25 62.5 12.499999 25 62.5 -12.499998 -50 62.5</float_array>
+          <technique_common>
+            <accessor source="#PistonHead-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonHead-mesh-normals">
+          <float_array id="PistonHead-mesh-normals-array" count="18">0 0 -1 0 0 1 1 0 0 -0 1 0 -1 -0 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#PistonHead-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonHead-mesh-map">
+          <float_array id="PistonHead-mesh-map-array" count="120">0.672098 0.375252 0.687254 0.43725598 0.672098 0.43725598 0.687254 0.43725598 0.672098 0.375252 0.687254 0.375252 0.672098 0.375252 0.687254 0.43725598 0.687254 0.375252 0.687254 0.43725598 0.672098 0.375252 0.672098 0.43725598 0.672098 0.375252 0.687254 0.43725598 0.687254 0.375252 0.687254 0.43725598 0.672098 0.375252 0.672098 0.43725598 0.625244 0.25026298 0.68724 0.31225204 0.68724 0.25026298 0.68724 0.31225204 0.625244 0.25026298 0.625244 0.31225204 0.687254 0.375252 0.672098 0.43725598 0.672098 0.375252 0.672098 0.43725598 0.687254 0.375252 0.687254 0.43725598 0.625245 0.250264 0.68724 0.312254 0.68724 0.250264 0.68724 0.312254 0.625245 0.250264 0.625245 0.312254 0.672098 0.43725598 0.687254 0.39099896 0.687254 0.43725598 0.687254 0.39099896 0.672098 0.43725598 0.672098 0.39099896 0.672098 0.43725598 0.687254 0.39099896 0.672098 0.39099896 0.687254 0.39099896 0.672098 0.43725598 0.687254 0.43725598 0.672098 0.43725598 0.687254 0.39099896 0.672098 0.39099896 0.687254 0.39099896 0.672098 0.43725598 0.687254 0.43725598 0.672098 0.39099896 0.687254 0.43725598 0.672098 0.43725598 0.687254 0.43725598 0.672098 0.39099896 0.687254 0.39099896</float_array>
+          <technique_common>
+            <accessor source="#PistonHead-mesh-map-array" count="60" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="PistonHead-mesh-vertices">
+          <input semantic="POSITION" source="#PistonHead-mesh-positions" />
+        </vertices>
+        <triangles count="20">
+          <input semantic="VERTEX" source="#PistonHead-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#PistonHead-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#PistonHead-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 3 3 18 1 3 20 5 3 19 5 3 21 6 3 23 3 3 22 1 4 24 2 4 26 7 4 25 7 4 27 5 4 29 1 4 28 2 5 30 0 5 32 4 5 31 4 5 33 7 5 35 2 5 34 8 0 36 10 0 38 9 0 37 9 0 39 11 0 41 8 0 40 12 1 42 14 1 44 13 1 43 13 1 45 15 1 47 12 1 46 8 2 48 11 2 50 14 2 49 14 2 51 12 2 53 8 2 52 9 4 54 10 4 56 15 4 55 15 4 57 13 4 59 9 4 58</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="PistonShaft-mesh" name="PistonShaft">
+      <mesh>
+        <source id="PistonShaft-mesh-positions">
+          <float_array id="PistonShaft-mesh-positions-array" count="24">12.500002 -50 37.5 -12.5 50 37.5 -12.499998 -50 37.5 12.5 50 37.5 12.500002 -50 62.5 -12.5 50 62.5 12.5 50 62.5 -12.499998 -50 62.5</float_array>
+          <technique_common>
+            <accessor source="#PistonShaft-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonShaft-mesh-normals">
+          <float_array id="PistonShaft-mesh-normals-array" count="12">0 0 -1 0 0 1 1 0 0 -1 -0 0</float_array>
+          <technique_common>
+            <accessor source="#PistonShaft-mesh-normals-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PistonShaft-mesh-map">
+          <float_array id="PistonShaft-mesh-map-array" count="48">0.672098 0.43725598 0.687254 0.37519896 0.687254 0.43725598 0.687254 0.37519896 0.672098 0.43725598 0.672098 0.37519896 0.672098 0.43725598 0.687254 0.37519896 0.672098 0.37519896 0.687254 0.37519896 0.672098 0.43725598 0.687254 0.43725598 0.672098 0.43725598 0.687254 0.37519896 0.672098 0.37519896 0.687254 0.37519896 0.672098 0.43725598 0.687254 0.43725598 0.672098 0.37519896 0.687254 0.43725598 0.672098 0.43725598 0.687254 0.43725598 0.672098 0.37519896 0.687254 0.37519896</float_array>
+          <technique_common>
+            <accessor source="#PistonShaft-mesh-map-array" count="24" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="PistonShaft-mesh-vertices">
+          <input semantic="POSITION" source="#PistonShaft-mesh-positions" />
+        </vertices>
+        <triangles count="8">
+          <input semantic="VERTEX" source="#PistonShaft-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#PistonShaft-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#PistonShaft-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 0 2 12 3 2 14 6 2 13 6 2 15 4 2 17 0 2 16 1 3 18 2 3 20 7 3 19 7 3 21 5 3 23 1 3 22</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="EngineRoot" name="EngineRoot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="PistonExtended" name="PistonExtended" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#PistonExtended-mesh" name="PistonExtended" />
+        </node>
+        <node id="PistonRetracted" name="PistonRetracted" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#PistonRetracted-mesh" name="PistonRetracted" />
+        </node>
+        <node id="PistonHead" name="PistonHead" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#PistonHead-mesh" name="PistonHead" />
+        </node>
+        <node id="PistonShaft" name="PistonShaft" type="NODE">
+          <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+          <instance_geometry url="#PistonShaft-mesh" name="PistonShaft" />
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

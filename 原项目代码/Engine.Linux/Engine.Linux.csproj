@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Engine\Engine.props" />
+    <Import Project="..\build\Linux.props" />
+    <ItemGroup>
+        <EmbeddedResource Include="..\Engine\Resources\icon.png" Link="Resources\icon.png" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NativeFileDialogCore" Version="1.0.3" />
+    </ItemGroup>
+</Project>

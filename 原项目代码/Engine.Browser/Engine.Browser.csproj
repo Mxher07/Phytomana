@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Engine\Engine.props" />
+    <Import Project="..\build\Browser.props" />
+    <ItemGroup>
+        <PackageReference Remove="Silk.NET.Windowing" />
+        <PackageReference Remove="Silk.NET.OpenAL" />
+        <PackageReference Remove="Silk.NET.Input" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Engine.Browser\*.cs" />
+        <Compile Include="..\Engine\Engine.Graphics\EGL.cs" Link="Engine.Graphics\EGL.cs" />
+        <Compile Remove="..\Engine\Engine.Serialization\*Archive.cs" />
+        <Compile Remove="..\Engine\Engine.Serialization\*Serializer.cs" />
+        <Compile Remove="..\Engine\Engine.Serialization\ISerializable.cs" />
+    </ItemGroup>
+</Project>

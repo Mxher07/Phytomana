@@ -1,0 +1,109 @@
+{
+  "template": "Bird",
+
+  "layers": {
+    "Base": {
+      "driver": {
+        "type": "BirdFly",
+        "properties": {
+          "WingAngle": 1.2,
+          "WingGroundAngle": 0.3,
+          "FlyLegAngle": 60.0
+        }
+      }
+    },
+    "Head": {
+      "driver": {
+        "type": "BirdPeck",
+        "properties": {
+          "PeckAngle": 1.25
+        }
+      }
+    },
+    "Death": {
+      "driver": {
+        "type": "BirdDeath",
+        "properties": {
+          "DeathRollAngle": 90.0
+        }
+      }
+    }
+  },
+
+  "states": {
+    "locomotion": {
+      "layer": "Base",
+      "rules": [
+        {
+          "condition": "true",
+          "animation": {
+            "source": "driver:BirdFly"
+          }
+        }
+      ]
+    },
+    "activity": {
+      "layer": "Head",
+      "rules": [
+        {
+          "condition": "[PeckPhase] > 0 && [KickPhase] == 0",
+          "animation": {
+            "source": "driver:BirdPeck"
+          }
+        },
+        {
+          "condition": "[KickPhase] > 0",
+          "animation": {
+            "source": "driver:BirdAttack"
+          }
+        },
+        {
+          "condition": "true",
+          "animation": null
+        }
+      ]
+    },
+    "death": {
+      "layer": "Death",
+      "rules": [
+        {
+          "condition": "[DeathPhase] > 0",
+          "animation": {
+            "source": "driver:BirdDeath"
+          }
+        },
+        {
+          "condition": "true",
+          "animation": null
+        }
+      ]
+    }
+  },
+
+  "parameters": {
+    "FlyAnimationSpeed": 1.0,
+    "WalkAnimationSpeed": 1.0,
+    "PeckAnimationSpeed": 1.0,
+    "WalkBobHeight": 0.1,
+
+    "MovementPhase": 0.0,
+    "FlyPhase": 1.0,
+    "PeckPhase": 0.0,
+    "KickPhase": 0.0,
+    "AttackFactor": 0.0,
+    "Bob": 0.0,
+
+    "IsOnGround": true,
+    "ImmersionFactor": 0.0,
+    "FlySpeed": 0.0,
+    "BodyHeight": 1.0,
+
+    "LookAngleX": 0.0,
+    "LookAngleY": 0.0,
+    "Rotation": [0, 0, 0],
+    "Position": [0, 0, 0],
+
+    "DeathPhase": 0.0,
+    "DeathSpeed": 3.0
+  }
+}

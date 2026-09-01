@@ -1,0 +1,34 @@
+<CanvasWidget xmlns="runtime-namespace:Game">
+
+  <CanvasWidget Size="640, 360" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />
+    <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0, 15">
+
+      <LabelWidget  HorizontalAlignment="Center" Text="[RateCommunityContentDialog:1]"/>
+      <LabelWidget Name="RateCommunityContentDialog.Name" HorizontalAlignment="Center"/>
+
+      <CanvasWidget Size="0, Infinity" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <StarRatingWidget Name="RateCommunityContentDialog.StarRating" StarSize="64" VerticalAlignment="Center" />
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, Infinity" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+        <LabelWidget  Color="128, 128, 128" Text="[RateCommunityContentDialog:2]" HorizontalAlignment="Center" VerticalAlignment="Center" TextAnchor="HorizontalCenter" />
+        <CanvasWidget Size="10, 0" />
+        <LinkWidget Name="RateCommunityContentDialog.Report" VerticalAlignment="Center" Text="[RateCommunityContentDialog:3]" Color="64, 192, 64" />
+      </StackPanelWidget>
+
+      <CanvasWidget Size="0, Infinity" />
+
+      <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" Margin="5, 0">
+        <BevelledButtonWidget Name="RateCommunityContentDialog.Rate" Text="[RateCommunityContentDialog:4]" Style="{Styles/ButtonStyle_160x60}" VerticalAlignment="Center" Margin="40, 0"/>
+        <BevelledButtonWidget Name="RateCommunityContentDialog.Cancel" Style="{Styles/ButtonStyle_160x60}" Text="[RateCommunityContentDialog:5]" Margin="40, 0"/>
+      </StackPanelWidget>
+
+    </StackPanelWidget>
+  </CanvasWidget>
+
+</CanvasWidget>

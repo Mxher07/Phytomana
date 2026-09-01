@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="RightHand-mesh" name="RightHand">
+      <mesh>
+        <source id="RightHand-mesh-positions">
+          <float_array id="RightHand-mesh-positions-array" count="24">6.249999 6.25 -7.812 -6.25 -6.25 -7.812001 6.249999 -6.25 -7.812 -6.25 6.25 -7.812002 6.25 6.250001 7.812 -6.25 -6.249999 7.812 -6.25 6.250001 7.811999 6.25 -6.249999 7.812</float_array>
+          <technique_common>
+            <accessor source="#RightHand-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="RightHand-mesh-normals">
+          <float_array id="RightHand-mesh-normals-array" count="18">0 -0 -1 -0 0 1 -0 -1 0 1 -0 -0 0 1 -0 -1 -0 -0</float_array>
+          <technique_common>
+            <accessor source="#RightHand-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="RightHand-mesh-map">
+          <float_array id="RightHand-mesh-map-array" count="72">0.406075 0.061994016 0.344438 0.0003579855 0.406075 0.0003579855 0.344438 0.0003579855 0.406075 0.061994016 0.344438 0.061994016 0.406108 0.39050996 0.344007 0.32840896 0.344007 0.39050996 0.344007 0.32840896 0.406108 0.39050996 0.406108 0.32840896 0.343384 0.406559 0.281634 0.483746 0.343384 0.483746 0.281634 0.483746 0.343384 0.406559 0.281634 0.406559 0.405824 0.077705026 0.344203 0.00067800283 0.405824 0.00067800283 0.344203 0.00067800283 0.405824 0.077705026 0.344203 0.077705026 0.281634 0.406559 0.343384 0.483746 0.281634 0.483746 0.343384 0.483746 0.281634 0.406559 0.343384 0.406559 0.344203 0.077705026 0.405824 0.00067800283 0.344203 0.00067800283 0.405824 0.00067800283 0.344203 0.077705026 0.405824 0.077705026</float_array>
+          <technique_common>
+            <accessor source="#RightHand-mesh-map-array" count="36" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="RightHand-mesh-vertices">
+          <input semantic="POSITION" source="#RightHand-mesh-positions" />
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#RightHand-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#RightHand-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#RightHand-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 1 0 3 3 0 5 0 0 4 4 1 6 6 1 8 5 1 7 5 1 9 7 1 11 4 1 10 2 2 12 7 2 14 5 2 13 5 2 15 1 2 17 2 2 16 0 3 18 4 3 20 7 3 19 7 3 21 2 3 23 0 3 22 3 4 24 6 4 26 4 4 25 4 4 27 0 4 29 3 4 28 1 5 30 5 5 32 6 5 31 6 5 33 3 5 35 1 5 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="RightHand" name="RightHand" type="NODE">
+        <matrix sid="transform">0.01 0 0 0 0 0.01 0 0 0 0 0.01 0 0 0 0 1</matrix>
+        <instance_geometry url="#RightHand-mesh" name="RightHand" />
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>

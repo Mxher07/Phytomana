@@ -1,0 +1,92 @@
+﻿#ifdef HLSL
+
+#ifdef USE_TEXTURE
+Texture2D u_texture;
+SamplerState u_samplerState;
+#endif
+#ifdef USE_ADDITIVECOLOR
+float4 u_additiveColor;
+#endif
+#ifdef USE_ALPHATHRESHOLD
+float u_alphaThreshold;
+#endif
+
+void main(
+#ifdef USE_TEXTURE
+	in float2 v_texcoord: TEXCOORD,
+#endif
+	in float4 v_color : COLOR,
+	out float4 svTarget: SV_TARGET
+)
+{
+	// Color
+	float4 result = v_color;
+
+	// Texture
+#ifdef USE_TEXTURE
+	result *= u_texture.Sample(u_samplerState, v_texcoord);
+#endif
+
+#ifdef USE_ADDITIVECOLOR
+	result += u_additiveColor;
+#endif
+
+	// Alpha threshold
+#ifdef USE_ALPHATHRESHOLD
+	if (result.a <= u_alphaThreshold)
+		discard;
+#endif
+
+	// Return
+	svTarget = result;
+}
+
+#endif
+#ifdef GLSL
+
+// <Sampler Name='u_samplerState' Texture='u_texture' />
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#ifdef USE_TEXTURE
+uniform sampler2D u_texture;
+#endif
+#ifdef USE_ADDITIVECOLOR
+uniform vec4 u_additiveColor;
+#endif
+#ifdef USE_ALPHATHRESHOLD
+uniform float u_alphaThreshold;
+#endif
+
+#ifdef USE_TEXTURE
+varying vec2 v_texcoord;
+#endif
+varying vec4 v_color;
+
+void main()
+{
+	// Color
+	vec4 result = v_color;
+
+	// Texture
+#ifdef USE_TEXTURE
+	result *= texture2D(u_texture, v_texcoord);
+#endif
+
+#ifdef USE_ADDITIVECOLOR
+	result += u_additiveColor;
+#endif
+
+	// Alpha threshold
+#ifdef USE_ALPHATHRESHOLD
+	if (result.a <= u_alphaThreshold)
+		discard;
+#endif
+
+	// On some devices using gl_FragColor in calculations causes a compile fail (Kindle Fire 1)
+	gl_FragColor = result;
+}
+
+#endif

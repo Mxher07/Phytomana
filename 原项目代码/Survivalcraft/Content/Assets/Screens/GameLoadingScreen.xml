@@ -1,0 +1,8 @@
+<Screen xmlns="runtime-namespace:Game">
+  <RectangleWidget FillColor="0, 0, 0" OutlineColor="0, 0, 0, 0" />
+  <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <LabelWidget Text="[GameLoadingScreen:1]" HorizontalAlignment="Center" />
+    <CanvasWidget Size="0, 24"/>
+    <ValueBarWidget LayoutDirection="Horizontal" HorizontalAlignment="Center" BarsCount="5" BarSize="12, 12" BarSubtexture="{Textures/Atlas/ProgressBar}" Spacing="10" />
+  </StackPanelWidget>
+</Screen>

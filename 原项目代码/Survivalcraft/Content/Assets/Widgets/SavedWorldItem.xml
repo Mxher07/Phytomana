@@ -1,0 +1,7 @@
+<StackPanelWidget xmlns="runtime-namespace:Game" Direction="Horizontal" Margin="0, 0" VerticalAlignment="Center">
+  <RectangleWidget Name="WorldItem.Icon" FillColor="255, 255, 255" OutlineColor="0, 0, 0, 0" Size="56, 56" Subtexture="{Textures/Atlas/WorldIcon}" VerticalAlignment="Center" />
+  <StackPanelWidget Direction="Vertical" VerticalAlignment="Center" Margin="10, 0">
+    <LabelWidget Name="WorldItem.Name" />
+    <LabelWidget Name="WorldItem.Details" Color="128, 128, 128" />
+  </StackPanelWidget>
+</StackPanelWidget>

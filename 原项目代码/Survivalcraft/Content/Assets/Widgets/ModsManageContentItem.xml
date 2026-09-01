@@ -1,0 +1,11 @@
+<StackPanelWidget xmlns="runtime-namespace:Game" Direction="Horizontal" Margin="10, 0" VerticalAlignment="Center">
+  <CanvasWidget VerticalAlignment="Center">
+    <RectangleWidget Name="ModsManageContentItem.Icon" FillColor="255, 255, 255" OutlineColor="0, 0, 0, 0" Size="64, 64" Subtexture="{Textures/Gui/DefaultModIcon}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <RectangleWidget Name="ModsManageContentItem.DisabledOverlay" FillColor="255, 0, 0" OutlineColor="0, 0, 0, 0" Size="64, 64" IsVisible="false" Subtexture="{Textures/Gui/DisabledOverlay}" />
+  </CanvasWidget>
+  <StackPanelWidget Direction="Vertical" VerticalAlignment="Center" Margin="10, 0">
+    <LabelWidget Name="ModsManageContentItem.Title" Color="255, 255, 255" VerticalAlignment="Center" Ellipsis="true" />
+    <LabelWidget Name="ModsManageContentItem.Information" Color="192, 192, 192" VerticalAlignment="Center" Margin="0, 4" Ellipsis="true" />
+    <LabelWidget Name="ModsManageContentItem.Description" Color="192, 192, 192" VerticalAlignment="Center" Ellipsis="true" />
+  </StackPanelWidget>
+</StackPanelWidget>

@@ -1,0 +1,37 @@
+﻿<CanvasWidget xmlns="runtime-namespace:Game">
+
+	<CanvasWidget Size="780, 120" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Near">
+		<LabelWidget Name="HeadText" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0,10"/>
+		<LabelWidget Name="AdviceText" Color="128,128,128,255" HorizontalAlignment="Center" VerticalAlignment="Near" Margin="0,40"/>
+	</CanvasWidget>
+
+	<CanvasWidget Size="780, 440" ClampToBounds="true" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+    <BevelledRectangleWidget Style="{Styles/DialogArea}" />    
+		<StackPanelWidget Direction="Vertical" >
+			<CanvasWidget>
+				<ListPanelWidget Name="ViewGameLogDialog.ListPanel" ItemSize="16" Direction="Vertical" Margin="3, 5" />
+			</CanvasWidget>
+			<CanvasWidget Size="Infinity, 2">
+				<RectangleWidget FillColor="0, 0, 0, 0" OutlineColor="128, 128, 128, 255" OutlineThickness="2" />
+			</CanvasWidget>
+
+			<CanvasWidget Size="0, 10" />
+			<CanvasWidget Size="-1, 48">
+					<StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center">
+						<CanvasWidget Size="60, 0" />
+						<BevelledButtonWidget Name="ViewGameLogDialog.Clear" Style="{Styles/ButtonStyle_115x60}" VerticalAlignment="Center" Text="[ViewGameLogDialog:0]"/>
+						<CanvasWidget Size="5, 0" />
+						<BevelledButtonWidget Name="ViewGameLogDialog.Copy" Style="{Styles/ButtonStyle_115x60}" VerticalAlignment="Center" Text="[ViewGameLogDialog:1]"/>
+						<CanvasWidget Size="5, 0" />
+						<BevelledButtonWidget Name="ViewGameLogDialog.Filter" Style="{Styles/ButtonStyle_160x60}" VerticalAlignment="Center"/>
+						<CanvasWidget Size="5, 0" />
+						<BevelledButtonWidget Name="ViewGameLogDialog.Upload" Style="{Styles/ButtonStyle_115x60}" VerticalAlignment="Center" Text="[ViewGameLogDialog:3]"/>
+						<CanvasWidget Size="5, 0" />
+						<BevelledButtonWidget Name="ViewGameLogDialog.Close" Style="{Styles/ButtonStyle_115x60}" VerticalAlignment="Center" Text="[ViewGameLogDialog:2]"/>
+					</StackPanelWidget>
+			</CanvasWidget>
+			<CanvasWidget Size="0, 10" />
+		</StackPanelWidget>
+	</CanvasWidget>
+</CanvasWidget>

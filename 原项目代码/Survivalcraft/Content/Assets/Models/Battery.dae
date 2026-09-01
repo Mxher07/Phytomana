@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>Survivalcraft Moder</author>
+      <authoring_tool>Engine 0.0.0</authoring_tool>
+    </contributor>
+    <created>2024-12-17T19:55:00</created>
+    <modified>2024-12-17T19:55:00</modified>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images />
+  <library_effects />
+  <library_materials />
+  <library_geometries>
+    <geometry id="Battery-mesh" name="Battery">
+      <mesh>
+        <source id="Battery-mesh-positions">
+          <float_array id="Battery-mesh-positions-array" count="54">0 0 0 37.5 0 0 26.516504 26.516504 0 -2E-06 37.5 0 -26.516504 26.516504 0 -37.5 -3E-06 0 -26.5165 -26.516508 0 0 -37.5 0 26.5165 -26.516508 0 37.5 0 100 26.516504 26.516504 100 -2E-06 37.5 100 -26.516504 26.516504 100 -37.5 -3E-06 100 -26.5165 -26.516508 100 0 -37.5 100 26.5165 -26.516508 100 0 0 100</float_array>
+          <technique_common>
+            <accessor source="#Battery-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Battery-mesh-normals">
+          <float_array id="Battery-mesh-normals-array" count="30">0 0 -1 1 -0 0 0.7071068 0.7071068 0 -0 1 0 -0.7071068 0.7071068 0 -1 -0 0 -0.7071068 -0.7071068 0 0 -1 0 0.7071068 -0.7071068 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Battery-mesh-normals-array" count="10" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Battery-mesh-map">
+          <float_array id="Battery-mesh-map-array" count="192">0.468812 0.531177 0.499375 0.531177 0.490423 0.552788 0.468812 0.531177 0.490423 0.552788 0.468812 0.56174 0.468812 0.531177 0.468812 0.56174 0.447202 0.552788 0.468812 0.531177 0.447202 0.552788 0.43825 0.531177 0.468812 0.531177 0.43825 0.531177 0.447202 0.509566 0.468812 0.531177 0.447202 0.509566 0.468812 0.500614 0.468812 0.531177 0.468812 0.500614 0.490423 0.509566 0.468812 0.531177 0.490423 0.509566 0.499375 0.531177 0.375328 0.500477 0.375328 0.562191 0.390704 0.562191 0.375328 0.500477 0.390704 0.562191 0.390704 0.500477 0.390704 0.500477 0.390704 0.562191 0.40608 0.562191 0.390704 0.500477 0.40608 0.562191 0.40608 0.500477 0.40608 0.500477 0.40608 0.562191 0.421456 0.562191 0.40608 0.500477 0.421456 0.562191 0.421456 0.500477 0.421456 0.500477 0.421456 0.562191 0.436832 0.562191 0.421456 0.500477 0.436832 0.562191 0.436832 0.500477 0.375252 0.500453 0.375252 0.56236 0.390635 0.56236 0.375252 0.500453 0.390635 0.56236 0.390635 0.500453 0.390635 0.500453 0.390635 0.56236 0.406018 0.56236 0.390635 0.500453 0.406018 0.56236 0.406018 0.500453 0.406018 0.500453 0.406018 0.56236 0.421401 0.56236 0.406018 0.500453 0.421401 0.56236 0.421401 0.500453 0.421401 0.500453 0.421401 0.56236 0.436784 0.56236 0.421401 0.500453 0.436784 0.56236 0.436784 0.500453 0.468812 0.531177 0.490423 0.552788 0.499375 0.531177 0.468812 0.531177 0.468812 0.56174 0.490423 0.552788 0.468812 0.531177 0.447202 0.552788 0.468812 0.56174 0.468812 0.531177 0.43825 0.531177 0.447202 0.552788 0.468812 0.531177 0.447202 0.509566 0.43825 0.531177 0.468812 0.531177 0.468812 0.500614 0.447202 0.509566 0.468812 0.531177 0.490423 0.509566 0.468812 0.500614 0.468812 0.531177 0.499375 0.531177 0.490423 0.509566</float_array>
+          <technique_common>
+            <accessor source="#Battery-mesh-map-array" count="96" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Battery-mesh-vertices">
+          <input semantic="POSITION" source="#Battery-mesh-positions" />
+        </vertices>
+        <triangles count="32">
+          <input semantic="VERTEX" source="#Battery-mesh-vertices" offset="0" />
+          <input semantic="NORMAL" source="#Battery-mesh-normals" offset="1" />
+          <input semantic="TEXCOORD" source="#Battery-mesh-map" offset="2" />
+          <p>0 0 0 2 0 2 1 0 1 0 0 3 3 0 5 2 0 4 0 0 6 4 0 8 3 0 7 0 0 9 5 0 11 4 0 10 0 0 12 6 0 14 5 0 13 0 0 15 7 0 17 6 0 16 0 0 18 8 0 20 7 0 19 0 0 21 1 0 23 8 0 22 1 1 24 10 2 26 9 1 25 1 1 27 2 2 29 10 2 28 2 2 30 11 3 32 10 2 31 2 2 33 3 3 35 11 3 34 3 3 36 12 4 38 11 3 37 3 3 39 4 4 41 12 4 40 4 4 42 13 5 44 12 4 43 4 4 45 5 5 47 13 5 46 5 5 48 14 6 50 13 5 49 5 5 51 6 6 53 14 6 52 6 6 54 15 7 56 14 6 55 6 6 57 7 7 59 15 7 58 7 7 60 16 8 62 15 7 61 7 7 63 8 8 65 16 8 64 8 8 66 9 1 68 16 8 67 8 8 69 1 1 71 9 1 70 17 9 72 9 9 74 10 9 73 17 9 75 10 9 77 11 9 76 17 9 78 11 9 80 12 9 79 17 9 81 12 9 83 13 9 82 17 9 84 13 9 86 14 9 85 17 9 87 14 9 89 15 9 88 17 9 90 15 9 92 16 9 91 17 9 93 16 9 95 9 9 94</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers />
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Battery" name="Battery" type="NODE">
+        <matrix sid="transform">0.01 0 0 0 0 0 0.01 0 0 -0.01 0 0 0 0 0 1</matrix>
+        <instance_geometry url="#Battery-mesh" name="Battery" />
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene" />
+  </scene>
+</COLLADA>
