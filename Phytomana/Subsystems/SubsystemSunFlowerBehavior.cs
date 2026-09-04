@@ -33,6 +33,7 @@ namespace Game {
         public SubsystemParticles m_subsystemParticles;
         public SubsystemPickables m_subsystemPickables;
         public SubsystemMana m_subsystemMana;
+        public SubsystemAudio m_subsystemAudio;
 
         public Dictionary<Point3, SunPowerData> m_sunpowers = [];
 
@@ -46,6 +47,7 @@ namespace Game {
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
             m_subsystemPickables = Project.FindSubsystem<SubsystemPickables>(true);
             m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
+            m_subsystemAudio = Project.FindSubsystem<SubsystemAudio>(true);
         }
 
         public override void OnBlockAdded(int value, int oldValue, int x, int y, int z) {
@@ -198,6 +200,7 @@ namespace Game {
             data.BurnHeatLevel = (int)bestBlock.GetFuelHeatLevel(best.Value);
             data.BurnEndTime = m_subsystemGameInfo.TotalElapsedGameTime + bestBlock.GetFuelFireDuration(best.Value);
             data.NextProductionParticleTime = m_subsystemGameInfo.TotalElapsedGameTime + ProductionParticleInterval;
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/spreaderFire", 1f, 0f, 0f, 0f);
         }
 
         public bool IsPickableInCell(Pickable pickable, Point3 cell) {

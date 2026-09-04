@@ -2,7 +2,7 @@ using Engine;
 using Engine.Graphics;
 
 namespace Game {
-    public class ManaPickaxeBlock : Block {
+    public class ManaMacheteBlock : Block {
         public BlockMesh m_meshStone = new();
         public BlockMesh m_meshMana = new();
         public Texture2D m_textureStone;
@@ -11,7 +11,7 @@ namespace Game {
         public override void Initialize() {
             base.Initialize();
             
-            Model model = ContentManager.Get<Model>("Models/Pickaxe");
+            Model model = ContentManager.Get<Model>("Models/Machete");
             m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownWood");
             m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");
             

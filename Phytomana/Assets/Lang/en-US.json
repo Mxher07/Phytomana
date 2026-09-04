@@ -31,6 +31,14 @@
       "DisplayName": "Mana Pool",
       "Description": "Stores up to 3800 Mn. Drops Items will be convert."
     },
+    "FlowerTable:0": {
+      "DisplayName": "Flower Table",
+      "Description": "A table for placing flowers and plants."
+    },
+    "ManaBlock:0": {
+      "DisplayName": "Mana Steel Block",
+      "Description": "A solid block of Mana-infused steel."
+    },
     "SumeruFlowerBlock:0": {
       "DisplayName": "Sumeru Flower",
       "Description": "A flower from Sumeru."

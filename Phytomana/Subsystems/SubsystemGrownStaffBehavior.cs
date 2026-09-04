@@ -29,6 +29,7 @@ namespace Game {
         public SubsystemMana m_subsystemMana;
         public SubsystemSunPowerBehavior m_subsystemSunPower;
         public SubsystemWaterDonBehavior m_subsystemWaterDon;
+        public SubsystemAudio m_subsystemAudio;
 
         public PrimitivesRenderer3D m_primitivesRenderer3D = new();
 
@@ -56,6 +57,7 @@ namespace Game {
             m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
             m_subsystemSunPower = Project.FindSubsystem<SubsystemSunPowerBehavior>(true);
             m_subsystemWaterDon = Project.FindSubsystem<SubsystemWaterDonBehavior>(true);
+            m_subsystemAudio = Project.FindSubsystem<SubsystemAudio>(true);
             m_sunPowerIndex = BlocksManager.GetBlockIndex<SunPowerFlower>();
             m_waterDonIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
             m_spreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
@@ -280,6 +282,7 @@ namespace Game {
                 modeName
             );
             player.ComponentGui.DisplaySmallMessage(message, Color.White, false, false);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
         public void ShowFlowerStatus(ComponentPlayer player, Point3 point, int contents) {
@@ -337,6 +340,7 @@ namespace Game {
                 );
             }
             player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
         public void ShowSpreaderStatus(ComponentPlayer player, Point3 point) {
@@ -355,6 +359,7 @@ namespace Game {
                 FormatMana(usage)
             );
             player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
         public static int FaceFromDirection(Point3 delta) {
@@ -378,7 +383,8 @@ namespace Game {
             if (args.Length > 0) {
                 text = string.Format(text, args);
             }
-            player.ComponentGui.DisplaySmallMessage(text, color, false, withSound);
+            player.ComponentGui.DisplaySmallMessage(text, color, false, false);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
         public StaffState GetState(ComponentPlayer player) {

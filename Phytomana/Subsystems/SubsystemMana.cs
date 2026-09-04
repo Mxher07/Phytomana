@@ -24,6 +24,7 @@ namespace Game {
         public const float StaffLinkTransferAmount = 160f;
         public const float StaffLinkTransferPeriod = 1f;
         public const float IngotConversionCost = 300f;
+        public const float BlockConversionCost = 3000f;
 
         public Dictionary<Point3, float> m_manaAmounts = [];
 
@@ -49,6 +50,10 @@ namespace Game {
 
         public int m_manaIngotIndex;
 
+        public int m_ironBlockIndex;
+
+        public int m_manaBlockIndex;
+
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
         public override void Load(ValuesDictionary valuesDictionary) {
@@ -61,6 +66,8 @@ namespace Game {
             m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
             m_ironIngotIndex = BlocksManager.GetBlockIndex<IronIngotBlock>();
             m_manaIngotIndex = BlocksManager.GetBlockIndex<ManaIngotBlock>();
+            m_ironBlockIndex = BlocksManager.GetBlockIndex<IronBlock>();
+            m_manaBlockIndex = BlocksManager.GetBlockIndex<ManaBlock>();
             m_maxManaAmounts[m_sunPowerFlowerIndex] = 800f;
             m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
             m_maxManaAmounts[m_waterDonFlowerIndex] = 240f;
@@ -225,10 +232,12 @@ namespace Game {
                 if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex) {
                     continue;
                 }
-                if (GetManaAmount(point) < IngotConversionCost) {
-                    continue;
+                if (GetManaAmount(point) >= BlockConversionCost) {
+                    TryConvertBlock(point);
                 }
-                TryConvertIngot(point);
+                if (GetManaAmount(point) >= IngotConversionCost) {
+                    TryConvertIngot(point);
+                }
             }
         }
 
@@ -247,6 +256,39 @@ namespace Game {
                 Vector3 position = pickable.Position;
                 pickable.ToRemove = true;
                 m_subsystemPickables.AddPickable(m_manaIngotIndex, Math.Max(1, pickable.Count), position, pickable.Velocity, null);
+                Vector3 center = new(poolPoint.X + 0.5f, poolPoint.Y + 0.2f, poolPoint.Z + 0.5f);
+                foreach (Vector3 offset in new[] {
+                    new Vector3(0.4f, 0f, 0.4f),
+                    new Vector3(0.4f, 0f, -0.4f),
+                    new Vector3(-0.4f, 0f, 0.4f),
+                    new Vector3(-0.4f, 0f, -0.4f)
+                }) {
+                    m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
+                        center + offset,
+                        0.8f,
+                        1.2f,
+                        new Color(102, 204, 255)
+                    ));
+                }
+                return;
+            }
+        }
+
+        public void TryConvertBlock(Point3 poolPoint) {
+            foreach (Pickable pickable in m_subsystemPickables.Pickables) {
+                if (pickable.ToRemove) {
+                    continue;
+                }
+                if (Terrain.ExtractContents(pickable.Value) != m_ironBlockIndex) {
+                    continue;
+                }
+                if (!IsPickableInCell(pickable, poolPoint)) {
+                    continue;
+                }
+                RemoveMana(poolPoint, BlockConversionCost);
+                Vector3 position = pickable.Position;
+                pickable.ToRemove = true;
+                m_subsystemPickables.AddPickable(m_manaBlockIndex, Math.Max(1, pickable.Count), position, pickable.Velocity, null);
                 Vector3 center = new(poolPoint.X + 0.5f, poolPoint.Y + 0.2f, poolPoint.Z + 0.5f);
                 foreach (Vector3 offset in new[] {
                     new Vector3(0.4f, 0f, 0.4f),

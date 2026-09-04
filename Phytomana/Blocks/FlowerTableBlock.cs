@@ -2,21 +2,25 @@ using Engine;
 using Engine.Graphics;
 
 namespace Game {
-    public class ManaPickaxeBlock : Block {
+    public class FlowerTableBlock : Block {
         public BlockMesh m_meshStone = new();
         public BlockMesh m_meshMana = new();
         public Texture2D m_textureStone;
         public Texture2D m_textureMana;
+
+        public override bool IsTransparent_(int value) => true;
+
+        public override bool IsFaceTransparent(SubsystemTerrain subsystemTerrain, int face, int value) => true;
         
         public override void Initialize() {
             base.Initialize();
             
-            Model model = ContentManager.Get<Model>("Models/Pickaxe");
-            m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownWood");
-            m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");
+            Model model = ContentManager.Get<Model>("Models/PhytoMana/flower_table");
+            m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownStone");
+            m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/Water");
             
             
-            var poolMesh = model.FindMesh("Handle");
+            var poolMesh = model.FindMesh("base");
             Matrix poolBone = BlockMesh.GetBoneAbsoluteTransform(poolMesh.ParentBone);
             m_meshStone.AppendModelMeshPart(
                 poolMesh.MeshParts[0],
@@ -26,11 +30,11 @@ namespace Game {
             );
             
             
-            var manaMesh = model.FindMesh("Head");
+            var manaMesh = model.FindMesh("water");
             Matrix manaBone = BlockMesh.GetBoneAbsoluteTransform(manaMesh.ParentBone);
             m_meshMana.AppendModelMeshPart(
                 manaMesh.MeshParts[0],
-                manaBone * Matrix.CreateTranslation(0f, -0.5f, 0f),
+                manaBone * Matrix.CreateTranslation(0f, 0.5f, 0f),
                 false, false, false, false,
                 Color.White
             );
