@@ -8,8 +8,6 @@ namespace Game {
             base.Initialize();
             CanBeBuiltIntoFurniture = false;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/SumeruFlower");
-            int contents = BlocksManager.GetBlockIndex<SumeruFlowerBlock>();
-            Log.Information($"[PhytoMana]{contents} Registered.");
         }
         public override int GetFaceTextureSlot(int face, int value) => 0;
         public override int GetTextureSlotCount(int value) => 1;

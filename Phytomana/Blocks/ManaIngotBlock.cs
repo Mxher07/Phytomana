@@ -19,8 +19,6 @@ namespace Game {
                 false,
                 Color.White
             );
-            int contents = BlocksManager.GetBlockIndex<ManaIngotBlock>();
-            Log.Information($"[PhytoMana]{contents} Registered.");
             base.Initialize();
         }
 

@@ -1,19 +1,25 @@
 ﻿<PhytoMana>
       <ProjectTemplate Name="Project" Guid="85023bf8-1c90-4dd1-9442-e6c13691d078">
-  <MemberSubsystemTemplate Name="GrownDaisyBehavior" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f6" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
-    <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a79f" Value="Game.SubsystemGrownDaisyBehavior" Type="string"/>
-  </MemberSubsystemTemplate>
-  <MemberSubsystemTemplate Name="SunPowerBehavior" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f7" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
-    <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7af" Value="Game.SubsystemSunPowerBehavior" Type="string"/>
-  </MemberSubsystemTemplate>
   <MemberSubsystemTemplate Name="Mana" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f8" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7bf" Value="Game.SubsystemMana" Type="string"/>
   </MemberSubsystemTemplate>
-  <MemberSubsystemTemplate Name="WaterDonBehavior" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49f9" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
-    <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7df" Value="Game.SubsystemWaterDonBehavior" Type="string"/>
-  </MemberSubsystemTemplate>
   <MemberSubsystemTemplate Name="GrownStaffBehavior" Guid="3f8d8e1a-0000-4327-b546-d8d17e0f49fa" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="e0fe773f-0000-4fba-8211-72e25ef8a7ef" Value="Game.SubsystemGrownStaffBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="ManaNetwork" Guid="9468fd3c-d4d1-4a96-b2f7-99c716c76c46" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="a5a3e094-edc8-4867-8424-085dfcd3b51d" Value="Phytomana.ManaNetworkManager" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="ManaPoolBehavior" Guid="4a3cce46-27c0-4b7a-b806-9677df55725b" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="5f5968ee-7a7a-457c-ae63-cc33c60062a6" Value="Phytomana.SubsystemManaPoolBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="TestManaSourceBehavior" Guid="3b726eff-59ec-4082-9663-446da291bd48" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="efe02840-80b7-4967-ae25-2e3f1bad4bc8" Value="Phytomana.SubsystemTestManaSourceBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="FlowerTickScheduler" Guid="123419dd-8ace-4431-a05b-3809bb519659" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="8222ce71-4e8f-4243-b9cb-3748ea24bdf7" Value="Phytomana.FlowerTickScheduler" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="FlowerBehavior" Guid="0d3357f1-b085-4e31-ac5a-9c69f1b144b1" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="60a30194-6999-4f5f-9387-d579a33ce097" Value="Phytomana.SubsystemFlowerBehavior" Type="string"/>
   </MemberSubsystemTemplate>
       </ProjectTemplate>
 </PhytoMana>

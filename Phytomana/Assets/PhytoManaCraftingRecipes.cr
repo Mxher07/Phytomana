@@ -11,7 +11,12 @@
     "a"
     "a"
   </Recipe>
-  <Recipe Result="GrownStaffBlock" ResultCount="1" RequiredHeatLevel="0" a="grownwood" b="petal" Description="[0]">
+  <Recipe Result="ManaBlock" ResultCount="1" RequiredHeatLevel="0" a="manaingot" Description="[0]">
+    "aaa"
+    "aaa"
+    "aaa"
+  </Recipe>
+  <Recipe Result="GrownStaffBlock" ResultCount="1" RequiredHeatLevel="0" a="grownrod" b="petal" Description="[0]">
     "ab"
     "ba "
     "  a"
@@ -20,6 +25,31 @@
     "   "
     "a a"
     "aaa"
+  </Recipe>
+  <Recipe Result="FlowerTableBlock" ResultCount="1" RequiredHeatLevel="0" a="granite" b="stoneslab" c="petal" Description="[0]">
+    "bcb"
+    " a "
+    "aaa"
+  </Recipe>
+  <Recipe Result="ManaAxeBlock" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="grownrod" Description="[0]">
+  "aa"
+  "ab"
+  " b"
+  </Recipe>
+  <Recipe Result="ManaPickaxeBlock" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="grownrod" Description="[0]">
+  "aaa"
+  " b"
+  " b"
+  </Recipe>
+  <Recipe Result="ManaShovelBlock" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="grownrod" Description="[0]">
+  " a"
+  " b"
+  " b"
+  </Recipe>
+  <Recipe Result="ManaMacheteBlock" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="grownrod" Description="[0]">
+  " a"
+  " a"
+  " b"
   </Recipe>
   <Recipe Result="ClothingBlock:900" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:11" Description="[0]">
     " a"

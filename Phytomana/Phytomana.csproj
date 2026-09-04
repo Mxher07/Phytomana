@@ -36,8 +36,13 @@
     <ItemGroup>
         <Compile Include="Blocks/*.cs"/>
         <Compile Include="Blocks/Tools/*.cs"/>
+        <Compile Include="Core/ManaSystem/*.cs"/>
+        <Compile Include="Core/Flowers/*.cs"/>
+        <Compile Include="Core/Events/*.cs"/>
+        <Compile Include="Core/Registry/*.cs"/>
         <Compile Include="Subsystems/*.cs"/>
         <Compile Include="Systems/*.cs"/>
+        <Compile Include="PhytomanaMod.cs"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <PropertyGroup>

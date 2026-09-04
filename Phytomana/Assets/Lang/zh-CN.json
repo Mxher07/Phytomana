@@ -33,6 +33,14 @@
       "Description": "储存魔力，转化物品。",
       "CRDescription:0": "使用生息岩制作魔法池"
     },
+    "FlowerTableBlock:0": {
+      "DisplayName": "花药台",
+      "Description": "放置花卉与植物的工作台。"
+    },
+    "ManaBlock:0": {
+      "DisplayName": "魔力钢块",
+      "Description": "由魔力钢锭在魔法池中转化而成的钢块。"
+    },
     "SumeruFlowerBlock:0": {
       "DisplayName": "须弥花",
       "Description": "「须弥降世之物」"
@@ -53,44 +61,52 @@
       "CRDescription:0": "使用息木枝与须弥花瓣制作生息法杖"
     },
     "ManaIngotBlock:0": {
-      "DisplayName": "注魔钢锭",
-      "Description": "在魔法池中注入魔力炼成的钢锭"
+      "DisplayName": "魔法钢锭",
+      "Description": "在魔力池中注入魔力取得的铁锭"
     },
     "ManaAxeBlock:0": {
-      "DisplayName": "魔力斧",
-      "Description": "以注魔钢锭为斧刃的斧头"
+      "DisplayName": "魔力钢斧",
+      "Description": "以魔力钢锭为斧刃的斧头"
     },
     "ManaPickaxeBlock:0": {
-      "DisplayName": "魔力镐",
-      "Description": "以注魔钢锭为镐头的镐"
+      "DisplayName": "魔力钢镐",
+      "Description": "以魔力钢锭为镐头的镐"
     },
     "ManaShovelBlock:0": {
-      "DisplayName": "魔力铲",
-      "Description": "以注魔钢锭为铲头的铲子"
+      "DisplayName": "魔力钢铲",
+      "Description": "以魔力钢锭为铲头的铲子"
     },
     "ManaMacheteBlock:0": {
       "DisplayName": "魔力弯刀",
-      "Description": "以注魔钢锭为刀刃的弯刀"
+      "Description": "以魔力钢锭为刀刃的弯刀"
+    },
+    "TestManaSourceBlock:0": {
+      "DisplayName": "测试产魔方块",
+      "Description": "框架自测用产魔方块，仅用于验证魔力网络投递，不属于正式玩法。"
+    },
+    "TestGeneratingFlowerBlock:0": {
+      "DisplayName": "测试产魔花",
+      "Description": "框架自测用产魔花，仅用于验证花朵框架，不属于正式玩法。需放置在泥土或草皮上。"
     },
     "ClothingBlock:900": {
-      "DisplayName": "魔钢头盔",
-      "Description": "以注魔钢锭打造的护甲",
-      "CRDescription:0": "使用注魔钢锭制作魔钢头盔"
+      "DisplayName": "魔力钢头盔",
+      "Description": "以魔力钢锭打造的护甲",
+      "CRDescription:0": "使用魔力钢锭制作魔力钢头盔"
     },
     "ClothingBlock:901": {
-      "DisplayName": "魔钢胸甲",
-      "Description": "以注魔钢锭打造的护甲",
-      "CRDescription:0": "使用注魔钢锭制作魔钢胸甲"
+      "DisplayName": "魔力钢胸甲",
+      "Description": "以魔力钢锭打造的护甲",
+      "CRDescription:0": "使用魔力钢锭制作魔力钢胸甲"
     },
     "ClothingBlock:902": {
-      "DisplayName": "魔钢护腿",
-      "Description": "以注魔钢锭打造的护甲",
-      "CRDescription:0": "使用注魔钢锭制作魔钢护腿"
+      "DisplayName": "魔力钢护腿",
+      "Description": "以魔力钢锭打造的护甲",
+      "CRDescription:0": "使用魔力钢锭制作魔力钢护腿"
     },
     "ClothingBlock:903": {
-      "DisplayName": "魔钢靴子",
-      "Description": "以注魔钢锭打造的护甲",
-      "CRDescription:0": "使用注魔钢锭制作魔钢靴子"
+      "DisplayName": "魔力钢靴子",
+      "Description": "以魔力钢锭打造的护甲",
+      "CRDescription:0": "使用魔力钢锭制作魔力钢靴子"
     }
   },
   "GrownStaffMessages": {
