@@ -8,12 +8,14 @@ namespace Game {
         public Texture2D m_textureStone;
         public Texture2D m_textureMana;
         public SubsystemMana m_subsystemMana;
+        public BoundingBox[][] m_collisionBoxes = new BoundingBox[1][];
 
         public override bool IsTransparent_(int value) => true;
 
         public override bool IsFaceTransparent(SubsystemTerrain subsystemTerrain, int face, int value) => true;
         
         public override void Initialize() {
+        m_collisionBoxes[0] = [new BoundingBox(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 1f))];
             base.Initialize();
             
             Model model = ContentManager.Get<Model>("Models/PhytoMana/mana_pool");
