@@ -9,9 +9,6 @@ namespace Game {
         public override void Initialize() {
             base.Initialize();
             
-            int contents = BlocksManager.GetBlockIndex<GrownRodBlock>();
-            Log.Information($"[PhytoMana]{contents} Registered.");
-            
             Model model = ContentManager.Get<Model>("Models/Rod");
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownWood");
             

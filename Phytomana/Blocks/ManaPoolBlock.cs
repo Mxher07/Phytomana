@@ -7,6 +7,11 @@ namespace Game {
         public BlockMesh m_meshMana = new();
         public Texture2D m_textureStone;
         public Texture2D m_textureMana;
+        public SubsystemMana m_subsystemMana;
+
+        public override bool IsTransparent_(int value) => true;
+
+        public override bool IsFaceTransparent(SubsystemTerrain subsystemTerrain, int face, int value) => true;
         
         public override void Initialize() {
             base.Initialize();
@@ -34,8 +39,6 @@ namespace Game {
                 false, false, false, false,
                 Color.White
             );
-            
-        
         }
         
         
@@ -50,7 +53,10 @@ namespace Game {
             int y, 
             int z
         ) {
-            Matrix matrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(0.5f, 0f, 0.5f);
+            if (m_subsystemMana == null) {
+                m_subsystemMana = generator.SubsystemTerrain.Project.FindSubsystem<SubsystemMana>(true);
+            }
+            Matrix baseMatrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(0.5f, 0f, 0.5f);
             generator.GenerateMeshVertices(
                 this,
                 x,
@@ -58,19 +64,26 @@ namespace Game {
                 z,
                 m_meshStone,
                 Color.White,
-                matrix,
+                baseMatrix,
                 geometry.GetGeometry(m_textureStone).SubsetOpaque
             );
-            generator.GenerateMeshVertices(
-                this,
-                x,
-                y,
-                z,
-                m_meshMana,
-                Color.White,
-                matrix,
-                geometry.GetGeometry(m_textureMana).SubsetOpaque
-            );
+            float currentMana = m_subsystemMana.GetManaAmount(new Point3(x, y, z));
+            float maxMana = m_subsystemMana.GetMaxManaAmount(Terrain.ExtractContents(value));
+            if (currentMana > 0f && maxMana > 0f) {
+                float pct = MathUtils.Clamp(currentMana / maxMana, 0f, 1f);
+                float manaY = 0.5f + 0.2f * pct;
+                Matrix manaMatrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(0.5f, manaY, 0.5f);
+                generator.GenerateMeshVertices(
+                    this,
+                    x,
+                    y,
+                    z,
+                    m_meshMana,
+                    Color.White,
+                    manaMatrix,
+                    geometry.GetGeometry(m_textureMana).SubsetOpaque
+                );
+            }
         }
         
         
@@ -92,7 +105,6 @@ namespace Game {
                 ref matrix, 
                 environmentData
             );
-            
             BlocksManager.DrawMeshBlock(
                 primitivesRenderer, 
                 m_meshMana, 

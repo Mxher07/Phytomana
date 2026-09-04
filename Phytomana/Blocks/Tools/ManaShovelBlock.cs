@@ -2,64 +2,106 @@ using Engine;
 using Engine.Graphics;
 
 namespace Game {
-    public abstract class ShovelBlock : Block {
-        public int m_handleTextureSlot;
-
-        public int m_headTextureSlot;
-
-        public BlockMesh m_standaloneBlockMesh = new();
-
-        public ShovelBlock(int handleTextureSlot, int headTextureSlot) {
-            m_handleTextureSlot = handleTextureSlot;
-            m_headTextureSlot = headTextureSlot;
-        }
-
+    public class ManaShovelBlock : Block {
+        public BlockMesh m_meshStone = new();
+        public BlockMesh m_meshMana = new();
+        public Texture2D m_textureStone;
+        public Texture2D m_textureMana;
+        
         public override void Initialize() {
-            Model model = ContentManager.Get<Model>("Models/Shovel");
-            Matrix boneAbsoluteTransform = BlockMesh.GetBoneAbsoluteTransform(model.FindMesh("Handle").ParentBone);
-            Matrix boneAbsoluteTransform2 = BlockMesh.GetBoneAbsoluteTransform(model.FindMesh("Head").ParentBone);
-            BlockMesh blockMesh = new();
-            blockMesh.AppendModelMeshPart(
-                model.FindMesh("Handle").MeshParts[0],
-                boneAbsoluteTransform * Matrix.CreateTranslation(0f, -0.5f, 0f),
-                false,
-                false,
-                false,
-                false,
-                Color.White
-            );
-            blockMesh.TransformTextureCoordinates(Matrix.CreateTranslation(m_handleTextureSlot % 16 / 16f, m_handleTextureSlot / 16 / 16f, 0f));
-            BlockMesh blockMesh2 = new();
-            blockMesh2.AppendModelMeshPart(
-                model.FindMesh("Head").MeshParts[0],
-                boneAbsoluteTransform2 * Matrix.CreateTranslation(0f, -0.5f, 0f),
-                false,
-                false,
-                false,
-                false,
-                Color.White
-            );
-            blockMesh2.TransformTextureCoordinates(Matrix.CreateTranslation(m_headTextureSlot % 16 / 16f, m_headTextureSlot / 16 / 16f, 0f));
-            m_standaloneBlockMesh.AppendBlockMesh(blockMesh);
-            m_standaloneBlockMesh.AppendBlockMesh(blockMesh2);
             base.Initialize();
+            
+            Model model = ContentManager.Get<Model>("Models/Shovel");
+            m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownWood");
+            m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");
+            
+            
+            var poolMesh = model.FindMesh("Handle");
+            Matrix poolBone = BlockMesh.GetBoneAbsoluteTransform(poolMesh.ParentBone);
+            m_meshStone.AppendModelMeshPart(
+                poolMesh.MeshParts[0],
+                poolBone * Matrix.CreateTranslation(0f, -0.5f, 0f),
+                false, false, false, false,
+                Color.White
+            );
+            
+            
+            var manaMesh = model.FindMesh("Head");
+            Matrix manaBone = BlockMesh.GetBoneAbsoluteTransform(manaMesh.ParentBone);
+            m_meshMana.AppendModelMeshPart(
+                manaMesh.MeshParts[0],
+                manaBone * Matrix.CreateTranslation(0f, -0.5f, 0f),
+                false, false, false, false,
+                Color.White
+            );
+            
+        
         }
-
-        public override void GenerateTerrainVertices(BlockGeometryGenerator generator, TerrainGeometry geometry, int value, int x, int y, int z) { }
-
-        public override void DrawBlock(PrimitivesRenderer3D primitivesRenderer,
+        
+        
+        public override Texture2D GetDefaultTexture(int value) => m_textureStone;
+        
+        
+        public override void GenerateTerrainVertices(
+            BlockGeometryGenerator generator, 
+            TerrainGeometry geometry, 
+            int value, 
+            int x, 
+            int y, 
+            int z
+        ) {
+            Matrix matrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(0.5f, 0f, 0.5f);
+            generator.GenerateMeshVertices(
+                this,
+                x,
+                y,
+                z,
+                m_meshStone,
+                Color.White,
+                matrix,
+                geometry.GetGeometry(m_textureStone).SubsetOpaque
+            );
+            generator.GenerateMeshVertices(
+                this,
+                x,
+                y,
+                z,
+                m_meshMana,
+                Color.White,
+                matrix,
+                geometry.GetGeometry(m_textureMana).SubsetOpaque
+            );
+        }
+        
+        
+        public override void DrawBlock(
+            PrimitivesRenderer3D primitivesRenderer,
             int value,
             Color color,
             float size,
             ref Matrix matrix,
-            DrawBlockEnvironmentData environmentData) {
-            Texture2D texture = GetDefaultTexture(value);
-            if (texture == null) {
-                BlocksManager.DrawMeshBlock(primitivesRenderer, m_standaloneBlockMesh, color, 2f * size, ref matrix, environmentData);
-            }
-            else {
-                BlocksManager.DrawMeshBlock(primitivesRenderer, m_standaloneBlockMesh, texture, color, 2f * size, ref matrix, environmentData);
-            }
+            DrawBlockEnvironmentData environmentData
+        ) {
+            float drawSize = environmentData.DrawBlockMode == DrawBlockMode.World ? 2f * size * 0.05f : 2f * size;
+            BlocksManager.DrawMeshBlock(
+                primitivesRenderer, 
+                m_meshStone, 
+                m_textureStone,
+                color, 
+                drawSize, 
+                ref matrix, 
+                environmentData
+            );
+            
+            BlocksManager.DrawMeshBlock(
+                primitivesRenderer, 
+                m_meshMana, 
+                m_textureMana,
+                color, 
+                drawSize, 
+                ref matrix, 
+                environmentData
+            );
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Text;
 using Engine;
 using GameEntitySystem;
+using Phytomana;
+using Phytomana.Api;
 using TemplatesDatabase;
 
 namespace Game {
@@ -24,6 +26,7 @@ namespace Game {
         public const float StaffLinkTransferAmount = 160f;
         public const float StaffLinkTransferPeriod = 1f;
         public const float IngotConversionCost = 300f;
+        public const float BlockConversionCost = 3000f;
 
         public Dictionary<Point3, float> m_manaAmounts = [];
 
@@ -37,6 +40,10 @@ namespace Game {
 
         public SubsystemParticles m_subsystemParticles;
 
+        public ManaNetworkManager m_network;
+
+        public List<IManaReceiver> m_receiverBuffer = [];
+
         public int m_sunPowerFlowerIndex;
 
         public int m_manaSpreaderIndex;
@@ -49,22 +56,29 @@ namespace Game {
 
         public int m_manaIngotIndex;
 
+        public int m_ironBlockIndex;
+
+        public int m_manaBlockIndex;
+
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
         public override void Load(ValuesDictionary valuesDictionary) {
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
             m_subsystemPickables = Project.FindSubsystem<SubsystemPickables>(true);
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
+            m_network = Project.FindSubsystem<ManaNetworkManager>(true);
             m_sunPowerFlowerIndex = BlocksManager.GetBlockIndex<SunPowerFlower>();
             m_manaSpreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
             m_waterDonFlowerIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
             m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
             m_ironIngotIndex = BlocksManager.GetBlockIndex<IronIngotBlock>();
             m_manaIngotIndex = BlocksManager.GetBlockIndex<ManaIngotBlock>();
-            m_maxManaAmounts[m_sunPowerFlowerIndex] = 800f;
+            m_ironBlockIndex = BlocksManager.GetBlockIndex<IronBlock>();
+            m_manaBlockIndex = BlocksManager.GetBlockIndex<ManaBlock>();
+            m_maxManaAmounts[m_sunPowerFlowerIndex] = PhytoConfig.Instance.SunPowerMaxMana;
             m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
-            m_maxManaAmounts[m_waterDonFlowerIndex] = 240f;
-            m_maxManaAmounts[m_manaPoolIndex] = 3800f;
+            m_maxManaAmounts[m_waterDonFlowerIndex] = PhytoConfig.Instance.WaterDonMaxMana;
+            m_maxManaAmounts[m_manaPoolIndex] = ManaPool.MaxMana;
             string text = valuesDictionary.GetValue("ManaAmounts", string.Empty);
             foreach (string item in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
                 string[] array = item.Split([','], StringSplitOptions.None);
@@ -127,15 +141,35 @@ namespace Game {
 
         public float GetMaxManaAmount(int contents) => m_maxManaAmounts.TryGetValue(contents, out float value) ? value : 0f;
 
-        public float GetManaAmount(Point3 point) => m_manaAmounts.TryGetValue(point, out float value) ? value : 0f;
+        public float GetManaAmount(Point3 point) {
+            if (m_network.TryGetMana(point, out float networkAmount)) {
+                return networkAmount;
+            }
+            return m_manaAmounts.TryGetValue(point, out float value) ? value : 0f;
+        }
 
         public void SetManaAmount(Point3 point, float amount) {
+            if (m_network.TryGetReceiverStorage(point, out ManaStorage storage)) {
+                storage.SetCurrent(amount);
+                return;
+            }
             int contents = m_subsystemTerrain.Terrain.GetCellContents(point);
             float max = GetMaxManaAmount(contents);
             if (max <= 0f) {
                 return;
             }
             m_manaAmounts[point] = Math.Clamp(amount, 0f, max);
+        }
+
+        /// <summary>
+        /// 旧版存档中魔法池魔力曾记在本字典里；节点注册时迁移进魔力网络并清除残留，避免幽灵魔力。
+        /// </summary>
+        public bool TakeLegacyMana(Point3 point, out float amount) {
+            if (m_manaAmounts.TryGetValue(point, out amount)) {
+                m_manaAmounts.Remove(point);
+                return true;
+            }
+            return false;
         }
 
         public void AddMana(Point3 point, float amount) => SetManaAmount(point, GetManaAmount(point) + amount);
@@ -219,16 +253,18 @@ namespace Game {
         public bool IsManaStorage(int contents) => contents == m_manaSpreaderIndex || contents == m_manaPoolIndex;
 
         public void Update(float dt) {
-            List<KeyValuePair<Point3, float>> snapshot = [.. m_manaAmounts];
-            foreach (KeyValuePair<Point3, float> pair in snapshot) {
-                Point3 point = pair.Key;
+            m_network.GetActiveReceivers(m_receiverBuffer);
+            foreach (IManaReceiver receiver in m_receiverBuffer) {
+                Point3 point = receiver.Position;
                 if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex) {
                     continue;
                 }
-                if (GetManaAmount(point) < IngotConversionCost) {
-                    continue;
+                if (receiver.ManaStorage.Current >= BlockConversionCost) {
+                    TryConvertBlock(point);
                 }
-                TryConvertIngot(point);
+                if (receiver.ManaStorage.Current >= IngotConversionCost) {
+                    TryConvertIngot(point);
+                }
             }
         }
 
@@ -247,6 +283,39 @@ namespace Game {
                 Vector3 position = pickable.Position;
                 pickable.ToRemove = true;
                 m_subsystemPickables.AddPickable(m_manaIngotIndex, Math.Max(1, pickable.Count), position, pickable.Velocity, null);
+                Vector3 center = new(poolPoint.X + 0.5f, poolPoint.Y + 0.2f, poolPoint.Z + 0.5f);
+                foreach (Vector3 offset in new[] {
+                    new Vector3(0.4f, 0f, 0.4f),
+                    new Vector3(0.4f, 0f, -0.4f),
+                    new Vector3(-0.4f, 0f, 0.4f),
+                    new Vector3(-0.4f, 0f, -0.4f)
+                }) {
+                    m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
+                        center + offset,
+                        0.8f,
+                        1.2f,
+                        new Color(102, 204, 255)
+                    ));
+                }
+                return;
+            }
+        }
+
+        public void TryConvertBlock(Point3 poolPoint) {
+            foreach (Pickable pickable in m_subsystemPickables.Pickables) {
+                if (pickable.ToRemove) {
+                    continue;
+                }
+                if (Terrain.ExtractContents(pickable.Value) != m_ironBlockIndex) {
+                    continue;
+                }
+                if (!IsPickableInCell(pickable, poolPoint)) {
+                    continue;
+                }
+                RemoveMana(poolPoint, BlockConversionCost);
+                Vector3 position = pickable.Position;
+                pickable.ToRemove = true;
+                m_subsystemPickables.AddPickable(m_manaBlockIndex, Math.Max(1, pickable.Count), position, pickable.Velocity, null);
                 Vector3 center = new(poolPoint.X + 0.5f, poolPoint.Y + 0.2f, poolPoint.Z + 0.5f);
                 foreach (Vector3 offset in new[] {
                     new Vector3(0.4f, 0f, 0.4f),

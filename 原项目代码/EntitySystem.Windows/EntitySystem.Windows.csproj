@@ -1,7 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\EntitySystem\EntitySystem.props" />
-    <Import Project="..\build\Windows.props" />
-    <ItemGroup>
-        <ProjectReference Include="..\Engine.Windows\Engine.Windows.csproj" />
-    </ItemGroup>
-</Project>
