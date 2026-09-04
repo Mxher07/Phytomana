@@ -33,7 +33,7 @@
       "Description": "储存魔力，转化物品。",
       "CRDescription:0": "使用生息岩制作魔法池"
     },
-    "FlowerTable:0": {
+    "FlowerTableBlock:0": {
       "DisplayName": "花药台",
       "Description": "放置花卉与植物的工作台。"
     },

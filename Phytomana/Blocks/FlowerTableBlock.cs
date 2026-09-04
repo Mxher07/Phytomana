@@ -16,7 +16,7 @@ namespace Game {
             base.Initialize();
             
             Model model = ContentManager.Get<Model>("Models/PhytoMana/flower_table");
-            m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownStone");
+            m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/Stone");
             m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/Water");
             
             
