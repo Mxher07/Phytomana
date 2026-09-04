@@ -8,7 +8,7 @@ namespace Game {
         public override void Initialize() {
             base.Initialize();
             CanBeBuiltIntoFurniture = true;
-            m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/Mana");
+            m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");
             int contents = BlocksManager.GetBlockIndex<ManaBlock>();
             Log.Information($"[PhytoMana]{contents} Registered.");
         }
