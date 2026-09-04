@@ -33,7 +33,7 @@
       "Description": "储存魔力，转化物品。",
       "CRDescription:0": "使用生息岩制作魔法池"
     },
-    "FlowerTableBlock:0": {
+    "FlowerTable:0": {
       "DisplayName": "花药台",
       "Description": "放置花卉与植物的工作台。"
     },
@@ -79,14 +79,6 @@
     "ManaMacheteBlock:0": {
       "DisplayName": "魔力弯刀",
       "Description": "以魔力钢锭为刀刃的弯刀"
-    },
-    "TestManaSourceBlock:0": {
-      "DisplayName": "测试产魔方块",
-      "Description": "框架自测用产魔方块，仅用于验证魔力网络投递，不属于正式玩法。"
-    },
-    "TestGeneratingFlowerBlock:0": {
-      "DisplayName": "测试产魔花",
-      "Description": "框架自测用产魔花，仅用于验证花朵框架，不属于正式玩法。需放置在泥土或草皮上。"
     },
     "ClothingBlock:900": {
       "DisplayName": "魔力钢头盔",

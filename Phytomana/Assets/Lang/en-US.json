@@ -31,7 +31,7 @@
       "DisplayName": "Mana Pool",
       "Description": "Stores up to 3800 Mn. Drops Items will be convert."
     },
-    "FlowerTableBlock:0": {
+    "FlowerTable:0": {
       "DisplayName": "Flower Table",
       "Description": "A table for placing flowers and plants."
     },
@@ -74,14 +74,6 @@
     "ManaMacheteBlock:0": {
       "DisplayName": "Mana Machete",
       "Description": "A machete with a Mana Ingot blade."
-    },
-    "TestManaSourceBlock:0": {
-      "DisplayName": "Test Mana Source",
-      "Description": "Framework self-test block that only verifies mana network delivery. Not part of the real gameplay."
-    },
-    "TestGeneratingFlowerBlock:0": {
-      "DisplayName": "Test Generating Flower",
-      "Description": "Framework self-test flower that only verifies the flower framework. Not part of the real gameplay. Must be placed on dirt or grass."
     },
     "ClothingBlock:900": {
       "DisplayName": "Mana Steel Helmet",

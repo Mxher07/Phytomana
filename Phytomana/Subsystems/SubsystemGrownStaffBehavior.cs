@@ -3,7 +3,6 @@ using System.Globalization;
 using Engine;
 using Engine.Graphics;
 using GameEntitySystem;
-using Phytomana;
 using TemplatesDatabase;
 
 namespace Game {
@@ -28,7 +27,8 @@ namespace Game {
         public SubsystemTerrain m_subsystemTerrain;
         public SubsystemParticles m_subsystemParticles;
         public SubsystemMana m_subsystemMana;
-        public FlowerTickScheduler m_flowerScheduler;
+        public SubsystemSunPowerBehavior m_subsystemSunPower;
+        public SubsystemWaterDonBehavior m_subsystemWaterDon;
         public SubsystemAudio m_subsystemAudio;
 
         public PrimitivesRenderer3D m_primitivesRenderer3D = new();
@@ -55,7 +55,8 @@ namespace Game {
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
             m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
-            m_flowerScheduler = Project.FindSubsystem<FlowerTickScheduler>(true);
+            m_subsystemSunPower = Project.FindSubsystem<SubsystemSunPowerBehavior>(true);
+            m_subsystemWaterDon = Project.FindSubsystem<SubsystemWaterDonBehavior>(true);
             m_subsystemAudio = Project.FindSubsystem<SubsystemAudio>(true);
             m_sunPowerIndex = BlocksManager.GetBlockIndex<SunPowerFlower>();
             m_waterDonIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
@@ -285,19 +286,38 @@ namespace Game {
         }
 
         public void ShowFlowerStatus(ComponentPlayer player, Point3 point, int contents) {
-            if (!m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower flower) || flower is not TileGeneratingFlower generating) {
-                return;
-            }
             float max = m_subsystemMana.GetMaxManaAmount(contents);
             float current = m_subsystemMana.GetManaAmount(point);
-            bool working = generating.IsProducing;
-            bool draining = generating.IsLosingMana;
-            string status = draining
-                ? LanguageControl.Get("GrownStaffMessages", "StatusDraining")
-                : working
+            string status;
+            string value;
+            if (contents == m_sunPowerIndex) {
+                bool working = m_subsystemSunPower.IsWorkingMana(point);
+                bool draining = m_subsystemSunPower.IsDrainingMana(point);
+                bool hasSpreader = m_subsystemMana.HasSpreaderNearby(point);
+                status = draining
+                    ? LanguageControl.Get("GrownStaffMessages", "StatusDraining")
+                    : working
+                        ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
+                        : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
+                if (draining) {
+                    value = null;
+                }
+                else {
+                    float rate = working ? m_subsystemSunPower.GetProductionRate(point) : 0f;
+                    float net = rate - (hasSpreader ? SubsystemSunPowerBehavior.TransferRate : 0f);
+                    value = FormatMana(net);
+                }
+            }
+            else {
+                bool working = m_subsystemWaterDon.IsWorkingMana(point);
+                bool hasSpreader = m_subsystemMana.HasSpreaderNearby(point);
+                status = working
                     ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
                     : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
-            string value = draining ? null : FormatMana(generating.GetProductionRate());
+                float rate = working ? m_subsystemWaterDon.GetProductionRate(point) : 0f;
+                float net = rate - (hasSpreader ? SubsystemWaterDonBehavior.TransferRate : 0f);
+                value = FormatMana(net);
+            }
             string name = GetBlockName(point);
             string message;
             if (value == null) {
