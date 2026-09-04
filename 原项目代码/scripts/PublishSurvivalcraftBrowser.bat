@@ -1,1 +1,0 @@
-dotnet publish Survivalcraft.Browser -c Release

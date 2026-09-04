@@ -1,9 +1,0 @@
-{
-    "name": "Simple",
-    "layers": {
-        "Base": {
-            "index": 0,
-            "blendMode": "Override"
-        }
-    }
-}

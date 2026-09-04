@@ -1,7 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\EntitySystem\EntitySystem.props" />
-    <Import Project="..\build\IOS.props" />
-    <ItemGroup>
-        <ProjectReference Include="..\Engine.IOS\Engine.IOS.csproj" />
-    </ItemGroup>
-</Project>
