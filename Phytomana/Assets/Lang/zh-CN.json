@@ -109,6 +109,7 @@
     "StatusWorking": "工作中",
     "StatusIdle": "休息中",
     "StatusDraining": "流失中",
+    "StatusSleeping": "休眠中（下方缺少固体基座）",
     "StatusFormat": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 产能:{4}mn/sct",
     "StatusFormatDraining": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 产能:-",
     "SpreadStatusFormat": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 使用:{4}mn/sct",

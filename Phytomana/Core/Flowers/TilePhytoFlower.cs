@@ -88,11 +88,13 @@ namespace Phytomana {
         protected virtual void OnStateChanged(FlowerState oldState, FlowerState newState) { }
 
         /// <summary>
-        /// 基座有效性检测：默认要求花朵下方是泥土或草皮，子类可重写放宽或收紧。
+        /// 基座有效性检测：默认要求花朵下方是任意固体（可碰撞）方块，允许站在泥土/草/石头等任何实心基座上，
+        /// 仅禁止悬空；子类可重写进一步收紧（如限定泥土/草）。
         /// </summary>
         public virtual bool IsValidBase() {
-            int contents = Scheduler.m_subsystemTerrain.Terrain.GetCellContents(Position.X, Position.Y - 1, Position.Z);
-            return contents == DirtBlock.Index || contents == GrassBlock.Index;
+            int value = Scheduler.m_subsystemTerrain.Terrain.GetCellValue(Position.X, Position.Y - 1, Position.Z);
+            int contents = Terrain.ExtractContents(value);
+            return contents != 0 && BlocksManager.Blocks[contents].IsCollidable_(value);
         }
 
         /// <summary>

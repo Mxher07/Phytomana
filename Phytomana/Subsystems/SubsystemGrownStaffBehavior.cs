@@ -4,6 +4,7 @@ using Engine;
 using Engine.Graphics;
 using GameEntitySystem;
 using Phytomana;
+using Phytomana.Api;
 using TemplatesDatabase;
 
 namespace Game {
@@ -292,11 +293,14 @@ namespace Game {
             float current = m_subsystemMana.GetManaAmount(point);
             bool working = generating.IsProducing;
             bool draining = generating.IsLosingMana;
-            string status = draining
-                ? LanguageControl.Get("GrownStaffMessages", "StatusDraining")
-                : working
-                    ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
-                    : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
+            bool sleeping = flower.State == FlowerState.Sleep;
+            string status = sleeping
+                ? LanguageControl.Get("GrownStaffMessages", "StatusSleeping")
+                : draining
+                    ? LanguageControl.Get("GrownStaffMessages", "StatusDraining")
+                    : working
+                        ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
+                        : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
             string value = draining ? null : FormatMana(generating.GetProductionRate());
             string name = GetBlockName(point);
             string message;
