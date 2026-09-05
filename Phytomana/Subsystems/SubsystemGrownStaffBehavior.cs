@@ -3,6 +3,7 @@ using System.Globalization;
 using Engine;
 using Engine.Graphics;
 using GameEntitySystem;
+using Phytomana;
 using TemplatesDatabase;
 
 namespace Game {
@@ -27,8 +28,7 @@ namespace Game {
         public SubsystemTerrain m_subsystemTerrain;
         public SubsystemParticles m_subsystemParticles;
         public SubsystemMana m_subsystemMana;
-        public SubsystemSunPowerBehavior m_subsystemSunPower;
-        public SubsystemWaterDonBehavior m_subsystemWaterDon;
+        public FlowerTickScheduler m_flowerScheduler;
         public SubsystemAudio m_subsystemAudio;
 
         public PrimitivesRenderer3D m_primitivesRenderer3D = new();
@@ -55,8 +55,7 @@ namespace Game {
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
             m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
-            m_subsystemSunPower = Project.FindSubsystem<SubsystemSunPowerBehavior>(true);
-            m_subsystemWaterDon = Project.FindSubsystem<SubsystemWaterDonBehavior>(true);
+            m_flowerScheduler = Project.FindSubsystem<FlowerTickScheduler>(true);
             m_subsystemAudio = Project.FindSubsystem<SubsystemAudio>(true);
             m_sunPowerIndex = BlocksManager.GetBlockIndex<SunPowerFlower>();
             m_waterDonIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
@@ -106,10 +105,7 @@ namespace Game {
                 return;
             }
             int contents = Terrain.ExtractContents(hit.Value.Value);
-            if (contents == m_sunPowerIndex
-                || contents == m_waterDonIndex
-                || contents == m_spreaderIndex
-                || contents == m_manaPoolIndex) {
+            if (IsStaffCheckable(contents)) {
                 state.HoverCell = hit.Value.CellFace.Point;
             }
         }
@@ -194,22 +190,25 @@ namespace Game {
             if (mode == 1) {
                 return HandleBindingClick(player, state, point, contents);
             }
-            if (contents == m_sunPowerIndex || contents == m_waterDonIndex) {
-                ShowFlowerStatus(player, point, contents);
+            if (ShowFlowerStatus(player, point, contents)) {
                 return true;
             }
             if (contents == m_spreaderIndex) {
                 ShowSpreaderStatus(player, point);
                 return true;
             }
+            if (IsStaffCheckable(contents)) {
+                ShowStorageStatus(player, point, contents);
+                return true;
+            }
             return false;
         }
 
         public bool HandleBindingClick(ComponentPlayer player, StaffState state, Point3 point, int contents) {
-            if (contents == m_sunPowerIndex || contents == m_waterDonIndex) {
+            if (m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower _)) {
                 return true;
             }
-            if (contents != m_spreaderIndex && contents != m_manaPoolIndex) {
+            if (!m_subsystemMana.IsManaStorage(contents)) {
                 if (state.BindStart.HasValue) {
                     ShowMessage(player, "ErrNoManaCapability", Color.Red, true);
                 }
@@ -285,39 +284,20 @@ namespace Game {
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
-        public void ShowFlowerStatus(ComponentPlayer player, Point3 point, int contents) {
+        public bool ShowFlowerStatus(ComponentPlayer player, Point3 point, int contents) {
+            if (!m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower flower) || flower is not TileGeneratingFlower generating) {
+                return false;
+            }
             float max = m_subsystemMana.GetMaxManaAmount(contents);
             float current = m_subsystemMana.GetManaAmount(point);
-            string status;
-            string value;
-            if (contents == m_sunPowerIndex) {
-                bool working = m_subsystemSunPower.IsWorkingMana(point);
-                bool draining = m_subsystemSunPower.IsDrainingMana(point);
-                bool hasSpreader = m_subsystemMana.HasSpreaderNearby(point);
-                status = draining
-                    ? LanguageControl.Get("GrownStaffMessages", "StatusDraining")
-                    : working
-                        ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
-                        : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
-                if (draining) {
-                    value = null;
-                }
-                else {
-                    float rate = working ? m_subsystemSunPower.GetProductionRate(point) : 0f;
-                    float net = rate - (hasSpreader ? SubsystemSunPowerBehavior.TransferRate : 0f);
-                    value = FormatMana(net);
-                }
-            }
-            else {
-                bool working = m_subsystemWaterDon.IsWorkingMana(point);
-                bool hasSpreader = m_subsystemMana.HasSpreaderNearby(point);
-                status = working
+            bool working = generating.IsProducing;
+            bool draining = generating.IsLosingMana;
+            string status = draining
+                ? LanguageControl.Get("GrownStaffMessages", "StatusDraining")
+                : working
                     ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
                     : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
-                float rate = working ? m_subsystemWaterDon.GetProductionRate(point) : 0f;
-                float net = rate - (hasSpreader ? SubsystemWaterDonBehavior.TransferRate : 0f);
-                value = FormatMana(net);
-            }
+            string value = draining ? null : FormatMana(generating.GetProductionRate());
             string name = GetBlockName(point);
             string message;
             if (value == null) {
@@ -341,6 +321,7 @@ namespace Game {
             }
             player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
+            return true;
         }
 
         public void ShowSpreaderStatus(ComponentPlayer player, Point3 point) {
@@ -360,6 +341,36 @@ namespace Game {
             );
             player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
+        }
+
+        public void ShowStorageStatus(ComponentPlayer player, Point3 point, int contents) {
+            float max = m_subsystemMana.GetMaxManaAmount(contents);
+            float current = m_subsystemMana.GetManaAmount(point);
+            string status = current > 0f
+                ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
+                : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
+            string message = string.Format(
+                LanguageControl.Get("GrownStaffMessages", "StorageStatusFormat"),
+                GetBlockName(point),
+                FormatMana(current),
+                FormatMana(max),
+                status
+            );
+            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
+        }
+
+        /// <summary>
+        /// 法杖可否检查该方块状态：优先取魔力方块注册表（数据文件驱动），无条目时回退到既有方块集合。
+        /// </summary>
+        public bool IsStaffCheckable(int contents) {
+            if (ManaBlockRegistry.TryGet(contents, out ManaBlockDefinition definition)) {
+                return definition.StaffCheckable;
+            }
+            return contents == m_sunPowerIndex
+                || contents == m_waterDonIndex
+                || contents == m_spreaderIndex
+                || contents == m_manaPoolIndex;
         }
 
         public static int FaceFromDirection(Point3 delta) {

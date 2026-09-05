@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Text;
 using Engine;
 using GameEntitySystem;
+using Phytomana;
+using Phytomana.Api;
 using TemplatesDatabase;
 
 namespace Game {
@@ -38,6 +40,10 @@ namespace Game {
 
         public SubsystemParticles m_subsystemParticles;
 
+        public ManaNetworkManager m_network;
+
+        public List<IManaReceiver> m_receiverBuffer = [];
+
         public int m_sunPowerFlowerIndex;
 
         public int m_manaSpreaderIndex;
@@ -60,6 +66,7 @@ namespace Game {
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
             m_subsystemPickables = Project.FindSubsystem<SubsystemPickables>(true);
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
+            m_network = Project.FindSubsystem<ManaNetworkManager>(true);
             m_sunPowerFlowerIndex = BlocksManager.GetBlockIndex<SunPowerFlower>();
             m_manaSpreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
             m_waterDonFlowerIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
@@ -68,10 +75,11 @@ namespace Game {
             m_manaIngotIndex = BlocksManager.GetBlockIndex<ManaIngotBlock>();
             m_ironBlockIndex = BlocksManager.GetBlockIndex<IronBlock>();
             m_manaBlockIndex = BlocksManager.GetBlockIndex<ManaBlock>();
-            m_maxManaAmounts[m_sunPowerFlowerIndex] = 800f;
+            m_maxManaAmounts[m_sunPowerFlowerIndex] = PhytoConfig.Instance.SunPowerMaxMana;
             m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
-            m_maxManaAmounts[m_waterDonFlowerIndex] = 240f;
-            m_maxManaAmounts[m_manaPoolIndex] = 3800f;
+            m_maxManaAmounts[m_waterDonFlowerIndex] = PhytoConfig.Instance.WaterDonMaxMana;
+            m_maxManaAmounts[m_manaPoolIndex] = ManaPool.MaxMana;
+            ManaBlockRegistry.ApplyMaxManaOverrides(m_maxManaAmounts);
             string text = valuesDictionary.GetValue("ManaAmounts", string.Empty);
             foreach (string item in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
                 string[] array = item.Split([','], StringSplitOptions.None);
@@ -134,15 +142,35 @@ namespace Game {
 
         public float GetMaxManaAmount(int contents) => m_maxManaAmounts.TryGetValue(contents, out float value) ? value : 0f;
 
-        public float GetManaAmount(Point3 point) => m_manaAmounts.TryGetValue(point, out float value) ? value : 0f;
+        public float GetManaAmount(Point3 point) {
+            if (m_network.TryGetMana(point, out float networkAmount)) {
+                return networkAmount;
+            }
+            return m_manaAmounts.TryGetValue(point, out float value) ? value : 0f;
+        }
 
         public void SetManaAmount(Point3 point, float amount) {
+            if (m_network.TryGetReceiverStorage(point, out ManaStorage storage)) {
+                storage.SetCurrent(amount);
+                return;
+            }
             int contents = m_subsystemTerrain.Terrain.GetCellContents(point);
             float max = GetMaxManaAmount(contents);
             if (max <= 0f) {
                 return;
             }
             m_manaAmounts[point] = Math.Clamp(amount, 0f, max);
+        }
+
+        /// <summary>
+        /// 旧版存档中魔法池魔力曾记在本字典里；节点注册时迁移进魔力网络并清除残留，避免幽灵魔力。
+        /// </summary>
+        public bool TakeLegacyMana(Point3 point, out float amount) {
+            if (m_manaAmounts.TryGetValue(point, out amount)) {
+                m_manaAmounts.Remove(point);
+                return true;
+            }
+            return false;
         }
 
         public void AddMana(Point3 point, float amount) => SetManaAmount(point, GetManaAmount(point) + amount);
@@ -223,19 +251,24 @@ namespace Game {
             }
         }
 
-        public bool IsManaStorage(int contents) => contents == m_manaSpreaderIndex || contents == m_manaPoolIndex;
+        public bool IsManaStorage(int contents) {
+            if (ManaBlockRegistry.TryGet(contents, out ManaBlockDefinition definition)) {
+                return definition.CanTransfer;
+            }
+            return contents == m_manaSpreaderIndex || contents == m_manaPoolIndex;
+        }
 
         public void Update(float dt) {
-            List<KeyValuePair<Point3, float>> snapshot = [.. m_manaAmounts];
-            foreach (KeyValuePair<Point3, float> pair in snapshot) {
-                Point3 point = pair.Key;
+            m_network.GetActiveReceivers(m_receiverBuffer);
+            foreach (IManaReceiver receiver in m_receiverBuffer) {
+                Point3 point = receiver.Position;
                 if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex) {
                     continue;
                 }
-                if (GetManaAmount(point) >= BlockConversionCost) {
+                if (receiver.ManaStorage.Current >= BlockConversionCost) {
                     TryConvertBlock(point);
                 }
-                if (GetManaAmount(point) >= IngotConversionCost) {
+                if (receiver.ManaStorage.Current >= IngotConversionCost) {
                     TryConvertIngot(point);
                 }
             }

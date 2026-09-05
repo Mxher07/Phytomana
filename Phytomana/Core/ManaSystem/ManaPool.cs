@@ -15,7 +15,7 @@ namespace Phytomana {
 
         public ManaPool(Point3 position) {
             Position = position;
-            ManaStorage = new ManaStorage(MaxMana);
+            ManaStorage = new ManaStorage(ManaBlockRegistry.GetMaxMana("ManaPoolBlock", MaxMana));
         }
     }
 }
