@@ -105,10 +105,7 @@ namespace Game {
                 return;
             }
             int contents = Terrain.ExtractContents(hit.Value.Value);
-            if (contents == m_sunPowerIndex
-                || contents == m_waterDonIndex
-                || contents == m_spreaderIndex
-                || contents == m_manaPoolIndex) {
+            if (IsStaffCheckable(contents)) {
                 state.HoverCell = hit.Value.CellFace.Point;
             }
         }
@@ -193,22 +190,25 @@ namespace Game {
             if (mode == 1) {
                 return HandleBindingClick(player, state, point, contents);
             }
-            if (contents == m_sunPowerIndex || contents == m_waterDonIndex) {
-                ShowFlowerStatus(player, point, contents);
+            if (ShowFlowerStatus(player, point, contents)) {
                 return true;
             }
             if (contents == m_spreaderIndex) {
                 ShowSpreaderStatus(player, point);
                 return true;
             }
+            if (IsStaffCheckable(contents)) {
+                ShowStorageStatus(player, point, contents);
+                return true;
+            }
             return false;
         }
 
         public bool HandleBindingClick(ComponentPlayer player, StaffState state, Point3 point, int contents) {
-            if (contents == m_sunPowerIndex || contents == m_waterDonIndex) {
+            if (m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower _)) {
                 return true;
             }
-            if (contents != m_spreaderIndex && contents != m_manaPoolIndex) {
+            if (!m_subsystemMana.IsManaStorage(contents)) {
                 if (state.BindStart.HasValue) {
                     ShowMessage(player, "ErrNoManaCapability", Color.Red, true);
                 }
@@ -284,9 +284,9 @@ namespace Game {
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
-        public void ShowFlowerStatus(ComponentPlayer player, Point3 point, int contents) {
+        public bool ShowFlowerStatus(ComponentPlayer player, Point3 point, int contents) {
             if (!m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower flower) || flower is not TileGeneratingFlower generating) {
-                return;
+                return false;
             }
             float max = m_subsystemMana.GetMaxManaAmount(contents);
             float current = m_subsystemMana.GetManaAmount(point);
@@ -321,6 +321,7 @@ namespace Game {
             }
             player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
+            return true;
         }
 
         public void ShowSpreaderStatus(ComponentPlayer player, Point3 point) {
@@ -340,6 +341,36 @@ namespace Game {
             );
             player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
+        }
+
+        public void ShowStorageStatus(ComponentPlayer player, Point3 point, int contents) {
+            float max = m_subsystemMana.GetMaxManaAmount(contents);
+            float current = m_subsystemMana.GetManaAmount(point);
+            string status = current > 0f
+                ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
+                : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
+            string message = string.Format(
+                LanguageControl.Get("GrownStaffMessages", "StorageStatusFormat"),
+                GetBlockName(point),
+                FormatMana(current),
+                FormatMana(max),
+                status
+            );
+            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
+        }
+
+        /// <summary>
+        /// 法杖可否检查该方块状态：优先取魔力方块注册表（数据文件驱动），无条目时回退到既有方块集合。
+        /// </summary>
+        public bool IsStaffCheckable(int contents) {
+            if (ManaBlockRegistry.TryGet(contents, out ManaBlockDefinition definition)) {
+                return definition.StaffCheckable;
+            }
+            return contents == m_sunPowerIndex
+                || contents == m_waterDonIndex
+                || contents == m_spreaderIndex
+                || contents == m_manaPoolIndex;
         }
 
         public static int FaceFromDirection(Point3 delta) {

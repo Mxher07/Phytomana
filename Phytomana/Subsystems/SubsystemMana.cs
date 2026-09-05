@@ -79,6 +79,7 @@ namespace Game {
             m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
             m_maxManaAmounts[m_waterDonFlowerIndex] = PhytoConfig.Instance.WaterDonMaxMana;
             m_maxManaAmounts[m_manaPoolIndex] = ManaPool.MaxMana;
+            ManaBlockRegistry.ApplyMaxManaOverrides(m_maxManaAmounts);
             string text = valuesDictionary.GetValue("ManaAmounts", string.Empty);
             foreach (string item in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
                 string[] array = item.Split([','], StringSplitOptions.None);
@@ -250,7 +251,12 @@ namespace Game {
             }
         }
 
-        public bool IsManaStorage(int contents) => contents == m_manaSpreaderIndex || contents == m_manaPoolIndex;
+        public bool IsManaStorage(int contents) {
+            if (ManaBlockRegistry.TryGet(contents, out ManaBlockDefinition definition)) {
+                return definition.CanTransfer;
+            }
+            return contents == m_manaSpreaderIndex || contents == m_manaPoolIndex;
+        }
 
         public void Update(float dt) {
             m_network.GetActiveReceivers(m_receiverBuffer);

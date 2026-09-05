@@ -28,7 +28,7 @@ namespace Phytomana {
 
         public double m_nextParticleTime;
 
-        public override float MaxMana => PhytoConfig.Instance.WaterDonMaxMana;
+        public override float MaxMana => ManaBlockRegistry.GetMaxMana("WaterDonFlower", PhytoConfig.Instance.WaterDonMaxMana);
 
         public TileWaterDonFlower(Point3 position) : base(position) { }
 

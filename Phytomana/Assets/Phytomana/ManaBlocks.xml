@@ -1,0 +1,14 @@
+<!--
+  Phytomana 魔力方块定义。一个文件集中管理每个魔力方块的三项属性：
+    Name           方块类名（与代码中的类名一致）
+    MaxMana        存储魔力上限
+    CanTransfer    是否可被传递（可作为法杖链路 / 魔力传递的目标）
+    StaffCheckable 是否可被法杖检查状态
+  条目缺失时，相应方块回退到内置默认行为。
+-->
+<PhytoManaBlocks>
+  <Block Name="ManaPoolBlock" MaxMana="3800" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="ManaSpreaderBlock" MaxMana="1200" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="SunPowerFlower" MaxMana="800" CanTransfer="false" StaffCheckable="true" />
+  <Block Name="WaterDonFlower" MaxMana="240" CanTransfer="false" StaffCheckable="true" />
+</PhytoManaBlocks>

@@ -1,0 +1,26 @@
+<!--
+  Phytomana 花药台配方（外部配方文件）。一个文件即可为花药台追加合成配方，
+  规定「什么 + 什么」在花药台合成什么，无需改动源码。
+
+  每个 <Recipe>：
+    Result       产物方块类名（与代码类名一致）
+    ResultCount  产物数量，默认 1（可省略）
+    ManaCost     合成所需魔力，默认 0（可省略）
+    <Ingredient Name="原料方块类名" Count="数量" />   每种原料一行
+
+  匹配规则：无序匹配，提供的原料种类与数量须与配方完全一致。
+-->
+<FlowerRecipes>
+  <Recipe Result="SunPowerFlower" ResultCount="1" ManaCost="150">
+    <Ingredient Name="SumeruPetalBlock" Count="2" />
+    <Ingredient Name="DirtBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="WaterDonFlower" ResultCount="1" ManaCost="150">
+    <Ingredient Name="SumeruPetalBlock" Count="2" />
+    <Ingredient Name="GraniteBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="GrownStaffBlock" ResultCount="1" ManaCost="80">
+    <Ingredient Name="GrownRodBlock" Count="2" />
+    <Ingredient Name="SumeruPetalBlock" Count="1" />
+  </Recipe>
+</FlowerRecipes>

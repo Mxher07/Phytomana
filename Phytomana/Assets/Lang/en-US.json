@@ -111,6 +111,7 @@
     "StatusFormat": "[{0}] Stored:{1}/{2}mn Current:{3} Output:{4}mn/sct",
     "StatusFormatDraining": "[{0}] Stored:{1}/{2}mn Current:{3} Output:-",
     "SpreadStatusFormat": "[{0}] Stored:{1}/{2}mn Current:{3} Usage:{4}mn/sct",
+    "StorageStatusFormat": "[{0}] Stored:{1}/{2}mn Current:{3}",
     "StartSelected": "Start point selected: ({0}, {1}, {2})",
     "StartCancelled": "Start point deselected",
     "BindSuccess": "Bound: {0},{1},{2} → {3},{4},{5}",

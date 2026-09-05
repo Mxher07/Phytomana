@@ -120,6 +120,7 @@
     "StatusFormat": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 产能:{4}mn/sct",
     "StatusFormatDraining": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 产能:-",
     "SpreadStatusFormat": "[{0}] 储存:{1}/{2}mn 当前状态:{3} 使用:{4}mn/sct",
+    "StorageStatusFormat": "[{0}] 储存:{1}/{2}mn 当前状态:{3}",
     "StartSelected": "已选中起始点：({0}, {1}, {2})",
     "StartCancelled": "已取消选择起始点",
     "BindSuccess": "绑定成功：{0},{1},{2} → {3},{4},{5}",

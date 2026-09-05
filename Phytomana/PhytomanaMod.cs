@@ -19,6 +19,8 @@ namespace Phytomana {
         }
 
         public override void BlocksInitalized() {
+            ManaBlockRegistry.Initialize();
+            FlowerTableRecipeRegistry.Initialize(Entity);
             PhytoRegistry.Initialize();
         }
 

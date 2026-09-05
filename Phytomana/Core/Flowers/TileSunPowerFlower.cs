@@ -42,7 +42,7 @@ namespace Phytomana {
 
         public float m_idleIsolatedElapsed;
 
-        public override float MaxMana => PhytoConfig.Instance.SunPowerMaxMana;
+        public override float MaxMana => ManaBlockRegistry.GetMaxMana("SunPowerFlower", PhytoConfig.Instance.SunPowerMaxMana);
 
         public override bool IsLosingMana => !IsProducing && m_idleIsolatedElapsed > IsolatedDrainDelay;
 
