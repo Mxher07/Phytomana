@@ -9,6 +9,8 @@ namespace Game {
             base.Initialize();
             CanBeBuiltIntoFurniture = true;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");
+            int contents = BlocksManager.GetBlockIndex<ManaBlock>();
+            Log.Information($"[PhytoMana]{contents} Registered.");
         }
 
         public override int GetFaceTextureSlot(int face, int value) => 0;
