@@ -108,6 +108,19 @@ namespace Phytomana {
             return m_tables.TryGetValue(new Point3(x, y, z), out FlowerTable table) && table.HasWater;
         }
 
+        /// <summary>方块渲染查询：按字典顺序返回该花药台缓存中的原料类型（渲染漂浮小方块用）。</summary>
+        public List<int> GetIngredientContents(int x, int y, int z) {
+            List<int> list = [];
+            if (m_tables.TryGetValue(new Point3(x, y, z), out FlowerTable table)) {
+                foreach (KeyValuePair<int, int> pair in table.Ingredients) {
+                    if (pair.Value > 0) {
+                        list.Add(pair.Key);
+                    }
+                }
+            }
+            return list;
+        }
+
         public override void OnBlockAdded(int value, int oldValue, int x, int y, int z) {
             EnsureTable(x, y, z);
         }
@@ -329,7 +342,48 @@ namespace Phytomana {
                 MathF.Round(table.ManaStorage.Max),
                 names.Count > 0 ? string.Join("、", names) : LanguageControl.Get("FlowerTableMessages", "Empty")
             );
+            string hint = BuildCraftHint(table);
+            if (!string.IsNullOrEmpty(hint)) {
+                text += "｜" + hint;
+            }
             player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
+        }
+
+        /// <summary>
+        /// 合成进度提示：材料齐全 → 可投入种子；差一点 → 列出缺口；跑偏 → 提示取回。
+        /// </summary>
+        public string BuildCraftHint(FlowerTable table) {
+            List<int> provided = [];
+            foreach (KeyValuePair<int, int> ingredient in table.Ingredients) {
+                for (int i = 0; i < ingredient.Value; i++) {
+                    provided.Add(ingredient.Key);
+                }
+            }
+            if (provided.Count == 0) {
+                return LanguageControl.Get("FlowerTableMessages", "HintEmpty");
+            }
+            if (FlowerTableRecipeRegistry.TryMatch(provided, out FlowerRecipe exact)) {
+                if (exact.ManaCost > 0f && table.ManaStorage.Current < exact.ManaCost) {
+                    return string.Format(
+                        LanguageControl.Get("FlowerTableMessages", "HintManaLow"),
+                        MathF.Round(table.ManaStorage.Current),
+                        MathF.Round(exact.ManaCost)
+                    );
+                }
+                Block resultBlock = BlocksManager.Blocks[exact.ResultContents];
+                string resultName = resultBlock.GetDisplayName(SubsystemTerrain, Terrain.MakeBlockValue(exact.ResultContents));
+                return string.Format(LanguageControl.Get("FlowerTableMessages", "HintReady"), resultName);
+            }
+            if (FlowerTableRecipeRegistry.TryMatchClosest(provided, out FlowerRecipe closest, out List<KeyValuePair<FlowerRecipeIngredient, int>> missing)) {
+                List<string> parts = [];
+                foreach (KeyValuePair<FlowerRecipeIngredient, int> pair in missing) {
+                    Block block = BlocksManager.Blocks[pair.Key.Contents];
+                    string name = block.GetDisplayName(SubsystemTerrain, Terrain.MakeBlockValue(pair.Key.Contents));
+                    parts.Add($"{name}×{pair.Value}");
+                }
+                return string.Format(LanguageControl.Get("FlowerTableMessages", "HintMissing"), string.Join("、", parts));
+            }
+            return LanguageControl.Get("FlowerTableMessages", "HintNoMatch");
         }
 
         public void ShowMessage(ComponentMiner componentMiner, string text, Color color) {

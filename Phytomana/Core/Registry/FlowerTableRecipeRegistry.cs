@@ -99,6 +99,62 @@ namespace Phytomana {
             return false;
         }
 
+        /// <summary>
+        /// 模糊匹配：在「所提供原料是其子集」的配方中找出缺口最小的一条，
+        /// 用于花药台状态提示（还差哪些材料）。matched 为最接近的配方，
+        /// missing 列出每种材料的缺口数量。
+        /// </summary>
+        public static bool TryMatchClosest(
+            IList<int> providedContents,
+            out FlowerRecipe matched,
+            out List<KeyValuePair<FlowerRecipeIngredient, int>> missing
+        ) {
+            matched = null;
+            missing = [];
+            if (providedContents == null || providedContents.Count == 0) {
+                return false;
+            }
+            Dictionary<int, int> providedCounts = [];
+            foreach (int contents in providedContents) {
+                providedCounts[contents] = providedCounts.GetValueOrDefault(contents) + 1;
+            }
+            int bestDeficit = int.MaxValue;
+            foreach (FlowerRecipe recipe in m_recipes) {
+                // 所提供材料必须是该配方原料的子集，否则视为跑偏
+                bool subset = true;
+                foreach (int contents in providedCounts.Keys) {
+                    int need = 0;
+                    foreach (FlowerRecipeIngredient ingredient in recipe.Ingredients) {
+                        if (ingredient.Contents == contents) {
+                            need += ingredient.Count;
+                        }
+                    }
+                    if (providedCounts[contents] > need) {
+                        subset = false;
+                        break;
+                    }
+                }
+                if (!subset) {
+                    continue;
+                }
+                int deficit = 0;
+                List<KeyValuePair<FlowerRecipeIngredient, int>> recipeMissing = [];
+                foreach (FlowerRecipeIngredient ingredient in recipe.Ingredients) {
+                    int lack = ingredient.Count - providedCounts.GetValueOrDefault(ingredient.Contents);
+                    if (lack > 0) {
+                        deficit += lack;
+                        recipeMissing.Add(new KeyValuePair<FlowerRecipeIngredient, int>(ingredient, lack));
+                    }
+                }
+                if (deficit < bestDeficit) {
+                    bestDeficit = deficit;
+                    matched = recipe;
+                    missing = recipeMissing;
+                }
+            }
+            return matched != null;
+        }
+
         static bool Matches(FlowerRecipe recipe, IList<int> provided) {
             int requiredTotal = 0;
             foreach (FlowerRecipeIngredient ingredient in recipe.Ingredients) {
