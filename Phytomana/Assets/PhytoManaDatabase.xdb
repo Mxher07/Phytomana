@@ -12,6 +12,9 @@
   <MemberSubsystemTemplate Name="ManaPoolBehavior" Guid="4a3cce46-27c0-4b7a-b806-9677df55725b" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="5f5968ee-7a7a-457c-ae63-cc33c60062a6" Value="Phytomana.SubsystemManaPoolBehavior" Type="string"/>
   </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="ManaSpreaderBehavior" Guid="060a0bae-3dba-4abd-84c6-78ea0d345b2a" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="3d587f35-5aad-4f19-bd54-4eb5ce675e2c" Value="Phytomana.SubsystemManaSpreaderBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
   <MemberSubsystemTemplate Name="TestManaSourceBehavior" Guid="3b726eff-59ec-4082-9663-446da291bd48" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="efe02840-80b7-4967-ae25-2e3f1bad4bc8" Value="Phytomana.SubsystemTestManaSourceBehavior" Type="string"/>
   </MemberSubsystemTemplate>

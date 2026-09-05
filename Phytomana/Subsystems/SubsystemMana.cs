@@ -138,8 +138,6 @@ namespace Game {
             valuesDictionary.SetValue("ManaLinks", linkBuilder.ToString());
         }
 
-        public bool CanStoreMana(int contents) => m_maxManaAmounts.ContainsKey(contents);
-
         public float GetMaxManaAmount(int contents) => m_maxManaAmounts.TryGetValue(contents, out float value) ? value : 0f;
 
         public float GetManaAmount(Point3 point) {
@@ -176,51 +174,6 @@ namespace Game {
         public void AddMana(Point3 point, float amount) => SetManaAmount(point, GetManaAmount(point) + amount);
 
         public void RemoveMana(Point3 point, float amount) => SetManaAmount(point, GetManaAmount(point) - amount);
-
-        public void RemoveBlockMana(Point3 point) => m_manaAmounts.Remove(point);
-
-        public bool HasSpreaderNearby(Point3 from) {
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dz = -1; dz <= 1; dz++) {
-                    if (m_subsystemTerrain.Terrain.GetCellContents(from.X + dx, from.Y, from.Z + dz) == m_manaSpreaderIndex) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        public float TransferManaToBestSpreader(Point3 from, float amount) {
-            if (amount <= 0f) {
-                return 0f;
-            }
-            Point3? bestPoint = null;
-            float bestFree = 0f;
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dz = -1; dz <= 1; dz++) {
-                    Point3 point = new(from.X + dx, from.Y, from.Z + dz);
-                    int contents = m_subsystemTerrain.Terrain.GetCellContents(point);
-                    if (contents != m_manaSpreaderIndex) {
-                        continue;
-                    }
-                    float free = GetMaxManaAmount(contents) - GetManaAmount(point);
-                    if (free > bestFree) {
-                        bestFree = free;
-                        bestPoint = point;
-                    }
-                }
-            }
-            if (!bestPoint.HasValue || bestFree <= 0f) {
-                return 0f;
-            }
-            float transfer = Math.Min(Math.Min(amount, GetManaAmount(from)), bestFree);
-            if (transfer <= 0f) {
-                return 0f;
-            }
-            RemoveMana(from, transfer);
-            AddMana(bestPoint.Value, transfer);
-            return transfer;
-        }
 
         public bool AddLink(Point3 from, Point3 to, bool apply = true) {
             if (from == to || HasLink(from, to)) {
@@ -376,30 +329,6 @@ namespace Game {
                 }
             }
             return usage;
-        }
-
-        public void TransferManaToLinked(Point3 from, float amount) {
-            if (amount <= 0f) {
-                return;
-            }
-            foreach (ManaLink link in m_links) {
-                if (link.From != from) {
-                    continue;
-                }
-                int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To);
-                if (!IsManaStorage(toContents)) {
-                    continue;
-                }
-                if (GetManaAmount(from) <= 0f) {
-                    break;
-                }
-                float targetFree = GetMaxManaAmount(toContents) - GetManaAmount(link.To);
-                float transfer = Math.Min(Math.Min(amount, GetManaAmount(from)), targetFree);
-                if (transfer > 0f) {
-                    RemoveMana(from, transfer);
-                    AddMana(link.To, transfer);
-                }
-            }
         }
     }
 }
