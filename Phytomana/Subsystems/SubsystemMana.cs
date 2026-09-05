@@ -25,8 +25,6 @@ namespace Game {
         public const string ManaShortName = "mn";
         public const float StaffLinkTransferAmount = 160f;
         public const float StaffLinkTransferPeriod = 1f;
-        public const float IngotConversionCost = 300f;
-        public const float BlockConversionCost = 3000f;
 
         public Dictionary<Point3, float> m_manaAmounts = [];
 
@@ -52,14 +50,6 @@ namespace Game {
 
         public int m_manaPoolIndex;
 
-        public int m_ironIngotIndex;
-
-        public int m_manaIngotIndex;
-
-        public int m_ironBlockIndex;
-
-        public int m_manaBlockIndex;
-
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
         public override void Load(ValuesDictionary valuesDictionary) {
@@ -71,10 +61,6 @@ namespace Game {
             m_manaSpreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
             m_waterDonFlowerIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
             m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
-            m_ironIngotIndex = BlocksManager.GetBlockIndex<IronIngotBlock>();
-            m_manaIngotIndex = BlocksManager.GetBlockIndex<ManaIngotBlock>();
-            m_ironBlockIndex = BlocksManager.GetBlockIndex<IronBlock>();
-            m_manaBlockIndex = BlocksManager.GetBlockIndex<ManaBlock>();
             m_maxManaAmounts[m_sunPowerFlowerIndex] = PhytoConfig.Instance.SunPowerMaxMana;
             m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
             m_maxManaAmounts[m_waterDonFlowerIndex] = PhytoConfig.Instance.WaterDonMaxMana;
@@ -212,69 +198,54 @@ namespace Game {
         }
 
         public void Update(float dt) {
+            if (ManaPoolRecipeRegistry.Count == 0) {
+                return;
+            }
             m_network.GetActiveReceivers(m_receiverBuffer);
             foreach (IManaReceiver receiver in m_receiverBuffer) {
                 Point3 point = receiver.Position;
                 if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex) {
                     continue;
                 }
-                if (receiver.ManaStorage.Current >= BlockConversionCost) {
-                    TryConvertBlock(point);
-                }
-                if (receiver.ManaStorage.Current >= IngotConversionCost) {
-                    TryConvertIngot(point);
-                }
+                TryConvertPool(point, receiver);
             }
         }
 
-        public void TryConvertIngot(Point3 poolPoint) {
+        /// <summary>
+        /// 魔力池物品转化（配方由外部 .mp 文件声明）：掉入池中的原料被逐件转化，
+        /// 每件消耗配方声明的魔力；魔力不足时只转化可负担的件数，剩余留在池中。
+        /// </summary>
+        public void TryConvertPool(Point3 poolPoint, IManaReceiver receiver) {
             foreach (Pickable pickable in m_subsystemPickables.Pickables) {
                 if (pickable.ToRemove) {
-                    continue;
-                }
-                if (Terrain.ExtractContents(pickable.Value) != m_ironIngotIndex) {
                     continue;
                 }
                 if (!IsPickableInCell(pickable, poolPoint)) {
                     continue;
                 }
-                RemoveMana(poolPoint, IngotConversionCost);
+                ManaPoolRecipe recipe = ManaPoolRecipeRegistry.FindByIngredient(Terrain.ExtractContents(pickable.Value));
+                if (recipe == null) {
+                    continue;
+                }
+                int count = Math.Max(1, pickable.Count);
+                int units = count;
+                if (recipe.ManaCost > 0f) {
+                    units = Math.Min(units, (int)(receiver.ManaStorage.Current / recipe.ManaCost));
+                }
+                if (units <= 0) {
+                    continue;
+                }
+                if (recipe.ManaCost > 0f) {
+                    receiver.ManaStorage.Take(units * recipe.ManaCost);
+                }
                 Vector3 position = pickable.Position;
-                pickable.ToRemove = true;
-                m_subsystemPickables.AddPickable(m_manaIngotIndex, Math.Max(1, pickable.Count), position, pickable.Velocity, null);
-                Vector3 center = new(poolPoint.X + 0.5f, poolPoint.Y + 0.2f, poolPoint.Z + 0.5f);
-                foreach (Vector3 offset in new[] {
-                    new Vector3(0.4f, 0f, 0.4f),
-                    new Vector3(0.4f, 0f, -0.4f),
-                    new Vector3(-0.4f, 0f, 0.4f),
-                    new Vector3(-0.4f, 0f, -0.4f)
-                }) {
-                    m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
-                        center + offset,
-                        0.8f,
-                        1.2f,
-                        new Color(102, 204, 255)
-                    ));
+                if (units >= count) {
+                    pickable.ToRemove = true;
                 }
-                return;
-            }
-        }
-
-        public void TryConvertBlock(Point3 poolPoint) {
-            foreach (Pickable pickable in m_subsystemPickables.Pickables) {
-                if (pickable.ToRemove) {
-                    continue;
+                else {
+                    pickable.Count -= units;
                 }
-                if (Terrain.ExtractContents(pickable.Value) != m_ironBlockIndex) {
-                    continue;
-                }
-                if (!IsPickableInCell(pickable, poolPoint)) {
-                    continue;
-                }
-                RemoveMana(poolPoint, BlockConversionCost);
-                Vector3 position = pickable.Position;
-                pickable.ToRemove = true;
-                m_subsystemPickables.AddPickable(m_manaBlockIndex, Math.Max(1, pickable.Count), position, pickable.Velocity, null);
+                m_subsystemPickables.AddPickable(recipe.ResultContents, units * recipe.ResultCount, position, pickable.Velocity, null);
                 Vector3 center = new(poolPoint.X + 0.5f, poolPoint.Y + 0.2f, poolPoint.Z + 0.5f);
                 foreach (Vector3 offset in new[] {
                     new Vector3(0.4f, 0f, 0.4f),
