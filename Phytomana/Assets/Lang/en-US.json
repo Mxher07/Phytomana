@@ -108,6 +108,7 @@
     "StatusWorking": "Working",
     "StatusIdle": "Resting",
     "StatusDraining": "Leaking",
+    "StatusSleeping": "Sleeping (no solid base below)",
     "StatusFormat": "[{0}] Stored:{1}/{2}mn Current:{3} Output:{4}mn/sct",
     "StatusFormatDraining": "[{0}] Stored:{1}/{2}mn Current:{3} Output:-",
     "SpreadStatusFormat": "[{0}] Stored:{1}/{2}mn Current:{3} Usage:{4}mn/sct",
