@@ -107,7 +107,7 @@ namespace Game {
                     m_meshMana,
                     Color.White,
                     manaMatrix,
-                    geometry.GetGeometry(m_textureMana).SubsetOpaque
+                    geometry.GetGeometry(m_textureMana).SubsetTransparent
                 );
             }
         }
@@ -141,7 +141,8 @@ namespace Game {
                 color, 
                 drawSize, 
                 ref matrix, 
-                environmentData
+                environmentData,
+                GeometrySubsetType.Transparent
             );
         }
     }
