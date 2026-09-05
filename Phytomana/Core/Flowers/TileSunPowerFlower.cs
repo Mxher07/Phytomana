@@ -157,7 +157,7 @@ namespace Phytomana {
             m_burnHeatLevel = (int)bestBlock.GetFuelHeatLevel(best.Value);
             m_burnEndTime = TotalTime + bestBlock.GetFuelFireDuration(best.Value);
             m_nextProductionParticleTime = TotalTime + ProductionParticleInterval;
-            m_subsystemAudio.PlaySound("Audio/PhytoMana/spreaderFire", 1f, 0f, 0f, 0f);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/endoflame", 1f, 0f, 0f, 0f);
         }
 
         public void SpawnManaParticle(Point3 point, float yOffset, float size, float duration, Color color) {

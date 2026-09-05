@@ -32,4 +32,16 @@
     <Ingredient Name="GrownRodBlock" Count="2" />
     <Ingredient Name="SumeruPetalBlock" Count="1" />
   </Recipe>
+  <Recipe Result="NightshadeFlower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock" Count="2" />
+    <Ingredient Name="CoalBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="GourmaryllisFlower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock" Count="2" />
+    <Ingredient Name="BreadBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="ThermalilyFlower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock" Count="2" />
+    <Ingredient Name="MagmaBucketBlock" Count="1" />
+  </Recipe>
 </FlowerRecipes>

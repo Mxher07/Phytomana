@@ -23,6 +23,18 @@
       "DisplayName": "Springfroth Flower",
       "Description": "Absorbs nearby water to produce Mana."
     },
+    "NightshadeFlower:0": {
+      "DisplayName": "Nightshade Flower",
+      "Description": "Whispers in the dark. Complements the Sunblaze Flower, slowly generating Mana at night only."
+    },
+    "GourmaryllisFlower:0": {
+      "DisplayName": "Gourmaryllis",
+      "Description": "A big mouth that refuses nothing. Eats dropped food and converts nutrition into Mana while digesting."
+    },
+    "ThermalilyFlower:0": {
+      "DisplayName": "Thermalily",
+      "Description": "Thirsty for magma. Swallows adjacent magma blocks for bursts of Mana; the magma turns to stone."
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "Mana Spreader",
       "Description": "Stores up to 1200 Mn and sends it to blocks linked to it with a Grown Staff."
@@ -106,7 +118,12 @@
     "StatusFormat": "[Flower Table] Water: {0} | Mana: {1}/{2}mn | Ingredients: {3}",
     "WaterYes": "yes",
     "WaterNo": "no",
-    "Empty": "empty"
+    "Empty": "empty",
+    "HintEmpty": "Drop recipe ingredients in, then right-click empty-handed to check progress",
+    "HintReady": "Ingredients ready! Drop a seed to craft {0}",
+    "HintManaLow": "Not enough mana ({0}/{1}), feed it from the mana network",
+    "HintMissing": "Still missing: {0}",
+    "HintNoMatch": "Ingredients match no recipe (sneak right-click to retrieve)"
   },
   "GrownStaffMessages": {
     "ModeWork": "Work Mode",

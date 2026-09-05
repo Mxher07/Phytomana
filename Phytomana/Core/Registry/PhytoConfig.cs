@@ -42,6 +42,30 @@ namespace Phytomana {
         /// <summary>泉沫珠魔力上限。</summary>
         public float WaterDonMaxMana = TileWaterDonFlower.DefaultMaxMana;
 
+        // ===== 夜影花 =====
+
+        /// <summary>夜影花夜间产魔速率。</summary>
+        public float NightshadeManaRate = TileNightshadeFlower.DefaultManaRate;
+
+        /// <summary>夜影花魔力上限。</summary>
+        public float NightshadeMaxMana = TileNightshadeFlower.DefaultMaxMana;
+
+        // ===== 暴食花 =====
+
+        /// <summary>暴食花每点营养价值产出的魔力。</summary>
+        public float GourmaryllisManaPerNutrition = TileGourmaryllisFlower.DefaultManaPerNutrition;
+
+        /// <summary>暴食花魔力上限。</summary>
+        public float GourmaryllisMaxMana = TileGourmaryllisFlower.DefaultMaxMana;
+
+        // ===== 热力百合 =====
+
+        /// <summary>热力百合吞噬一格岩浆产出的魔力。</summary>
+        public float ThermalilyManaPerMagma = TileThermalilyFlower.DefaultManaPerMagma;
+
+        /// <summary>热力百合魔力上限。</summary>
+        public float ThermalilyMaxMana = TileThermalilyFlower.DefaultMaxMana;
+
         public void Save(XElement element) {
             element.SetAttributeValue("TransferInterval", Format(TransferInterval));
             element.SetAttributeValue("TransferDistance", Format(TransferDistance));
@@ -51,6 +75,12 @@ namespace Phytomana {
             element.SetAttributeValue("SunPowerMaxMana", Format(SunPowerMaxMana));
             element.SetAttributeValue("WaterDonManaRate", Format(WaterDonManaRate));
             element.SetAttributeValue("WaterDonMaxMana", Format(WaterDonMaxMana));
+            element.SetAttributeValue("NightshadeManaRate", Format(NightshadeManaRate));
+            element.SetAttributeValue("NightshadeMaxMana", Format(NightshadeMaxMana));
+            element.SetAttributeValue("GourmaryllisManaPerNutrition", Format(GourmaryllisManaPerNutrition));
+            element.SetAttributeValue("GourmaryllisMaxMana", Format(GourmaryllisMaxMana));
+            element.SetAttributeValue("ThermalilyManaPerMagma", Format(ThermalilyManaPerMagma));
+            element.SetAttributeValue("ThermalilyMaxMana", Format(ThermalilyMaxMana));
         }
 
         public void Load(XElement element) {
@@ -65,6 +95,12 @@ namespace Phytomana {
             SunPowerMaxMana = Read(element, "SunPowerMaxMana", SunPowerMaxMana);
             WaterDonManaRate = Read(element, "WaterDonManaRate", WaterDonManaRate);
             WaterDonMaxMana = Read(element, "WaterDonMaxMana", WaterDonMaxMana);
+            NightshadeManaRate = Read(element, "NightshadeManaRate", NightshadeManaRate);
+            NightshadeMaxMana = Read(element, "NightshadeMaxMana", NightshadeMaxMana);
+            GourmaryllisManaPerNutrition = Read(element, "GourmaryllisManaPerNutrition", GourmaryllisManaPerNutrition);
+            GourmaryllisMaxMana = Read(element, "GourmaryllisMaxMana", GourmaryllisMaxMana);
+            ThermalilyManaPerMagma = Read(element, "ThermalilyManaPerMagma", ThermalilyManaPerMagma);
+            ThermalilyMaxMana = Read(element, "ThermalilyMaxMana", ThermalilyMaxMana);
         }
 
         public static string Format(float value) => value.ToString(CultureInfo.InvariantCulture);

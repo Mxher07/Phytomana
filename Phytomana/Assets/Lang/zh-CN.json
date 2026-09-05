@@ -23,6 +23,18 @@
       "DisplayName": "泉沫珠",
       "Description": "「魔法之流动」。吸收附近的水源以产出魔力"
     },
+    "NightshadeFlower:0": {
+      "DisplayName": "夜影花",
+      "Description": "「暗夜中的低语」。与日耀花互补，仅在夜晚缓慢产出魔力"
+    },
+    "GourmaryllisFlower:0": {
+      "DisplayName": "暴食花",
+      "Description": "「来者不拒的大胃王」。吞食掉落的食物，按营养价值消化产魔"
+    },
+    "ThermalilyFlower:0": {
+      "DisplayName": "热力百合",
+      "Description": "「岩浆的渴望」。吞噬邻近的岩浆产出大量魔力，岩浆凝固为石头"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "魔力发射器",
       "Description": "「地之信任者」。储存魔力并将其输送至生息法杖绑定的方块",
@@ -115,7 +127,12 @@
     "StatusFormat": "「花药台」水：{0}｜魔力：{1}/{2}mn｜原料：{3}",
     "WaterYes": "有",
     "WaterNo": "无",
-    "Empty": "空"
+    "Empty": "空",
+    "HintEmpty": "投入配方材料后空手右键查看进度",
+    "HintReady": "材料齐全，投入种子即可合成 {0}",
+    "HintManaLow": "魔力不足（{0}/{1}），先由魔力网络供魔",
+    "HintMissing": "还差：{0}",
+    "HintNoMatch": "材料不匹配任何配方（空手潜行右键取回）"
   },
   "GrownStaffMessages": {
     "ModeWork": "工作模式",
