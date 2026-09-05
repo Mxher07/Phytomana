@@ -52,18 +52,25 @@ namespace Phytomana {
 
         public override void Save(ValuesDictionary valuesDictionary) {
             StringBuilder builder = new();
+            HashSet<Point3> savedPositions = [];
             foreach (WeakReference<IManaSource> reference in m_sources) {
-                if (reference.TryGetTarget(out IManaSource source) && source.ManaStorage.Current > 0f) {
+                if (reference.TryGetTarget(out IManaSource source)
+                    && source.ManaStorage.Current > 0f
+                    && savedPositions.Add(source.Position)) {
                     AppendMana(builder, source.Position, source.ManaStorage.Current);
                 }
             }
             foreach (WeakReference<IManaReceiver> reference in m_receivers) {
-                if (reference.TryGetTarget(out IManaReceiver receiver) && receiver.ManaStorage.Current > 0f) {
+                if (reference.TryGetTarget(out IManaReceiver receiver)
+                    && receiver.ManaStorage.Current > 0f
+                    && savedPositions.Add(receiver.Position)) {
                     AppendMana(builder, receiver.Position, receiver.ManaStorage.Current);
                 }
             }
             foreach (KeyValuePair<Point3, float> pair in m_dormantMana) {
-                AppendMana(builder, pair.Key, pair.Value);
+                if (savedPositions.Add(pair.Key)) {
+                    AppendMana(builder, pair.Key, pair.Value);
+                }
             }
             valuesDictionary.SetValue(SaveKey, builder.ToString());
         }
@@ -216,6 +223,9 @@ namespace Phytomana {
             float totalFree = 0f;
             foreach (WeakReference<IManaReceiver> reference in m_receivers) {
                 if (!reference.TryGetTarget(out IManaReceiver receiver)) {
+                    continue;
+                }
+                if (receiver.Position == source.Position) {
                     continue;
                 }
                 ManaStorage storage = receiver.ManaStorage;
