@@ -59,6 +59,7 @@ namespace Phytomana {
             ManaSpreader spreader = new(point);
             m_spreaders[point] = spreader;
             m_network.RegisterReceiver(spreader);
+            m_network.RegisterSource(spreader);
             if (spreader.ManaStorage.IsEmpty && m_subsystemMana.TakeLegacyMana(point, out float legacyAmount)) {
                 spreader.ManaStorage.LoadData(legacyAmount);
             }
@@ -70,6 +71,7 @@ namespace Phytomana {
             }
             m_spreaders.Remove(point);
             m_network.UnregisterReceiver(spreader, destroyed);
+            m_network.UnregisterSource(spreader, destroyed);
         }
     }
 }
