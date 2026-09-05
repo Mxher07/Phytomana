@@ -97,7 +97,7 @@ namespace Game {
                 // 将比例限制在 0 到 1 之间，防止异常数据使液体超出模型预期范围。
                 float pct = MathUtils.Clamp(currentMana / maxMana, 0f, 1f);
                 // 液体底部位于 0.2，高度最多再增加 0.5，魔力越多显示得越高。
-                float manaY = 0.2f + 0.5f * pct;
+                float manaY = 0.2f + 0.35f * pct;
                 Matrix manaMatrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(0.5f, manaY, 0.5f);
                 generator.GenerateMeshVertices(
                     this,
