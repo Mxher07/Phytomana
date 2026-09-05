@@ -18,7 +18,16 @@ namespace Phytomana {
         public const float DefaultTransferDistance = 12f;
         public const string SaveKey = "ManaStorages";
 
+        public const double BurstInterval = 0.75;
+
         public SubsystemTerrain m_subsystemTerrain;
+
+        public SubsystemParticles m_subsystemParticles;
+
+        public SubsystemGameInfo m_subsystemGameInfo;
+
+        // 传输光球的逐链路节流：键为「源→接收器」坐标对，值为下次允许发射的时间。
+        public Dictionary<(Point3, Point3), double> m_nextBurstTimes = [];
 
         public List<WeakReference<IManaSource>> m_sources = [];
 
@@ -34,6 +43,8 @@ namespace Phytomana {
 
         public override void Load(ValuesDictionary valuesDictionary) {
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
+            m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
+            m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
             string text = valuesDictionary.GetValue(SaveKey, string.Empty);
             foreach (string item in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
                 string[] array = item.Split([','], StringSplitOptions.None);
@@ -76,6 +87,7 @@ namespace Phytomana {
         }
 
         public override void Dispose() {
+            m_nextBurstTimes.Clear();
             m_sources.Clear();
             m_receivers.Clear();
             m_dormantMana.Clear();
@@ -270,11 +282,46 @@ namespace Phytomana {
                     storage.TryAdd(give);
                     sourceStorage.Take(give);
                     remaining -= give;
+                    TrySpawnTransferBurst(source.Position, m_targetBuffer[i].Position);
                     if (storage.Free <= 0f) {
                         m_targetBuffer.RemoveAt(i);
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// 魔力投递的可视化：沿「源→接收器」方向发射一颗飞行光球，按链路节流避免粒子刷屏。
+        /// </summary>
+        public void TrySpawnTransferBurst(Point3 from, Point3 to) {
+            if (m_subsystemParticles == null || m_subsystemGameInfo == null) {
+                return;
+            }
+            double now = m_subsystemGameInfo.TotalElapsedGameTime;
+            (Point3, Point3) key = (from, to);
+            if (m_nextBurstTimes.TryGetValue(key, out double next) && now < next) {
+                return;
+            }
+            m_nextBurstTimes[key] = now + BurstInterval;
+            if (m_nextBurstTimes.Count > 512) {
+                List<(Point3, Point3)> stale = [];
+                foreach (KeyValuePair<(Point3, Point3), double> pair in m_nextBurstTimes) {
+                    if (pair.Value < now - 60.0) {
+                        stale.Add(pair.Key);
+                    }
+                }
+                foreach ((Point3, Point3) staleKey in stale) {
+                    m_nextBurstTimes.Remove(staleKey);
+                }
+            }
+            m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
+                new Vector3(from.X + 0.5f, from.Y + 0.5f, from.Z + 0.5f),
+                0.75f,
+                1.8f,
+                Color.Green,
+                new Vector3(to.X + 0.5f, to.Y + 0.5f, to.Z + 0.5f),
+                1
+            ));
         }
 
         public static bool IsInRange(Point3 from, Point3 to) {

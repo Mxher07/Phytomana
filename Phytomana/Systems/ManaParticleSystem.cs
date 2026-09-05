@@ -25,7 +25,6 @@ namespace Game {
             : base(count) {
             InitializeParticles(position, size, duration, new Color[] { color }, targetPosition);
             m_isMultiColor = false;
-            Log.Information($"[PhytoMana]SingleColor ManaParticle Created.");
         }
 
         public ManaParticleSystem(Vector3 position, float size, float duration, Color[] colors, Vector3? targetPosition = null) 
@@ -35,7 +34,6 @@ namespace Game {
             }
             InitializeParticles(position, size, duration, colors, targetPosition);
             m_isMultiColor = true;
-            Log.Information($"[PhytoMana]MultiColor ManaParticle Created.");
         }
 
         private void InitializeParticles(Vector3 position, float size, float duration, Color[] colors, Vector3? targetPosition) {
