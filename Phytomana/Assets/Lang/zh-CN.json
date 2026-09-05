@@ -35,7 +35,7 @@
     },
     "FlowerTableBlock:0": {
       "DisplayName": "花药台",
-      "Description": "放置花卉与植物的工作台。"
+      "Description": "「以水引花」。注入水后投入对应材料，最后投入一颗种子即可合成目标物品。空手右键查看状态，空手潜行右键取回材料。"
     },
     "ManaBlock:0": {
       "DisplayName": "魔力钢块",
@@ -108,6 +108,14 @@
       "Description": "以魔力钢锭打造的护甲",
       "CRDescription:0": "使用魔力钢锭制作魔力钢靴子"
     }
+  },
+  "FlowerTableMessages": {
+    "AlreadyFilled": "花药台已有水",
+    "InventoryFull": "背包放不下，已恢复原状",
+    "StatusFormat": "「花药台」水：{0}｜魔力：{1}/{2}mn｜原料：{3}",
+    "WaterYes": "有",
+    "WaterNo": "无",
+    "Empty": "空"
   },
   "GrownStaffMessages": {
     "ModeWork": "工作模式",

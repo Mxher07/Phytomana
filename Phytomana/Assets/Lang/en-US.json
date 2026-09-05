@@ -33,7 +33,7 @@
     },
     "FlowerTableBlock:0": {
       "DisplayName": "Flower Table",
-      "Description": "A table for placing flowers and plants."
+      "Description": "Fill it with a water bucket, drop in the required ingredients, then drop any seed to craft. Right-click empty-handed to check status; sneak-click to retrieve ingredients."
     },
     "ManaBlock:0": {
       "DisplayName": "Mana Steel Block",
@@ -99,6 +99,14 @@
       "DisplayName": "Mana Steel Boots",
       "Description": "Armor crafted with Mana Ingots."
     }
+  },
+  "FlowerTableMessages": {
+    "AlreadyFilled": "The flower table already contains water",
+    "InventoryFull": "No space in inventory, item restored",
+    "StatusFormat": "[Flower Table] Water: {0} | Mana: {1}/{2}mn | Ingredients: {3}",
+    "WaterYes": "yes",
+    "WaterNo": "no",
+    "Empty": "empty"
   },
   "GrownStaffMessages": {
     "ModeWork": "Work Mode",

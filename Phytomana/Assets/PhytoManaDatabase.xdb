@@ -24,5 +24,8 @@
   <MemberSubsystemTemplate Name="FlowerBehavior" Guid="0d3357f1-b085-4e31-ac5a-9c69f1b144b1" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="60a30194-6999-4f5f-9387-d579a33ce097" Value="Phytomana.SubsystemFlowerBehavior" Type="string"/>
   </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="FlowerTableBehavior" Guid="7c3f2a10-5b8e-4c6d-9a21-3e8f14d2b7c4" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="9d4e6b21-6c9f-4d7e-8b32-4f9a25e3c8d5" Value="Phytomana.SubsystemFlowerTableBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
       </ProjectTemplate>
 </PhytoMana>
