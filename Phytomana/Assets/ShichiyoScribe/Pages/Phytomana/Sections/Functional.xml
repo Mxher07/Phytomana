@@ -2,7 +2,9 @@
 <CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
 	<LabelWidget Text="第三章 须弥功能花" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
 	<LabelWidget Text="功能花不产出魔力。它们以魔力为核心驱动力——或者说，以纯粹的生机——去改变周围的世界。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
-	<BookBlockIconWidget BlockName="GrownDaisyFlower" Size="72, 72" Scale="1.6" CanvasWidget.Position="186, 140" />
-	<LabelWidget Text="目前须弥的功能花只有一朵：白曦菊。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 236" />
-	<LabelWidget Text="它把附近的木材与石头缓缓转化成生息变体——生息木与生息岩，为你的魔法世界铺开第一层灵脉。更多功能花将在后续版本中绽放。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 292" />
+	<BookBlockIconWidget BlockName="GrownDaisyFlower" Size="72, 72" Scale="1.6" CanvasWidget.Position="60, 150" />
+	<LabelWidget Text="白曦菊 —— 滋养万物的生息者" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="300, 24" CanvasWidget.Position="150, 174" />
+	<BookBlockIconWidget BlockName="ThornyRoseFlower" Size="72, 72" Scale="1.6" CanvasWidget.Position="60, 240" />
+	<LabelWidget Text="荆棘之花 —— 守卫家宅的刺击者" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="300, 24" CanvasWidget.Position="150, 264" />
+	<LabelWidget Text="一柔一刚：前者把木材与石头养成生息变体，后者以魔力为刺守卫你的世界。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 330" />
 </CanvasWidget>

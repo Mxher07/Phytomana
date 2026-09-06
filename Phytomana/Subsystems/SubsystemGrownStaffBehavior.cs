@@ -209,7 +209,9 @@ namespace Game {
         }
 
         public bool HandleBindingClick(ComponentPlayer player, StaffState state, Point3 point, int contents) {
-            if (m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower _)) {
+            // 花朵默认不可绑定；但具备魔力容量的功能花（如荆棘之花）允许作为链路目标
+            if (m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower _)
+                && !m_subsystemMana.IsManaStorage(contents)) {
                 return true;
             }
             if (!m_subsystemMana.IsManaStorage(contents)) {

@@ -35,6 +35,10 @@
       "DisplayName": "热力百合",
       "Description": "「岩浆的渴望」。吞噬邻近的岩浆产出大量魔力，岩浆凝固为石头"
     },
+    "ThornyRoseFlower:0": {
+      "DisplayName": "荆棘之花",
+      "Description": "「以刺卫花」。每秒耗魔刺击周围的生物（不伤玩家）；未被绑链时会自行从魔力池取食"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "魔力发射器",
       "Description": "「地之信任者」。储存魔力并将其输送至生息法杖绑定的方块",
@@ -57,63 +61,63 @@
       "DisplayName": "白色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:1": {
+    "SumeruFlowerBlock:2": {
       "DisplayName": "淡青色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:2": {
+    "SumeruFlowerBlock:4": {
       "DisplayName": "淡粉色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:3": {
+    "SumeruFlowerBlock:6": {
       "DisplayName": "淡蓝色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:4": {
+    "SumeruFlowerBlock:8": {
       "DisplayName": "淡黄色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:5": {
+    "SumeruFlowerBlock:10": {
       "DisplayName": "淡绿色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:6": {
+    "SumeruFlowerBlock:12": {
       "DisplayName": "淡橙色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:7": {
+    "SumeruFlowerBlock:14": {
       "DisplayName": "淡灰色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:8": {
+    "SumeruFlowerBlock:16": {
       "DisplayName": "灰色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:9": {
+    "SumeruFlowerBlock:18": {
       "DisplayName": "青色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:10": {
+    "SumeruFlowerBlock:20": {
       "DisplayName": "紫色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:11": {
+    "SumeruFlowerBlock:22": {
       "DisplayName": "蓝色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:12": {
+    "SumeruFlowerBlock:24": {
       "DisplayName": "棕色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:13": {
+    "SumeruFlowerBlock:26": {
       "DisplayName": "绿色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:14": {
+    "SumeruFlowerBlock:28": {
       "DisplayName": "红色须弥花",
       "Description": "「须弥降世之物」"
     },
-    "SumeruFlowerBlock:15": {
+    "SumeruFlowerBlock:30": {
       "DisplayName": "黑色须弥花",
       "Description": "「须弥降世之物」"
     },
@@ -121,63 +125,63 @@
       "DisplayName": "白色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:1": {
+    "SumeruPetalBlock:2": {
       "DisplayName": "淡青色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:2": {
+    "SumeruPetalBlock:4": {
       "DisplayName": "淡粉色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:3": {
+    "SumeruPetalBlock:6": {
       "DisplayName": "淡蓝色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:4": {
+    "SumeruPetalBlock:8": {
       "DisplayName": "淡黄色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:5": {
+    "SumeruPetalBlock:10": {
       "DisplayName": "淡绿色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:6": {
+    "SumeruPetalBlock:12": {
       "DisplayName": "淡橙色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:7": {
+    "SumeruPetalBlock:14": {
       "DisplayName": "淡灰色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:8": {
+    "SumeruPetalBlock:16": {
       "DisplayName": "灰色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:9": {
+    "SumeruPetalBlock:18": {
       "DisplayName": "青色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:10": {
+    "SumeruPetalBlock:20": {
       "DisplayName": "紫色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:11": {
+    "SumeruPetalBlock:22": {
       "DisplayName": "蓝色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:12": {
+    "SumeruPetalBlock:24": {
       "DisplayName": "棕色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:13": {
+    "SumeruPetalBlock:26": {
       "DisplayName": "绿色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:14": {
+    "SumeruPetalBlock:28": {
       "DisplayName": "红色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
-    "SumeruPetalBlock:15": {
+    "SumeruPetalBlock:30": {
       "DisplayName": "黑色须弥花瓣",
       "Description": "「须弥完美载体」。由须弥花揉成"
     },
@@ -278,5 +282,8 @@
     "ErrTooFar": "绑定失败：距离太远",
     "ErrWrongDirection": "绑定失败：目标不在起始点的六向直线上",
     "ErrNoManaCapability": "绑定失败：目标方块不具有魔力使用能力"
+  },
+  "OtherCauseOfDeath": {
+    "ThornyRose": "被荆棘之花刺穿"
   }
 }

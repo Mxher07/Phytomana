@@ -63,6 +63,26 @@ namespace Phytomana {
         /// <summary>热力百合魔力上限。</summary>
         public float ThermalilyMaxMana = TileThermalilyFlower.DefaultMaxMana;
 
+        // ===== 荆棘之花 =====
+
+        /// <summary>荆棘之花魔力上限。</summary>
+        public float ThornyRoseMaxMana = TileThornyRose.DefaultMaxMana;
+
+        /// <summary>荆棘之花每次刺击消耗的魔力。</summary>
+        public float ThornyRoseManaCost = TileThornyRose.DefaultManaCost;
+
+        /// <summary>荆棘之花每次刺击造成的伤害（1 点 ≈ 目标最大生命的 10%）。</summary>
+        public float ThornyRoseDamage = TileThornyRose.DefaultDamage;
+
+        /// <summary>荆棘之花攻击范围的半边长（刺击 2×该值 边长的立方）。</summary>
+        public float ThornyRoseAttackRange = TileThornyRose.DefaultAttackRange;
+
+        /// <summary>荆棘之花从魔法池单次吸取的魔力。</summary>
+        public float ThornyRosePoolDrawAmount = TileThornyRose.DefaultPoolDrawAmount;
+
+        /// <summary>荆棘之花搜寻魔法池范围的半边长（2×该值 边长的立方）。</summary>
+        public float ThornyRosePoolSearchRange = TileThornyRose.DefaultPoolSearchRange;
+
         public void Save(XElement element) {
             element.SetAttributeValue("TransferInterval", Format(TransferInterval));
             element.SetAttributeValue("FlowerTickInterval", Format(FlowerTickInterval));
@@ -77,6 +97,12 @@ namespace Phytomana {
             element.SetAttributeValue("GourmaryllisMaxMana", Format(GourmaryllisMaxMana));
             element.SetAttributeValue("ThermalilyManaPerMagma", Format(ThermalilyManaPerMagma));
             element.SetAttributeValue("ThermalilyMaxMana", Format(ThermalilyMaxMana));
+            element.SetAttributeValue("ThornyRoseMaxMana", Format(ThornyRoseMaxMana));
+            element.SetAttributeValue("ThornyRoseManaCost", Format(ThornyRoseManaCost));
+            element.SetAttributeValue("ThornyRoseDamage", Format(ThornyRoseDamage));
+            element.SetAttributeValue("ThornyRoseAttackRange", Format(ThornyRoseAttackRange));
+            element.SetAttributeValue("ThornyRosePoolDrawAmount", Format(ThornyRosePoolDrawAmount));
+            element.SetAttributeValue("ThornyRosePoolSearchRange", Format(ThornyRosePoolSearchRange));
         }
 
         public void Load(XElement element) {
@@ -96,6 +122,12 @@ namespace Phytomana {
             GourmaryllisMaxMana = Read(element, "GourmaryllisMaxMana", GourmaryllisMaxMana);
             ThermalilyManaPerMagma = Read(element, "ThermalilyManaPerMagma", ThermalilyManaPerMagma);
             ThermalilyMaxMana = Read(element, "ThermalilyMaxMana", ThermalilyMaxMana);
+            ThornyRoseMaxMana = Read(element, "ThornyRoseMaxMana", ThornyRoseMaxMana);
+            ThornyRoseManaCost = Read(element, "ThornyRoseManaCost", ThornyRoseManaCost);
+            ThornyRoseDamage = Read(element, "ThornyRoseDamage", ThornyRoseDamage);
+            ThornyRoseAttackRange = Read(element, "ThornyRoseAttackRange", ThornyRoseAttackRange);
+            ThornyRosePoolDrawAmount = Read(element, "ThornyRosePoolDrawAmount", ThornyRosePoolDrawAmount);
+            ThornyRosePoolSearchRange = Read(element, "ThornyRosePoolSearchRange", ThornyRosePoolSearchRange);
         }
 
         public static string Format(float value) => value.ToString(CultureInfo.InvariantCulture);

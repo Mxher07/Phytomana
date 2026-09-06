@@ -4,6 +4,9 @@
     "cb"
     "aaa"
   </Recipe>
+  <Recipe Result="SumeruManualBlock" ResultCount="1" RequiredHeatLevel="0" a="petal" b="sumeruflower" Description="[0]">
+    "ab"
+  </Recipe>
   <Recipe Result="SumeruPetalBlock" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower" Description="[0]">
     "a"
   </Recipe>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
 	<LabelWidget Text="花色银行" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
-	<LabelWidget Text="花瓣占用栏位多、花色易乱：建议每种颜色各备一套小仓库，用「4 片花瓣 → 同色花」逆炼可把零散花瓣归拢为花朵存存。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 100" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="花瓣占用栏位多、花色易乱：建议每种颜色各备一套小仓库，彩色花瓣须按各花配方的色号取用，白色花瓣则可用「4 片白瓣 → 白曦菊」逆炼归拢。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 100" CanvasWidget.Position="12, 66" />
 	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 90" CanvasWidget.Position="12, 184" />
 	<LabelWidget Text="取用之道" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 196" />
 	<LabelWidget Text="炼花前按配方备好四色花瓣一次性投入，可避免反复开箱取料的奔波。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 224" />

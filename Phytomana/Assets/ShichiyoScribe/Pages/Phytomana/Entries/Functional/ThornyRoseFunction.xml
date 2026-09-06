@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="荆棘之花·供养" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="方式一：发射器绑链" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="手持生息法杖进入绑定模式，先点发射器，再点荆棘之花——链路接通后，魔力每秒稳定送达，它便不必再四处取食。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 92" />
+	<LabelWidget Text="方式二：自寻魔法池" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 172" />
+	<LabelWidget Text="没有绑链时，只要 23×23×23 范围内有魔法池，它就会隔秒取食 36mn，直到自身半满。把魔法池修在花丛边，也是一条供养之道。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 202" />
+	<LabelWidget Text="注意：绑链与自寻二者取一——一旦有了链路，它就不再自行取食。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 292" />
+</CanvasWidget>

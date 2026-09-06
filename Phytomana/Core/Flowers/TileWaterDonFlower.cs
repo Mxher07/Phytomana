@@ -15,7 +15,7 @@ namespace Phytomana {
         public const double ScanInterval = 1.0;
         public const double AbsorbDuration = 3.0;
         public const double ParticleInterval = 7.5;
-        public const float DefaultManaRate = 7f / 1.65f;
+        public const float DefaultManaRate = 7f / 1.7f;
         public const float DefaultMaxMana = 240f;
 
         public SubsystemParticles m_subsystemParticles;

@@ -15,4 +15,5 @@
   <Block Name="NightshadeFlower" MaxMana="800" CanTransfer="false" StaffCheckable="true" />
   <Block Name="GourmaryllisFlower" MaxMana="1000" CanTransfer="false" StaffCheckable="true" />
   <Block Name="ThermalilyFlower" MaxMana="1200" CanTransfer="false" StaffCheckable="true" />
+  <Block Name="ThornyRoseFlower" MaxMana="360" CanTransfer="true" StaffCheckable="true" />
 </PhytoManaBlocks>

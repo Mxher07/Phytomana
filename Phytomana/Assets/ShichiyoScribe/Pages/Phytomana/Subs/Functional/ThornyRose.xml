@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="3.2 荆棘之花" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="ThornyRoseFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「以刺卫花」。白曦菊的锋锐反面：荆棘之花不滋养万物，而是以魔力驱使满身荆棘，刺击一切靠近的敌对生物。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="没人喂它也不打紧——只要附近有魔法池，它就会自己去取食。当然，用生息法杖把发射器链到它身上，魔力会更加稳定。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 250" />
+	<LabelWidget Text="它只对玩家之外的生物出刺，请安心与它同住。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 330" />
+</CanvasWidget>

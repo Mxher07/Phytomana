@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="性情与自理" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="每次刺击只盯上范围内最近的一只生物，绝不伤及玩家。得手时会有三枚纯红的荆棘粒子循迹飞向目标。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="自理能力" FontScale="0.9" Color="70, 40, 10" Size="160, 24" CanvasWidget.Position="12, 162" />
+	<LabelWidget Text="未被法杖绑链时，它会自行搜寻 23×23×23 立方内的魔法池取食：每次 36mn，池中不足 36mn 便分毫不取；自身存到 50%（180mn）即收手。取食时花底会泛起夜影花同色的微光。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 130" CanvasWidget.Position="12, 192" />
+	<LabelWidget Text="以上数值均可在模组设置中调整。" FontScale="0.8" Color="130, 100, 60" Size="420, 24" CanvasWidget.Position="12, 340" />
+</CanvasWidget>

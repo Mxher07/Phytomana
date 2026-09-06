@@ -27,7 +27,7 @@ namespace Game {
         public override void Initialize() {
             // 碰撞体覆盖完整的方块底面，但高度只有 0.5 个方块，
             // 这样玩家可以站在石质底座上，同时不会与上方液体区域发生碰撞。
-            m_collisionBoxes[0] = [new BoundingBox(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 1f))];
+            m_collisionBoxes[0] = [new BoundingBox(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.25f, 1f))];
             base.Initialize();
             
             // 读取模型资源。模型中包含两个命名网格：石质底座 base 和魔力液体 mana。
@@ -96,8 +96,8 @@ namespace Game {
             if (currentMana > 0f && maxMana > 0f) {
                 // 将比例限制在 0 到 1 之间，防止异常数据使液体超出模型预期范围。
                 float pct = MathUtils.Clamp(currentMana / maxMana, 0f, 1f);
-                // 液体底部位于 0.2，高度最多再增加 0.15，魔力越多显示得越高。
-                float manaY = 0.2f + 0.15f * pct;
+                // 液体底部位于 0.02，高度最多再增加 0.06，魔力越多显示得越高。
+                float manaY = 0.02f + 0.06f * pct;
                 Matrix manaMatrix = Matrix.CreateScale(0.0625f) * Matrix.CreateTranslation(0.5f, manaY, 0.5f);
                 generator.GenerateMeshVertices(
                     this,

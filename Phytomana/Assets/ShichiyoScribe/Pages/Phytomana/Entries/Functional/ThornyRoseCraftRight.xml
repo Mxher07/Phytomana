@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="炼制小贴士" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="配方指定了花色：红 ×3、青 ×2，错色不合。红花瓣由红色须弥花揉成，青花瓣由青色须弥花揉成，各备 3 片与 2 片即可开工。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 110" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="想种一片荆棘篱笆？多备几组花瓣，沿院墙每隔数格种上一株——从此夜行的怪物再难近身。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 100" CanvasWidget.Position="12, 190" />
+</CanvasWidget>

@@ -6,5 +6,5 @@
 	<LabelWidget Text="③ 合成：原料与某条配方的种类、数量完全一致时，再投任意一颗种子即可点化合成，成品从台面弹出。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
 	<LabelWidget Text="④ 收尾：合成后若想清空台面，空手潜行右键即可取回剩余原料。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
 	<LabelWidget Text="提示" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 284" />
-	<LabelWidget Text="原料按「种类」匹配，且不限颜色：含「须弥花瓣」的配方，任意颜色的花瓣都可以参与。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 312" />
+	<LabelWidget Text="原料匹配看「种类+颜色」：配方指定了花色（如荆棘之花要红与青）时，须使用对应颜色的花瓣；未指定颜色的原料则任意花色皆可。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 312" />
 </CanvasWidget>

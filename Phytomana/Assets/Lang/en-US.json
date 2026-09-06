@@ -35,6 +35,10 @@
       "DisplayName": "Thermalily",
       "Description": "Thirsty for magma. Swallows adjacent magma blocks for bursts of Mana; the magma turns to stone."
     },
+    "ThornyRoseFlower:0": {
+      "DisplayName": "Thorny Rose",
+      "Description": "A guardian that pricks nearby creatures with mana-driven thorns (players are spared); draws from mana pools on its own when unlinked."
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "Mana Spreader",
       "Description": "Stores up to 1200 Mn and sends it to blocks linked to it with a Grown Staff."
@@ -55,63 +59,63 @@
       "DisplayName": "White Sumeru Flower",
       "Description": "A flower from Sumeru."
     },
-    "SumeruFlowerBlock:1": {
+    "SumeruFlowerBlock:2": {
       "DisplayName": "Light Cyan Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:2": {
+    "SumeruFlowerBlock:4": {
       "DisplayName": "Light Pink Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:3": {
+    "SumeruFlowerBlock:6": {
       "DisplayName": "Light Blue Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:4": {
+    "SumeruFlowerBlock:8": {
       "DisplayName": "Light Yellow Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:5": {
+    "SumeruFlowerBlock:10": {
       "DisplayName": "Light Green Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:6": {
+    "SumeruFlowerBlock:12": {
       "DisplayName": "Light Orange Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:7": {
+    "SumeruFlowerBlock:14": {
       "DisplayName": "Light Gray Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:8": {
+    "SumeruFlowerBlock:16": {
       "DisplayName": "Gray Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:9": {
+    "SumeruFlowerBlock:18": {
       "DisplayName": "Teal Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:10": {
+    "SumeruFlowerBlock:20": {
       "DisplayName": "Purple Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:11": {
+    "SumeruFlowerBlock:22": {
       "DisplayName": "Blue Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:12": {
+    "SumeruFlowerBlock:24": {
       "DisplayName": "Brown Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:13": {
+    "SumeruFlowerBlock:26": {
       "DisplayName": "Green Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:14": {
+    "SumeruFlowerBlock:28": {
       "DisplayName": "Red Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
-    "SumeruFlowerBlock:15": {
+    "SumeruFlowerBlock:30": {
       "DisplayName": "Black Sumeru Flower",
       "Description": "A Sumeru flower of a different color."
     },
@@ -119,63 +123,63 @@
       "DisplayName": "White Sumeru Petal",
       "Description": "Harvested from the Sumeru Flower."
     },
-    "SumeruPetalBlock:1": {
+    "SumeruPetalBlock:2": {
       "DisplayName": "Light Cyan Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:2": {
+    "SumeruPetalBlock:4": {
       "DisplayName": "Light Pink Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:3": {
+    "SumeruPetalBlock:6": {
       "DisplayName": "Light Blue Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:4": {
+    "SumeruPetalBlock:8": {
       "DisplayName": "Light Yellow Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:5": {
+    "SumeruPetalBlock:10": {
       "DisplayName": "Light Green Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:6": {
+    "SumeruPetalBlock:12": {
       "DisplayName": "Light Orange Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:7": {
+    "SumeruPetalBlock:14": {
       "DisplayName": "Light Gray Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:8": {
+    "SumeruPetalBlock:16": {
       "DisplayName": "Gray Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:9": {
+    "SumeruPetalBlock:18": {
       "DisplayName": "Teal Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:10": {
+    "SumeruPetalBlock:20": {
       "DisplayName": "Purple Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:11": {
+    "SumeruPetalBlock:22": {
       "DisplayName": "Blue Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:12": {
+    "SumeruPetalBlock:24": {
       "DisplayName": "Brown Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:13": {
+    "SumeruPetalBlock:26": {
       "DisplayName": "Green Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:14": {
+    "SumeruPetalBlock:28": {
       "DisplayName": "Red Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
-    "SumeruPetalBlock:15": {
+    "SumeruPetalBlock:30": {
       "DisplayName": "Black Sumeru Petal",
       "Description": "A Sumeru petal of a different color."
     },
@@ -270,5 +274,8 @@
     "ErrTooFar": "Bind failed: too far away",
     "ErrWrongDirection": "Bind failed: target is not on a straight axis",
     "ErrNoManaCapability": "Bind failed: target has no mana capacity"
+  },
+  "OtherCauseOfDeath": {
+    "ThornyRose": "Pierced by a thorny rose"
   }
 }

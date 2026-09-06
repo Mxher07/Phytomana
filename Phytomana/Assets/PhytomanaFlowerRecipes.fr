@@ -13,13 +13,15 @@
     ResultCount  产物数量，默认 1（可省略）
     ManaCost     合成所需魔力，默认 0（可省略）。魔力需提前由魔力网络送入花药台
     CopyData     为 true 时产物继承第一份原料的 data（颜色变体保色），默认 false
-    <Ingredient Name="原料方块类名" Count="数量" />   每种原料一行（颜色变体不限色号）
+    <Ingredient Name="原料方块类名" Count="数量" />   每种原料一行
+                 ↑ 支持「类名:data」后缀精确到特殊值，如 SumeruPetalBlock:28 = 红色须弥花瓣
+                   （16 色的 data = 色号 × 2，与语言键一致；不带后缀 = 不限颜色）
 
   匹配规则：无序匹配，提供的原料种类与数量须与配方完全一致。
 -->
 <FlowerRecipes>
   <Recipe Result="GrownDaisyFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock" Count="4" />
+    <Ingredient Name="SumeruPetalBlock:0" Count="4" />
   </Recipe>
   <Recipe Result="SumeruPetalBlock" ResultCount="4" CopyData="true">
     <Ingredient Name="SumeruFlowerBlock" Count="1" />
@@ -30,24 +32,28 @@
     <Ingredient Name="SumeruPetalBlock:14" Count="1" />
   </Recipe>
   <Recipe Result="WaterDonFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock:9" Count="2" />
-    <Ingredient Name="SumeruPetalBlock:11" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:2" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:22" Count="2" />
   </Recipe>
   <Recipe Result="NightshadeFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock:8" Count="1" />
-    <Ingredient Name="SumeruPetalBlock:15" Count="1" />
-    <Ingredient Name="SumeruPetalBlock:10" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:16" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:30" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:20" Count="2" />
   </Recipe>
   <Recipe Result="GourmaryllisFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock:7" Count="1" />
-    <Ingredient Name="SumeruPetalBlock:4" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:8" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:28" Count="2" />
     <Ingredient Name="SumeruPetalBlock:14" Count="1" />
   </Recipe>
   <Recipe Result="ThermalilyFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock:6" Count="1" />
-    <Ingredient Name="SumeruPetalBlock:4" Count="1" />
-    <Ingredient Name="SumeruPetalBlock:14" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:12" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:8" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:28" Count="1" />
     <Ingredient Name="SumeruPetalBlock:0" Count="1" />
     <Ingredient Name="MagmaBucketBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="ThornyRoseFlower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock:28" Count="3" />
+    <Ingredient Name="SumeruPetalBlock:18" Count="2" />
   </Recipe>
 </FlowerRecipes>

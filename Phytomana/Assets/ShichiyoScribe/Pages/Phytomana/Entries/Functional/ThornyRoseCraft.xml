@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="荆棘之花·合成配方" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="ThornyRoseFlower,ThornyRoseFlower;ThornyRoseFlower,ThornyRoseFlower" IconSize="56" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="须弥花瓣 × 5（花色组合：红 ×3、青 ×2）" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="三片赤红一片青碧——以血色与幽光淬出满身荆棘。摆入花药台，注入清水，投下种子即得荆棘之花一株。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="红色花瓣来自红色须弥花（多见于燥热之地），青色花瓣来自青色须弥花。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 254" />
+</CanvasWidget>

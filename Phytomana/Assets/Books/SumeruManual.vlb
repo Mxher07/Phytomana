@@ -57,6 +57,11 @@
 			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyCraftRight" />
 			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyFunctionRight" />
 		</SubSection>
+		<SubSection Title="3.2 荆棘之花" Left="ShichiyoScribe/Pages/Phytomana/Subs/Functional/ThornyRose">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseCraftRight" />
+			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseFunctionRight" />
+		</SubSection>
 	</Section>
 	<Section Title="第四章 须弥方块" Left="ShichiyoScribe/Pages/Phytomana/Sections/Blocks">
 		<SubSection Title="4.1 生息树材" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/Wood">

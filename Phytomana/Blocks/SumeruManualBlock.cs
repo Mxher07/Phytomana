@@ -19,6 +19,12 @@ namespace Game {
 
         public override Texture2D GetDefaultTexture(int value) => m_texture;
 
+        // 独立纹理必须声明为单槽位：默认的 16 会被当成图集网格，
+        // 只取样独立纹理左上 1/16 的空白角，表现为「没有贴图」。
+        public override int GetFaceTextureSlot(int face, int value) => 0;
+
+        public override int GetTextureSlotCount(int value) => 1;
+
         /// <summary>书籍永远可「使用」，手持时点击任意地方即可翻开。</summary>
         public override bool IsUseable_(int value) => true;
     }
