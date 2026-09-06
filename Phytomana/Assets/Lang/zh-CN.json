@@ -54,13 +54,132 @@
       "Description": "由魔力钢锭在魔法池中转化而成的钢块。"
     },
     "SumeruFlowerBlock:0": {
-      "DisplayName": "须弥花",
+      "DisplayName": "白色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:1": {
+      "DisplayName": "淡青色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:2": {
+      "DisplayName": "淡粉色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:3": {
+      "DisplayName": "淡蓝色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:4": {
+      "DisplayName": "淡黄色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:5": {
+      "DisplayName": "淡绿色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:6": {
+      "DisplayName": "淡橙色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:7": {
+      "DisplayName": "淡灰色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:8": {
+      "DisplayName": "灰色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:9": {
+      "DisplayName": "青色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:10": {
+      "DisplayName": "紫色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:11": {
+      "DisplayName": "蓝色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:12": {
+      "DisplayName": "棕色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:13": {
+      "DisplayName": "绿色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:14": {
+      "DisplayName": "红色须弥花",
+      "Description": "「须弥降世之物」"
+    },
+    "SumeruFlowerBlock:15": {
+      "DisplayName": "黑色须弥花",
       "Description": "「须弥降世之物」"
     },
     "SumeruPetalBlock:0": {
-      "DisplayName": "须弥花瓣",
-      "Description": "「须弥完美载体」。由须弥花揉成",
-      "CRDescription:0": "揉成花瓣"
+      "DisplayName": "白色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:1": {
+      "DisplayName": "淡青色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:2": {
+      "DisplayName": "淡粉色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:3": {
+      "DisplayName": "淡蓝色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:4": {
+      "DisplayName": "淡黄色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:5": {
+      "DisplayName": "淡绿色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:6": {
+      "DisplayName": "淡橙色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:7": {
+      "DisplayName": "淡灰色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:8": {
+      "DisplayName": "灰色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:9": {
+      "DisplayName": "青色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:10": {
+      "DisplayName": "紫色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:11": {
+      "DisplayName": "蓝色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:12": {
+      "DisplayName": "棕色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:13": {
+      "DisplayName": "绿色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:14": {
+      "DisplayName": "红色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
+    },
+    "SumeruPetalBlock:15": {
+      "DisplayName": "黑色须弥花瓣",
+      "Description": "「须弥完美载体」。由须弥花揉成"
     },
     "GrownRodBlock:0": {
       "DisplayName": "息木枝",

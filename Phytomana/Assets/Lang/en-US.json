@@ -52,12 +52,132 @@
       "Description": "A solid block of Mana-infused steel."
     },
     "SumeruFlowerBlock:0": {
-      "DisplayName": "Sumeru Flower",
+      "DisplayName": "White Sumeru Flower",
       "Description": "A flower from Sumeru."
     },
+    "SumeruFlowerBlock:1": {
+      "DisplayName": "Light Cyan Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:2": {
+      "DisplayName": "Light Pink Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:3": {
+      "DisplayName": "Light Blue Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:4": {
+      "DisplayName": "Light Yellow Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:5": {
+      "DisplayName": "Light Green Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:6": {
+      "DisplayName": "Light Orange Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:7": {
+      "DisplayName": "Light Gray Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:8": {
+      "DisplayName": "Gray Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:9": {
+      "DisplayName": "Teal Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:10": {
+      "DisplayName": "Purple Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:11": {
+      "DisplayName": "Blue Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:12": {
+      "DisplayName": "Brown Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:13": {
+      "DisplayName": "Green Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:14": {
+      "DisplayName": "Red Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
+    "SumeruFlowerBlock:15": {
+      "DisplayName": "Black Sumeru Flower",
+      "Description": "A Sumeru flower of a different color."
+    },
     "SumeruPetalBlock:0": {
-      "DisplayName": "Sumeru Petal",
+      "DisplayName": "White Sumeru Petal",
       "Description": "Harvested from the Sumeru Flower."
+    },
+    "SumeruPetalBlock:1": {
+      "DisplayName": "Light Cyan Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:2": {
+      "DisplayName": "Light Pink Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:3": {
+      "DisplayName": "Light Blue Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:4": {
+      "DisplayName": "Light Yellow Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:5": {
+      "DisplayName": "Light Green Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:6": {
+      "DisplayName": "Light Orange Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:7": {
+      "DisplayName": "Light Gray Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:8": {
+      "DisplayName": "Gray Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:9": {
+      "DisplayName": "Teal Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:10": {
+      "DisplayName": "Purple Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:11": {
+      "DisplayName": "Blue Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:12": {
+      "DisplayName": "Brown Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:13": {
+      "DisplayName": "Green Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:14": {
+      "DisplayName": "Red Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
+    },
+    "SumeruPetalBlock:15": {
+      "DisplayName": "Black Sumeru Petal",
+      "Description": "A Sumeru petal of a different color."
     },
     "GrownRodBlock:0": {
       "DisplayName": "Grown Wood Rod",
