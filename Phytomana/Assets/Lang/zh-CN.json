@@ -251,7 +251,9 @@
     "HintReady": "材料齐全，投入种子即可合成 {0}",
     "HintManaLow": "魔力不足（{0}/{1}），先由魔力网络供魔",
     "HintMissing": "还差：{0}",
-    "HintNoMatch": "材料不匹配任何配方（空手潜行右键取回）"
+    "HintNoMatch": "材料不匹配任何配方（空手潜行右键取回）",
+    "WaterCollecting": "雨中集水 {0}%",
+    "RainFilled": "花药台收集满了雨水"
   },
   "GrownStaffMessages": {
     "ModeWork": "工作模式",

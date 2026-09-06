@@ -17,10 +17,18 @@ namespace Phytomana {
     /// 3. 缓存与某条 .fr 配方完全一致时，再投掷任意种子完成合成：
     ///    消耗种子与全部原料（配方声明 ManaCost 时还需花药台存有足量魔力），
     ///    在台面上弹出目标物品；配方声明 CopyData 时产物继承第一份原料的 data；
-    /// 4. 空手右键查看状态，空手潜行右键取回已投入的原料。
+    /// 4. 空手右键查看状态，空手潜行右键取回已投入的原料；
+    /// 5. 雨天自动集水：露天（上方无遮挡）且正在下雨时 30 秒集满，
+    ///    进度可在空手右键状态中查看，集满时对附近玩家提示。
     /// </summary>
     public class SubsystemFlowerTableBehavior : SubsystemBlockBehavior, IUpdateable {
         public const float DefaultMaxMana = 300f;
+
+        /// <summary>雨天集满一池水所需的时间（秒）。</summary>
+        public const float RainFillSeconds = 30f;
+
+        /// <summary>集满提示的广播半径（格）。</summary>
+        public const float RainMessageRadius = 10f;
 
         public Dictionary<Point3, FlowerTable> m_tables = [];
 
@@ -32,6 +40,10 @@ namespace Phytomana {
 
         // 魔力网络：注册后花药台可作为接收端，由产魔源/发射器投递魔力（供 ManaCost 配方消耗）。
         public ManaNetworkManager m_network;
+
+        public SubsystemWeather m_subsystemWeather;
+
+        public SubsystemPlayers m_subsystemPlayers;
 
         public int m_seedsBlockIndex;
 
@@ -48,6 +60,8 @@ namespace Phytomana {
             m_subsystemPickables = Project.FindSubsystem<SubsystemPickables>(true);
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
             m_subsystemAudio = Project.FindSubsystem<SubsystemAudio>(true);
+            m_subsystemWeather = Project.FindSubsystem<SubsystemWeather>(false);
+            m_subsystemPlayers = Project.FindSubsystem<SubsystemPlayers>(false);
             m_seedsBlockIndex = BlocksManager.GetBlockIndex<SeedsBlock>();
             m_waterBucketIndex = BlocksManager.GetBlockIndex<WaterBucketBlock>();
             m_emptyBucketIndex = BlocksManager.GetBlockIndex<EmptyBucketBlock>();
@@ -153,6 +167,59 @@ namespace Phytomana {
                     continue;
                 }
                 AbsorbPickables(table);
+            }
+            UpdateRainCollection(dt);
+        }
+
+        /// <summary>
+        /// 雨天集水：正在下雨、花药台未装水且露天（其方块位于该列高度图顶部，
+        /// 与原版玩家淋雨判定一致，屋顶会自动挡雨）时，30 秒集满并提示附近玩家。
+        /// </summary>
+        public void UpdateRainCollection(float dt) {
+            if (m_subsystemWeather == null || !m_subsystemWeather.IsPrecipitationStarted) {
+                return;
+            }
+            foreach (FlowerTable table in m_tables.Values) {
+                if (table.HasWater) {
+                    continue;
+                }
+                if (SubsystemTerrain.Terrain.GetChunkAtCell(table.Position.X, table.Position.Z) == null) {
+                    continue;
+                }
+                PrecipitationShaftInfo info = m_subsystemWeather.GetPrecipitationShaftInfo(table.Position.X, table.Position.Z);
+                if (info.Type != PrecipitationType.Rain
+                    || info.Intensity <= 0f
+                    || table.Position.Y + 1 < info.YLimit) {
+                    continue;
+                }
+                table.RainFill += dt;
+                if (table.RainFill < RainFillSeconds) {
+                    continue;
+                }
+                table.RainFill = 0f;
+                table.HasWater = true;
+                SpawnSplashParticles(table.Position);
+                m_subsystemAudio.PlaySound("Audio/Splashes", 1f, 0f, 0f, 0f);
+                RefreshCell(table.Position);
+                NotifyRainFilled(table);
+            }
+        }
+
+        /// <summary>集满雨水时对附近玩家弹出提示。</summary>
+        public void NotifyRainFilled(FlowerTable table) {
+            if (m_subsystemPlayers == null) {
+                return;
+            }
+            Vector3 center = new(table.Position.X + 0.5f, table.Position.Y + 0.5f, table.Position.Z + 0.5f);
+            string text = LanguageControl.Get("FlowerTableMessages", "RainFilled");
+            foreach (ComponentPlayer player in m_subsystemPlayers.ComponentPlayers) {
+                ComponentBody body = player.Entity?.FindComponent<ComponentBody>();
+                if (body == null) {
+                    continue;
+                }
+                if ((body.Position - center).LengthSquared() <= RainMessageRadius * RainMessageRadius) {
+                    player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
+                }
             }
         }
 
@@ -346,7 +413,20 @@ namespace Phytomana {
                 Block block = BlocksManager.Blocks[Terrain.ExtractContents(ingredient.Key)];
                 names.Add($"{block.GetDisplayName(SubsystemTerrain, ingredient.Key)}×{ingredient.Value}");
             }
-            string water = LanguageControl.Get("FlowerTableMessages", table.HasWater ? "WaterYes" : "WaterNo");
+            string water;
+            if (table.HasWater) {
+                water = LanguageControl.Get("FlowerTableMessages", "WaterYes");
+            }
+            else if (table.RainFill > 0f) {
+                // 雨天集水中：状态里显示进度百分比
+                water = string.Format(
+                    LanguageControl.Get("FlowerTableMessages", "WaterCollecting"),
+                    (int)(table.RainFill / RainFillSeconds * 100f)
+                );
+            }
+            else {
+                water = LanguageControl.Get("FlowerTableMessages", "WaterNo");
+            }
             string text = string.Format(
                 LanguageControl.Get("FlowerTableMessages", "StatusFormat"),
                 water,

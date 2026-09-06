@@ -19,6 +19,9 @@ namespace Phytomana {
         /// <summary>已投入的原料：方块内容索引 → 数量。投入的材料与配方完全一致后，投掷种子即可合成。</summary>
         public Dictionary<int, int> Ingredients = [];
 
+        /// <summary>雨天集水进度（秒，0~RainFillSeconds）。瞬态不存档，重载后重新收集。</summary>
+        public float RainFill;
+
         public FlowerTable(Point3 position) {
             Position = position;
             ManaStorage = new ManaStorage(ManaBlockRegistry.GetMaxMana("FlowerTableBlock", SubsystemFlowerTableBehavior.DefaultMaxMana));

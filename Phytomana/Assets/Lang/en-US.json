@@ -243,7 +243,9 @@
     "HintReady": "Ingredients ready! Drop a seed to craft {0}",
     "HintManaLow": "Not enough mana ({0}/{1}), feed it from the mana network",
     "HintMissing": "Still missing: {0}",
-    "HintNoMatch": "Ingredients match no recipe (sneak right-click to retrieve)"
+    "HintNoMatch": "Ingredients match no recipe (sneak right-click to retrieve)",
+    "WaterCollecting": "Collecting rainwater {0}%",
+    "RainFilled": "The flower table has filled with rainwater"
   },
   "GrownStaffMessages": {
     "ModeWork": "Work Mode",
