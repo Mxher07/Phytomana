@@ -25,6 +25,11 @@ namespace Phytomana {
         public int ResultContents = -1;
         public int ResultCount = 1;
         public float ManaCost;
+        /// <summary>
+        /// 为 true 时产物的 data 继承第一份原料的 data（用于颜色变体保色，
+        /// 如须弥花 → 同色须弥花瓣）。默认 false（产物 data 为 0）。
+        /// </summary>
+        public bool CopyData;
         public List<FlowerRecipeIngredient> Ingredients = [];
         /// <summary>来源文件名（便于排查配置错误）。</summary>
         public string SourceFile;
@@ -187,6 +192,7 @@ namespace Phytomana {
                 ResultContents = resultContents,
                 ResultCount = Math.Max(1, ParseInt(element.Attribute("ResultCount"), 1)),
                 ManaCost = Math.Max(0f, ParseFloat(element.Attribute("ManaCost"), 0f)),
+                CopyData = ParseBool(element.Attribute("CopyData")),
                 SourceFile = sourceName
             };
             foreach (XElement ingredientElement in element.Elements("Ingredient")) {
@@ -207,6 +213,11 @@ namespace Phytomana {
                 return null;
             }
             return recipe;
+        }
+
+        static bool ParseBool(XAttribute attribute) {
+            string text = (string)attribute;
+            return text == "true" || text == "True" || text == "1";
         }
 
         static int ParseInt(XAttribute attribute, int fallback) {

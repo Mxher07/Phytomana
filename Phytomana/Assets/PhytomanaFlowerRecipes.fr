@@ -12,13 +12,17 @@
     Result       产物方块类名（与代码类名一致）
     ResultCount  产物数量，默认 1（可省略）
     ManaCost     合成所需魔力，默认 0（可省略）。魔力需提前由魔力网络送入花药台
-    <Ingredient Name="原料方块类名" Count="数量" />   每种原料一行
+    CopyData     为 true 时产物继承第一份原料的 data（颜色变体保色），默认 false
+    <Ingredient Name="原料方块类名" Count="数量" />   每种原料一行（颜色变体不限色号）
 
   匹配规则：无序匹配，提供的原料种类与数量须与配方完全一致。
 -->
 <FlowerRecipes>
   <Recipe Result="GrownDaisyFlower" ResultCount="1">
     <Ingredient Name="SumeruPetalBlock" Count="4" />
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock" ResultCount="4" CopyData="true">
+    <Ingredient Name="SumeruFlowerBlock" Count="1" />
   </Recipe>
   <Recipe Result="SunPowerFlower" ResultCount="1">
     <Ingredient Name="SumeruPetalBlock" Count="2" />

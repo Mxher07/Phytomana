@@ -12,10 +12,11 @@ namespace Phytomana {
     /// <summary>
     /// 花药台合成逻辑，模仿植物魔法「花瓣药剂台」的用法：
     /// 1. 拿水桶右键花药台注入水（空桶右键取回水）；无水时不吸收原料；
-    /// 2. 向花药台上投掷原料（.fr 配方声明的方块），落地即被吸收进内部缓存；
+    /// 2. 向花药台上投掷原料（.fr 配方声明的方块），落地即被吸收进内部缓存
+    ///    （缓存按键为完整方块值，颜色等特殊值变体分格保存）；
     /// 3. 缓存与某条 .fr 配方完全一致时，再投掷任意种子完成合成：
     ///    消耗种子与全部原料（配方声明 ManaCost 时还需花药台存有足量魔力），
-    ///    在台面上弹出目标物品；
+    ///    在台面上弹出目标物品；配方声明 CopyData 时产物继承第一份原料的 data；
     /// 4. 空手右键查看状态，空手潜行右键取回已投入的原料。
     /// </summary>
     public class SubsystemFlowerTableBehavior : SubsystemBlockBehavior, IUpdateable {
@@ -108,8 +109,8 @@ namespace Phytomana {
             return m_tables.TryGetValue(new Point3(x, y, z), out FlowerTable table) && table.HasWater;
         }
 
-        /// <summary>方块渲染查询：按字典顺序返回该花药台缓存中的原料类型（渲染漂浮小方块用）。</summary>
-        public List<int> GetIngredientContents(int x, int y, int z) {
+        /// <summary>方块渲染查询：返回缓存中原料的完整方块值（含颜色变体，渲染漂浮小方块用）。</summary>
+        public List<int> GetIngredientValues(int x, int y, int z) {
             List<int> list = [];
             if (m_tables.TryGetValue(new Point3(x, y, z), out FlowerTable table)) {
                 foreach (KeyValuePair<int, int> pair in table.Ingredients) {
@@ -167,7 +168,8 @@ namespace Phytomana {
                 if (!IsPickableInCell(pickable, table.Position)) {
                     continue;
                 }
-                int contents = Terrain.ExtractContents(pickable.Value);
+                int value = pickable.Value;
+                int contents = Terrain.ExtractContents(value);
                 if (contents == m_seedsBlockIndex) {
                     if (TryCraft(table, pickable)) {
                         return;
@@ -178,11 +180,12 @@ namespace Phytomana {
                 if (!IsKnownIngredient(contents)) {
                     continue;
                 }
-                int held = table.Ingredients.GetValueOrDefault(contents);
+                // 按完整方块值缓存：颜色等特殊值变体分格保存，合成产物可继承。
+                int held = table.Ingredients.GetValueOrDefault(value);
                 if (held + Math.Max(1, pickable.Count) > MaxRequiredCount(contents)) {
                     continue;
                 }
-                table.Ingredients[contents] = held + Math.Max(1, pickable.Count);
+                table.Ingredients[value] = held + Math.Max(1, pickable.Count);
                 pickable.ToRemove = true;
                 SpawnSplashParticles(table.Position);
             }
@@ -197,9 +200,13 @@ namespace Phytomana {
                 return false;
             }
             List<int> provided = [];
+            int firstValue = 0;
             foreach (KeyValuePair<int, int> ingredient in table.Ingredients) {
+                if (firstValue == 0 && ingredient.Value > 0) {
+                    firstValue = ingredient.Key;
+                }
                 for (int i = 0; i < ingredient.Value; i++) {
-                    provided.Add(ingredient.Key);
+                    provided.Add(Terrain.ExtractContents(ingredient.Key));
                 }
             }
             if (!FlowerTableRecipeRegistry.TryMatch(provided, out FlowerRecipe recipe)) {
@@ -217,8 +224,14 @@ namespace Phytomana {
             if (recipe.ManaCost > 0f) {
                 table.ManaStorage.Take(recipe.ManaCost);
             }
+            // CopyData 配方：产物的 data 继承第一份原料（颜色变体保色）。
+            int resultValue = Terrain.MakeBlockValue(
+                recipe.ResultContents,
+                0,
+                recipe.CopyData ? Terrain.ExtractData(firstValue) : 0
+            );
             Vector3 center = new(table.Position.X + 0.5f, table.Position.Y + 1.1f, table.Position.Z + 0.5f);
-            m_subsystemPickables.AddPickable(recipe.ResultContents, recipe.ResultCount, center, new Vector3(0f, 2.5f, 0f), null);
+            m_subsystemPickables.AddPickable(resultValue, recipe.ResultCount, center, new Vector3(0f, 2.5f, 0f), null);
             SpawnSplashParticles(table.Position);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
             return true;
@@ -330,9 +343,8 @@ namespace Phytomana {
                 if (ingredient.Value <= 0) {
                     continue;
                 }
-                Block block = BlocksManager.Blocks[ingredient.Key];
-                int value = Terrain.MakeBlockValue(ingredient.Key);
-                names.Add($"{block.GetDisplayName(SubsystemTerrain, value)}×{ingredient.Value}");
+                Block block = BlocksManager.Blocks[Terrain.ExtractContents(ingredient.Key)];
+                names.Add($"{block.GetDisplayName(SubsystemTerrain, ingredient.Key)}×{ingredient.Value}");
             }
             string water = LanguageControl.Get("FlowerTableMessages", table.HasWater ? "WaterYes" : "WaterNo");
             string text = string.Format(
@@ -356,7 +368,7 @@ namespace Phytomana {
             List<int> provided = [];
             foreach (KeyValuePair<int, int> ingredient in table.Ingredients) {
                 for (int i = 0; i < ingredient.Value; i++) {
-                    provided.Add(ingredient.Key);
+                    provided.Add(Terrain.ExtractContents(ingredient.Key));
                 }
             }
             if (provided.Count == 0) {

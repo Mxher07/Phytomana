@@ -116,17 +116,27 @@ namespace Game {
             int y,
             int z
         ) {
-            List<int> ingredientContents = m_subsystemFlowerTable.GetIngredientContents(x, y, z);
-            if (ingredientContents.Count == 0) {
+            List<int> ingredientValues = m_subsystemFlowerTable.GetIngredientValues(x, y, z);
+            if (ingredientValues.Count == 0) {
                 return;
             }
             // 原生方块使用地形图集纹理，模组方块使用各自的独立纹理。
             Texture2D atlasTexture = generator.SubsystemTerrain.SubsystemAnimatedTextures.AnimatedBlocksTexture;
-            int shown = Math.Min(ingredientContents.Count, 4);
+            SubsystemPalette palette = generator.SubsystemPalette;
+            int shown = Math.Min(ingredientValues.Count, 4);
             for (int i = 0; i < shown; i++) {
-                IngredientMesh ingredientMesh = GetIngredientMesh(ingredientContents[i], atlasTexture);
+                int value = ingredientValues[i];
+                IngredientMesh ingredientMesh = GetIngredientMesh(value, atlasTexture);
                 if (ingredientMesh.Mesh == null || ingredientMesh.Texture == null) {
                     continue;
+                }
+                // 颜色变体（须弥花/花瓣）按其特殊值上色展示。
+                Color tint = Color.White;
+                if (BlocksManager.Blocks[Terrain.ExtractContents(value)] is SumeruFlowerBlock) {
+                    tint = SumeruFlowerBlock.GetColorValue(Terrain.ExtractData(value), palette);
+                }
+                else if (BlocksManager.Blocks[Terrain.ExtractContents(value)] is SumeruPetalBlock) {
+                    tint = SumeruPetalBlock.GetColorValue(Terrain.ExtractData(value), palette);
                 }
                 float offsetX = (i % 2) == 0 ? 0.34f : 0.66f;
                 float offsetZ = (i / 2) == 0 ? 0.34f : 0.66f;
@@ -137,22 +147,21 @@ namespace Game {
                     y,
                     z,
                     ingredientMesh.Mesh,
-                    Color.White,
+                    tint,
                     ingredientMatrix,
                     geometry.GetGeometry(ingredientMesh.Texture).SubsetTransparent
                 );
             }
         }
 
-        /// <summary>获取（并缓存）指定原料的展示立方体网格：使用该方块自己的表面纹理。</summary>
-        public IngredientMesh GetIngredientMesh(int contents, Texture2D atlasTexture) {
-            if (m_ingredientMeshes.TryGetValue(contents, out IngredientMesh cached)) {
+        /// <summary>获取（并缓存）指定原料的展示立方体网格：使用该方块自己的表面纹理（按完整方块值缓存，颜色变体各自独立）。</summary>
+        public IngredientMesh GetIngredientMesh(int value, Texture2D atlasTexture) {
+            if (m_ingredientMeshes.TryGetValue(value, out IngredientMesh cached)) {
                 return cached;
             }
             IngredientMesh result = default;
-            Block block = BlocksManager.Blocks[contents];
+            Block block = BlocksManager.Blocks[Terrain.ExtractContents(value)];
             if (block != null) {
-                int value = Terrain.MakeBlockValue(contents);
                 int slotCount = Math.Max(1, block.GetTextureSlotCount(value));
                 int slot = block.GetFaceTextureSlot(4, value);
                 result = new IngredientMesh {
@@ -160,7 +169,7 @@ namespace Game {
                     Texture = block.GetDefaultTexture(value) ?? atlasTexture
                 };
             }
-            m_ingredientMeshes[contents] = result;
+            m_ingredientMeshes[value] = result;
             return result;
         }
 
