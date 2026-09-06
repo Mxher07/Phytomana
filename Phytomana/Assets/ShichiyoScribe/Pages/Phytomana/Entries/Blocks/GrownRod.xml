@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="息木枝" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="GrownWoodBlock;GrownWoodBlock;GrownRodBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="两块生息木在工作台中上下叠放，即可得到一息木枝。" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="它是法杖与工具的握柄：" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 220" />
+	<LabelWidget Text="生息法杖　3 枝 + 2 花瓣" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 264" />
+	<LabelWidget Text="斧、镐　各 2 枝（详见 4.4）" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 294" />
+	<LabelWidget Text="铲、弯刀　各 2 枝、1 枝" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 324" />
+</CanvasWidget>

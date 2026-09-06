@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="挑选配方材料" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="花药台现有的配方全部来自须弥花瓣与岩浆桶（详见第二章），其中需要耐心调制的是各色花瓣：" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 62" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="多色花瓣哪里来？" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="24, 158" />
+	<LabelWidget Text="野外有十六种颜色的须弥花。将对应颜色的须弥花揉成花瓣，就能凑齐配方所需的花色组合。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 186" />
+	<LabelWidget Text="种子：" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 258" />
+	<LabelWidget Text="合成触发需要任意一颗种子——小麦种子、树苗等均可，它会被本次合成消耗掉。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 286" />
+</CanvasWidget>

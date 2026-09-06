@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="花语的另一面" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="产量最大的一朵产魔花，代价是风险：岩浆蔓延、木制地板付之一炬的事并不少见。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="做好隔离：花周围铺石质地面，岩浆之上垫一层防蔓延的护板，再常备一桶水。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 156" />
+	<LabelWidget Text="它每 1.5 秒巡视一次邻域，遇岩浆便吞入花心，随之而来的是约 2 秒的灼亮表演。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 250" />
+</CanvasWidget>

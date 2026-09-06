@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="使用方式" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="① 注水：拿水桶对花药台右键,将清水注入台内。无水时台子不吸收原料。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="② 投料：把配方所需的须弥花瓣等原料投掷到台面上，会被台子吸入收纳。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
+	<LabelWidget Text="③ 合成：原料与某条配方的种类、数量完全一致时，再投任意一颗种子即可点化合成，成品从台面弹出。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="④ 收尾：合成后若想清空台面，空手潜行右键即可取回剩余原料。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="提示" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 284" />
+	<LabelWidget Text="原料按「种类」匹配，且不限颜色：含「须弥花瓣」的配方，任意颜色的花瓣都可以参与。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 312" />
+</CanvasWidget>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="「生息法杖」" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="GrownRodBlock,SumeruPetalBlock;SumeruPetalBlock,GrownRodBlock;GrownRodBlock,GrownStaffBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="材料清单" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="息木枝 × 3" FontScale="0.8" Color="80, 60, 36" Size="200, 22" CanvasWidget.Position="12, 176" />
+	<LabelWidget Text="须弥花瓣 × 2（任意颜色）" FontScale="0.8" Color="80, 60, 36" Size="260, 22" CanvasWidget.Position="12, 200" />
+	<LabelWidget Text="工作台中的摆放为两行三列：首行左、中「枝·花瓣」，次行中、右「花瓣·枝」，末行左端一枝。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 232" />
+	<LabelWidget Text="息木枝由两块生息木在工作台中竖叠而成（见 4.1）。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 302" />
+</CanvasWidget>

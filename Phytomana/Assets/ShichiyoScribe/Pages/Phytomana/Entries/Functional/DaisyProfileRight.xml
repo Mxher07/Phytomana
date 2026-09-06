@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="花语的另一面" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="它的速度不温不火（约一分钟一块），正适合在建造前先「养木、养石」——材料自给自足。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="常见搭配：先在林边围一片木料与花岗岩，再插下一朵白曦菊，几日之后取料开工。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 156" />
+	<LabelWidget Text="它也接受升级：你露天栽下它、毗邻待变之物，它自会「内分泌」成一对可持续的林场。" FontScale="0.8" Color="130, 100, 60" Size="420, 70" CanvasWidget.Position="12, 256" />
+</CanvasWidget>

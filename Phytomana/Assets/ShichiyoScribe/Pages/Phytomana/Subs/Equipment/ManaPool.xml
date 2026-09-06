@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="1.3 魔法池" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="ManaPoolBlock" Size="88, 72" Scale="1.6" CanvasWidget.Position="178, 58" />
+	<LabelWidget Text="魔法池是最为宽厚的魔力容器：最高容纳 3800 mn。它不主动放电，只收下发射器链路送入的魔力。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="妙用" FontScale="1.0" Color="70, 40, 10" Size="120, 26" CanvasWidget.Position="12, 232" />
+	<LabelWidget Text="把指定物品丢进有足量魔力的池中，即可把魔力「注入」物品：铁锭化为魔法钢锭、铁块化为魔力钢块。池中的魔力液面会随储量升降。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 264" />
+</CanvasWidget>

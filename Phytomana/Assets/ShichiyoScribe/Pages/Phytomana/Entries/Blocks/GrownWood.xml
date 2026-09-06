@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="生息木与生息岩" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="GrownWoodBlock,GrownStoneBlock" IconSize="64" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="由白曦菊转化而得：木材化作生息木，石料化作生息岩。纹理泛着青绿的生机，是须弥建筑与器械的地基。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="用途" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 272" />
+	<LabelWidget Text="生息木：魔力发射器 ×6、息木枝 ×1=2 木。" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 300" />
+	<LabelWidget Text="生息岩：魔法池 ×5。" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 328" />
+	<LabelWidget Text="成片养木、养石，再开建基地，条理清晰。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 358" />
+</CanvasWidget>

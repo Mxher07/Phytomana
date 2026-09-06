@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="4.5 魔力护甲" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="ClothingBlock,ClothingBlock;ClothingBlock,ClothingBlock" IconSize="64" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="以魔法钢锭配合基础衣物锻造的四件套：魔力钢头盔、魔力钢胸甲、魔力钢护腿与魔力钢靴子。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="护甲覆盖与防护均优于常规皮装，深入险地也安心几分。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 254" />
+	<LabelWidget Text="具体锻造见「护甲一览」条目。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 316" />
+</CanvasWidget>

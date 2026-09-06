@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="护甲一览" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="ClothingBlock,ClothingBlock;ClothingBlock,ClothingBlock" IconSize="56" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="魔力钢头盔　基础头饰 + 魔法钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="魔力钢胸甲　基础衣物 + 魔法钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 200" />
+	<LabelWidget Text="魔力钢护腿　基础裤装 + 魔法钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 230" />
+	<LabelWidget Text="魔力钢靴子　基础鞋靴 + 魔法钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 260" />
+	<LabelWidget Text="在锻造台上，以对应部位的基础衣物配合钢锭铸成。" FontScale="0.75" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 296" />
+</CanvasWidget>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="花语的另一面" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="它不是工作于「每秒」，而是在一次次吞吐之间爆发出大额魔力——如同农夫把收成换成金库。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="消化期间它会专注凝神，若再投食物便排队暂存；肚子正撑时，新到的食物先按序等候。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 156" />
+	<LabelWidget Text="一个让农场循环起来的妙诀：把多余作物喂给它，魔力与食材两不误。" FontScale="0.8" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 250" />
+</CanvasWidget>

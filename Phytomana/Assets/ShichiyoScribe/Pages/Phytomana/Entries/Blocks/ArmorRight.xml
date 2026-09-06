@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="着装考量" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="魔力钢护甲的各项防护足以让你在岩浆畔（热力百合工作区）与矿井口多站一会。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 90" CanvasWidget.Position="12, 166" />
+	<LabelWidget Text="锻造平台" FontScale="0.9" Color="70, 40, 10" Size="140, 24" CanvasWidget.Position="24, 178" />
+	<LabelWidget Text="每件均以「对应部位的基础衣物 + 魔法钢锭」在锻造台铸成，别把衣物配错部位。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 206" />
+	<LabelWidget Text="四件套总计约消耗 4 锭钢——武装一人绰绰有余。" FontScale="0.8" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 282" />
+</CanvasWidget>

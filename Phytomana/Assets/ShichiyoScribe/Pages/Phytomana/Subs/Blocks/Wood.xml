@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="4.1 生息树材" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="GrownWoodBlock,GrownStoneBlock;GrownRodBlock" IconSize="64" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="生息木与生息岩是须弥魔法最根本的建材，皆由白曦菊「养成」；把它们打磨成息木枝，则是一切器械的筋骨。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="生息木 → 魔力发射器、息木枝；生息岩 → 魔法池；息木枝 → 法杖与全套工具握柄。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 250" />
+</CanvasWidget>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="夜影花·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="NightshadeFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「只在黑暗的亲吻中开放。」白日里它闭目养神，天色一暗便向虚空索取魔力。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 240" />
+	<LabelWidget Text="储能上限　800 mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 268" />
+	<LabelWidget Text="夜产　每秒 1.9 mn（漫夜进账）" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 296" />
+	<LabelWidget Text="夜由　天空明度低于 0.35 时入夜" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 324" />
+	<LabelWidget Text="偏爱幽暗的基座颜色；但夜色是它的全部。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 354" />
+</CanvasWidget>

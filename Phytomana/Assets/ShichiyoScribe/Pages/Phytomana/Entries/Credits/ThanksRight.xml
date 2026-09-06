@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="写在后记" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="这本手册陪你走过了从第一朵白曦菊到魔力钢甲的全部路程。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="接下来的路，由你的锻造与花田来书写——愿每一座基地，都有一座活着的魔法花园。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 132" />
+	<LabelWidget Text="花瓣会拈起岁月，魔力会记住你。" FontScale="0.9" Color="70, 40, 10" Size="420, 40" CanvasWidget.Position="12, 228" />
+	<LabelWidget Text="—— PhytoMana · 须弥手册" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 292" />
+</CanvasWidget>

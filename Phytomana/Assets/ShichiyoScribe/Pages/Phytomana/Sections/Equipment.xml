@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="第一章 基础器械" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="须弥魔法的地基由三件器械构成，再由一根法杖统御全局。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 56" CanvasWidget.Position="12, 66" />
+	<BookBlockIconWidget BlockName="FlowerTableBlock" Size="48, 48" Scale="1.3" CanvasWidget.Position="16, 126" />
+	<LabelWidget Text="花药台 —— 以水引花，炼制花朵的台座" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="340, 24" CanvasWidget.Position="84, 138" />
+	<BookBlockIconWidget BlockName="ManaSpreaderBlock" Size="48, 48" Scale="1.3" CanvasWidget.Position="16, 198" />
+	<LabelWidget Text="魔力发射器 —— 魔力网络的中转站" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="340, 24" CanvasWidget.Position="84, 210" />
+	<BookBlockIconWidget BlockName="ManaPoolBlock" Size="48, 48" Scale="1.3" CanvasWidget.Position="16, 270" />
+	<LabelWidget Text="魔法池 —— 大容量的仓储与转化器" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="340, 24" CanvasWidget.Position="84, 282" />
+	<BookBlockIconWidget BlockName="GrownStaffBlock" Size="48, 48" Scale="1.3" CanvasWidget.Position="16, 342" />
+	<LabelWidget Text="生息法杖 —— 查看状态、绑定链路" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="340, 24" CanvasWidget.Position="84, 354" />
+</CanvasWidget>

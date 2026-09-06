@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="3.1 白曦菊" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="GrownDaisyFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="须弥功能花的独苗。它不产魔、不吃魔，只以纯粹的生息悄悄改变周围的世界——把木材与石块「养」成活的变体。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="这对须弥魔法格外要紧：生息木与生息岩正是发射器、魔法池与法杖的原料。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 250" />
+	<LabelWidget Text="所以，去林子里找些白曦菊吧——那是须弥魔法真正的起点。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 322" />
+</CanvasWidget>

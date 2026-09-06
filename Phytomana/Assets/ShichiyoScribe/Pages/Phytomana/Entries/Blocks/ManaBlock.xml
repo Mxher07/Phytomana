@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="魔力钢块" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="IronBlock,ManaBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="把铁块投入魔力充足的魔法池，便可获得魔力钢块。" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="代价　铁块 ×1 + 3000 mn 魔力" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 204" />
+	<LabelWidget Text="也可以在工作台中 3×3 摆满魔法钢锭合成（9 锭 = 1 块）。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 244" />
+	<LabelWidget Text="作为方块形态，可堆叠、可建筑，也是大型仓库的储料砖。" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 296" />
+</CanvasWidget>

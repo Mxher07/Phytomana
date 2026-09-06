@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="4.3 魔力材料" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="ManaIngotBlock,ManaBlock" IconSize="64" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="魔力钢锭与魔力钢块是魔法池「灌注」的结晶（见 1.3 使用方式）。它们不仅是高级建材，更是整套工具与护甲的骨架。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="魔法钢锭 → 全部魔力工具与护甲；魔力钢块 → 方块形态、仓储与装饰。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 254" />
+	<LabelWidget Text="想大量得钢，先把魔力网络喂饱——铁的池化是一门净赚的生意。" FontScale="0.8" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 310" />
+</CanvasWidget>

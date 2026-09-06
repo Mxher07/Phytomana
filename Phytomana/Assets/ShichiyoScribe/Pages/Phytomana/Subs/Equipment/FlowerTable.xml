@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="1.1 花药台" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="FlowerTableBlock" Size="72, 72" Scale="1.6" CanvasWidget.Position="186, 60" />
+	<LabelWidget Text="「以水引花」。花药台是须弥魔法的炼制场：向其中注入清水，投入配方材料，最后投下一颗种子，花朵便应水而生。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 120" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="妙用" FontScale="1.0" Color="70, 40, 10" Size="120, 26" CanvasWidget.Position="12, 270" />
+	<LabelWidget Text="花药台可以容纳 300 mn 魔力（由魔力网络送入），供需要消耗魔力的配方使用；也可作为最多存放若干原料的保险箱。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 302" />
+</CanvasWidget>

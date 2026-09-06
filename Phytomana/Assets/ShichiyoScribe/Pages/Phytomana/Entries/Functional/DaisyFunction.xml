@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="白曦菊·功能说明" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="① 白曦菊持续感应六邻域，找出可化之物。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="② 约每 60 秒，把一件目标方格转化为对应的生息变体。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
+	<LabelWidget Text="③ 木材类 → 生息木，石料类 → 生息岩（如花岗岩、石、砂岩等）。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="④ 转化完成后物块的纹理化为深青色的生息纹路，并成为须弥工具的前置材料。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="要点" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 284" />
+	<LabelWidget Text="它本身不吃魔力；即使全网瘫痪，它也能昼夜不停地转化（约一分钟一块）。" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 312" />
+</CanvasWidget>

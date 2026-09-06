@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="使用须知" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="个人游玩、服务器搭建、二次学习分析：均受欢迎。" FontScale="0.85" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="包进商业整合包或以牟利形式分发：请先取得作者书面认可。" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 118" />
+	<LabelWidget Text="修改后再分发：请保留许可声明，并显著标注你是修改者。" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="不得移除本说明。（若与文件载明的许可冲突，以文件为准。）" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 260" />
+	<LabelWidget Text="你带走的是一袋种子，它会长成一片森林。" FontScale="0.8" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 326" />
+</CanvasWidget>

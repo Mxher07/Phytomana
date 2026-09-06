@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="特别说明" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="白曦菊不会转化「已生息的」木材与岩石，也不会越界去碰末地石一类的古怪产物——请以游戏内实测为准。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 110" CanvasWidget.Position="12, 176" />
+	<LabelWidget Text="走向自动化" FontScale="0.9" Color="70, 40, 10" Size="160, 24" CanvasWidget.Position="24, 188" />
+	<LabelWidget Text="它最大的价值在打通「树木→木材→木料」与「石材→岩料」的循环：让原料滚滚向东。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 80" CanvasWidget.Position="24, 216" />
+	<LabelWidget Text="把成片的生息木与生息岩留作建筑与建材，才是它的正途。" FontScale="0.8" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 306" />
+</CanvasWidget>

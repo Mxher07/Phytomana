@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="日耀花·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="SunPowerFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「以光辉迎向白昼。」它是最忠实的魔法师之花：你把燃料喂给它，它便回以烈日般的魔力。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="储能上限　800 mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="燃烧周期　5 秒/次" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 302" />
+	<LabelWidget Text="燃料嗅觉　上方 2 格内的燃料堆" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 330" />
+	<LabelWidget Text="它会把燃料按等级屡次吸食：木料、煤炭、熔炉燃料……胃口与你的储备成正比。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 360" />
+</CanvasWidget>

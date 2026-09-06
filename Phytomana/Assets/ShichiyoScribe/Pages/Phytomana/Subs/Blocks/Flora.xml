@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="4.2 须弥花与花瓣" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="SumeruFlowerBlock,SumeruPetalBlock" IconSize="64" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="须弥花以十六种颜色点缀大地，是须弥魔法一切的「花源」；将花揉成须弥花瓣，便可用于花药台的每一道配方。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="花朵直接生于野外，无需种植；花瓣则要亲手揉成（1 朵花 = 4 片花瓣）。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 254" />
+	<LabelWidget Text="配方里的「花色」正是借花瓣的颜色：想炼哪朵产魔花，先凑齐它的颜色组合。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 310" />
+</CanvasWidget>

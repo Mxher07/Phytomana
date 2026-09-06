@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="1.2 魔力发射器" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="ManaSpreaderBlock" Size="72, 72" Scale="1.6" CanvasWidget.Position="186, 60" />
+	<LabelWidget Text="「地之信任者」。魔力发射器是魔力网络的中转站：它收集邻域内产魔花的产出，自身最高容纳 1200 mn，并把魔力沿法杖绑定的链路送往远方。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 120" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="注意" FontScale="1.0" Color="70, 40, 10" Size="120, 26" CanvasWidget.Position="12, 270" />
+	<LabelWidget Text="发射器不会自动中继魔力。想让它把魔力送往魔法池或其他发射器，必须用生息法杖在两者之间建立链路。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 302" />
+</CanvasWidget>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="424, 96" CanvasWidget.Position="10, 44" />
+	<LabelWidget Text="须弥手册" Size="424, 40" FontScale="1.6" TextAnchor="HorizontalCenter" Color="70, 40, 10" CanvasWidget.Position="10, 62" />
+	<LabelWidget Text="一部象征万物生长的植物魔法宝典" Size="424, 26" FontScale="0.9" TextAnchor="HorizontalCenter" Color="110, 80, 40" CanvasWidget.Position="10, 108" />
+	<LabelWidget Text="以草木为炉 · 以魔力为引" Size="424, 24" FontScale="0.8" TextAnchor="HorizontalCenter" Color="130, 100, 60" CanvasWidget.Position="10, 150" />
+	<LabelWidget Text="本书收录了 Phytomana 模组的全部内容：三件基础器械的用法、五种产魔花与它们的产能之道、功能花，以及所有的方块。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 190" />
+	<LabelWidget Text="按住下方的按键即可翻阅。右边的书脊之前，还有一篇引言等着你。" WordWrap="true" FontScale="0.8" Color="120, 90, 50" Size="420, 40" CanvasWidget.Position="12, 300" />
+	<BookBlockIconWidget BlockName="SumeruManualBlock" Size="64, 64" Scale="1.2" CanvasWidget.Position="186, 322" />
+</CanvasWidget>

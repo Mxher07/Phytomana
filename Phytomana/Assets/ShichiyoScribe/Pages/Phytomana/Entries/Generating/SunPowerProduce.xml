@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="日耀花·产能方式" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="① 在白日，上方 2 格内的燃料堆被逐层吸食，每吸一层，燃料等级 +1。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="② 每 5 秒完成一次「燃烧周期」：基础产出 20 mn，燃料每高一级再 +10 mn/周期。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
+	<LabelWidget Text="③ 满 800 mn 后进入休眠，不再吸食，直到魔力被运走。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="④ 若邻近无发射器收魔，它会在约 1.5 秒后陷入孤立，魔力以每秒 5 mn 缓缓流失。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="注意" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 284" />
+	<LabelWidget Text="白昼与黑夜的界线，依天空明度判定；洞窟里它黯然入眠。" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 312" />
+</CanvasWidget>

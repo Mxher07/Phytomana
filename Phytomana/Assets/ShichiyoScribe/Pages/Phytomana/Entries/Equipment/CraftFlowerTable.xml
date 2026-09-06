@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="「花药台」" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="GraniteBlock,GraniteBlock,StoneSlabBlock;GraniteBlock,StoneSlabBlock,SumeruPetalBlock;FlowerTableBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="材料清单" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="花岗岩 × 4" FontScale="0.8" Color="80, 60, 36" Size="200, 22" CanvasWidget.Position="12, 176" />
+	<LabelWidget Text="石台阶 × 2" FontScale="0.8" Color="80, 60, 36" Size="200, 22" CanvasWidget.Position="12, 200" />
+	<LabelWidget Text="须弥花瓣 × 1" FontScale="0.8" Color="80, 60, 36" Size="200, 22" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="摆放为三行三列的台座造型：上排「石阶·花瓣·石阶」，中排中央一块花岗岩，下排三块花岗岩。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 256" />
+	<LabelWidget Text="在工作台按此形状摆放，即可得到一台花药台。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 326" />
+</CanvasWidget>

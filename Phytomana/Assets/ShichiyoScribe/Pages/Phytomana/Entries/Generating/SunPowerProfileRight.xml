@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="花语的另一面" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="日耀花白日为尊，黑夜便守着白天的余温。它不接受任何投喂，只在你亲手奉上的燃料里报以欢愉。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="放置提示：给它一片开阔的视野，别让它窝在屋檐下——它能看清天空，白昼才完整。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="你要问它一生能产多少魔力？答：先备足燃料，再谈产能。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 240" />
+</CanvasWidget>

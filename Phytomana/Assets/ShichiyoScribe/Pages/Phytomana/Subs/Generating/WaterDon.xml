@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="2.2 泉沫珠" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="WaterDonFlower,WaterDonFlower;WaterDonFlower,WaterDonFlower" IconSize="56" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="「以水的旋律回应大地」。泉沫珠从周围的水源里频频啜饮，吐息成魔。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="它的效率看水色不看火候：四面八方都是水，它的产量才稳。缺水时花朵便会进入等待。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="基座：任意方块。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 324" />
+</CanvasWidget>

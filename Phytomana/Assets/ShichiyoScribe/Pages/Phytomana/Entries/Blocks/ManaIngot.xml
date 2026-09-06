@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="魔法钢锭" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="IronIngotBlock,ManaIngotBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="把铁锭投入魔力充足的魔法池，魔力会将其浸染为魔法钢锭。" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="代价　铁锭 ×1 + 300 mn 魔力" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 204" />
+	<LabelWidget Text="它是整套工具与护甲的核心钢材：" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 244" />
+	<LabelWidget Text="魔力工具　见 4.4 工具一览" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 288" />
+	<LabelWidget Text="魔力护甲　每件以钢锭搭配基础衣物锻造" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 318" />
+	<LabelWidget Text="九枚钢锭可合为一块魔力钢块，亦有仓储之利。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 350" />
+</CanvasWidget>

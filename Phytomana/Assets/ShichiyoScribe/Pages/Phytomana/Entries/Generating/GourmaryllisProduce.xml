@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="暴食花·产能方式" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="① 吸食：把它六邻域内掉落的食物卷入花心（每次收下一件）。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="② 消化：以 3 + 0.25×营养值 秒凝神化食，这段时间它不再吞吐下一顿。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
+	<LabelWidget Text="③ 奉献：消化完毕一次吐出全部魔力——每 1 营养值换 12 mn。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="④ 满 1000 mn 便撑到休眠；相邻无发射器收魔时,魔力以每秒 5 mn 流失。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="产量曲线" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 286" />
+	<LabelWidget Text="一次投喂的回报 = 食物营养值 × 12。高营养食物产量大，但等你消化完也久。" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 314" />
+</CanvasWidget>

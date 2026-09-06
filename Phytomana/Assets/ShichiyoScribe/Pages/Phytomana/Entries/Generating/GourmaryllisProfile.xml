@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="暴食花·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="GourmaryllisFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「贪食而华美。」没有它吞不下的食物，没有它产不出的魔力——只要有东西滚到它嘴边。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="储能上限　1000 mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="奉献　每 1 营养值换 12 mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 302" />
+	<LabelWidget Text="消化　3 + 0.25 × 营养值 秒" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 330" />
+	<LabelWidget Text="高营养的佳肴意味着更长的消化、更饱满的回报。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 360" />
+</CanvasWidget>

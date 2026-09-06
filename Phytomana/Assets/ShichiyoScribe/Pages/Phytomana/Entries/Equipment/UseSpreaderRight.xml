@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="布局要点" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="发射器只认「身边的」花朵：花朵放在发射器的上、下、前后、左右 3×3×3 范围内，即可自动收魔而不必连线。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 62" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 110" CanvasWidget.Position="12, 158" />
+	<LabelWidget Text="常用骨架" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 170" />
+	<LabelWidget Text="某一平面的同一高度并排摆放花朵，发射器置于它们中央；再沿六向直线把发射器连到魔法池。白色光球会告诉你链路正忙。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 80" CanvasWidget.Position="24, 198" />
+	<LabelWidget Text="善用工作模式：点击发射器即可看到「当前吸收/送出」的瞬时报文。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 286" />
+</CanvasWidget>

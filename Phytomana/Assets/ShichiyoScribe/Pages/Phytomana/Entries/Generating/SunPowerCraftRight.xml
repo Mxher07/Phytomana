@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="配方解读" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="这是你炼出的第一朵产魔花，三种花色最易入手：淡灰色的花瓣来自淡灰须弥花，棕色与红色须弥花在田埂常见的草地、石地间都能采到。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 100" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 90" CanvasWidget.Position="12, 190" />
+	<LabelWidget Text="采花曲" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 202" />
+	<LabelWidget Text="野外任意色须弥花都能揉成花瓣，只要揉出 4 片淡灰、8 片棕、4 片红，日耀花想炼几株都行。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 230" />
+</CanvasWidget>

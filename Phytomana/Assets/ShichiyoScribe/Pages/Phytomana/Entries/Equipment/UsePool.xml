@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="使用方式" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="① 入魔：用生息法杖把发射器（或另一口池子）的链路接向魔法池，让魔力沿链路输入。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="② 储蓄：池子自身不放电，全部魔力安然存蓄，最高 3800 mn。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
+	<LabelWidget Text="③ 转化：把要转化的物品丢进池中；只要池内魔力充足，物品便会被魔力浸染出炉。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="④ 查验：空闲时右键（或持生息法杖）查看储量，魔力液面也会直观地随储量升降。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="不支持转化的物品会原样留在池中，不会被消耗。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 286" />
+</CanvasWidget>

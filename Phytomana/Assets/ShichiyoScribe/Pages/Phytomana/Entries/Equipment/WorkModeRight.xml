@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="状态解读" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="花朵的「当前状态」有四种：" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="休息中　条件未满足（如夜影花等到夜晚、泉沫珠缺水）。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 126" />
+	<LabelWidget Text="流失中　邻近没有发射器收魔，魔力正在白白漏掉。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="休眠中　下方缺少固体基座，花朵陷入沉睡。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 214" />
+	<LabelWidget Text="观察思考提示" FontScale="0.9" Color="70, 40, 10" Size="180, 24" CanvasWidget.Position="12, 266" />
+	<LabelWidget Text="「产能」的数值会因燃料、水流与时辰变化；法杖返回的是瞬时报文，非长期平均值。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 296" />
+	<LabelWidget Text="「流失中」就是最该现身说法的时候——给花配台发射器吧。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 356" />
+</CanvasWidget>

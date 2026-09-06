@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="工作模式" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="手持法杖对任意魔力方块普通点击，便会在左下角弹出一行绿色状态：" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="产魔花　[日耀花] 储存:100/800mn 当前状态:工作中 产能:20mn/sct" FontScale="0.72" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 126" />
+	<LabelWidget Text="魔力发射器　[魔力发射器] 储存:300/1200mn 当前状态:工作中 使用:160mn/sct" FontScale="0.72" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="魔法池　[魔法池] 储存:2000/3800mn 当前状态:工作中" FontScale="0.72" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 214" />
+	<LabelWidget Text="花药台　「花药台」水：有｜魔力：50/300mn｜原料：须弥花瓣×4" FontScale="0.72" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 258" />
+	<LabelWidget Text="可点击的魔力方块会显示淡蓝色描边，告诉你「此处可查」。工作模式无消耗、无影响。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 306" />
+</CanvasWidget>

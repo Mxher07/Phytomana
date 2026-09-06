@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="绑定模式" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="① 潜行点击切换到绑定模式。" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="② 点击一台魔力发射器作为起点（亮起粉色描边）。" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 92" />
+	<LabelWidget Text="③ 再点击另一台发射器或魔法池作为终点。" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 122" />
+	<LabelWidget Text="④ 成功：起点会朝向终点吐出白色魔力光球，沿链路往返流动。" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 152" />
+	<LabelWidget Text="绑定约束" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 196" />
+	<LabelWidget Text="距离不超过 24 格。" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 226" />
+	<LabelWidget Text="必须在同一条水平或竖直直线上（六向对齐）。" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 256" />
+	<LabelWidget Text="起点必须是魔力发射器；终点须是发射器或魔法池。" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 286" />
+	<LabelWidget Text="失败会有明确提示（太远 / 不在同一轴 / 终点不合适）。" FontScale="0.8" Color="130, 100, 60" Size="420, 26" CanvasWidget.Position="12, 316" />
+</CanvasWidget>

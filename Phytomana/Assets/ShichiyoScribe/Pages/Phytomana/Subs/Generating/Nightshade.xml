@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="2.3 夜影花" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="NightshadeFlower,NightshadeFlower;NightshadeFlower,NightshadeFlower" IconSize="56" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="「只在黑暗的亲吻中开放」。夜影花是黑夜的诗人：天色转暗，它便轻盈地产出魔力。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="露天而植它才能工作；洞窟与掩体下，它只会静静等待。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="基座：深色石质方块（如生息岩）。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 324" />
+</CanvasWidget>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="「魔力发射器」" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="GrownWoodBlock,GrownWoodBlock,GrownWoodBlock;SumeruPetalBlock,IronIngotBlock,GrownWoodBlock;ManaSpreaderBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="材料清单" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="生息木 × 6" FontScale="0.8" Color="80, 60, 36" Size="200, 22" CanvasWidget.Position="12, 176" />
+	<LabelWidget Text="铁锭 × 1" FontScale="0.8" Color="80, 60, 36" Size="200, 22" CanvasWidget.Position="12, 200" />
+	<LabelWidget Text="须弥花瓣 × 1（任意颜色）" FontScale="0.8" Color="80, 60, 36" Size="260, 22" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="工作台中的摆放为「三行三列」：上、下排各三块生息木，中排依次是花瓣、铁锭与空位。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 256" />
+	<LabelWidget Text="生息木来自白曦菊的转化（见第三章 3.1）。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 326" />
+</CanvasWidget>
