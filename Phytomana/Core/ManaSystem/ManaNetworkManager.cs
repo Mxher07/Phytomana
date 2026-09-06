@@ -320,11 +320,12 @@ namespace Phytomana {
                     m_nextBurstTimes.Remove(staleKey);
                 }
             }
+            // 花→发射器用小号橙色粒子，与发射器链路的绿色光球区分开。
             m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
                 new Vector3(from.X + 0.5f, from.Y + 0.5f, from.Z + 0.5f),
-                0.75f,
+                0.15f,
                 1.8f,
-                Color.Green,
+                Color.Orange,
                 new Vector3(to.X + 0.5f, to.Y + 0.5f, to.Z + 0.5f),
                 1
             ));

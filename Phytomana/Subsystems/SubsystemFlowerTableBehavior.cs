@@ -207,20 +207,7 @@ namespace Phytomana {
 
         /// <summary>集满雨水时对附近玩家弹出提示。</summary>
         public void NotifyRainFilled(FlowerTable table) {
-            if (m_subsystemPlayers == null) {
-                return;
-            }
-            Vector3 center = new(table.Position.X + 0.5f, table.Position.Y + 0.5f, table.Position.Z + 0.5f);
-            string text = LanguageControl.Get("FlowerTableMessages", "RainFilled");
-            foreach (ComponentPlayer player in m_subsystemPlayers.ComponentPlayers) {
-                ComponentBody body = player.Entity?.FindComponent<ComponentBody>();
-                if (body == null) {
-                    continue;
-                }
-                if ((body.Position - center).LengthSquared() <= RainMessageRadius * RainMessageRadius) {
-                    player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
-                }
-            }
+            
         }
 
         /// <summary>扫描花药台所在格（含台面）的掉落物：原料被吸收，种子触发合成。</summary>
@@ -273,7 +260,8 @@ namespace Phytomana {
                     firstValue = ingredient.Key;
                 }
                 for (int i = 0; i < ingredient.Value; i++) {
-                    provided.Add(Terrain.ExtractContents(ingredient.Key));
+                    // 传完整方块值：配方的色号槽位按 data 精确匹配
+                    provided.Add(ingredient.Key);
                 }
             }
             if (!FlowerTableRecipeRegistry.TryMatch(provided, out FlowerRecipe recipe)) {
@@ -291,11 +279,11 @@ namespace Phytomana {
             if (recipe.ManaCost > 0f) {
                 table.ManaStorage.Take(recipe.ManaCost);
             }
-            // CopyData 配方：产物的 data 继承第一份原料（颜色变体保色）。
+            // CopyData 配方：产物的 data 继承第一份原料（颜色变体保色）；否则用配方声明的固定 data。
             int resultValue = Terrain.MakeBlockValue(
                 recipe.ResultContents,
                 0,
-                recipe.CopyData ? Terrain.ExtractData(firstValue) : 0
+                recipe.CopyData ? Terrain.ExtractData(firstValue) : recipe.ResultData
             );
             Vector3 center = new(table.Position.X + 0.5f, table.Position.Y + 1.1f, table.Position.Z + 0.5f);
             m_subsystemPickables.AddPickable(resultValue, recipe.ResultCount, center, new Vector3(0f, 2.5f, 0f), null);
@@ -448,7 +436,7 @@ namespace Phytomana {
             List<int> provided = [];
             foreach (KeyValuePair<int, int> ingredient in table.Ingredients) {
                 for (int i = 0; i < ingredient.Value; i++) {
-                    provided.Add(Terrain.ExtractContents(ingredient.Key));
+                    provided.Add(ingredient.Key);
                 }
             }
             if (provided.Count == 0) {
@@ -470,7 +458,12 @@ namespace Phytomana {
                 List<string> parts = [];
                 foreach (KeyValuePair<FlowerRecipeIngredient, int> pair in missing) {
                     Block block = BlocksManager.Blocks[pair.Key.Contents];
-                    string name = block.GetDisplayName(SubsystemTerrain, Terrain.MakeBlockValue(pair.Key.Contents));
+                    int displayValue = Terrain.MakeBlockValue(
+                        pair.Key.Contents,
+                        0,
+                        pair.Key.ExpectedData >= 0 ? pair.Key.ExpectedData : 0
+                    );
+                    string name = block.GetDisplayName(SubsystemTerrain, displayValue);
                     parts.Add($"{name}×{pair.Value}");
                 }
                 return string.Format(LanguageControl.Get("FlowerTableMessages", "HintMissing"), string.Join("、", parts));
