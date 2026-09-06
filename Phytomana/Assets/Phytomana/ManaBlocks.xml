@@ -11,7 +11,7 @@
   <Block Name="ManaSpreaderBlock" MaxMana="1200" CanTransfer="true" StaffCheckable="true" />
   <Block Name="SunPowerFlower" MaxMana="800" CanTransfer="false" StaffCheckable="true" />
   <Block Name="WaterDonFlower" MaxMana="240" CanTransfer="false" StaffCheckable="true" />
-  <Block Name="FlowerTableBlock" MaxMana="300" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="FlowerTableBlock" MaxMana="300" CanTransfer="false" StaffCheckable="true" />
   <Block Name="NightshadeFlower" MaxMana="800" CanTransfer="false" StaffCheckable="true" />
   <Block Name="GourmaryllisFlower" MaxMana="1000" CanTransfer="false" StaffCheckable="true" />
   <Block Name="ThermalilyFlower" MaxMana="1200" CanTransfer="false" StaffCheckable="true" />

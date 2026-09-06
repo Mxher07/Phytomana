@@ -25,27 +25,29 @@
     <Ingredient Name="SumeruFlowerBlock" Count="1" />
   </Recipe>
   <Recipe Result="SunPowerFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock" Count="2" />
-    <Ingredient Name="DirtBlock" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:7" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:12" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:14" Count="1" />
   </Recipe>
   <Recipe Result="WaterDonFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock" Count="2" />
-    <Ingredient Name="GraniteBlock" Count="1" />
-  </Recipe>
-  <Recipe Result="GrownStaffBlock" ResultCount="1">
-    <Ingredient Name="GrownRodBlock" Count="2" />
-    <Ingredient Name="SumeruPetalBlock" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:9" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:11" Count="2" />
   </Recipe>
   <Recipe Result="NightshadeFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock" Count="2" />
-    <Ingredient Name="CoalBlock" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:8" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:15" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:10" Count="2" />
   </Recipe>
   <Recipe Result="GourmaryllisFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock" Count="2" />
-    <Ingredient Name="BreadBlock" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:7" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:4" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:14" Count="1" />
   </Recipe>
   <Recipe Result="ThermalilyFlower" ResultCount="1">
-    <Ingredient Name="SumeruPetalBlock" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:6" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:4" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:14" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:0" Count="1" />
     <Ingredient Name="MagmaBucketBlock" Count="1" />
   </Recipe>
 </FlowerRecipes>

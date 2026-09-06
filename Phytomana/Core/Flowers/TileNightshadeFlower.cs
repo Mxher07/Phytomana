@@ -9,7 +9,7 @@ namespace Phytomana {
     /// 产出速率与上限由配置驱动（NightshadeManaRate / NightshadeMaxMana）。
     /// </summary>
     public class TileNightshadeFlower : TileGeneratingFlower {
-        public const float DefaultManaRate = 3.5f;
+        public const float DefaultManaRate = 1.9f;
         public const float DefaultMaxMana = 800f;
         public const double ProductionParticleInterval = 4.0;
         public const float NightSkyLightThreshold = 0.35f;
