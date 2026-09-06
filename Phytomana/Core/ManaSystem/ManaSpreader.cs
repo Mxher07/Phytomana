@@ -3,11 +3,12 @@ using Phytomana.Api;
 
 namespace Phytomana {
     /// <summary>
-    /// 魔力发射器的逐坐标魔力节点（中继器）。同时实现 IManaReceiver 与 IManaSource：
-    /// 以接收器身份收取产魔源投递的魔力，再以产魔源身份把魔力中继给魔法池等下游接收器。
+    /// 魔力发射器的逐坐标魔力节点。仅实现 IManaReceiver：收取 3×3×3 邻域内产魔花的自动投递；
+    /// 对下游（其他发射器/魔法池）不自动中继，只能通过生息法杖绑定的链路输送魔力
+    /// （链路转移见 SubsystemGrownStaffBehavior.UpdateLinkTransfers）。
     /// 生命周期由 SubsystemManaSpreaderBehavior 管理。
     /// </summary>
-    public class ManaSpreader : IManaSource, IManaReceiver {
+    public class ManaSpreader : IManaReceiver {
         public const float MaxMana = 1200f;
 
         public Point3 Position { get; }

@@ -5,7 +5,8 @@ using TemplatesDatabase;
 namespace Phytomana {
     /// <summary>
     /// 产魔花基类：自带魔力缓存并以 IManaSource 身份注册进魔力网络，
-    /// 缓存中的魔力由网络按距离/视线均分投递给接收器，花朵自身不写投递逻辑。
+    /// 缓存中的魔力由网络自动投递给 3×3×3 邻域内的发射器（多台均分），
+    /// 下游由发射器的法杖链路输送，花朵自身不写投递逻辑。
     /// </summary>
     public abstract class TileGeneratingFlower : TilePhytoFlower, IManaSource {
         public ManaStorage ManaStorage { get; }

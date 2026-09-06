@@ -166,6 +166,9 @@ namespace Game {
             }
         }
 
+        /// <summary>法杖绑定链路的最大距离：目标须在六向直线上 24 格内。</summary>
+        public const float MaxLinkDistance = 24f;
+
         public override bool OnUse(Ray3 ray, ComponentMiner componentMiner) {
             int staffValue = componentMiner.ActiveBlockValue;
             if (Terrain.ExtractContents(staffValue) != m_staffIndex) {
@@ -230,7 +233,7 @@ namespace Game {
                 return true;
             }
             float distance = Vector3.Distance(new Vector3(from.X, from.Y, from.Z), new Vector3(point.X, point.Y, point.Z));
-            if (distance > 16f) {
+            if (distance > MaxLinkDistance) {
                 state.BindStart = from;
                 ShowMessage(player, "ErrTooFar", Color.Red, true);
                 return true;

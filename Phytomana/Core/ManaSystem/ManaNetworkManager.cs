@@ -12,10 +12,14 @@ namespace Phytomana {
     /// <summary>
     /// 魔力网络管理器。每个 World（Project）一个实例，天然按世界隔离，不做全局共享。
     /// 以弱引用保存产魔源与接收器：区块卸载后业务侧释放强引用，网络侧不会阻止回收。
+    ///
+    /// 投递规则（模仿植物魔法）：
+    /// 1. 产魔花只自动投递给自身 3×3×3 邻域内的发射器，多台均分；
+    /// 2. 发射器不自动中继，只能通过生息法杖绑定链路把魔力输送给下游
+    ///    （其他发射器/魔法池等，绑定须在六向直线上 24 格内，见 SubsystemGrownStaffBehavior）。
     /// </summary>
     public class ManaNetworkManager : Subsystem, IUpdateable {
         public const float DefaultTransferInterval = 0.25f;
-        public const float DefaultTransferDistance = 12f;
         public const string SaveKey = "ManaStorages";
 
         public const double BurstInterval = 0.75;
@@ -217,7 +221,7 @@ namespace Phytomana {
                     m_sources.RemoveAt(i);
                     continue;
                 }
-                TransferFromSource(source);
+                TransferFromFlower(source);
             }
             for (int i = m_receivers.Count - 1; i >= 0; i--) {
                 if (!m_receivers[i].TryGetTarget(out IManaReceiver _)) {
@@ -226,7 +230,8 @@ namespace Phytomana {
             }
         }
 
-        public void TransferFromSource(IManaSource source) {
+        /// <summary>产魔花自动投递：只喂自身 3×3×3 邻域内的发射器（多台均分），下游走发射器的法杖链路。</summary>
+        public void TransferFromFlower(IManaSource source) {
             ManaStorage sourceStorage = source.ManaStorage;
             if (sourceStorage.IsEmpty) {
                 return;
@@ -240,14 +245,15 @@ namespace Phytomana {
                 if (receiver.Position == source.Position) {
                     continue;
                 }
+                // 花只认邻域内的发射器；池子等下游接收器必须由发射器用法杖链路喂。
+                if (receiver is not ManaSpreader) {
+                    continue;
+                }
+                if (!IsInFlowerRange(source.Position, receiver.Position)) {
+                    continue;
+                }
                 ManaStorage storage = receiver.ManaStorage;
                 if (storage.Free <= 0f) {
-                    continue;
-                }
-                if (!IsInRange(source.Position, receiver.Position)) {
-                    continue;
-                }
-                if (!HasLineOfSight(source.Position, receiver.Position)) {
                     continue;
                 }
                 m_targetBuffer.Add(receiver);
@@ -324,16 +330,8 @@ namespace Phytomana {
             ));
         }
 
-        public static bool IsInRange(Point3 from, Point3 to) {
-            float distance = PhytoConfig.Instance.TransferDistance;
-            float dx = to.X - from.X;
-            float dy = to.Y - from.Y;
-            float dz = to.Z - from.Z;
-            return (dx * dx) + (dy * dy) + (dz * dz) <= distance * distance;
-        }
-
         /// <summary>
-        /// 该产魔源当前是否存在可达（距离内且视线无遮挡）的接收器，用于花朵孤立判定。
+        /// 该产魔源当前 3×3×3 邻域内是否存在发射器，用于花朵孤立判定（孤立时魔力流失）。
         /// </summary>
         public bool HasReachableReceiver(IManaSource source) {
             if (source == null) {
@@ -343,63 +341,18 @@ namespace Phytomana {
                 if (!reference.TryGetTarget(out IManaReceiver receiver)) {
                     continue;
                 }
-                if (!IsInRange(source.Position, receiver.Position)) {
-                    continue;
+                if (receiver is ManaSpreader && IsInFlowerRange(source.Position, receiver.Position)) {
+                    return true;
                 }
-                if (!HasLineOfSight(source.Position, receiver.Position)) {
-                    continue;
-                }
-                return true;
             }
             return false;
         }
 
-        /// <summary>
-        /// 视线遮挡检测：对两端点之间的体素做 DDA 穿行，途经任何可碰撞方块即视为遮挡（端点自身方块不计）。
-        /// </summary>
-        public bool HasLineOfSight(Point3 from, Point3 to) {
-            if (from == to) {
-                return true;
-            }
-            Terrain terrain = m_subsystemTerrain.Terrain;
-            int dirX = to.X - from.X;
-            int dirY = to.Y - from.Y;
-            int dirZ = to.Z - from.Z;
-            int stepX = Math.Sign(dirX);
-            int stepY = Math.Sign(dirY);
-            int stepZ = Math.Sign(dirZ);
-            float tDeltaX = dirX == 0 ? float.MaxValue : Math.Abs(1f / dirX);
-            float tDeltaY = dirY == 0 ? float.MaxValue : Math.Abs(1f / dirY);
-            float tDeltaZ = dirZ == 0 ? float.MaxValue : Math.Abs(1f / dirZ);
-            float tMaxX = dirX == 0 ? float.MaxValue : 0.5f * tDeltaX;
-            float tMaxY = dirY == 0 ? float.MaxValue : 0.5f * tDeltaY;
-            float tMaxZ = dirZ == 0 ? float.MaxValue : 0.5f * tDeltaZ;
-            int x = from.X;
-            int y = from.Y;
-            int z = from.Z;
-            while (x != to.X || y != to.Y || z != to.Z) {
-                if (tMaxX <= tMaxY && tMaxX <= tMaxZ) {
-                    x += stepX;
-                    tMaxX += tDeltaX;
-                }
-                else if (tMaxY <= tMaxZ) {
-                    y += stepY;
-                    tMaxY += tDeltaY;
-                }
-                else {
-                    z += stepZ;
-                    tMaxZ += tDeltaZ;
-                }
-                if (x == to.X && y == to.Y && z == to.Z) {
-                    break;
-                }
-                int value = terrain.GetCellValue(x, y, z);
-                int contents = Terrain.ExtractContents(value);
-                if (contents != 0 && BlocksManager.Blocks[contents].IsCollidable_(value)) {
-                    return false;
-                }
-            }
-            return true;
+        /// <summary>花→发射器的自动投递距离：切比雪夫距离 ≤ 1（自身 3×3×3 邻域）。</summary>
+        public static bool IsInFlowerRange(Point3 flower, Point3 spreader) {
+            return Math.Abs(spreader.X - flower.X) <= 1
+                && Math.Abs(spreader.Y - flower.Y) <= 1
+                && Math.Abs(spreader.Z - flower.Z) <= 1;
         }
 
         public void AttachDormantMana(Point3 point, ManaStorage storage) {

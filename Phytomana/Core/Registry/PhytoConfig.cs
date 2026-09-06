@@ -15,9 +15,6 @@ namespace Phytomana {
         /// <summary>网络投递周期（秒）。</summary>
         public float TransferInterval = ManaNetworkManager.DefaultTransferInterval;
 
-        /// <summary>产魔源与接收器间的投递距离（格）。</summary>
-        public float TransferDistance = ManaNetworkManager.DefaultTransferDistance;
-
         // ===== 花朵调度 =====
 
         /// <summary>花朵调度周期（秒）。</summary>
@@ -68,7 +65,6 @@ namespace Phytomana {
 
         public void Save(XElement element) {
             element.SetAttributeValue("TransferInterval", Format(TransferInterval));
-            element.SetAttributeValue("TransferDistance", Format(TransferDistance));
             element.SetAttributeValue("FlowerTickInterval", Format(FlowerTickInterval));
             element.SetAttributeValue("FlowersPerSlice", FlowersPerSlice.ToString(CultureInfo.InvariantCulture));
             element.SetAttributeValue("SunPowerBaseManaRate", Format(SunPowerBaseManaRate));
@@ -88,7 +84,6 @@ namespace Phytomana {
                 return;
             }
             TransferInterval = Read(element, "TransferInterval", TransferInterval);
-            TransferDistance = Read(element, "TransferDistance", TransferDistance);
             FlowerTickInterval = Read(element, "FlowerTickInterval", FlowerTickInterval);
             FlowersPerSlice = Read(element, "FlowersPerSlice", FlowersPerSlice);
             SunPowerBaseManaRate = Read(element, "SunPowerBaseManaRate", SunPowerBaseManaRate);
