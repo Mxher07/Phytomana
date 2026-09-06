@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="转化一览" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="铁锭 + 300 mn → 魔法钢锭" FontScale="0.85" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 64" />
+	<LabelWidget Text="铁块 + 3000 mn → 魔力钢块" FontScale="0.85" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 94" />
+	<BookIconGridWidget BlockNames="IronIngotBlock,ManaIngotBlock;IronBlock,ManaBlock" IconSize="48" CanvasWidget.Position="12, 130" />
+	<LabelWidget Text="灌注完成的关键：池内魔力足够。若不足，物品不会被消耗且会有提示。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 226" />
+	<LabelWidget Text="魔法钢锭与魔力钢块是 4.3 节的主角，而钢体的工具与护甲就要靠它们了。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 296" />
+</CanvasWidget>

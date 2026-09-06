@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="多重许可说明" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="Phytomana 模组以「每一部分、各自许可」的方式发布。" FontScale="0.85" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="代码：MPL-2.0（Mozilla Public License 2.0）。你可以自由复制、修改和分发源码，但基于它的衍生文件须保持同样许可并说明出处。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 90" CanvasWidget.Position="12, 118" />
+	<LabelWidget Text="纹理资产：来自 Botania 的部分沿用 Botania 许可（需署名 Vazkii，非商业用途，并保留开源再分发）；其余原创纹理采用 CC BY-NC 3.0。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 90" CanvasWidget.Position="12, 216" />
+	<LabelWidget Text="若引用模组资产，请保留出处声明与许可证副本。" FontScale="0.75" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 318" />
+</CanvasWidget>

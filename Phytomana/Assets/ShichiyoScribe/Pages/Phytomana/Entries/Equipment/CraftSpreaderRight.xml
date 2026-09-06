@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="制作提示" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="一块出色的中转站应当位置得当：把它放在产魔花 3×3×3 邻域内即可自动收魔，再用生息法杖向下游送。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 96" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="别忘了" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 172" />
+	<LabelWidget Text="没有在邻域内的发射器，花朵是不会投喂的。先规划基地，再一口气多备几台发射器。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 200" />
+	<LabelWidget Text="发射器自带 1200 mn 的储能，容量充足；多的那点边角料，够你在断档时撑一阵子。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 276" />
+</CanvasWidget>

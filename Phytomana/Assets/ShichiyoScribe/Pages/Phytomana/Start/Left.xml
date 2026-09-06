@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="什么是须弥魔法" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="须弥魔法（Mana）源于草木之中。白曦菊将附近的木头与石材转化为生息变体——生息木与生息岩，它们正是须弥魔法最初的建材。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 100" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="在世界中自然生长的须弥花（共十六色）可被揉成须弥花瓣，花瓣正是召唤花朵的「完美载体」。有多达五种花朵会为你的世界源源不断地产出魔力——它们或烧灼燃料，或吐纳水汽，或痴迷于黑夜与美食。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 120" CanvasWidget.Position="12, 172" />
+	<LabelWidget Text="魔力以 mn 为单位计量。一切的起点，就在第一章的三件器械之中。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 300" />
+</CanvasWidget>

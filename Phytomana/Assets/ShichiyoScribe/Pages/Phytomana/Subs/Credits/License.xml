@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="5.1 协议许可" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="Phytomana 采用「各部分各板」的多重许可：" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="· 代码（.cs / .csproj）：MPL-2.0" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 126" />
+	<LabelWidget Text="· 原创作曲与素材：CC BY-NC 3.0" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 156" />
+	<LabelWidget Text="· 来自 Botania 的纹理：沿用 Botania License（署名 · 非商用）" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 186" />
+	<LabelWidget Text="· 模板汇编与示例：MIT" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 216" />
+	<LabelWidget Text="详见「多重许可说明」条目。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 258" />
+	<LabelWidget Text="更多条款原文请见模组根目录的 LICENSE 与 BOTANIA_LICENSE 文件。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 312" />
+</CanvasWidget>

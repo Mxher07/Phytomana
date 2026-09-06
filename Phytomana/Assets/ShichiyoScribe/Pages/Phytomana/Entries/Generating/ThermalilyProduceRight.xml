@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="热力工坊" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="在岩浆湖畔或是用桶浇灌出的岩浆池边种下百合，它便会孜孜不倦地啃食热源。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 110" CanvasWidget.Position="12, 158" />
+	<LabelWidget Text="防火备案" FontScale="0.9" Color="70, 40, 10" Size="140, 24" CanvasWidget.Position="24, 170" />
+	<LabelWidget Text="花四周铺满石料或方石；岩浆被吞后就补，用水桶小心续浇；把发射器放进 3×3×3 邻域一口气收魔。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 80" CanvasWidget.Position="24, 198" />
+	<LabelWidget Text="逸闻：它的灼亮表演也是天然的照明与「社交」明珠——建基石的玩家常围着它点亮夜景。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 286" />
+</CanvasWidget>

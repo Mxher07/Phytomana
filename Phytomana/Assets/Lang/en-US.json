@@ -187,6 +187,10 @@
       "DisplayName": "Grown Staff",
       "Description": "Links Mana blocks together. Sneak and click to switch modes; click to bind blocks or read their Mana status."
     },
+    "SumeruManualBlock:0": {
+      "DisplayName": "Sumeru Lexicon",
+      "Description": "A book recording the essentials of Sumeru magic: from the basic machinery to the generating flowers, functional flowers and every block. Hold it and click anywhere to read."
+    },
     "ManaIngotBlock:0": {
       "DisplayName": "Mana Ingot",
       "Description": "An iron ingot infused with Mana inside a Mana Pool."

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="关于这本书" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="Phytomana 是一个深受《植物魔法（Botania）》理念启发的模组：不靠挖掘机械，而是靠花草与魔力，在 SurvivalCraft 2 中搭建你自己的自动化魔法体系。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 120" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="本书的结构如下：" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 196" />
+	<LabelWidget Text="第一章　基础器械：花药台、魔力发射器、魔法池与生息法杖。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="第二章　须弥产能：五种产魔花的能力方式与合成配方。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 252" />
+	<LabelWidget Text="第三章　须弥功能花：目前唯一的白曦菊。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 280" />
+	<LabelWidget Text="第四章　须弥方块：模组内所有方块一览。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 308" />
+	<LabelWidget Text="第五章　协议与鸣谢。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 336" />
+	<LabelWidget Text="本书由 ShichiyoScribe 书籍模组驱动呈现。" FontScale="0.75" Color="130, 100, 60" Size="420, 24" CanvasWidget.Position="12, 372" />
+</CanvasWidget>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="第四章 须弥方块" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="本章收录模组内现有的一切方块（测试用具不计）。从生息木、须弥花到魔力钢锭与工具护甲，魔法的根基尽在于此。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BookIconGridWidget BlockNames="GrownWoodBlock,GrownStoneBlock,GrownRodBlock;SumeruFlowerBlock,SumeruPetalBlock,ManaIngotBlock;ManaBlock,ManaAxeBlock,ManaPickaxeBlock" IconSize="56" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="方块的获取方式主要有三条路：白曦菊转化、须弥花揉碎、以及魔法池与工作台的炼制。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 320" />
+</CanvasWidget>

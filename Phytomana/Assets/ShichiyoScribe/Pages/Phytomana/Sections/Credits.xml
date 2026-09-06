@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="第五章 协议与鸣谢" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="Phytomana 采用多重许可结构。请在使用、修改与分发前仔细阅读本章，不同部分适用不同条款。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="代码为 MPL-2.0，来自 Botania 的纹理沿用 Botania License，其余原创素材采用 CC BY-NC 3.0。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 162" />
+	<LabelWidget Text="同时，献给 Vazkii 的 Botania 与所有喜爱自然的玩家。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 262" />
+</CanvasWidget>

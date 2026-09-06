@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="白曦菊·合成配方" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="SumeruPetalBlock,SumeruPetalBlock,SumeruPetalBlock;SumeruPetalBlock,GrownDaisyFlower" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="须弥花瓣 × 4（任意花色皆可）" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="它不挑剔花色：任何四种花瓣的揉合，都能化出这朵生息之花。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="天然白曦菊融合其野性；人工炼成的则多一分驯良。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 240" />
+</CanvasWidget>

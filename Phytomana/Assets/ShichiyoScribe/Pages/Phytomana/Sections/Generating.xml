@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="第二章 须弥产能" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="自然界的五种花朵，各以自己的方式将世界之物转化为魔力。它们是你的产魔源（生成花朵）。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BookIconGridWidget BlockNames="SunPowerFlower,WaterDonFlower,NightshadeFlower;GourmaryllisFlower,ThermalilyFlower,SumeruFlowerBlock" IconSize="56" CanvasWidget.Position="12, 144" />
+	<LabelWidget Text="关键机制：产魔花会将魔力自动投递给自身 3×3×3 邻域内的魔力发射器（多台平均分配）。务必让它们置于发射器怀抱之内。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 240" />
+	<LabelWidget Text="若花朵周围没有可投递的发射器，它会陷入「孤立」，多余的魔力会缓慢流失——不要把它们独自丢在旷野里。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 312" />
+</CanvasWidget>

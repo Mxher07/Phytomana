@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="1.4 生息法杖" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="GrownStaffBlock" Size="72, 72" Scale="1.6" CanvasWidget.Position="186, 60" />
+	<LabelWidget Text="生息法杖是整座魔力网络的操控核心，有两种模式：工作模式用于查看魔力状态，绑定模式用于架设链路。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="切换方式" FontScale="1.0" Color="70, 40, 10" Size="120, 26" CanvasWidget.Position="12, 236" />
+	<LabelWidget Text="手持法杖时潜行点击，即可在工作模式与绑定模式之间切换。持有法杖时，可被检查的魔力方块会显示淡蓝色描边。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 268" />
+</CanvasWidget>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="怎样读这本书" FontScale="1.1" Color="70, 40, 10" Size="424, 28" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="从第章到第二章，请先通读一遍：先搭起花药台与魔力发射器，再种下产魔花，让魔力流动起来。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="生息法杖是查看魔力状态的关键：工作模式下点击任意魔力方块，即可读到它的储存量、工作状态与当前产能。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 152" />
+	<LabelWidget Text="文中提到的大多数数字，都来自录制好的测试档，标注为储能上限、产率等；实际数值会随版本调整，以游戏内提示为准。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 252" />
+	<LabelWidget Text="准备好了吗？翻开下一页，我们先认识花药台。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 344" />
+</CanvasWidget>

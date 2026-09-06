@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="制作提示" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="花岗岩是随处可见的石材，石台阶由石料加工而来——花药台是所有器械里最容易凑齐材料的一件。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 96" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="巧记" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 172" />
+	<LabelWidget Text="花药台是通往一切花朵的产房。有了它，你才能把须弥花瓣炼成第一朵产魔花。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 200" />
+	<LabelWidget Text="进阶：花药台也能充当临时存料柜——你把材料投进去，合成失败或随时都可取回（见「交互一览」）。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 276" />
+</CanvasWidget>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="热力百合·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="ThermalilyFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「于灼热中凝神。」一株以岩浆为食的百合，把灼热化作温和的魔力。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 240" />
+	<LabelWidget Text="储能上限　1200 mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 268" />
+	<LabelWidget Text="饕餮　每块岩浆 250 mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 296" />
+	<LabelWidget Text="索食　俯察 6 邻域，每 1.5 秒觅一口" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 324" />
+	<LabelWidget Text="岩浆是它的至爱，却也是你的防火责任。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 354" />
+</CanvasWidget>

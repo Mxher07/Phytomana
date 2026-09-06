@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="交互一览" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="水桶右键　注入清水（再右键取回）" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 64" />
+	<LabelWidget Text="投掷原料　吸入台内，计入配方" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 94" />
+	<LabelWidget Text="投掷种子　配方匹配时合成产出" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 124" />
+	<LabelWidget Text="空手右键　查看水与魔力、原料状态" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 154" />
+	<LabelWidget Text="空手潜行右键　取回全部原料" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="状态格式" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="「花药台」水：有｜魔力：0/300mn｜原料：…" FontScale="0.75" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 252" />
+	<LabelWidget Text="「花药台」水：无｜魔力：0/300mn｜原料：空" FontScale="0.75" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 280" />
+	<LabelWidget Text="魔力不足、还缺材料、材料不匹配，都会有对应文字提示。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 312" />
+</CanvasWidget>

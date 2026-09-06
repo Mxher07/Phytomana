@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="魔力网络总览" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="一张图中看清魔力的整个旅程：" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="万物 → 产魔花 → 发射器 → 魔法池 → 应用" FontScale="0.9" Color="70, 40, 10" Size="420, 30" CanvasWidget.Position="12, 106" />
+	<LabelWidget Text="产魔花被燃料/水/黑夜/美食点燃，孕育出魔力（第二章）。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="魔力自动投递给 3×3×3 邻域内的发射器，多台均分。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 182" />
+	<LabelWidget Text="发射器经生息法杖链路（≤24 格直线、160 mn/s/条）汇入魔法池。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="魔法池储蓄并灌注钢料；花药台与未来功能花则是魔力出口。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 266" />
+	<LabelWidget Text="网络的出现，让第二、三、四章的每一样内容都在一个节奏里协奏。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 320" />
+</CanvasWidget>

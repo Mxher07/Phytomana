@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="4.4 魔力工具" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="ManaAxeBlock,ManaPickaxeBlock;ManaShovelBlock,ManaMacheteBlock" IconSize="64" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="一套以魔法钢锭与息木枝打造的工具组：斧、镐、铲、弯刀各司其职，是开采与砍伐的好帮手。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="耐久与效率均属上乘，造型也透着一股须弥的青绿灵气。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 254" />
+	<LabelWidget Text="每件的配方见「工具一览」条目。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 316" />
+</CanvasWidget>

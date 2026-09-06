@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="制作提示" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="法杖是整张网络的「指挥棒」。搭好第一台发射器后，请立刻做一根法杖。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 96" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="两种模式" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 172" />
+	<LabelWidget Text="工作模式：查看方块状态；绑定模式：架设魔力链路。潜行点击切换，见背面两页。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 200" />
+	<LabelWidget Text="法杖并非消耗品：同一根杖可以反复查看与绑链，常备在手即可。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 276" />
+</CanvasWidget>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="2.1 日耀花" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="SunPowerFlower,SunPowerFlower;SunPowerFlower,SunPowerFlower" IconSize="56" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="「以光辉迎向白昼」。日耀花在白昼时吸收燃料，将其化为纯粹的魔力。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="把燃料堆在花上，它便愈烧愈烈：燃料等级越高，每个燃烧周期产出的魔力越多。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="基座：任意方块（缺基座则维持「睡觉」状态，见产能方式）。" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 324" />
+</CanvasWidget>

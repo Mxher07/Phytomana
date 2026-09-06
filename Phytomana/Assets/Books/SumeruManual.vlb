@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Book Id="Phytomana.SumeruManual" Title="须弥手册" Block="SumeruManualBlock">
+	<Spread Title="封面" Left="ShichiyoScribe/Pages/Phytomana/Cover/Front" Right="ShichiyoScribe/Pages/Phytomana/Cover/About" />
+	<Spread Title="前言" Left="ShichiyoScribe/Pages/Phytomana/Start/Left" Right="ShichiyoScribe/Pages/Phytomana/Start/Right" />
+	<Contents Text="点击右侧的分类即可进入对应章节；每个分类下有子目录，子目录下列出条目。翻阅本书，你将了解须弥魔法的一切独特之物：从花药台、魔力发射器、魔法池这些基础器械，到全部产魔花与功能花，再到各式方块。" />
+	<Section Title="第一章 基础器械" Left="ShichiyoScribe/Pages/Phytomana/Sections/Equipment">
+		<SubSection Title="1.1 花药台" Left="ShichiyoScribe/Pages/Phytomana/Subs/Equipment/FlowerTable">
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftFlowerTable" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftFlowerTableRight" />
+			<Entry Title="使用方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UseFlowerTable" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UseFlowerTableRight" />
+			<Entry Title="交互一览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/InteractFlowerTable" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/InteractFlowerTableRight" />
+		</SubSection>
+		<SubSection Title="1.2 魔力发射器" Left="ShichiyoScribe/Pages/Phytomana/Subs/Equipment/ManaSpreader">
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftSpreader" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftSpreaderRight" />
+			<Entry Title="运作方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UseSpreader" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UseSpreaderRight" />
+		</SubSection>
+		<SubSection Title="1.3 魔法池" Left="ShichiyoScribe/Pages/Phytomana/Subs/Equipment/ManaPool">
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftPool" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftPoolRight" />
+			<Entry Title="使用方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UsePool" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UsePoolRight" />
+		</SubSection>
+		<SubSection Title="1.4 生息法杖" Left="ShichiyoScribe/Pages/Phytomana/Subs/Equipment/GrownStaff">
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftStaff" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftStaffRight" />
+			<Entry Title="工作模式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/WorkMode" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/WorkModeRight" />
+			<Entry Title="绑定模式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/BindMode" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/BindModeRight" />
+			<Entry Title="魔力网络总览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/NetworkOverview" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/NetworkOverviewRight" />
+		</SubSection>
+	</Section>
+	<Section Title="第二章 须弥产能" Left="ShichiyoScribe/Pages/Phytomana/Sections/Generating">
+		<SubSection Title="2.1 日耀花" Left="ShichiyoScribe/Pages/Phytomana/Subs/Generating/SunPower">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/SunPowerProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/SunPowerProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/SunPowerCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/SunPowerCraftRight" />
+			<Entry Title="产能方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/SunPowerProduce" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/SunPowerProduceRight" />
+		</SubSection>
+		<SubSection Title="2.2 泉沫珠" Left="ShichiyoScribe/Pages/Phytomana/Subs/Generating/WaterDon">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/WaterDonProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/WaterDonProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/WaterDonCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/WaterDonCraftRight" />
+			<Entry Title="产能方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/WaterDonProduce" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/WaterDonProduceRight" />
+		</SubSection>
+		<SubSection Title="2.3 夜影花" Left="ShichiyoScribe/Pages/Phytomana/Subs/Generating/Nightshade">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/NightshadeProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/NightshadeProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/NightshadeCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/NightshadeCraftRight" />
+			<Entry Title="产能方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/NightshadeProduce" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/NightshadeProduceRight" />
+		</SubSection>
+		<SubSection Title="2.4 暴食花" Left="ShichiyoScribe/Pages/Phytomana/Subs/Generating/Gourmaryllis">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/GourmaryllisProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/GourmaryllisProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/GourmaryllisCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/GourmaryllisCraftRight" />
+			<Entry Title="产能方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/GourmaryllisProduce" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/GourmaryllisProduceRight" />
+		</SubSection>
+		<SubSection Title="2.5 热力百合" Left="ShichiyoScribe/Pages/Phytomana/Subs/Generating/Thermalily">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/ThermalilyProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/ThermalilyProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/ThermalilyCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/ThermalilyCraftRight" />
+			<Entry Title="产能方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Generating/ThermalilyProduce" Right="ShichiyoScribe/Pages/Phytomana/Entries/Generating/ThermalilyProduceRight" />
+		</SubSection>
+	</Section>
+	<Section Title="第三章 须弥功能花" Left="ShichiyoScribe/Pages/Phytomana/Sections/Functional">
+		<SubSection Title="3.1 白曦菊" Left="ShichiyoScribe/Pages/Phytomana/Subs/Functional/Daisy">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyCraftRight" />
+			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/DaisyFunctionRight" />
+		</SubSection>
+	</Section>
+	<Section Title="第四章 须弥方块" Left="ShichiyoScribe/Pages/Phytomana/Sections/Blocks">
+		<SubSection Title="4.1 生息树材" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/Wood">
+			<Entry Title="生息木与生息岩" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/GrownWood" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/GrownWoodRight" />
+			<Entry Title="息木枝" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/GrownRod" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/GrownRodRight" />
+		</SubSection>
+		<SubSection Title="4.2 须弥花与花瓣" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/Flora">
+			<Entry Title="获取与颜色" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/SumeruFlower" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/SumeruFlowerRight" />
+			<Entry Title="须弥花瓣的用途" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/SumeruPetal" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/SumeruPetalRight" />
+		</SubSection>
+		<SubSection Title="4.3 魔力材料" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/ManaMaterials">
+			<Entry Title="魔法钢锭" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaIngot" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaIngotRight" />
+			<Entry Title="魔力钢块" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaBlock" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaBlockRight" />
+		</SubSection>
+		<SubSection Title="4.4 魔力工具" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/Tools">
+			<Entry Title="工具一览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/Tools" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ToolsRight" />
+		</SubSection>
+		<SubSection Title="4.5 魔力护甲" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/Armor">
+			<Entry Title="护甲一览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/Armor" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ArmorRight" />
+		</SubSection>
+	</Section>
+	<Section Title="第五章 协议与鸣谢" Left="ShichiyoScribe/Pages/Phytomana/Sections/Credits">
+		<SubSection Title="5.1 协议许可" Left="ShichiyoScribe/Pages/Phytomana/Subs/Credits/License">
+			<Entry Title="多重许可说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Credits/LicenseMain" Right="ShichiyoScribe/Pages/Phytomana/Entries/Credits/LicenseMainRight" />
+		</SubSection>
+		<SubSection Title="5.2 鸣谢" Left="ShichiyoScribe/Pages/Phytomana/Subs/Credits/Thanks">
+			<Entry Title="作者与灵感" Left="ShichiyoScribe/Pages/Phytomana/Entries/Credits/Thanks" Right="ShichiyoScribe/Pages/Phytomana/Entries/Credits/ThanksRight" />
+		</SubSection>
+	</Section>
+</Book>

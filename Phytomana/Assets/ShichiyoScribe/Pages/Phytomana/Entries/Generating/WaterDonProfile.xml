@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="泉沫珠·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="WaterDonFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「以水的旋律回应大地。」它把清澈握在怀中，将水波化作魔力的涓流。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 240" />
+	<LabelWidget Text="储能上限　240 mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 268" />
+	<LabelWidget Text="涌浪　每 1.65 秒 7 mn（约 4.24 mn/s）" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 296" />
+	<LabelWidget Text="亲水　3×3×3 邻域内的水流皆可" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 324" />
+	<LabelWidget Text="它只爱安静的水；熔岩、冰与矿井阴影都与它无缘。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 354" />
+</CanvasWidget>

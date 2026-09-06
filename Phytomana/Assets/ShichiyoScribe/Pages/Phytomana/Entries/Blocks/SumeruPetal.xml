@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="须弥花瓣的用途" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="SumeruPetalBlock,SumeruPetalBlock,SumeruPetalBlock;SumeruPetalBlock,SumeruPetalBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="把须弥花揉成须弥花瓣：1 朵花产出 4 片花瓣，花色随花瓣保留。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="用途一览" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 224" />
+	<LabelWidget Text="花药台：几乎所有花朵配方（见二、三章）。" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 256" />
+	<LabelWidget Text="工作台：魔力发射器、生息法杖各需 1、2 片。" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 286" />
+	<LabelWidget Text="逆炼：4 片花瓣可回为一朵同色须弥花。" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 316" />
+	<LabelWidget Text="花瓣即是须弥魔法的「货币」。" FontScale="0.75" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 350" />
+</CanvasWidget>

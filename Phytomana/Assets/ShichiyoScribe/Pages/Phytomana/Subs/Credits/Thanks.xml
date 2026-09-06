@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="5.2 鸣谢" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="感谢 Vazkii 的《植物魔法（Botania）》——它的灵感如同一粒种子，让本篇在 SurvivalCraft 2 的土壤里生根发芽。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="感谢 ShichiyoScribe 书籍框架的成熟排版，让这一册须弥手册得以呈现在大家眼前。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 156" />
+	<LabelWidget Text="感谢每一位在测试中耐心反馈的玩家，你们的每一句「会产魔吗」都在推动它生长。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="愿魔法的花朵，在你我手中绽放。" FontScale="0.9" Color="70, 40, 10" Size="420, 40" CanvasWidget.Position="12, 336" />
+</CanvasWidget>

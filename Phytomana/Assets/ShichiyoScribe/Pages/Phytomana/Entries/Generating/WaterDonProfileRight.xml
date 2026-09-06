@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="花语的另一面" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="它的魔力藏得浅，240 mn 的储能不到一分钟便涌满，请给它安排一台亲密的发射器。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="吸水表演会有短暂的停歇（约 3 秒），花瓣上会泛起水光，随后再次啜饮。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 156" />
+	<LabelWidget Text="若是把它独自放在沙丘边，那些水尽数干涸，它便陷入长长的等待。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 234" />
+</CanvasWidget>

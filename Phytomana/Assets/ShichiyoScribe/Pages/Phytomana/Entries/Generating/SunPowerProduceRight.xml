@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="增产之道" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="单株日耀花的产能：基础 20 mn/5s，即 4 mn/s；燃料每级再添 2 mn/s。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 96" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="烧得旺" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 172" />
+	<LabelWidget Text="留存 2 格高的燃料柱并持续续填，让等级保持高位；旁边放发射器接满 800 mn 即收。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 200" />
+	<LabelWidget Text="多株并列不会互相干扰，想上产能就多种几株，每株配好燃料与发射器即可。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 276" />
+</CanvasWidget>

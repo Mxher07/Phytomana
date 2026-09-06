@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="配方解读" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="青色与蓝色的须弥花都在湖泊、沼地与海洋沿岸常见：淡青花瓣两片、蓝花瓣两片，即可成方。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 90" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="临水而植" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 172" />
+	<LabelWidget Text="泉沫珠的产率随身边的水量起落——一片池塘胜过一泓细流。种在有水的岸边吧。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 200" />
+	<LabelWidget Text="防灵感：若把花种在水中央，吸水效率与「水下沉底」都要留意。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 276" />
+</CanvasWidget>

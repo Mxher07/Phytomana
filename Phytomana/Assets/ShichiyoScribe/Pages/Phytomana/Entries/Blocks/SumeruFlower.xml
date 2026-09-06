@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="获取与颜色" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="SumeruFlowerBlock,SumeruFlowerBlock,SumeruFlowerBlock;SumeruFlowerBlock,SumeruFlowerBlock,SumeruFlowerBlock" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="须弥花以十六种颜色自由生长于地表：白、淡青、淡粉、淡蓝、淡黄、淡绿、淡橙、淡灰、灰、青、紫、蓝、棕、绿、红、黑。" FontScale="0.75" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="采花须知" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 244" />
+	<LabelWidget Text="直接采下即可（无需工具）；花色保存在数据值里，丢进花药台前不要弄混。" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 272" />
+	<LabelWidget Text="不同的地理气候会孕育不同的色系：草原多淡色，红与黑色偏居火山湖畔等阴处。" FontScale="0.75" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 344" />
+</CanvasWidget>

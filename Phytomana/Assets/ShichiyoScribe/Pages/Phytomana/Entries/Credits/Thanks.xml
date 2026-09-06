@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="作者与灵感" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="作者　VLWuro 与 Style1027" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 66" />
+	<LabelWidget Text="创意之源　Vazkii · 植物魔法 Botania。" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 110" />
+	<LabelWidget Text="框架　ShichiyoScribe（VLWuro 的作品，本书的页面排版全赖于此）。" FontScale="0.85" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 154" />
+	<LabelWidget Text="引擎　SurvivalCraft 2 (Candy Rufus Games)" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 210" />
+	<LabelWidget Text="若你乐于造花，欢迎把这个模组的故事讲给其他生存着的人。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 268" />
+</CanvasWidget>

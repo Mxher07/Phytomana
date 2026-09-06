@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="枝之技艺" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="息木枝自带一股韧性的生机，用它做握柄，工具犷而不拙。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 90" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="木枝本身" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 162" />
+	<LabelWidget Text="作为雕刻物也可立于地上作装饰；更是耗材大户，请多养一批生息木。" WordWrap="true" FontScale="0.78" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 190" />
+	<LabelWidget Text="日常攒 8～12 枝，一套武装便不愁短缺。" FontScale="0.8" Color="130, 100, 60" Size="420, 50" CanvasWidget.Position="12, 262" />
+</CanvasWidget>

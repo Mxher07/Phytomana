@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="制作提示" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="魔法池是最硬的三件器械之一；它把「产出的魔力」握在手里，也把「钢料」握在手里。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 66" />
+	<BevelledRectangleWidget CenterColor="212, 184, 138" BevelColor="168, 140, 96" BevelSize="4" RoundingRadius="6" Size="420, 96" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="巧记" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="24, 172" />
+	<LabelWidget Text="池子不放电、只进不出。想要转化钢料，请先把魔力从发射器链路里请进来。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="380, 60" CanvasWidget.Position="24, 200" />
+	<LabelWidget Text="多口池子可以并联：一根发射器链喂一口主池，再把其余发射器逐级串联即可。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 276" />
+</CanvasWidget>

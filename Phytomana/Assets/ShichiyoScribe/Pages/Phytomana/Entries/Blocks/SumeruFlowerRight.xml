@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="色卡速查" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="日耀花　淡灰·棕·红" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 64" />
+	<LabelWidget Text="泉沫珠　淡青·蓝" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 94" />
+	<LabelWidget Text="夜影花　灰·黑·紫" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 124" />
+	<LabelWidget Text="暴食花　淡灰·淡黄·红" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 154" />
+	<LabelWidget Text="热力百合　淡橙·淡黄·红·白" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="白曦菊　任意四色" FontScale="0.8" Color="110, 80, 40" Size="420, 26" CanvasWidget.Position="12, 214" />
+	<LabelWidget Text="建议随身带一把铲子，把各色花连根移栽成「采花园」，方便日后精确取色。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 256" />
+</CanvasWidget>

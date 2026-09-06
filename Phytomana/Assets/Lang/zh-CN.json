@@ -191,6 +191,10 @@
       "Description": "连接魔力方块的操控法杖。潜行点击切换模式，点击绑定方块或查看魔力状态",
       "CRDescription:0": "使用息木枝与须弥花瓣制作生息法杖"
     },
+    "SumeruManualBlock:0": {
+      "DisplayName": "须弥手册",
+      "Description": "一部记载须弥魔法要义的宝典：从基础器械到产魔花，从功能花到各式方块。手持并对任意地方点击即可翻阅"
+    },
     "ManaIngotBlock:0": {
       "DisplayName": "魔法钢锭",
       "Description": "在魔力池中注入魔力取得的铁锭"
