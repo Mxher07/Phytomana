@@ -7,7 +7,52 @@
   <Recipe Result="SumeruManualBlock" ResultCount="1" RequiredHeatLevel="0" a="petal" b="sumeruflower" Description="[0]">
     "ab"
   </Recipe>
-  <Recipe Result="SumeruPetalBlock" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower" Description="[0]">
+  <Recipe Result="SumeruPetalBlock:0" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:0" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:2" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:2" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:4" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:4" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:6" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:6" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:8" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:8" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:10" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:10" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:12" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:12" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:14" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:14" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:16" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:16" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:18" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:18" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:20" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:20" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:22" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:22" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:24" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:24" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:26" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:26" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:28" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:28" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="SumeruPetalBlock:30" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:30" Description="[0]">
     "a"
   </Recipe>
   <Recipe Result="GrownRodBlock" ResultCount="1" RequiredHeatLevel="0" a="grownwood" Description="[0]">
