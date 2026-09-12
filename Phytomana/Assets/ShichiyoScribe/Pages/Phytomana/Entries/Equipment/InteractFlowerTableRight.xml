@@ -4,5 +4,5 @@
 	<LabelWidget Text="花药台最多可容纳 300 mn 魔力。魔力不会凭空出现：你需要先把魔力发射器放到花药台附近（产魔花自动投递同理 3×3×3 邻域），或用生息法杖把其他发射器/魔法池的链引入。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 110" CanvasWidget.Position="12, 62" />
 	<LabelWidget Text="目前的花药台配方均为免费炼制（ManaCost = 0），但框架已支持「耗魔配方」——未来版本中，魔力消耗型的配方会从这里扣款。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 182" />
 	<LabelWidget Text="取水小技巧" FontScale="0.9" Color="70, 40, 10" Size="140, 24" CanvasWidget.Position="12, 268" />
-	<LabelWidget Text="用空桶右键台面即可把水取回，合成后无须守着台子。材料齐全与否，随时空手右键便知。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 298" />
+	<LabelWidget Text="用空桶右键台面即可把水取回。每次合成会耗尽一池水，记得及时补水——露天台子下雨天能自动集满。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 298" />
 </CanvasWidget>

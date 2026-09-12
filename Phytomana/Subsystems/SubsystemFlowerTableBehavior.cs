@@ -15,7 +15,7 @@ namespace Phytomana {
     /// 2. 向花药台上投掷原料（.fr 配方声明的方块），落地即被吸收进内部缓存
     ///    （缓存按键为完整方块值，颜色等特殊值变体分格保存）；
     /// 3. 缓存与某条 .fr 配方完全一致时，再投掷任意种子完成合成：
-    ///    消耗种子与全部原料（配方声明 ManaCost 时还需花药台存有足量魔力），
+    ///    消耗种子、全部原料与一池水（配方声明 ManaCost 时还需花药台存有足量魔力），
     ///    在台面上弹出目标物品；配方声明 CopyData 时产物继承第一份原料的 data；
     /// 4. 空手右键查看状态，空手潜行右键取回已投入的原料；
     /// 5. 雨天自动集水：露天（上方无遮挡）且正在下雨时 30 秒集满，
@@ -285,6 +285,10 @@ namespace Phytomana {
                 0,
                 recipe.CopyData ? Terrain.ExtractData(firstValue) : recipe.ResultData
             );
+            // 合成耗尽一池水（雨水集的进度同步清零），下次合成需重新注水/集水。
+            table.HasWater = false;
+            table.RainFill = 0f;
+            RefreshCell(table.Position);
             Vector3 center = new(table.Position.X + 0.5f, table.Position.Y + 1.1f, table.Position.Z + 0.5f);
             m_subsystemPickables.AddPickable(resultValue, recipe.ResultCount, center, new Vector3(0f, 2.5f, 0f), null);
             SpawnSplashParticles(table.Position);
