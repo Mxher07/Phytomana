@@ -1,0 +1,120 @@
+<!--
+  Phytomana 符文台配方（外部配方文件）。一个文件即可为符文台追加合成配方，
+  规定「什么 + 什么 + 多少魔力 → 什么符文」，无需改动源码。
+
+  符文台用法（模仿植物魔法「符文祭坛」）：
+    1. 手持物品对符文台右键 = 放置一件到祭坛上（祭坛上方悬浮显示，不会消失）；
+    2. 空手右键查看状态；空手潜行右键取回全部已放置物品；
+    3. 材料齐全且祭坛魔力足够时，祭坛会冒白色粒子提示「可以炼制」；
+    4. 向祭坛上投掷一块生息岩作为引子，再用须弥法杖（工作模式）右键祭坛，
+       即完成炼制：消耗魔力与全部材料（符文类原料除外），弹出成品符文。
+
+  每个 <Recipe>：
+    Result       产物方块类名（可带 :data 后缀精确到符文，如 MediumRunesBlock:5 = 夏之符文）
+    ResultCount  产物数量，默认 1
+    ManaCost     炼制所需魔力，需提前由魔力网络送入符文台
+    <Ingredient Name="原料方块类名" Count="数量" />   每种原料一行
+                 ↑ 支持「类名:data」后缀；Remain="方块类名" 指定合成后返还物（如水桶返还空桶）
+    符文类原料（Basic/Medium/ExpertRunesBlock）在生存模式下不消耗，随成品一起返还。
+
+  匹配规则：无序匹配，提供的原料种类、特殊值与数量须与配方完全一致。
+-->
+<RunesRecipes>
+  <!-- ===== 初阶符文（每份 ×2，520mn） ===== -->
+  <Recipe Result="BasicRunesBlock:2" ResultCount="2" ManaCost="520">
+    <Ingredient Name="GraniteBlock" Count="1" />
+    <Ingredient Name="CoalBlock" Count="1" />
+    <Ingredient Name="SumeruFlowerBlock" Count="1" />
+    <Ingredient Name="DirtBlock" Count="2" />
+    <Ingredient Name="ManaIngotBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="BasicRunesBlock:1" ResultCount="2" ManaCost="520">
+    <Ingredient Name="MatchBlock" Count="1" />
+    <Ingredient Name="GunpowderBlock" Count="1" />
+    <Ingredient Name="JackOLanternBlock" Count="1" />
+    <Ingredient Name="DirtBlock" Count="1" />
+    <Ingredient Name="ManaIngotBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="BasicRunesBlock:0" ResultCount="2" ManaCost="520">
+    <Ingredient Name="WaterBucketBlock" Count="1" Remain="EmptyBucketBlock" />
+    <Ingredient Name="IvyBlock" Count="1" />
+    <Ingredient Name="DirtBlock" Count="1" />
+    <Ingredient Name="ManaIngotBlock" Count="1" />
+  </Recipe>
+  <Recipe Result="BasicRunesBlock:3" ResultCount="2" ManaCost="520">
+    <Ingredient Name="CarpetBlock" Count="1" />
+    <Ingredient Name="FeatherBlock" Count="1" />
+    <Ingredient Name="StringBlock" Count="1" />
+    <Ingredient Name="DirtBlock" Count="1" />
+    <Ingredient Name="ManaIngotBlock" Count="1" />
+  </Recipe>
+
+  <!-- ===== 中阶符文（800mn；用作原料的符文不消耗） ===== -->
+  <Recipe Result="MediumRunesBlock:8" ResultCount="1" ManaCost="580">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="1" />
+    <Ingredient Name="ManaIngotBlock" Count="2" />
+  </Recipe>
+  <Recipe Result="MediumRunesBlock:4" ResultCount="1" ManaCost="800">
+    <Ingredient Name="SaplingBlock" Count="3" />
+    <Ingredient Name="BreadBlock" Count="1" />
+    <Ingredient Name="BasicRunesBlock:0" Count="1" />
+    <Ingredient Name="BasicRunesBlock:1" Count="1" />
+  </Recipe>
+  <Recipe Result="MediumRunesBlock:5" ResultCount="1" ManaCost="800">
+    <Ingredient Name="SandBlock" Count="2" />
+    <Ingredient Name="LimestoneBlock" Count="1" />
+    <Ingredient Name="PumpkinBlock" Count="1" />
+    <Ingredient Name="BasicRunesBlock:2" Count="1" />
+    <Ingredient Name="BasicRunesBlock:3" Count="1" />
+  </Recipe>
+  <Recipe Result="MediumRunesBlock:6" ResultCount="1" ManaCost="800">
+    <Ingredient Name="LeavesBlock" Count="3" />
+    <Ingredient Name="RottenMeatBlock" Count="1" />
+    <Ingredient Name="BasicRunesBlock:1" Count="1" />
+    <Ingredient Name="BasicRunesBlock:3" Count="1" />
+  </Recipe>
+  <Recipe Result="MediumRunesBlock:7" ResultCount="1" ManaCost="800">
+    <Ingredient Name="SnowballBlock" Count="2" />
+    <Ingredient Name="CarpetBlock" Count="1" />
+    <Ingredient Name="PumpkinSoupBucketBlock" Count="1" Remain="EmptyBucketBlock" />
+    <Ingredient Name="BasicRunesBlock:0" Count="1" />
+    <Ingredient Name="BasicRunesBlock:2" Count="1" />
+  </Recipe>
+
+  <!-- ===== 高阶符文（1200mn；用作原料的符文不消耗） ===== -->
+  <Recipe Result="ExpertRunesBlock:15" ResultCount="1" ManaCost="1200">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="2" />
+    <Ingredient Name="MediumRunesBlock:5" Count="1" />
+    <Ingredient Name="BasicRunesBlock:1" Count="1" />
+  </Recipe>
+  <Recipe Result="ExpertRunesBlock:14" ResultCount="1" ManaCost="1200">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="2" />
+    <Ingredient Name="MediumRunesBlock:7" Count="1" />
+    <Ingredient Name="BasicRunesBlock:0" Count="1" />
+  </Recipe>
+  <Recipe Result="ExpertRunesBlock:13" ResultCount="1" ManaCost="1200">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="2" />
+    <Ingredient Name="MediumRunesBlock:7" Count="1" />
+    <Ingredient Name="BasicRunesBlock:2" Count="1" />
+  </Recipe>
+  <Recipe Result="ExpertRunesBlock:12" ResultCount="1" ManaCost="1200">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="2" />
+    <Ingredient Name="MediumRunesBlock:6" Count="1" />
+    <Ingredient Name="BasicRunesBlock:3" Count="1" />
+  </Recipe>
+  <Recipe Result="ExpertRunesBlock:11" ResultCount="1" ManaCost="1200">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="2" />
+    <Ingredient Name="MediumRunesBlock:4" Count="1" />
+    <Ingredient Name="BasicRunesBlock:0" Count="1" />
+  </Recipe>
+  <Recipe Result="ExpertRunesBlock:10" ResultCount="1" ManaCost="1200">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="2" />
+    <Ingredient Name="MediumRunesBlock:7" Count="1" />
+    <Ingredient Name="BasicRunesBlock:1" Count="1" />
+  </Recipe>
+  <Recipe Result="ExpertRunesBlock:9" ResultCount="1" ManaCost="1200">
+    <Ingredient Name="ManaDiamondChunkBlock" Count="2" />
+    <Ingredient Name="MediumRunesBlock:5" Count="1" />
+    <Ingredient Name="BasicRunesBlock:3" Count="1" />
+  </Recipe>
+</RunesRecipes>

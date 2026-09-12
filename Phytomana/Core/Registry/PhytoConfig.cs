@@ -83,6 +83,11 @@ namespace Phytomana {
         /// <summary>荆棘之花搜寻魔法池范围的半边长（2×该值 边长的立方）。</summary>
         public float ThornyRosePoolSearchRange = TileThornyRose.DefaultPoolSearchRange;
 
+        // ===== 符文台 =====
+
+        /// <summary>符文台魔力上限（需容纳最高 1200mn 的炼制消耗）。</summary>
+        public float RunesTableMaxMana = 2000f;
+
         public void Save(XElement element) {
             element.SetAttributeValue("TransferInterval", Format(TransferInterval));
             element.SetAttributeValue("FlowerTickInterval", Format(FlowerTickInterval));
@@ -103,6 +108,7 @@ namespace Phytomana {
             element.SetAttributeValue("ThornyRoseAttackRange", Format(ThornyRoseAttackRange));
             element.SetAttributeValue("ThornyRosePoolDrawAmount", Format(ThornyRosePoolDrawAmount));
             element.SetAttributeValue("ThornyRosePoolSearchRange", Format(ThornyRosePoolSearchRange));
+            element.SetAttributeValue("RunesTableMaxMana", Format(RunesTableMaxMana));
         }
 
         public void Load(XElement element) {
@@ -128,6 +134,7 @@ namespace Phytomana {
             ThornyRoseAttackRange = Read(element, "ThornyRoseAttackRange", ThornyRoseAttackRange);
             ThornyRosePoolDrawAmount = Read(element, "ThornyRosePoolDrawAmount", ThornyRosePoolDrawAmount);
             ThornyRosePoolSearchRange = Read(element, "ThornyRosePoolSearchRange", ThornyRosePoolSearchRange);
+            RunesTableMaxMana = Read(element, "RunesTableMaxMana", RunesTableMaxMana);
         }
 
         public static string Format(float value) => value.ToString(CultureInfo.InvariantCulture);

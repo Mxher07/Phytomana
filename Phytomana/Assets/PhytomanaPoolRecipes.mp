@@ -13,4 +13,6 @@
 <ManaPoolRecipes>
   <Recipe Ingredient="IronIngotBlock" Result="ManaIngotBlock" ResultCount="1" ManaCost="300" />
   <Recipe Ingredient="IronBlock" Result="ManaBlock" ResultCount="1" ManaCost="3000" />
+  <Recipe Ingredient="DiamondChunkBlock" Result="ManaDiamondChunkBlock" ResultCount="1" ManaCost="400" />
+  <Recipe Ingredient="DiamondBlock" Result="ManaDiamondBlock" ResultCount="1" ManaCost="4000" />
 </ManaPoolRecipes>

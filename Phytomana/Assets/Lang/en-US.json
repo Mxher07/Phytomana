@@ -39,6 +39,54 @@
       "DisplayName": "Thorny Rose",
       "Description": "A guardian that pricks nearby creatures with mana-driven thorns (players are spared); draws from mana pools on its own when unlinked."
     },
+    "BasicRunesBlock:0": {
+      "DisplayName": "Water Rune"
+    },
+    "BasicRunesBlock:1": {
+      "DisplayName": "Fire Rune"
+    },
+    "BasicRunesBlock:2": {
+      "DisplayName": "Earth Rune"
+    },
+    "BasicRunesBlock:3": {
+      "DisplayName": "Air Rune"
+    },
+    "MediumRunesBlock:4": {
+      "DisplayName": "Spring Rune"
+    },
+    "MediumRunesBlock:5": {
+      "DisplayName": "Summer Rune"
+    },
+    "MediumRunesBlock:6": {
+      "DisplayName": "Autumn Rune"
+    },
+    "MediumRunesBlock:7": {
+      "DisplayName": "Winter Rune"
+    },
+    "MediumRunesBlock:8": {
+      "DisplayName": "Mana Rune"
+    },
+    "ExpertRunesBlock:9": {
+      "DisplayName": "Lust Rune"
+    },
+    "ExpertRunesBlock:10": {
+      "DisplayName": "Gluttony Rune"
+    },
+    "ExpertRunesBlock:11": {
+      "DisplayName": "Greed Rune"
+    },
+    "ExpertRunesBlock:12": {
+      "DisplayName": "Sloth Rune"
+    },
+    "ExpertRunesBlock:13": {
+      "DisplayName": "Wrath Rune"
+    },
+    "ExpertRunesBlock:14": {
+      "DisplayName": "Envy Rune"
+    },
+    "ExpertRunesBlock:15": {
+      "DisplayName": "Pride Rune"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "Mana Spreader",
       "Description": "Stores up to 1200 Mn and sends it to blocks linked to it with a Grown Staff."
@@ -238,6 +286,22 @@
     "ClothingBlock:903": {
       "DisplayName": "Mana Steel Boots",
       "Description": "Armor crafted with Mana Ingots."
+    },
+    "RunesTableBlock:0": {
+      "DisplayName": "Runes Table",
+      "Description": "Place materials by right-clicking with them in hand; complete a recipe, throw a Grown Stone and craft with the staff"
+    },
+    "ManaDiamondChunkBlock:0": {
+      "DisplayName": "Mana Diamond",
+      "Description": "A diamond crystallized with 400mn of mana in the Mana Pool; material for expert runes"
+    },
+    "ManaDiamondBlock:0": {
+      "DisplayName": "Mana Diamond Block",
+      "Description": "A diamond block crystallized with 4000mn of mana in the Mana Pool"
+    },
+    "ManaTabletBlock:0": {
+      "DisplayName": "Mana Tablet",
+      "Description": "Stores up to 3000mn. Right-click a Mana Pool to pour its mana; an empty tablet dropped into a pool drains mana on its own; carried in inventory it repairs 1 durability of mana steel gear every 2s"
     }
   },
   "FlowerTableMessages": {
@@ -277,5 +341,26 @@
   },
   "OtherCauseOfDeath": {
     "ThornyRose": "Pierced by a thorny rose"
+  },
+  "RunesTableMessages": {
+    "StatusFormat": "[Runes Table] Mana: {0}/{1}mn | Materials: {2}",
+    "Empty": "empty",
+    "HintEmpty": "Right-click with materials in hand to place them; complete a recipe, throw a Grown Stone and craft with the staff",
+    "HintReady": "Materials ready! Throw a Grown Stone and right-click with the staff to craft {0}",
+    "HintManaLow": "Not enough mana: {0}/{1}mn, feed it from the mana network first",
+    "HintMissing": "Still missing: {0}",
+    "HintNoMatch": "Materials match no rune recipe (sneak right-click to retrieve)",
+    "NotNeeded": "The runes table does not accept this",
+    "Enough": "Enough of this material for the recipe",
+    "CatalystThrow": "The Grown Stone is the catalyst - throw it onto the altar",
+    "MissingCatalyst": "Throw a Grown Stone onto the altar as the catalyst",
+    "ManaLow": "Not enough mana: {0}/{1}mn",
+    "Crafted": "Rune crafted"
+  },
+  "ManaTabletMessages": {
+    "Status": "Mana Tablet: {0}/{1}mn",
+    "Poured": "Poured {0}mn into the mana pool",
+    "PoolFull": "The mana pool is full, mana stays in the tablet",
+    "NoPool": "Hold the tablet and click a Mana Pool to pour mana"
   }
 }

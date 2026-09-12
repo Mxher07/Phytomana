@@ -23,6 +23,7 @@ namespace Phytomana {
             ManaBlockRegistry.Initialize();
             FlowerTableRecipeRegistry.Initialize(Entity);
             ManaPoolRecipeRegistry.Initialize(Entity);
+            RunesRecipeRegistry.Initialize(Entity);
             PhytoRegistry.Initialize();
             SumeruPatchGenerator.Initialize();
         }

@@ -50,6 +50,10 @@ namespace Game {
 
         public int[] DrawOrders => [201];
 
+        public int m_runesTableIndex;
+
+        public SubsystemRunesTableBehavior m_subsystemRunesTable;
+
         public override void Load(ValuesDictionary valuesDictionary) {
             base.Load(valuesDictionary);
             m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
@@ -63,6 +67,8 @@ namespace Game {
             m_spreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
             m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
             m_staffIndex = BlocksManager.GetBlockIndex<GrownStaffBlock>();
+            m_runesTableIndex = BlocksManager.GetBlockIndex<RunesTableBlock>();
+            m_subsystemRunesTable = Project.FindSubsystem<SubsystemRunesTableBehavior>(false);
         }
 
         public void Update(float dt) {
@@ -193,6 +199,10 @@ namespace Game {
             int contents = Terrain.ExtractContents(hit.Value.Value);
             if (mode == 1) {
                 return HandleBindingClick(player, state, point, contents);
+            }
+            // 符文台：工作模式右键触发炼制（材料齐备 + 生息岩引子 + 魔力）
+            if (contents == m_runesTableIndex && m_subsystemRunesTable != null) {
+                return m_subsystemRunesTable.TryCraftByStaff(player, point);
             }
             if (ShowFlowerStatus(player, point, contents)) {
                 return true;

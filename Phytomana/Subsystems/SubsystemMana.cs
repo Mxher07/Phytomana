@@ -61,6 +61,8 @@ namespace Game {
             m_manaSpreaderIndex = BlocksManager.GetBlockIndex<ManaSpreaderBlock>();
             m_waterDonFlowerIndex = BlocksManager.GetBlockIndex<WaterDonFlower>();
             m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
+            m_manaTabletIndex = BlocksManager.GetBlockIndex<ManaTabletBlock>();
+            m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
             m_maxManaAmounts[m_sunPowerFlowerIndex] = PhytoConfig.Instance.SunPowerMaxMana;
             m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
             m_maxManaAmounts[m_waterDonFlowerIndex] = PhytoConfig.Instance.WaterDonMaxMana;
@@ -197,7 +199,16 @@ namespace Game {
             return contents == m_manaSpreaderIndex || contents == m_manaPoolIndex;
         }
 
+        public double m_nextTabletDrainTime;
+
+        public int m_manaTabletIndex = -1;
+
+        public SubsystemGameInfo m_subsystemGameInfo;
+
         public void Update(float dt) {
+            if (m_subsystemGameInfo != null) {
+                TryDrainManaTablets();
+            }
             if (ManaPoolRecipeRegistry.Count == 0) {
                 return;
             }
@@ -208,6 +219,44 @@ namespace Game {
                     continue;
                 }
                 TryConvertPool(point, receiver);
+            }
+        }
+
+        /// <summary>
+        /// 空魔力石板丢入魔法池：每 1 秒从池中吸走 500mn（池中不足则不吸），
+        /// 直到石板存满 3000mn。
+        /// </summary>
+        public void TryDrainManaTablets() {
+            double time = m_subsystemGameInfo.TotalElapsedGameTime;
+            if (time < m_nextTabletDrainTime) {
+                return;
+            }
+            m_nextTabletDrainTime = time + 1.0;
+            m_network.GetActiveReceivers(m_receiverBuffer);
+            foreach (IManaReceiver receiver in m_receiverBuffer) {
+                Point3 point = receiver.Position;
+                if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex
+                    || receiver.ManaStorage.IsEmpty) {
+                    continue;
+                }
+                foreach (Pickable pickable in m_subsystemPickables.Pickables) {
+                    if (pickable.ToRemove
+                        || Terrain.ExtractContents(pickable.Value) != m_manaTabletIndex
+                        || !IsPickableInCell(pickable, point)) {
+                        continue;
+                    }
+                    int mana = Terrain.ExtractData(pickable.Value);
+                    if (mana >= ManaTabletBlock.MaxMana) {
+                        continue;
+                    }
+                    int take = (int)MathF.Min(500f, MathF.Min(receiver.ManaStorage.Current, ManaTabletBlock.MaxMana - mana));
+                    if (take <= 0) {
+                        continue;
+                    }
+                    receiver.ManaStorage.Take(take);
+                    pickable.Value = Terrain.ReplaceData(pickable.Value, mana + take);
+                    break; // 每池每秒只充一块石板
+                }
             }
         }
 

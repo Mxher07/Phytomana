@@ -27,5 +27,17 @@
   <MemberSubsystemTemplate Name="FlowerTableBehavior" Guid="7c3f2a10-5b8e-4c6d-9a21-3e8f14d2b7c4" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="9d4e6b21-6c9f-4d7e-8b32-4f9a25e3c8d5" Value="Phytomana.SubsystemFlowerTableBehavior" Type="string"/>
   </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="RunesTableBehavior" Guid="2a9d7c45-8e1b-4f63-bd24-6c7a95e1f0d8" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="5c8e1f32-7d4a-4b96-ae75-8d2b64f9a1e7" Value="Phytomana.SubsystemRunesTableBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="AltarItemDisplay" Guid="6f4b2e88-9c3d-4a17-bf58-1e0d73c6a2b9" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="8a1c5d64-2f7e-4b08-9c46-3e5a87d0b4f2" Value="Phytomana.SubsystemAltarItemDisplay" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="ManaTableBehavior" Guid="3b7e94a2-16cd-4e58-9d0f-74b2c8e6a531" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="7d2f6b93-84ce-4a10-b5e9-26c3f7d8154a" Value="Phytomana.SubsystemManaTableBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="ManaTableCharger" Guid="9e5c81d7-2f4a-4b36-8c70-5a9d16e3b742" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="4a8b2c75-6d93-41e7-af28-9b5c07e4d613" Value="Phytomana.SubsystemManaTableCharger" Type="string"/>
+  </MemberSubsystemTemplate>
       </ProjectTemplate>
 </PhytoMana>

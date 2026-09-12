@@ -39,6 +39,54 @@
       "DisplayName": "荆棘之花",
       "Description": "「以刺卫花」。每秒耗魔刺击周围的生物（不伤玩家）；未被绑链时会自行从魔力池取食"
     },
+    "BasicRunesBlock:0": {
+      "DisplayName": "水之符文"
+    },
+    "BasicRunesBlock:1": {
+      "DisplayName": "火之符文"
+    },
+    "BasicRunesBlock:2": {
+      "DisplayName": "地之符文"
+    },
+    "BasicRunesBlock:3": {
+      "DisplayName": "风之符文"
+    },
+    "MediumRunesBlock:4": {
+      "DisplayName": "春之符文"
+    },
+    "MediumRunesBlock:5": {
+      "DisplayName": "夏之符文"
+    },
+    "MediumRunesBlock:6": {
+      "DisplayName": "秋之符文"
+    },
+    "MediumRunesBlock:7": {
+      "DisplayName": "冬之符文"
+    },
+    "MediumRunesBlock:8": {
+      "DisplayName": "魔力符文"
+    },
+    "ExpertRunesBlock:9": {
+      "DisplayName": "欲望符文"
+    },
+    "ExpertRunesBlock:10": {
+      "DisplayName": "暴食符文"
+    },
+    "ExpertRunesBlock:11": {
+      "DisplayName": "贪婪符文"
+    },
+    "ExpertRunesBlock:12": {
+      "DisplayName": "懒惰符文"
+    },
+    "ExpertRunesBlock:13": {
+      "DisplayName": "暴怒符文"
+    },
+    "ExpertRunesBlock:14": {
+      "DisplayName": "嫉妒符文"
+    },
+    "ExpertRunesBlock:15": {
+      "DisplayName": "傲慢符文"
+    },
     "ManaSpreaderBlock:0": {
       "DisplayName": "魔力发射器",
       "Description": "「地之信任者」。储存魔力并将其输送至生息法杖绑定的方块",
@@ -246,6 +294,22 @@
       "DisplayName": "魔力钢靴子",
       "Description": "以魔力钢锭打造的护甲",
       "CRDescription:0": "使用魔力钢锭制作魔力钢靴子"
+    },
+    "RunesTableBlock:0": {
+      "DisplayName": "符文台",
+      "Description": "「以符铭志」。手持材料右键放置到祭坛上，凑齐配方后投掷生息岩，用法杖右键炼成符文"
+    },
+    "ManaDiamondBlock:0": {
+      "DisplayName": "魔力钻石块",
+      "Description": "钻石块在魔法池中注入 4000mn 魔力凝成"
+    },
+    "ManaDiamondChunkBlock:0": {
+      "DisplayName": "魔力钻石",
+      "Description": "钻石在魔法池中注入 400mn 魔力凝成，高阶符文的材料"
+    },
+    "ManaTabletBlock:0": {
+      "DisplayName": "魔力石板",
+      "Description": "可存储 3000mn 魔力的石板。手持点击魔法池灌注魔力；空板丢进魔法池会自行吸魔；背包中携带时每 2 秒修复 1 点魔力钢工具/装备耐久"
     }
   },
   "FlowerTableMessages": {
@@ -285,5 +349,26 @@
   },
   "OtherCauseOfDeath": {
     "ThornyRose": "被荆棘之花刺穿"
+  },
+  "RunesTableMessages": {
+    "StatusFormat": "「符文台」魔力：{0}/{1}mn｜材料：{2}",
+    "Empty": "空",
+    "HintEmpty": "手持材料右键放置到祭坛上，凑齐配方后投掷生息岩并用法杖右键炼制",
+    "HintReady": "材料齐备，投掷生息岩并用法杖右键即可炼出 {0}",
+    "HintManaLow": "魔力不足：{0}/{1}mn，先由魔力网络供魔",
+    "HintMissing": "还差：{0}",
+    "HintNoMatch": "材料与任何符文配方都不匹配（空手潜行右键取回）",
+    "NotNeeded": "符文台不收此物",
+    "Enough": "该材料已达到配方所需数量",
+    "CatalystThrow": "生息岩是炼制引子，请投掷到祭坛上",
+    "MissingCatalyst": "需要向祭坛投掷一块生息岩作为引子",
+    "ManaLow": "魔力不足：{0}/{1}mn",
+    "Crafted": "符文炼制完成"
+  },
+  "ManaTabletMessages": {
+    "Status": "魔力石板：{0}/{1}mn",
+    "Poured": "已灌入魔法池 {0}mn 魔力",
+    "PoolFull": "魔法池已满，魔力留在石板中",
+    "NoPool": "手持魔力石板对准魔法池点击即可灌注魔力"
   }
 }
