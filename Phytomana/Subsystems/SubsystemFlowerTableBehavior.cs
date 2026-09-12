@@ -6,6 +6,7 @@ using Engine;
 using Game;
 using GameEntitySystem;
 using Phytomana.Api;
+using Phytomana.Network;
 using TemplatesDatabase;
 
 namespace Phytomana {
@@ -66,6 +67,8 @@ namespace Phytomana {
             m_waterBucketIndex = BlocksManager.GetBlockIndex<WaterBucketBlock>();
             m_emptyBucketIndex = BlocksManager.GetBlockIndex<EmptyBucketBlock>();
             m_network = Project.FindSubsystem<ManaNetworkManager>(true);
+            PhytoNet.AddTableHandler(HandleTableActionFromClient);
+            PhytoNet.HandleTableStatusClient += HandleTableStatusReply;
             // 存档格式：「x,y,z,水(0/1),魔力,原料1,数量1,原料2,数量2,...;」
             string text = valuesDictionary.GetValue("FlowerTables", string.Empty);
             foreach (string entry in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
@@ -161,6 +164,12 @@ namespace Phytomana {
         }
 
         public void Update(float dt) {
+            // 服务器每帧兜底补注册自定义包（见 PhytoNet.EnsureRegistered）。
+            PhytoNet.EnsureRegistered();
+            // 服务端权威：吸收拾取物、雨天集水只在服务器模拟。
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             foreach (FlowerTable table in m_tables.Values) {
                 // 区块未加载时拾取物不会与之交互，跳过以免误吸收远处数据。
                 if (SubsystemTerrain.Terrain.GetChunkAtCell(table.Position.X, table.Position.Z) == null) {
@@ -302,7 +311,23 @@ namespace Phytomana {
                 return false;
             }
             ComponentPlayer player = componentMiner.Entity?.FindComponent<ComponentPlayer>();
+            bool isMain = player?.PlayerData?.IsMainPlayer ?? true;
+            // 服务端权威：服务器重放的远程玩家交互被抑制，权威逻辑改走请求。
+            if (NetworkManager.IsServerRunning && !isMain) {
+                return true;
+            }
             int activeContents = Terrain.ExtractContents(componentMiner.ActiveBlockValue);
+            // 联机客户端：只发请求，由服务器执行并回执反馈文本。
+            if (NetworkManager.IsClientRunning) {
+                bool request = activeContents == m_waterBucketIndex
+                    || activeContents == m_emptyBucketIndex
+                    || (activeContents == 0 && player != null);
+                if (request && isMain) {
+                    PhytoNet.Send(PhytoNet.BuildTableAction(PhytoTableAction.FlowerTable, point));
+                }
+                return request;
+            }
+            // 单机/主机：直接执行权威交互。
             if (activeContents == m_waterBucketIndex) {
                 return FillWater(table, componentMiner);
             }
@@ -319,6 +344,89 @@ namespace Phytomana {
             }
             // 其余情况（手持方块、法杖等）返回 false，交回正常的放置/使用逻辑。
             return false;
+        }
+
+        /// <summary>服务器处理客户端花药台交互请求：先按手持物/潜行落权威逻辑，再回执状态文本。</summary>
+        public void HandleTableActionFromClient(PhytoModPacket packet) {
+            if (packet.ByteA != PhytoTableAction.FlowerTable || !packet.HasA) {
+                return;
+            }
+            if (!m_tables.TryGetValue(packet.PointA, out FlowerTable table)) {
+                return;
+            }
+            ComponentPlayer player = PhytoNet.FindPlayer(packet.From?.PlayerIndex ?? packet.PlayerIndex);
+            if (player == null) {
+                return;
+            }
+            ComponentMiner miner = player.ComponentMiner;
+            if (miner == null) {
+                return;
+            }
+            int activeContents = Terrain.ExtractContents(miner.ActiveBlockValue);
+            if (activeContents == m_waterBucketIndex) {
+                FillWater(table, miner);
+            }
+            else if (activeContents == m_emptyBucketIndex) {
+                TakeWater(table, miner);
+            }
+            else if (activeContents == 0) {
+                ComponentBody body = player.Entity.FindComponent<ComponentBody>();
+                if (body != null && body.IsCrouching) {
+                    DumpIngredients(table);
+                }
+            }
+            PhytoNet.ReplyTo(packet, PhytoNet.BuildTableStatusReply(packet, BuildStatusText(table)));
+        }
+
+        /// <summary>客户端显示服务器回执的方块状态/结果文本。</summary>
+        public void HandleTableStatusReply(PhytoModPacket packet) {
+            if (!packet.HasText || packet.Text == null) {
+                return;
+            }
+            if (PhytoNet.FindPlayer(packet.PlayerIndex) is { } player) {
+                player.ComponentGui.DisplaySmallMessage(packet.Text, Color.White, false, false);
+            }
+        }
+
+        public void ShowStatus(ComponentPlayer player, FlowerTable table) {
+            player.ComponentGui.DisplaySmallMessage(BuildStatusText(table), Color.White, false, false);
+        }
+
+        /// <summary>构建花药台状态文本（水/魔力/原料/合成提示）。</summary>
+        public string BuildStatusText(FlowerTable table) {
+            List<string> names = [];
+            foreach (KeyValuePair<int, int> ingredient in table.Ingredients) {
+                if (ingredient.Value <= 0) {
+                    continue;
+                }
+                Block block = BlocksManager.Blocks[Terrain.ExtractContents(ingredient.Key)];
+                names.Add($"{block.GetDisplayName(SubsystemTerrain, ingredient.Key)}×{ingredient.Value}");
+            }
+            string water;
+            if (table.HasWater) {
+                water = LanguageControl.Get("FlowerTableMessages", "WaterYes");
+            }
+            else if (table.RainFill > 0f) {
+                water = string.Format(
+                    LanguageControl.Get("FlowerTableMessages", "WaterCollecting"),
+                    (int)(table.RainFill / RainFillSeconds * 100f)
+                );
+            }
+            else {
+                water = LanguageControl.Get("FlowerTableMessages", "WaterNo");
+            }
+            string text = string.Format(
+                LanguageControl.Get("FlowerTableMessages", "StatusFormat"),
+                water,
+                MathF.Round(table.ManaStorage.Current),
+                MathF.Round(table.ManaStorage.Max),
+                names.Count > 0 ? string.Join("、", names) : LanguageControl.Get("FlowerTableMessages", "Empty")
+            );
+            string hint = BuildCraftHint(table);
+            if (!string.IsNullOrEmpty(hint)) {
+                text += "｜" + hint;
+            }
+            return text;
         }
 
         public bool FillWater(FlowerTable table, ComponentMiner componentMiner) {
@@ -394,43 +502,6 @@ namespace Phytomana {
             }
             table.Ingredients.Clear();
             return true;
-        }
-
-        public void ShowStatus(ComponentPlayer player, FlowerTable table) {
-            List<string> names = [];
-            foreach (KeyValuePair<int, int> ingredient in table.Ingredients) {
-                if (ingredient.Value <= 0) {
-                    continue;
-                }
-                Block block = BlocksManager.Blocks[Terrain.ExtractContents(ingredient.Key)];
-                names.Add($"{block.GetDisplayName(SubsystemTerrain, ingredient.Key)}×{ingredient.Value}");
-            }
-            string water;
-            if (table.HasWater) {
-                water = LanguageControl.Get("FlowerTableMessages", "WaterYes");
-            }
-            else if (table.RainFill > 0f) {
-                // 雨天集水中：状态里显示进度百分比
-                water = string.Format(
-                    LanguageControl.Get("FlowerTableMessages", "WaterCollecting"),
-                    (int)(table.RainFill / RainFillSeconds * 100f)
-                );
-            }
-            else {
-                water = LanguageControl.Get("FlowerTableMessages", "WaterNo");
-            }
-            string text = string.Format(
-                LanguageControl.Get("FlowerTableMessages", "StatusFormat"),
-                water,
-                MathF.Round(table.ManaStorage.Current),
-                MathF.Round(table.ManaStorage.Max),
-                names.Count > 0 ? string.Join("、", names) : LanguageControl.Get("FlowerTableMessages", "Empty")
-            );
-            string hint = BuildCraftHint(table);
-            if (!string.IsNullOrEmpty(hint)) {
-                text += "｜" + hint;
-            }
-            player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
         }
 
         /// <summary>

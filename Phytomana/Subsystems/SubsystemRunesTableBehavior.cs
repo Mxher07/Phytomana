@@ -6,6 +6,7 @@ using Engine;
 using Game;
 using GameEntitySystem;
 using Phytomana.Api;
+using Phytomana.Network;
 using TemplatesDatabase;
 
 namespace Phytomana {
@@ -67,6 +68,7 @@ namespace Phytomana {
             m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
             m_network = Project.FindSubsystem<ManaNetworkManager>(true);
             m_grownStoneIndex = BlocksManager.GetBlockIndex<GrownStoneBlock>();
+            PhytoNet.AddTableHandler(HandleTableActionFromClient);
             // 存档格式：「x,y,z,魔力,物品值1,数量1,物品值2,数量2,...;」
             string text = valuesDictionary.GetValue("RunesTables", string.Empty);
             foreach (string entry in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
@@ -158,6 +160,9 @@ namespace Phytomana {
         }
 
         public void Update(float dt) {
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             foreach (RunesTable table in m_tables.Values) {
                 if (SubsystemTerrain.Terrain.GetChunkAtCell(table.Position.X, table.Position.Z) == null) {
                     continue;
@@ -197,14 +202,28 @@ namespace Phytomana {
                 return false;
             }
             ComponentPlayer player = componentMiner.Entity?.FindComponent<ComponentPlayer>();
+            bool isMain = player?.PlayerData?.IsMainPlayer ?? true;
+            // 服务端权威：服务器重放的远程玩家交互被抑制，权威逻辑改走请求。
+            if (NetworkManager.IsServerRunning && !isMain) {
+                return true;
+            }
             int heldContents = Terrain.ExtractContents(componentMiner.ActiveBlockValue);
             // 生息法杖交给其工作模式处理（右键炼制）
             if (heldContents == BlocksManager.GetBlockIndex<GrownStaffBlock>()) {
                 return false;
             }
-            if (player == null) {
-                return false;
+            // 联机客户端：只发请求，由服务器执行并回执状态/结果文本。
+            if (NetworkManager.IsClientRunning) {
+                if (isMain) {
+                    PhytoNet.Send(PhytoNet.BuildTableAction(PhytoTableAction.RunesTable, point));
+                }
+                return true;
             }
+            return HandleInteract(table, player, componentMiner, heldContents);
+        }
+
+        /// <summary>单机/主机权威交互分派（由 OnInteract 与服务器请求处理共用）。</summary>
+        public bool HandleInteract(RunesTable table, ComponentPlayer player, ComponentMiner componentMiner, int heldContents) {
             ComponentBody body = player.Entity.FindComponent<ComponentBody>();
             bool crouching = body != null && body.IsCrouching;
             if (heldContents == 0) {
@@ -220,6 +239,26 @@ namespace Phytomana {
                 return true;
             }
             return PlaceItem(table, componentMiner, heldContents);
+        }
+
+        /// <summary>服务器处理客户端符文台交互请求：按手持物/潜行落权威逻辑，再回执状态文本。</summary>
+        public void HandleTableActionFromClient(PhytoModPacket packet) {
+            if (packet.ByteA != PhytoTableAction.RunesTable || !packet.HasA) {
+                return;
+            }
+            if (!m_tables.TryGetValue(packet.PointA, out RunesTable table)) {
+                return;
+            }
+            ComponentPlayer player = PhytoNet.FindPlayer(packet.From?.PlayerIndex ?? packet.PlayerIndex);
+            if (player == null) {
+                return;
+            }
+            ComponentMiner miner = player.ComponentMiner;
+            if (miner == null) {
+                return;
+            }
+            HandleInteract(table, player, miner, Terrain.ExtractContents(miner.ActiveBlockValue));
+            PhytoNet.ReplyTo(packet, PhytoNet.BuildTableStatusReply(packet, BuildStatusText(table)));
         }
 
         /// <summary>手持物品点击：放置一件到祭坛上（只收配方认识的材料，不超配方所需上限）。</summary>
@@ -257,6 +296,11 @@ namespace Phytomana {
         }
 
         public void ShowStatus(ComponentPlayer player, RunesTable table) {
+            player.ComponentGui.DisplaySmallMessage(BuildStatusText(table), Color.White, false, false);
+        }
+
+        /// <summary>构建符文台状态文本（魔力/材料/炼制提示）。</summary>
+        public string BuildStatusText(RunesTable table) {
             List<string> names = [];
             foreach (KeyValuePair<int, int> item in table.Items) {
                 if (item.Value <= 0) {
@@ -275,7 +319,7 @@ namespace Phytomana {
             if (!string.IsNullOrEmpty(hint)) {
                 text += "｜" + hint;
             }
-            player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
+            return text;
         }
 
         /// <summary>炼制进度提示：齐备 → 可投生息岩开炼；差材料 → 列缺口；魔力不足 → 提示。</summary>

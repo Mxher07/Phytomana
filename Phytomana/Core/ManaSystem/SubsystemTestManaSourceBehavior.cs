@@ -52,6 +52,9 @@ namespace Phytomana {
         }
 
         public void Update(float dt) {
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             foreach (TestManaSource source in m_sources.Values) {
                 source.ManaStorage.TryAdd(ManaRate * dt);
             }

@@ -23,8 +23,23 @@
         <OutputPath>bin\Release\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="SurvivalcraftAPI.Survivalcraft" Version="1.9.3"/>
-    </ItemGroup>
+    <Reference Include="Engine">
+        <HintPath>$(MSBuildProjectDirectory)\.inbundled\Engine.dll</HintPath>
+        <Private>false</Private>
+    </Reference>
+    <Reference Include="EntitySystem">
+        <HintPath>$(MSBuildProjectDirectory)\.inbundled\EntitySystem.dll</HintPath>
+        <Private>false</Private>
+    </Reference>
+    <Reference Include="Survivalcraft">
+        <HintPath>$(MSBuildProjectDirectory)\.inbundled\Survivalcraft.dll</HintPath>
+        <Private>false</Private>
+    </Reference>
+    <Reference Include="Survivalcraft.Multiplayer">
+        <HintPath>$(MSBuildProjectDirectory)\.inbundled\Survivalcraft.Multiplayer.dll</HintPath>
+        <Private>false</Private>
+    </Reference>
+</ItemGroup>
     <ItemGroup>
         <None Update="modinfo.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -40,13 +55,14 @@
         <Compile Include="Core/Flowers/*.cs"/>
         <Compile Include="Core/Events/*.cs"/>
         <Compile Include="Core/Registry/*.cs"/>
+        <Compile Include="Network/*.cs"/>
         <Compile Include="Subsystems/*.cs"/>
         <Compile Include="Systems/*.cs"/>
         <Compile Include="PhytomanaMod.cs"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <PropertyGroup>
-            <PathOfScmod>$(TargetDir)..\$(AssemblyName).scmod</PathOfScmod>
+            <PathOfScmod>$(TargetDir)..\$(AssemblyName).netmod</PathOfScmod>
         </PropertyGroup>
         <ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(PathOfScmod)" Overwrite="true" />
         <Message Text="The scmod file has been created:$(PathOfScmod)" Importance="high" />

@@ -6,6 +6,7 @@ using Engine.Graphics;
 using GameEntitySystem;
 using Phytomana;
 using Phytomana.Api;
+using Phytomana.Network;
 using TemplatesDatabase;
 
 namespace Game {
@@ -76,9 +77,14 @@ namespace Game {
             m_chestTransIndex = BlocksManager.GetBlockIndex<ChestTransFlower>();
             m_jadedIndex = BlocksManager.GetBlockIndex<JadedFlower>();
             m_subsystemRunesTable = Project.FindSubsystem<SubsystemRunesTableBehavior>(false);
+            PhytoNet.HandleStaffUseServer = HandleStaffUseFromClient;
+            PhytoNet.HandleStaffStatusClient = HandleStaffStatusReply;
         }
 
         public void Update(float dt) {
+            // 联机层每次会话开始都会清空包工厂表，这里每帧兜底补注册，
+            // 保证服务器在收到首个客户端请求前就已注册可解码。
+            PhytoNet.EnsureRegistered();
             double time = m_subsystemGameInfo.TotalElapsedGameTime;
             UpdateLinkTransfers(dt);
             UpdatePendingParticles(time);
@@ -125,6 +131,9 @@ namespace Game {
         }
 
         public void UpdateLinkTransfers(float dt) {
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             foreach (ManaLink link in m_subsystemMana.m_links) {
                 link.TransferAccumulator += dt;
                 while (link.TransferAccumulator >= SubsystemMana.StaffLinkTransferPeriod) {
@@ -192,9 +201,17 @@ namespace Game {
                 return false;
             }
             StaffState state = GetState(player);
+            bool isMain = player.PlayerData != null && player.PlayerData.IsMainPlayer;
+            // 服务器重放远程玩家的右键被抑制：权威路径改走 PhytoModPacket，避免与请求双重执行。
+            if (NetworkManager.IsServerRunning && !isMain) {
+                return false;
+            }
             ComponentBody body = player.Entity.FindComponent<ComponentBody>();
             if (body != null && body.IsCrouching) {
                 ToggleMode(player, staffValue);
+                if (NetworkManager.IsClientRunning && isMain) {
+                    SendStaffUseRequest(ray, crouch: true);
+                }
                 return true;
             }
             int mode = Terrain.ExtractData(staffValue);
@@ -205,11 +222,24 @@ namespace Game {
             Point3 point = hit.Value.CellFace.Point;
             int contents = Terrain.ExtractContents(hit.Value.Value);
             if (mode == 1) {
-                return HandleBindingClick(player, state, point, contents);
+                bool handled = HandleBindingClick(player, state, point, contents);
+                if (NetworkManager.IsClientRunning && isMain) {
+                    SendStaffUseRequest(ray, crouch: false);
+                }
+                return handled;
             }
             // 符文台：工作模式右键触发炼制（材料齐备 + 生息岩引子 + 魔力）
             if (contents == m_runesTableIndex && m_subsystemRunesTable != null) {
-                return m_subsystemRunesTable.TryCraftByStaff(player, point);
+                bool crafted = m_subsystemRunesTable.TryCraftByStaff(player, point);
+                if (NetworkManager.IsClientRunning && isMain) {
+                    SendStaffUseRequest(ray, crouch: false);
+                }
+                return crafted;
+            }
+            // 状态分支：联机客户端只发请求，由服务器回执数据后显示真实数值。
+            if (NetworkManager.IsClientRunning && isMain) {
+                SendStaffUseRequest(ray, crouch: false);
+                return true;
             }
             if (ShowFlowerStatus(player, point, contents)) {
                 return true;
@@ -223,6 +253,188 @@ namespace Game {
                 return true;
             }
             return false;
+        }
+
+        /// <summary>客户端把法杖用法意图发给服务器（潜行切换/绑定操作/状态查询）。</summary>
+        public void SendStaffUseRequest(Ray3 ray, bool crouch) {
+            PhytoModPacket packet = new() {
+                Command = PhytoCommand.StaffUse,
+                PlayerIndex = NetworkManager.PlayerIndex,
+                BoolA = crouch,
+                HasV1 = true,
+                V1 = ray.Position,
+                HasV2 = true,
+                V2 = ray.Direction,
+            };
+            PhytoNet.Send(packet);
+        }
+
+        /// <summary>服务器处理远程玩家法杖请求：落权威状态，状态分支回执数据。</summary>
+        public void HandleStaffUseFromClient(PhytoModPacket packet) {
+            int playerIndex = packet.From?.PlayerIndex ?? packet.PlayerIndex;
+            ComponentPlayer player = PhytoNet.FindPlayer(playerIndex);
+            if (player == null) {
+                return;
+            }
+            ComponentMiner miner = player.ComponentMiner;
+            if (miner == null) {
+                return;
+            }
+            StaffState state = GetState(player);
+            // 潜行意图来自请求本身，规避服务器侧潜行同步的帧序竞争。
+            if (packet.BoolA) {
+                ToggleMode(player, miner.ActiveBlockValue);
+                return;
+            }
+            if (!packet.HasV1 || !packet.HasV2) {
+                return;
+            }
+            Ray3 ray = new(packet.V1, packet.V2);
+            TerrainRaycastResult? hit = miner.Raycast<TerrainRaycastResult>(ray, RaycastMode.Digging);
+            if (!hit.HasValue) {
+                return;
+            }
+            Point3 point = hit.Value.CellFace.Point;
+            int contents = Terrain.ExtractContents(hit.Value.Value);
+            int mode = Terrain.ExtractData(miner.ActiveBlockValue);
+            if (mode == 1) {
+                HandleBindingClick(player, state, point, contents);
+                return;
+            }
+            if (contents == m_runesTableIndex && m_subsystemRunesTable != null) {
+                m_subsystemRunesTable.TryCraftByStaff(player, point);
+                return;
+            }
+            if (TryGetFlowerStatus(point, contents, out bool producing, out bool draining, out bool sleeping, out float rate)) {
+                SendStaffStatusReply(packet, StatusKindFlower, point, contents, producing, draining, sleeping, rate);
+                return;
+            }
+            if (contents == m_spreaderIndex) {
+                SendStaffStatusReply(packet, StatusKindSpreader, point, contents, false, false, false, 0f);
+                return;
+            }
+            if (IsStaffCheckable(contents)) {
+                SendStaffStatusReply(packet, StatusKindStorage, point, contents, false, false, false, 0f);
+            }
+        }
+
+        public const int StatusKindFlower = 0;
+
+        public const int StatusKindSpreader = 1;
+
+        public const int StatusKindStorage = 2;
+
+        public bool TryGetFlowerStatus(Point3 point, int contents, out bool producing, out bool draining, out bool sleeping, out float rate) {
+            producing = false;
+            draining = false;
+            sleeping = false;
+            rate = 0f;
+            if (!m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower flower) || flower is not TileGeneratingFlower generating) {
+                return false;
+            }
+            producing = generating.IsProducing;
+            draining = generating.IsLosingMana;
+            sleeping = flower.State == FlowerState.Sleep;
+            rate = generating.GetProductionRate();
+            return true;
+        }
+
+        public void SendStaffStatusReply(PhytoModPacket request, int kind, Point3 point, int contents, bool producing, bool draining, bool sleeping, float rate) {
+            PhytoModPacket reply = new() {
+                Command = PhytoCommand.StaffStatusReply,
+                PlayerIndex = request.PlayerIndex,
+                HasA = true,
+                PointA = point,
+                ByteA = PhytoNet.PackFlags(producing, draining, sleeping),
+                ByteB = (byte)kind,
+                FloatA = m_subsystemMana.GetManaAmount(point),
+                FloatB = m_subsystemMana.GetMaxManaAmount(contents),
+                FloatC = m_subsystemMana.GetOutgoingUsage(point),
+                FloatD = rate,
+            };
+            PhytoNet.ReplyTo(request, reply);
+        }
+
+        /// <summary>客户端应用服务器回执：以真实数值重新构造状态消息并显示。</summary>
+        public void HandleStaffStatusReply(PhytoModPacket packet) {
+            ComponentPlayer player = PhytoNet.FindPlayer(packet.PlayerIndex);
+            if (player == null) {
+                return;
+            }
+            if (!packet.HasA) {
+                return;
+            }
+            Point3 point = packet.PointA;
+            int contents = m_subsystemTerrain.Terrain.GetCellContents(point.X, point.Y, point.Z);
+            float mana = packet.FloatA;
+            float max = packet.FloatB;
+            float usage = packet.FloatC;
+            bool producing = PhytoNet.HasFlag(packet.ByteA, 0);
+            bool draining = PhytoNet.HasFlag(packet.ByteA, 1);
+            bool sleeping = PhytoNet.HasFlag(packet.ByteA, 2);
+            string name = GetBlockName(point);
+            string message;
+            switch (packet.ByteB) {
+                case StatusKindSpreader: {
+                    string status = mana > 0f || usage > 0f
+                        ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
+                        : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
+                    message = string.Format(
+                        LanguageControl.Get("GrownStaffMessages", "SpreadStatusFormat"),
+                        name,
+                        FormatMana(mana),
+                        FormatMana(max),
+                        status,
+                        FormatMana(usage)
+                    );
+                    break;
+                }
+                case StatusKindStorage: {
+                    string status = mana > 0f
+                        ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
+                        : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
+                    message = string.Format(
+                        LanguageControl.Get("GrownStaffMessages", "StorageStatusFormat"),
+                        name,
+                        FormatMana(mana),
+                        FormatMana(max),
+                        status
+                    );
+                    break;
+                }
+                default: {
+                    string status = sleeping
+                        ? LanguageControl.Get("GrownStaffMessages", "StatusSleeping")
+                        : draining
+                            ? LanguageControl.Get("GrownStaffMessages", "StatusDraining")
+                            : producing
+                                ? LanguageControl.Get("GrownStaffMessages", "StatusWorking")
+                                : LanguageControl.Get("GrownStaffMessages", "StatusIdle");
+                    string value = draining ? null : FormatMana(packet.FloatD);
+                    if (value == null) {
+                        message = string.Format(
+                            LanguageControl.Get("GrownStaffMessages", "StatusFormatDraining"),
+                            name,
+                            FormatMana(mana),
+                            FormatMana(max),
+                            status
+                        );
+                    }
+                    else {
+                        message = string.Format(
+                            LanguageControl.Get("GrownStaffMessages", "StatusFormat"),
+                            name,
+                            FormatMana(mana),
+                            FormatMana(max),
+                            status,
+                            value
+                        );
+                    }
+                    break;
+                }
+            }
+            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
         public bool HandleBindingClick(ComponentPlayer player, StaffState state, Point3 point, int contents) {

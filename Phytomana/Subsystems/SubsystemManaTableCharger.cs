@@ -49,6 +49,9 @@ namespace Phytomana {
             if (m_subsystemGameInfo.WorldSettings.GameMode == GameMode.Creative) {
                 return;
             }
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             m_chargeTimer += dt;
             if (m_chargeTimer < ChargeInterval) {
                 return;

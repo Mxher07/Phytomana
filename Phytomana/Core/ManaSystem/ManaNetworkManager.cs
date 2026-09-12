@@ -207,6 +207,9 @@ namespace Phytomana {
         }
 
         public void Update(float dt) {
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             m_transferTimer += dt;
             if (m_transferTimer < PhytoConfig.Instance.TransferInterval) {
                 return;

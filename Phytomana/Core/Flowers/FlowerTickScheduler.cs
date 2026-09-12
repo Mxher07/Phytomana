@@ -165,6 +165,10 @@ namespace Phytomana {
         }
 
         public void Update(float dt) {
+            // 服务端权威：花朵产魔/功能逻辑只在服务器 Tick，客户端花状态由服务器回执提供。
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             CurrentTime = m_subsystemGameInfo.TotalElapsedGameTime;
             m_timer += dt;
             if (m_timer < PhytoConfig.Instance.FlowerTickInterval) {

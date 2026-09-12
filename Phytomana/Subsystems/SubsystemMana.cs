@@ -206,6 +206,10 @@ namespace Game {
         public SubsystemGameInfo m_subsystemGameInfo;
 
         public void Update(float dt) {
+            // 服务端权威：魔力石板汲取、池子合成只由服务器模拟，客户端仅显示服务器广播后的结果。
+            if (NetworkManager.IsClientRunning) {
+                return;
+            }
             if (m_subsystemGameInfo != null) {
                 TryDrainManaTablets();
             }
