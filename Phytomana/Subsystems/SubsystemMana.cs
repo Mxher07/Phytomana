@@ -239,10 +239,19 @@ namespace Game {
                     || receiver.ManaStorage.IsEmpty) {
                     continue;
                 }
+                Vector3 poolCenter = new(point.X + 0.5f, point.Y, point.Z + 0.5f);
                 foreach (Pickable pickable in m_subsystemPickables.Pickables) {
                     if (pickable.ToRemove
-                        || Terrain.ExtractContents(pickable.Value) != m_manaTabletIndex
-                        || !IsPickableInCell(pickable, point)) {
+                        || Terrain.ExtractContents(pickable.Value) != m_manaTabletIndex) {
+                        continue;
+                    }
+                    // 放宽命中：掉落在池格及其周边 1.25 格内（含池顶）的石板都算
+                    Vector3 pos = pickable.Position;
+                    float dx = pos.X - poolCenter.X;
+                    float dz = pos.Z - poolCenter.Z;
+                    if (pos.Y < point.Y - 0.5f
+                        || pos.Y >= point.Y + 1.5f
+                        || dx * dx + dz * dz > 1.25f * 1.25f) {
                         continue;
                     }
                     int mana = Terrain.ExtractData(pickable.Value);

@@ -310,6 +310,14 @@
     "ManaTabletBlock:0": {
       "DisplayName": "魔力石板",
       "Description": "可存储 3000mn 魔力的石板。手持点击魔法池灌注魔力；空板丢进魔法池会自行吸魔；背包中携带时每 2 秒修复 1 点魔力钢工具/装备耐久"
+    },
+    "ChestTransFlower:0": {
+      "DisplayName": "传箱花",
+      "Description": "「乾坤纳物」。拾取周围的掉落物并送入贴身箱子；有魔力时范围更远。绑定模式法杖点击可开关机"
+    },
+    "JadedFlower:0": {
+      "DisplayName": "翡翠菜",
+      "Description": "「繁花似锦」。消耗魔力在周围快速生成随机颜色的须弥花（绑定模式法杖点击开关机，默认关机）"
     }
   },
   "FlowerTableMessages": {
@@ -370,5 +378,13 @@
     "Poured": "已灌入魔法池 {0}mn 魔力",
     "PoolFull": "魔法池已满，魔力留在石板中",
     "NoPool": "手持魔力石板对准魔法池点击即可灌注魔力"
+  },
+  "ChestTransMessages": {
+    "PowerOn": "传箱花已开机",
+    "PowerOff": "传箱花已关机"
+  },
+  "JadedMessages": {
+    "JadedPowerOn": "翡翠菜已开机",
+    "JadedPowerOff": "翡翠菜已关机"
   }
 }

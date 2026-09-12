@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Engine;
@@ -52,6 +53,10 @@ namespace Game {
 
         public int m_runesTableIndex;
 
+        public int m_chestTransIndex;
+
+        public int m_jadedIndex;
+
         public SubsystemRunesTableBehavior m_subsystemRunesTable;
 
         public override void Load(ValuesDictionary valuesDictionary) {
@@ -68,6 +73,8 @@ namespace Game {
             m_manaPoolIndex = BlocksManager.GetBlockIndex<ManaPoolBlock>();
             m_staffIndex = BlocksManager.GetBlockIndex<GrownStaffBlock>();
             m_runesTableIndex = BlocksManager.GetBlockIndex<RunesTableBlock>();
+            m_chestTransIndex = BlocksManager.GetBlockIndex<ChestTransFlower>();
+            m_jadedIndex = BlocksManager.GetBlockIndex<JadedFlower>();
             m_subsystemRunesTable = Project.FindSubsystem<SubsystemRunesTableBehavior>(false);
         }
 
@@ -219,6 +226,22 @@ namespace Game {
         }
 
         public bool HandleBindingClick(ComponentPlayer player, StaffState state, Point3 point, int contents) {
+            // 绑定模式下未选起始点时点击传箱花：开关机
+            if (!state.BindStart.HasValue
+                && contents == m_chestTransIndex
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clicked)
+                && clicked is TileChestTransFlower chestTrans) {
+                chestTrans.TogglePower(player);
+                return true;
+            }
+            // 绑定模式下未选起始点时点击翡翠菜：开关机
+            if (!state.BindStart.HasValue
+                && contents == m_jadedIndex
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedJaded)
+                && clickedJaded is TileJadedFlower jaded) {
+                jaded.TogglePower(player);
+                return true;
+            }
             // 花朵默认不可绑定；但具备魔力容量的功能花（如荆棘之花）允许作为链路目标
             if (m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower _)
                 && !m_subsystemMana.IsManaStorage(contents)) {

@@ -302,6 +302,14 @@
     "ManaTabletBlock:0": {
       "DisplayName": "Mana Tablet",
       "Description": "Stores up to 3000mn. Right-click a Mana Pool to pour its mana; an empty tablet dropped into a pool drains mana on its own; carried in inventory it repairs 1 durability of mana steel gear every 2s"
+    },
+    "ChestTransFlower:0": {
+      "DisplayName": "Chest Trans Flower",
+      "Description": "Picks up nearby drops and sends them into adjacent chests; longer range with mana. Staff bind-mode click toggles it on/off"
+    },
+    "JadedFlower:0": {
+      "DisplayName": "Jaded Flower",
+      "Description": "Consumes mana to rapidly grow random-colored Sumeru flowers around it (staff bind-mode click toggles on/off, off by default)"
     }
   },
   "FlowerTableMessages": {
@@ -362,5 +370,13 @@
     "Poured": "Poured {0}mn into the mana pool",
     "PoolFull": "The mana pool is full, mana stays in the tablet",
     "NoPool": "Hold the tablet and click a Mana Pool to pour mana"
+  },
+  "ChestTransMessages": {
+    "PowerOn": "Chest Trans Flower turned on",
+    "PowerOff": "Chest Trans Flower turned off"
+  },
+  "JadedMessages": {
+    "JadedPowerOn": "Jaded Flower turned on",
+    "JadedPowerOff": "Jaded Flower turned off"
   }
 }

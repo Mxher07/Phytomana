@@ -7,6 +7,11 @@
   <Recipe Result="SumeruManualBlock" ResultCount="1" RequiredHeatLevel="0" a="petal" b="sumeruflower" Description="[0]">
     "ab"
   </Recipe>
+  <Recipe Result="RunesTableBlock" ResultCount="1" RequiredHeatLevel="0" a="grownstone" b="manadiamond" Description="[0]">
+    "   "
+    "ABA"
+    "AAA"
+  </Recipe>
   <Recipe Result="SumeruPetalBlock:0" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:0" Description="[0]">
     "a"
   </Recipe>

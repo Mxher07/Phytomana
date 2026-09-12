@@ -31,14 +31,29 @@ namespace Phytomana {
             }
         }
 
+        public int m_dirtIndex;
+
+        public int m_grassIndex;
+
         public override void Load(ValuesDictionary valuesDictionary) {
             base.Load(valuesDictionary);
             m_scheduler = Project.FindSubsystem<FlowerTickScheduler>(true);
+            m_dirtIndex = BlocksManager.GetBlockIndex<DirtBlock>();
+            m_grassIndex = BlocksManager.GetBlockIndex<GrassBlock>();
         }
 
         public override void OnBlockAdded(int value, int oldValue, int x, int y, int z) {
             TilePhytoFlower flower = EnsureFlower(Terrain.ExtractContents(value), x, y, z);
-            flower?.OnPlaced();
+            if (flower == null) {
+                return;
+            }
+            // 产能花与功能花只能放置在泥土/草地上，否则立即带掉落物挖掘自己
+            int ground = m_scheduler.m_subsystemTerrain.Terrain.GetCellContents(x, y - 1, z);
+            if (ground != m_dirtIndex && ground != m_grassIndex) {
+                m_scheduler.m_subsystemTerrain.DestroyCell(0, x, y, z, 0, false, false);
+                return;
+            }
+            flower.OnPlaced();
         }
 
         public override void OnBlockGenerated(int value, int x, int y, int z, bool isLoaded) {

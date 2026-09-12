@@ -17,4 +17,6 @@
   <Block Name="ThermalilyFlower" MaxMana="1200" CanTransfer="false" StaffCheckable="true" />
   <Block Name="ThornyRoseFlower" MaxMana="360" CanTransfer="true" StaffCheckable="true" />
   <Block Name="RunesTableBlock" MaxMana="2000" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="ChestTransFlower" MaxMana="30" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="JadedFlower" MaxMana="260" CanTransfer="true" StaffCheckable="true" />
 </PhytoManaBlocks>
