@@ -9,8 +9,8 @@
   </Recipe>
   <Recipe Result="RunesTableBlock" ResultCount="1" RequiredHeatLevel="0" a="grownstone" b="manadiamond" Description="[0]">
     "   "
-    "ABA"
-    "AAA"
+    "aba"
+    "aaa"
   </Recipe>
   <Recipe Result="SumeruPetalBlock:0" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:0" Description="[0]">
     "a"
