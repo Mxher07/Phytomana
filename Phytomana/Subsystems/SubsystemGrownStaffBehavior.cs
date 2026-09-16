@@ -484,6 +484,7 @@ namespace Game {
 
         public StaffState GetState(ComponentPlayer player) {
             if (player.PlayerData == null) {
+                // 无存档数据（临时/未持久化玩家）：返回游离 state，不入字典
                 return new StaffState { Player = player };
             }
             if (!m_states.TryGetValue(player.PlayerData, out StaffState state)) {

@@ -3,6 +3,7 @@ using Engine;
 using Game;
 using GameEntitySystem;
 using Phytomana.Api;
+using TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>
@@ -43,12 +44,18 @@ namespace Phytomana {
 
         public double m_nextAbsorbParticleTime;
 
-        /// <summary>最近一次吞噬获得的魔力（法杖按平均循环周期展示产能用；瞬态不存档）。</summary>
+        /// <summary>最近一次吞噬获得的魔力（法杖按平均循环周期展示产能用；随存档保存）。</summary>
         public float m_lastAbsorbMana;
 
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("ThermalilyFlower", PhytoConfig.Instance.ThermalilyMaxMana);
 
         public TileThermalilyFlower(Point3 position) : base(position) { }
+
+        public override void OnChunkLoad() {
+            base.OnChunkLoad();
+            m_nextScanTime = TotalTime;
+            m_nextAbsorbParticleTime = TotalTime;
+        }
 
         /// <summary>产能速率 = 单次吞噬产出 / 吞噬循环周期（扫描 1.5s + 凝固表演 2.0s），供法杖展示。</summary>
         public override float GetProductionRate() {
@@ -123,6 +130,16 @@ namespace Phytomana {
             m_subsystemAudio = Project.FindSubsystem<SubsystemAudio>(true);
             m_magmaIndex = BlocksManager.GetBlockIndex<MagmaBlock>();
             m_stoneIndex = BlocksManager.GetBlockIndex<GraniteBlock>();
+        }
+
+        public override void SaveData(ValuesDictionary values) {
+            base.SaveData(values);
+            values.SetValue("LastAbsorbMana", m_lastAbsorbMana);
+        }
+
+        public override void LoadData(ValuesDictionary values) {
+            base.LoadData(values);
+            m_lastAbsorbMana = values.GetValue("LastAbsorbMana", 0f);
         }
     }
 }

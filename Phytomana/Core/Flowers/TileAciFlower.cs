@@ -44,12 +44,6 @@ namespace Phytomana {
 
         public SubsystemParticles m_subsystemParticles;
 
-        public SubsystemMana m_subsystemMana;
-
-        public ManaNetworkManager m_network;
-
-        public List<IManaReceiver> m_receiverBuffer = [];
-
         public List<MarkedCreature> m_marked = [];
 
         public const float PoolSearchRange = 11f;
@@ -68,7 +62,7 @@ namespace Phytomana {
             double time = TotalTime;
             TickMarked(time);
             if (!HasIncomingLink() && !ManaStorage.IsFull) {
-                TryDrawFromPool();
+                TryDrawFromPool(PoolSearchRange);
             }
             Attack(time);
         }
@@ -78,7 +72,7 @@ namespace Phytomana {
         /// 已标记的继续维持标记，不重复施毒。
         /// </summary>
         public void Attack(double time) {
-            List<ComponentBody> targets = FindCreaturesInRange(time);
+            List<ComponentBody> targets = FindCreaturesInRange();
             if (targets.Count == 0) {
                 return;
             }
@@ -116,7 +110,7 @@ namespace Phytomana {
         }
 
         /// <summary>范围内（13×13×13 立方）除玩家以外的活体生物。</summary>
-        public List<ComponentBody> FindCreaturesInRange(double time) {
+        public List<ComponentBody> FindCreaturesInRange() {
             List<ComponentBody> result = [];
             Vector3 center = new(Position.X + 0.5f, Position.Y + 0.5f, Position.Z + 0.5f);
             foreach (Entity entity in Project.Entities) {
@@ -196,59 +190,11 @@ namespace Phytomana {
             }
         }
 
-        /// <summary>是否有发射器链路指向自己（被绑链后不再自行取食）。</summary>
-        public bool HasIncomingLink() {
-            foreach (ManaLink link in m_subsystemMana.m_links) {
-                if (link.To == Position) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>未被绑链时自行从魔法池取食（储满即停）。</summary>
-        public void TryDrawFromPool() {
-            ManaPool best = null;
-            float bestDistance = float.MaxValue;
-            m_network.GetActiveReceivers(m_receiverBuffer);
-            foreach (IManaReceiver receiver in m_receiverBuffer) {
-                if (receiver is not ManaPool pool
-                    || pool.Position == Position
-                    || pool.ManaStorage.IsEmpty) {
-                    continue;
-                }
-                float dx = pool.Position.X - Position.X;
-                float dy = pool.Position.Y - Position.Y;
-                float dz = pool.Position.Z - Position.Z;
-                if (MathF.Abs(dx) > PoolSearchRange
-                    || MathF.Abs(dy) > PoolSearchRange
-                    || MathF.Abs(dz) > PoolSearchRange) {
-                    continue;
-                }
-                float distance = dx * dx + dy * dy + dz * dz;
-                if (distance < bestDistance) {
-                    bestDistance = distance;
-                    best = pool;
-                }
-            }
-            if (best == null) {
-                return;
-            }
-            float take = MathF.Min(best.ManaStorage.Current, ManaStorage.Free);
-            if (take <= 0f) {
-                return;
-            }
-            best.ManaStorage.Take(take);
-            ManaStorage.TryAdd(take);
-        }
-
         public void ResolveSubsystems() {
             if (m_subsystemParticles != null) {
                 return;
             }
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
-            m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
-            m_network = Project.FindSubsystem<ManaNetworkManager>(true);
         }
     }
 }

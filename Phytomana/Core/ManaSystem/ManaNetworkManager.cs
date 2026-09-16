@@ -194,13 +194,30 @@ namespace Phytomana {
 
         public float GetStoredMana(Point3 point) => TryGetMana(point, out float amount) ? amount : 0f;
 
+        /// <summary>
+        /// 收集仍活跃的接收器到 buffer。弱引用失效项用「整体重建」一次性剔除，
+        /// 避免原反向遍历中逐次 List.RemoveAt 的 O(n²) 开销（被每个功能花每 tick 调用）。
+        /// </summary>
         public void GetActiveReceivers(List<IManaReceiver> buffer) {
             buffer.Clear();
-            for (int i = m_receivers.Count - 1; i >= 0; i--) {
+            bool pruned = false;
+            for (int i = 0; i < m_receivers.Count; i++) {
                 if (m_receivers[i].TryGetTarget(out IManaReceiver receiver)) {
                     buffer.Add(receiver);
                 }
                 else {
+                    pruned = true;
+                }
+            }
+            if (pruned) {
+                CompactReceivers();
+            }
+        }
+
+        /// <summary>整体重建 m_receivers（剔除失效弱引用），一次遍历完成。</summary>
+        void CompactReceivers() {
+            for (int i = m_receivers.Count - 1; i >= 0; i--) {
+                if (!m_receivers[i].TryGetTarget(out _)) {
                     m_receivers.RemoveAt(i);
                 }
             }

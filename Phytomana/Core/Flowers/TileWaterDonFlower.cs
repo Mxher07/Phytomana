@@ -40,6 +40,7 @@ namespace Phytomana {
         }
 
         public override void OnChunkLoad() {
+            base.OnChunkLoad();
             InitializeTimers();
         }
 

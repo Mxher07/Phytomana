@@ -39,12 +39,6 @@ namespace Phytomana {
 
         public SubsystemPickables m_subsystemPickables;
 
-        public SubsystemMana m_subsystemMana;
-
-        public ManaNetworkManager m_network;
-
-        public List<IManaReceiver> m_receiverBuffer = [];
-
         public SubsystemTerrain m_subsystemTerrain;
 
         public const float PoolSearchRange = 11f;
@@ -121,7 +115,7 @@ namespace Phytomana {
             m_cooldown = time + CheckInterval;
             // 未绑链时先自行从魔法池取食（储满即停）
             if (!HasIncomingLink() && !ManaStorage.IsFull) {
-                TryDrawFromPool();
+                TryDrawFromPool(PoolSearchRange);
             }
             SettleTransfers(time);
             ScanAndQueueTransfers(time);
@@ -205,61 +199,13 @@ namespace Phytomana {
             }
         }
 
-        /// <summary>是否有发射器链路指向自己（被绑链后不再自行取食）。</summary>
-        public bool HasIncomingLink() {
-            foreach (ManaLink link in m_subsystemMana.m_links) {
-                if (link.To == Position) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>未被绑链时自行从魔法池取食（储满即停）。</summary>
-        public void TryDrawFromPool() {
-            ManaPool best = null;
-            float bestDistance = float.MaxValue;
-            m_network.GetActiveReceivers(m_receiverBuffer);
-            foreach (IManaReceiver receiver in m_receiverBuffer) {
-                if (receiver is not ManaPool pool
-                    || pool.Position == Position
-                    || pool.ManaStorage.IsEmpty) {
-                    continue;
-                }
-                float dx = pool.Position.X - Position.X;
-                float dy = pool.Position.Y - Position.Y;
-                float dz = pool.Position.Z - Position.Z;
-                if (MathF.Abs(dx) > PoolSearchRange
-                    || MathF.Abs(dy) > PoolSearchRange
-                    || MathF.Abs(dz) > PoolSearchRange) {
-                    continue;
-                }
-                float distance = dx * dx + dy * dy + dz * dz;
-                if (distance < bestDistance) {
-                    bestDistance = distance;
-                    best = pool;
-                }
-            }
-            if (best == null) {
-                return;
-            }
-            float take = MathF.Min(best.ManaStorage.Current, ManaStorage.Free);
-            if (take <= 0f) {
-                return;
-            }
-            best.ManaStorage.Take(take);
-            ManaStorage.TryAdd(take);
-        }
-
         public void ResolveSubsystems() {
             if (m_subsystemParticles != null) {
                 return;
             }
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
             m_subsystemPickables = Project.FindSubsystem<SubsystemPickables>(true);
-            m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
-            m_network = Project.FindSubsystem<ManaNetworkManager>(true);
         }
     }
 }

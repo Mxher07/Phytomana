@@ -42,12 +42,6 @@ namespace Phytomana {
 
         public SubsystemParticles m_subsystemParticles;
 
-        public SubsystemMana m_subsystemMana;
-
-        public ManaNetworkManager m_network;
-
-        public List<IManaReceiver> m_receiverBuffer = [];
-
         /// <summary>飞行中的荆棘粒子：到点后在落点附近做命中判定。</summary>
         public List<PendingThornHit> m_pendingHits = [];
 
@@ -61,10 +55,13 @@ namespace Phytomana {
         public TileThornyRose(Point3 position) : base(position) { }
 
         public override void OnPlaced() {
+            base.OnPlaced();
             m_cooldown = TotalTime + AttackInterval;
         }
 
         public override void OnChunkLoad() {
+            base.OnChunkLoad();
+            // 攻击周期与法线一致：读档后对齐到「1 秒后才可出手」，避免读档瞬间补射一记
             m_cooldown = TotalTime + AttackInterval;
         }
 
@@ -76,64 +73,24 @@ namespace Phytomana {
                 return;
             }
             m_cooldown = time + AttackInterval;
-            // 未被绑链时先自行取食（储至 50% 即停），再尝试发射荆棘
+            // 未被绑链时先自行取食（每次 36mn，储至 50% 即停），再尝试发射荆棘
             if (!HasIncomingLink() && ManaStorage.Current < ManaStorage.Max * PoolDrawStopRatio) {
-                TryDrawFromPool();
+                // 荆棘之刺取魔策略：单次抽固定量（低于 50% 停止线才抽），与「吸满即停」的功能花不同
+                float drawAmount = PhytoConfig.Instance.ThornyRosePoolDrawAmount;
+                if (ManaStorage.Current + drawAmount <= ManaStorage.Max * PoolDrawStopRatio) {
+                    TryDrawFromPool(
+                        PhytoConfig.Instance.ThornyRosePoolSearchRange,
+                        PoolDrawStopRatio,
+                        pool => {
+                            pool.ManaStorage.Take(drawAmount);
+                            ManaStorage.TryAdd(drawAmount);
+                            SpawnSuckParticle();
+                        });
+                }
             }
             if (ManaStorage.Current >= PhytoConfig.Instance.ThornyRoseManaCost) {
                 TryFireThorn(time);
             }
-        }
-
-        /// <summary>是否有发射器链路指向自己（被绑链后不再自行取食）。</summary>
-        public bool HasIncomingLink() {
-            foreach (ManaLink link in m_subsystemMana.m_links) {
-                if (link.To == Position) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>搜寻范围内的魔法池（每次 36mn，不足不吸），吸取时播放夜影花同款粒子。</summary>
-        public void TryDrawFromPool() {
-            float searchRange = PhytoConfig.Instance.ThornyRosePoolSearchRange;
-            float drawAmount = PhytoConfig.Instance.ThornyRosePoolDrawAmount;
-            ManaPool best = null;
-            float bestDistance = float.MaxValue;
-            m_network.GetActiveReceivers(m_receiverBuffer);
-            foreach (IManaReceiver receiver in m_receiverBuffer) {
-                if (receiver is not ManaPool pool
-                    || pool.Position == Position
-                    || pool.ManaStorage.Current < drawAmount) {
-                    continue;
-                }
-                float dx = pool.Position.X - Position.X;
-                float dy = pool.Position.Y - Position.Y;
-                float dz = pool.Position.Z - Position.Z;
-                if (MathF.Abs(dx) > searchRange
-                    || MathF.Abs(dy) > searchRange
-                    || MathF.Abs(dz) > searchRange) {
-                    continue;
-                }
-                float distance = dx * dx + dy * dy + dz * dz;
-                if (distance < bestDistance) {
-                    bestDistance = distance;
-                    best = pool;
-                }
-            }
-            if (best == null) {
-                return;
-            }
-            best.ManaStorage.Take(drawAmount);
-            ManaStorage.TryAdd(drawAmount);
-            // 吸取反馈：花位置 +0.2y 处播放夜影花同款粒子
-            m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
-                new Vector3(Position.X + 0.5f, Position.Y + 0.2f, Position.Z + 0.5f),
-                0.6f,
-                1.6f,
-                new Color(150, 100, 220)
-            ));
         }
 
         /// <summary>
@@ -180,7 +137,10 @@ namespace Phytomana {
             }
         }
 
-        /// <summary>找中心点附近（立方范围）最近的一只非玩家生物的躯体；找不到返回 null。</summary>
+        /// <summary>
+        /// 找中心点附近（立方范围）最近的一只非玩家生物的躯体；找不到返回 null。
+        /// 筛选与「最近」判定统一用欧氏距离（切比雪夫预筛 + 欧氏精排），度量一致。
+        /// </summary>
         public ComponentBody FindNearestCreatureBody(Vector3 center, float range) {
             ComponentBody best = null;
             float bestDistance = float.MaxValue;
@@ -198,14 +158,15 @@ namespace Phytomana {
                     continue;
                 }
                 Vector3 position = body.Position;
-                if (MathF.Abs(position.X - center.X) > range
-                    || MathF.Abs(position.Y - center.Y) > range
-                    || MathF.Abs(position.Z - center.Z) > range) {
+                Vector3 delta = position - center;
+                // 欧氏距离筛选 + 精排，统一度量
+                float squared = delta.LengthSquared();
+                float squaredRange = range * range;
+                if (squared > squaredRange) {
                     continue;
                 }
-                float distance = (position - center).LengthSquared();
-                if (distance < bestDistance) {
-                    bestDistance = distance;
+                if (squared < bestDistance) {
+                    bestDistance = squared;
                     best = body;
                 }
             }
@@ -217,8 +178,6 @@ namespace Phytomana {
                 return;
             }
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
-            m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
-            m_network = Project.FindSubsystem<ManaNetworkManager>(true);
         }
     }
 }

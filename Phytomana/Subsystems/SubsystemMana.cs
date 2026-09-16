@@ -32,6 +32,9 @@ namespace Game {
 
         public List<ManaLink> m_links = [];
 
+        /// <summary>入链计数：每个目标坐标被多少条链路指向（供 O(1) 判定功能花是否被绑链供魔）。</summary>
+        public Dictionary<Point3, int> m_incomingLinks = [];
+
         public SubsystemTerrain m_subsystemTerrain;
 
         public SubsystemPickables m_subsystemPickables;
@@ -168,6 +171,7 @@ namespace Game {
                 return false;
             }
             m_links.Add(new ManaLink(from, to));
+            m_incomingLinks[to] = m_incomingLinks.GetValueOrDefault(to) + 1;
             if (apply) {
                 PruneLinks();
             }
@@ -187,8 +191,21 @@ namespace Game {
             for (int i = 0; i < m_links.Count; i++) {
                 if (m_links[i].From == from && m_links[i].To == to) {
                     m_links.RemoveAt(i);
-                    return;
+                    break;
                 }
+            }
+            DecrementIncomingLink(to);
+        }
+
+        /// <summary>目标坐标是否被至少一条发射器链路指向（O(1)，供功能花判定是否被绑链供魔）。</summary>
+        public bool HasIncomingLink(Point3 target) => m_incomingLinks.GetValueOrDefault(target) > 0;
+
+        void DecrementIncomingLink(Point3 target) {
+            if (m_incomingLinks.TryGetValue(target, out int count) && count > 1) {
+                m_incomingLinks[target] = count - 1;
+            }
+            else {
+                m_incomingLinks.Remove(target);
             }
         }
 
@@ -278,7 +295,7 @@ namespace Game {
                 if (pickable.ToRemove) {
                     continue;
                 }
-                if (!IsPickableInCell(pickable, poolPoint)) {
+                if (!TilePhytoFlower.IsPickableInCell(pickable, poolPoint)) {
                     continue;
                 }
                 ManaPoolRecipe recipe = ManaPoolRecipeRegistry.FindByIngredient(Terrain.ExtractContents(pickable.Value));
@@ -322,22 +339,13 @@ namespace Game {
             }
         }
 
-        public bool IsPickableInCell(Pickable pickable, Point3 cell) {
-            Vector3 position = pickable.Position;
-            return position.X >= cell.X
-                && position.X < cell.X + 1f
-                && position.Z >= cell.Z
-                && position.Z < cell.Z + 1f
-                && position.Y >= cell.Y - 0.5f
-                && position.Y < cell.Y + 1.5f;
-        }
-
         public void PruneLinks() {
             for (int i = m_links.Count - 1; i >= 0; i--) {
                 ManaLink link = m_links[i];
                 if (m_subsystemTerrain.Terrain.GetCellContents(link.From) != m_manaSpreaderIndex
                     || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(link.To))) {
                     m_links.RemoveAt(i);
+                    DecrementIncomingLink(link.To);
                 }
             }
         }

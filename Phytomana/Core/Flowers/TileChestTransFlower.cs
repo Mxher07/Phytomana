@@ -28,41 +28,24 @@ namespace Phytomana {
 
         public SubsystemPickables m_subsystemPickables;
 
-        public SubsystemMana m_subsystemMana;
-
-        public ManaNetworkManager m_network;
-
-        public List<IManaReceiver> m_receiverBuffer = [];
-
         public SubsystemBlockEntities m_subsystemBlockEntities;
 
         public SubsystemFlowerTableBehavior m_subsystemFlowerTables;
 
         public SubsystemRunesTableBehavior m_subsystemRunesTables;
 
-        /// <summary>开关机状态（存档保存）。</summary>
+        /// <summary>开关机状态（存档保存，默认开机）。</summary>
         public bool m_powered = true;
 
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("ChestTransFlower", DefaultMaxMana);
 
         public TileChestTransFlower(Point3 position) : base(position) { }
 
-        public void TogglePower(ComponentPlayer player) {
-            m_powered = !m_powered;
-            string key = m_powered ? "PowerOn" : "PowerOff";
-            player?.ComponentGui.DisplaySmallMessage(
-                LanguageControl.Get("ChestTransMessages", key), Color.White, false, false);
-        }
+        public override string PoweredMessageKey => "ChestTransMessages";
 
-        public override void SaveData(ValuesDictionary values) {
-            base.SaveData(values);
-            values.SetValue("Powered", m_powered);
-        }
+        public override string PoweredOnKey => "PowerOn";
 
-        public override void LoadData(ValuesDictionary values) {
-            base.LoadData(values);
-            m_powered = values.GetValue("Powered", true);
-        }
+        public override string PoweredOffKey => "PowerOff";
 
         public override void FlowerTick() {
             ResolveSubsystems();
@@ -73,7 +56,7 @@ namespace Phytomana {
             m_cooldown = time + WorkInterval;
             // 未绑链时先自行从魔法池取食（储满即停）
             if (!HasIncomingLink() && !ManaStorage.IsFull) {
-                TryDrawFromPool();
+                TryDrawFromPool(PoolSearchRange);
             }
             float range = ManaStorage.Current > 0f ? HighManaRange : LowManaRange;
             List<ComponentChest> chests = GetAdjacentChests();
@@ -228,66 +211,13 @@ namespace Phytomana {
             return count;
         }
 
-        /// <summary>未被绑链时自行从魔法池取食（储满即停）。</summary>
-        public void TryDrawFromPool() {
-            float searchRange = PoolSearchRange;
-            ManaPool best = null;
-            float bestDistance = float.MaxValue;
-            m_network.GetActiveReceivers(m_receiverBuffer);
-            foreach (IManaReceiver receiver in m_receiverBuffer) {
-                if (receiver is not ManaPool pool
-                    || pool.Position == Position
-                    || pool.ManaStorage.IsEmpty) {
-                    continue;
-                }
-                float dx = pool.Position.X - Position.X;
-                float dy = pool.Position.Y - Position.Y;
-                float dz = pool.Position.Z - Position.Z;
-                if (MathF.Abs(dx) > searchRange
-                    || MathF.Abs(dy) > searchRange
-                    || MathF.Abs(dz) > searchRange) {
-                    continue;
-                }
-                float distance = dx * dx + dy * dy + dz * dz;
-                if (distance < bestDistance) {
-                    bestDistance = distance;
-                    best = pool;
-                }
-            }
-            if (best == null) {
-                return;
-            }
-            float take = MathF.Min(best.ManaStorage.Current, ManaStorage.Free);
-            if (take <= 0f) {
-                return;
-            }
-            best.ManaStorage.Take(take);
-            ManaStorage.TryAdd(take);
-            m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
-                new Vector3(Position.X + 0.5f, Position.Y + 0.2f, Position.Z + 0.5f),
-                0.6f,
-                1.6f,
-                new Color(150, 100, 220)
-            ));
-        }
-
-        public bool HasIncomingLink() {
-            foreach (ManaLink link in m_subsystemMana.m_links) {
-                if (link.To == Position) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
+        /// <summary>未绑链时自行从魔法池取食（储满即停）。</summary>
         public void ResolveSubsystems() {
             if (m_subsystemParticles != null) {
                 return;
             }
             m_subsystemParticles = Project.FindSubsystem<SubsystemParticles>(true);
             m_subsystemPickables = Project.FindSubsystem<SubsystemPickables>(true);
-            m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
-            m_network = Project.FindSubsystem<ManaNetworkManager>(true);
             m_subsystemBlockEntities = Project.FindSubsystem<SubsystemBlockEntities>(true);
             m_subsystemFlowerTables = Project.FindSubsystem<SubsystemFlowerTableBehavior>(false);
             m_subsystemRunesTables = Project.FindSubsystem<SubsystemRunesTableBehavior>(false);

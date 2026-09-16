@@ -27,6 +27,9 @@ namespace Phytomana {
 
         public List<TilePhytoFlower> m_flowers = [];
 
+        /// <summary>坐标索引：TryGetFlower 按位置 O(1) 查花（区块装卸、法杖交互高频调用）。</summary>
+        public Dictionary<Point3, TilePhytoFlower> m_flowerIndex = [];
+
         public Dictionary<Point3, ValuesDictionary> m_dormantFlowers = [];
 
         public List<TilePhytoFlower> m_sliceBuffer = [];
@@ -82,6 +85,7 @@ namespace Phytomana {
 
         public override void Dispose() {
             m_flowers.Clear();
+            m_flowerIndex.Clear();
             m_dormantFlowers.Clear();
             m_sliceBuffer.Clear();
         }
@@ -93,10 +97,9 @@ namespace Phytomana {
             if (flower == null) {
                 return;
             }
-            for (int i = m_flowers.Count - 1; i >= 0; i--) {
-                if (m_flowers[i].Position == flower.Position) {
-                    UnregisterFlower(m_flowers[i], false);
-                }
+            // 同坐标旧花先注销（坐标索引去重）
+            if (m_flowerIndex.TryGetValue(flower.Position, out TilePhytoFlower existing)) {
+                UnregisterFlower(existing, false);
             }
             flower.Scheduler = this;
             flower.LastTickTime = CurrentTime;
@@ -110,6 +113,7 @@ namespace Phytomana {
                 MigrateLegacyMana(flower);
             }
             m_flowers.Add(flower);
+            m_flowerIndex[flower.Position] = flower;
             if (flower is IManaSource source) {
                 m_network.RegisterSource(source);
             }
@@ -131,6 +135,7 @@ namespace Phytomana {
                 return;
             }
             m_flowers.Remove(flower);
+            m_flowerIndex.Remove(flower.Position);
             if (flower is IManaSource source) {
                 m_network.UnregisterSource(source, destroyed);
             }
@@ -153,16 +158,9 @@ namespace Phytomana {
             flower.Scheduler = null;
         }
 
-        public bool TryGetFlower(Point3 point, out TilePhytoFlower flower) {
-            flower = null;
-            foreach (TilePhytoFlower candidate in m_flowers) {
-                if (candidate.Position == point) {
-                    flower = candidate;
-                    return true;
-                }
-            }
-            return false;
-        }
+        /// <summary>按坐标 O(1) 查花（原为全表 O(n) 线性扫描）。</summary>
+        public bool TryGetFlower(Point3 point, out TilePhytoFlower flower) =>
+            m_flowerIndex.TryGetValue(point, out flower);
 
         public void Update(float dt) {
             CurrentTime = m_subsystemGameInfo.TotalElapsedGameTime;
