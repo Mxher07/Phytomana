@@ -19,7 +19,7 @@ namespace Phytomana {
     public class TileThornyRose : TileFunctionalFlower {
         public const float DefaultMaxMana = 360f;
         public const float DefaultManaCost = 12f;
-        public const float DefaultDamage = 0.1f;
+        public const float DefaultDamage = 2.5f;
         public const float DefaultAttackRange = 14f;
         public const float DefaultPoolDrawAmount = 36f;
         public const float DefaultPoolSearchRange = 11f;
@@ -34,8 +34,9 @@ namespace Phytomana {
 
         /// <summary>
         /// 伤害换算系数：ComponentHealth.Health 为 0~1 的归一化生命值（1.0 即满血），
-        /// Injure 的入参同为百分比。配置里的「伤害点数」按 1 点 = 目标最大生命的 10% 换算，
-        /// 默认 1.5 点 ≈ 一次削去 15% 生命。
+        /// Injure 的入参同为百分比，引擎没有绝对生命点数可依。
+        /// 「固定伤害」按项目既有「1 点 = 目标最大生命 10%」的点数刻度实现：
+        /// 默认 2.5 点一次削去目标最大生命的 25%，对任何目标都是恒定量。
         /// </summary>
         public const float DamageToHealthScale = 0.1f;
 

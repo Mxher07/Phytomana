@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="1.5 符文台" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="RunesTableBlock" Size="72, 72" Scale="1.6" CanvasWidget.Position="186, 60" />
+	<LabelWidget Text="符文台是须弥符文体系的炼制核心：手持材料逐件放上祭坛，供足魔力，投掷生息岩引子，法杖右键即可炼出各式符文。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="特性" FontScale="1.0" Color="70, 40, 10" Size="120, 26" CanvasWidget.Position="12, 236" />
+	<LabelWidget Text="魔力缓存 2000mn，可被法杖绑链供魔；已放置材料随存档保存，破坏台子材料退回。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 268" />
+</CanvasWidget>

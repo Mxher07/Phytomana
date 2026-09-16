@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文台·使用方式" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="1. 放置材料" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="手持材料对符文台右键，一件一件放上祭坛（悬浮显示，不会消失）。只收配方认识的材料；达到配方上限会提示「够了」。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 88" />
+	<LabelWidget Text="2. 供魔" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="符文台魔力缓存 2000mn，需由魔力网络（发射器绑链）送足；带魔材料（魔力钻石/魔力钢锭）可直接转化补充。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 196" />
+	<LabelWidget Text="3. 引子与炼制" FontScale="0.9" Color="70, 40, 10" Size="200, 24" CanvasWidget.Position="12, 266" />
+	<LabelWidget Text="向祭坛上投掷一块生息岩作为引子，再用须弥法杖（工作模式）右键符文台即完成炼制：消耗魔力与全部材料，弹出成品。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 292" />
+</CanvasWidget>

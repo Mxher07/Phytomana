@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="炼制小贴士" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="色号须严格对应：白 ×2、淡灰 ×2、青 ×1，错色不合。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="传箱花是配方原料之一，合成后会被消耗——请多备一株备用。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 130" />
+	<LabelWidget Text="实际使用时建议搭配传箱花：传箱花把散落各处的掉落物先收进箱子，传输箱洋再瞬间搬运到目的地，两者配合可覆盖整片区域。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 90" CanvasWidget.Position="12, 208" />
+	<LabelWidget Text="不要把绑定目标设在本花 5×5×5 工作范围内的方块，否则物品会被反复搬运，无意义地烧掉魔力。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 310" />
+</CanvasWidget>

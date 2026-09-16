@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="魔耗一览" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="· 初阶符文（水/火/地/风）：520mn，每次出 2 枚" FontScale="0.85" Color="80, 60, 36" Size="420, 30" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="· 中阶符文（春/夏/秋/冬）：800mn，每次出 1 枚" FontScale="0.85" Color="80, 60, 36" Size="420, 30" CanvasWidget.Position="12, 102" />
+	<LabelWidget Text="· 魔力符文：580mn，每次出 1 枚" FontScale="0.85" Color="80, 60, 36" Size="420, 30" CanvasWidget.Position="12, 142" />
+	<LabelWidget Text="· 高阶符文（七宗罪）：1200mn，每次出 1 枚" FontScale="0.85" Color="80, 60, 36" Size="420, 30" CanvasWidget.Position="12, 182" />
+	<LabelWidget Text="魔力台缓存上限 2000mn，建议由发射器经法杖绑链持续供魔，一次备足高阶炼制的 1200mn。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 232" />
+	<LabelWidget Text="各符文的基础材料详见「符文一览」条目；作原料的符文（中/高阶配方所需）不会消耗。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 300" />
+</CanvasWidget>

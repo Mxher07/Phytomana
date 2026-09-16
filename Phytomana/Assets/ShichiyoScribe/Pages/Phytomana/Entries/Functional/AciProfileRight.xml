@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="剧毒树丛·细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="每次施毒，一枚绿色毒雾粒子（0.5f，存活 1s）会先飞向目标，宣告这次攻击；被标记的生物身上则每 0.15s 冒出一缕缓缓上升的绿色毒雾（0.15f，存活 1.2s）。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 110" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="毒理" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 186" />
+	<LabelWidget Text="被标记者 3 秒内不会被重复标记；标记每 1 秒结算一次固定 10% 生命的中毒伤害。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 56" CanvasWidget.Position="12, 212" />
+	<LabelWidget Text="毒不致命：目标生命低于 1 点时不再被标记，中毒伤害也不会把目标逼死。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="取魔方式与其余功能花相同：范围搜寻魔力池；也可由发射器绑链供魔。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 320" />
+</CanvasWidget>

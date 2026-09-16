@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="剧毒树丛·运转细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="施毒过程" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 62" />
+	<LabelWidget Text="花先放出一枚 0.5f 大小、存活 1s 的绿色毒雾粒子飞向目标作为宣告；被标记的目标身上则每 0.15s 生成一枚 0.15f 大小、存活 1.2s、向上飘 0.05f 的绿色小毒雾。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 100" CanvasWidget.Position="12, 90" />
+	<LabelWidget Text="标记规则" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 200" />
+	<LabelWidget Text="生命低于 1 点的生物不会被标记；中毒伤害不致命，目标永远保留 1 点余血。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 228" />
+	<LabelWidget Text="魔耗" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 300" />
+	<LabelWidget Text="360mn 的缓存约可维持 12 只生物持续标记（360 ÷ (12×30) ≈ 1s 全速输出），建议搭配发射器持续供魔。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 328" />
+</CanvasWidget>

@@ -13,6 +13,9 @@ namespace Phytomana {
     public class TileGourmaryllisFlower : TileGeneratingFlower {
         public const float DefaultManaPerNutrition = 12f;
         public const float DefaultMaxMana = 1000f;
+
+        /// <summary>最终产能倍率：与「营养 × 每点产魔」相乘得到实际产魔（本花最终产能 ×1.25）。</summary>
+        public const float ProductionMultiplier = 1.25f;
         public const double DigestionBaseTime = 3.0;
         public const double DigestionTimePerNutrition = 0.25;
         public const double ChewParticleInterval = 1.0;
@@ -26,13 +29,21 @@ namespace Phytomana {
         /// <summary>当前正在消化的食物将产出的魔力（需随存档保存）。</summary>
         public float m_pendingMana;
 
+        /// <summary>本次消化的总时长（秒），供法杖按 平均产出/时长 显示产能速率。</summary>
+        public double m_digestionDuration;
+
         public double m_nextChewParticleTime;
 
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("GourmaryllisFlower", PhytoConfig.Instance.GourmaryllisMaxMana);
 
         public TileGourmaryllisFlower(Point3 position) : base(position) { }
 
-        public override float GetProductionRate() => 0f;
+        public override float GetProductionRate() {
+            // 产能速率 = 本餐产出 / 消化时长（进食型花朵的产魔是离散的，按平均值展示才符合直觉）
+            return State == FlowerState.Working && m_digestionDuration > 0.0
+                ? (float)(m_pendingMana / m_digestionDuration)
+                : 0f;
+        }
 
         public override void FlowerTick() {
             ResolveSubsystems();
@@ -85,8 +96,9 @@ namespace Phytomana {
             if (best.Count == 0) {
                 best.ToRemove = true;
             }
-            m_pendingMana = bestNutrition * PhytoConfig.Instance.GourmaryllisManaPerNutrition;
-            m_timer = time + DigestionBaseTime + bestNutrition * DigestionTimePerNutrition;
+            m_pendingMana = bestNutrition * PhytoConfig.Instance.GourmaryllisManaPerNutrition * ProductionMultiplier;
+            m_digestionDuration = DigestionBaseTime + bestNutrition * DigestionTimePerNutrition;
+            m_timer = time + m_digestionDuration;
             m_nextChewParticleTime = time + ChewParticleInterval;
             SetState(FlowerState.Working);
         }
@@ -112,11 +124,13 @@ namespace Phytomana {
         public override void SaveData(ValuesDictionary values) {
             base.SaveData(values);
             values.SetValue("PendingMana", m_pendingMana);
+            values.SetValue("DigestionDuration", m_digestionDuration);
         }
 
         public override void LoadData(ValuesDictionary values) {
             base.LoadData(values);
             m_pendingMana = values.GetValue("PendingMana", 0f);
+            m_digestionDuration = values.GetValue("DigestionDuration", 0.0);
         }
     }
 }

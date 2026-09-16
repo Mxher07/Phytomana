@@ -11,6 +11,9 @@ namespace Phytomana {
     public class TileNightshadeFlower : TileGeneratingFlower {
         public const float DefaultManaRate = 0.9f;
         public const float DefaultMaxMana = 800f;
+
+        /// <summary>最终产能倍率：与配置速率相乘得到实际产魔（本花最终产能 ×0.35）。</summary>
+        public const float RateMultiplier = 0.35f;
         public const double ProductionParticleInterval = 4.0;
         public const float NightSkyLightThreshold = 0.35f;
 
@@ -33,7 +36,7 @@ namespace Phytomana {
         }
 
         public override float GetProductionRate() {
-            return IsProducing ? PhytoConfig.Instance.NightshadeManaRate : 0f;
+            return IsProducing ? PhytoConfig.Instance.NightshadeManaRate * RateMultiplier : 0f;
         }
 
         public override void FlowerTick() {

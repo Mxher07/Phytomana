@@ -318,6 +318,18 @@
     "JadedFlower:0": {
       "DisplayName": "翡翠菜",
       "Description": "「繁花似锦」。消耗魔力在周围快速生成随机颜色的须弥花（绑定模式法杖点击开关机，默认关机）"
+    },
+    "ClaySandFlower:0": {
+      "DisplayName": "黏土沙馨",
+      "Description": "「沙土成泥」。消耗魔力将周围的沙子变成黏土（以物品形式掉落）。绑定模式法杖点击可开关机，默认开机"
+    },
+    "AciFlower:0": {
+      "DisplayName": "剧毒树丛",
+      "Description": "「无色无味的毒雾」。耗魔毒攻周围的生物，中毒伤害不致死。魔力可由魔力池/发射器供魔"
+    },
+    "TransChestV2Flower:0": {
+      "DisplayName": "传输箱洋",
+      "Description": "「穿墙而行的信使」。无视方块瞬间运输掉落物至法杖绑定的目标方块上方"
     }
   },
   "FlowerTableMessages": {
@@ -351,6 +363,7 @@
     "StartSelected": "已选中起始点：({0}, {1}, {2})",
     "StartCancelled": "已取消选择起始点",
     "BindSuccess": "绑定成功：{0},{1},{2} → {3},{4},{5}",
+    "TransChestV2BindStart": "已选中传输箱洋起点：({0}, {1}, {2})，再点目标方块完成绑定",
     "ErrTooFar": "绑定失败：距离太远",
     "ErrWrongDirection": "绑定失败：目标不在起始点的六向直线上",
     "ErrNoManaCapability": "绑定失败：目标方块不具有魔力使用能力"
@@ -386,5 +399,17 @@
   "JadedMessages": {
     "JadedPowerOn": "翡翠菜已开机",
     "JadedPowerOff": "翡翠菜已关机"
+  },
+  "ClaySandMessages": {
+    "ClaySandPowerOn": "黏土沙馨已开机",
+    "ClaySandPowerOff": "黏土沙馨已关机"
+  },
+  "TransChestV2Messages": {
+    "BindSet": "传输箱洋已绑定目标方块",
+    "NoTarget": "传输箱洋未绑定目标方块",
+    "TargetFormat": "传输箱洋目标：({0}, {1}, {2})"
+  },
+  "AciMessages": {
+    "Status": "剧毒树丛标记中：{0} 只"
   }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="炼制小贴士" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="花瓣颜色必须严格对应：灰 ×2、淡灰 ×2，错色不合成。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="风之符文走初阶 520mn，一次出 2 枚，可顺便给别的配方备料。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 130" />
+	<LabelWidget Text="传箱花是传输箱洋的配方原料之一——多备一株，免得炼新花时把老花用掉。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 208" />
+</CanvasWidget>

@@ -71,7 +71,7 @@ namespace Phytomana {
         /// <summary>荆棘之花每次刺击消耗的魔力。</summary>
         public float ThornyRoseManaCost = TileThornyRose.DefaultManaCost;
 
-        /// <summary>荆棘之花每次刺击造成的伤害（1 点 ≈ 目标最大生命的 10%）。</summary>
+        /// <summary>荆棘之花每次刺击造成的固定伤害（按 1 点 = 目标最大生命 10% 的点数刻度，2.5 点 = 25%）。</summary>
         public float ThornyRoseDamage = TileThornyRose.DefaultDamage;
 
         /// <summary>荆棘之花攻击范围的半边长（刺击 2×该值 边长的立方）。</summary>

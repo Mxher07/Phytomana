@@ -23,6 +23,12 @@
 			<Entry Title="绑定模式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/BindMode" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/BindModeRight" />
 			<Entry Title="魔力网络总览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/NetworkOverview" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/NetworkOverviewRight" />
 		</SubSection>
+		<SubSection Title="1.5 符文台" Left="ShichiyoScribe/Pages/Phytomana/Subs/Equipment/RunesTable">
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftRunesTable" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/CraftRunesTableRight" />
+			<Entry Title="使用方式" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UseRunesTable" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/UseRunesTableRight" />
+			<Entry Title="符文一览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/RunesOverview" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/RunesOverviewRight" />
+			<Entry Title="炼制补充说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/RunesRefundNote" Right="ShichiyoScribe/Pages/Phytomana/Entries/Equipment/RunesRefundNoteRight" />
+		</SubSection>
 	</Section>
 	<Section Title="第二章 须弥产能" Left="ShichiyoScribe/Pages/Phytomana/Sections/Generating">
 		<SubSection Title="2.1 日耀花" Left="ShichiyoScribe/Pages/Phytomana/Subs/Generating/SunPower">
@@ -62,6 +68,31 @@
 			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseCraftRight" />
 			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ThornyRoseFunctionRight" />
 		</SubSection>
+		<SubSection Title="3.3 传箱花" Left="ShichiyoScribe/Pages/Phytomana/Subs/Functional/ChestTrans">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ChestTransProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ChestTransProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ChestTransCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ChestTransCraftRight" />
+			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ChestTransFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ChestTransFunctionRight" />
+		</SubSection>
+		<SubSection Title="3.4 翡翠菜" Left="ShichiyoScribe/Pages/Phytomana/Subs/Functional/Jaded">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/JadedProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/JadedProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/JadedCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/JadedCraftRight" />
+			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/JadedFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/JadedFunctionRight" />
+		</SubSection>
+		<SubSection Title="3.5 黏土沙馨" Left="ShichiyoScribe/Pages/Phytomana/Subs/Functional/ClaySand">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ClaySandProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ClaySandProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ClaySandCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ClaySandCraftRight" />
+			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ClaySandFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/ClaySandFunctionRight" />
+		</SubSection>
+		<SubSection Title="3.6 剧毒树丛" Left="ShichiyoScribe/Pages/Phytomana/Subs/Functional/Aci">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/AciProfile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/AciProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/AciCraft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/AciCraftRight" />
+			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/AciFunction" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/AciFunctionRight" />
+		</SubSection>
+		<SubSection Title="3.7 传输箱洋" Left="ShichiyoScribe/Pages/Phytomana/Subs/Functional/TransChestV2">
+			<Entry Title="花语档案" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/TransChestV2Profile" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/TransChestV2ProfileRight" />
+			<Entry Title="合成配方" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/TransChestV2Craft" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/TransChestV2CraftRight" />
+			<Entry Title="功能说明" Left="ShichiyoScribe/Pages/Phytomana/Entries/Functional/TransChestV2Function" Right="ShichiyoScribe/Pages/Phytomana/Entries/Functional/TransChestV2FunctionRight" />
+		</SubSection>
 	</Section>
 	<Section Title="第四章 须弥方块" Left="ShichiyoScribe/Pages/Phytomana/Sections/Blocks">
 		<SubSection Title="4.1 生息树材" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/Wood">
@@ -75,6 +106,9 @@
 		<SubSection Title="4.3 魔力材料" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/ManaMaterials">
 			<Entry Title="魔法钢锭" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaIngot" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaIngotRight" />
 			<Entry Title="魔力钢块" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaBlock" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ManaBlockRight" />
+		</SubSection>
+		<SubSection Title="4.4 符文材料" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/RunesMaterial">
+			<Entry Title="符文一览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/RunesMaterial" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/RunesMaterialRight" />
 		</SubSection>
 		<SubSection Title="4.4 魔力工具" Left="ShichiyoScribe/Pages/Phytomana/Subs/Blocks/Tools">
 			<Entry Title="工具一览" Left="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/Tools" Right="ShichiyoScribe/Pages/Phytomana/Entries/Blocks/ToolsRight" />

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="传箱花·细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="拾取目标" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 62" />
+	<LabelWidget Text="只收地上的掉落物，不会收走你放在台面上的合成材料：花药台与符文台 1.5 格内的掉落物会被主动跳过。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 76" CanvasWidget.Position="12, 90" />
+	<LabelWidget Text="收纳去向" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 176" />
+	<LabelWidget Text="物品送入贴身（上/前/后/左/右）未满的箱子；塞不下的余量会从花边重新弹出，不会丢失。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 76" CanvasWidget.Position="12, 204" />
+	<LabelWidget Text="没有魔力时照样工作（半径缩短为 6 格）；取魔方式与其余功能花一致，范围搜寻魔力池，发射器亦可供魔。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 292" />
+</CanvasWidget>

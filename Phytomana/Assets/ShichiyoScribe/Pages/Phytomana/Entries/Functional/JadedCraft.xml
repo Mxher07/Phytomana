@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="翡翠菜·合成配方" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="JadedFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="须弥花瓣 × 3：淡黄 ×1、紫 ×1、绿 ×1，加一枚春之符文" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="一黄一紫一绿，佐以春之符文——草木自此有了繁殖的本事。摆入花药台，注入清水，投下种子即得翡翠菜一株。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="春之符文（中阶，800mn）：树苗 ×3 + 面包 + 水之符文 + 火之符文。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 264" />
+</CanvasWidget>

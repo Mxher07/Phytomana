@@ -271,7 +271,6 @@ namespace Phytomana {
             ));
         }
 
-        /// <summary>是否有发射器链路指向自己。</summary>
         public bool HasIncomingLink() {
             foreach (ManaLink link in m_subsystemMana.m_links) {
                 if (link.To == Position) {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="传箱花·功能说明" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="功能" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="拾取工作范围内的掉落物，送入贴身（上/前/后/左/右）未满的箱子。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 56" CanvasWidget.Position="12, 88" />
+	<LabelWidget Text="取魔方式" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 154" />
+	<LabelWidget Text="范围搜寻魔力池取食；亦接受发射器主动供魔。单次拾取固定耗魔 1mn（有魔力时），无魔力也可工作。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 64" CanvasWidget.Position="12, 180" />
+	<LabelWidget Text="机关" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 254" />
+	<LabelWidget Text="须弥法杖「绑定模式」点击本花即可开关机，默认开机。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 280" />
+	<LabelWidget Text="防护" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 330" />
+	<LabelWidget Text="不拾取花药台/符文台 1.5 格内的掉落物，避免干扰合成。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 356" />
+</CanvasWidget>

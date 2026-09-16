@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文材料·各符文配方速查" FontScale="0.9" Color="70, 40, 10" Size="300, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="初阶（520mn，出 2 枚）" FontScale="0.85" Color="80, 60, 36" Size="420, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="水：水桶(返空桶)+藤蔓+泥土+魔力钢锭　火：火把+火药+南瓜灯+泥土+魔力钢锭" FontScale="0.75" Color="110, 80, 40" Size="420, 44" CanvasWidget.Position="12, 88" />
+	<LabelWidget Text="地：花岗岩+煤炭+须弥花+泥土×2+魔力钢锭　风：地毯+羽毛+线+泥土+魔力钢锭" FontScale="0.75" Color="110, 80, 40" Size="420, 44" CanvasWidget.Position="12, 134" />
+	<LabelWidget Text="中阶（800mn，出 1 枚；魔力符文 580mn）" FontScale="0.85" Color="80, 60, 36" Size="420, 24" CanvasWidget.Position="12, 182" />
+	<LabelWidget Text="春：树苗×3+面包+水+火　夏：沙×2+石灰石+南瓜+地+风　秋：树叶×3+腐肉+火+风" FontScale="0.75" Color="110, 80, 40" Size="420, 62" CanvasWidget.Position="12, 208" />
+	<LabelWidget Text="冬：雪球×2+地毯+南瓜汤(返空桶)+水+地　魔力：魔力钻石+魔力钢锭×2" FontScale="0.75" Color="110, 80, 40" Size="420, 44" CanvasWidget.Position="12, 272" />
+	<LabelWidget Text="高阶（1200mn，出 1 枚；魔力钻石×2 + 中阶符文 + 初阶符文）" FontScale="0.85" Color="80, 60, 36" Size="420, 24" CanvasWidget.Position="12, 322" />
+	<LabelWidget Text="欲望：+夏+风　暴食：+冬+火　贪婪：+春+水　懒惰：+秋+风　暴怒：+秋+地　嫉妒：+冬+水　傲慢：+夏+火" FontScale="0.75" Color="110, 80, 40" Size="420, 62" CanvasWidget.Position="12, 348" />
+</CanvasWidget>

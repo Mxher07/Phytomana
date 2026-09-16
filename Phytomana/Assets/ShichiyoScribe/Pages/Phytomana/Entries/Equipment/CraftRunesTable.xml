@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文台·合成配方" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="RunesTableBlock" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="生息岩 ×1 + 魔力钻石 ×1" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="以生息岩为台座，以魔力钻石为引，在工作台上合成。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="魔力钻石：钻石在魔法池中注入 400mn 魔力凝成。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 254" />
+	<LabelWidget Text="生息岩：见「4.1 生息树材」条目。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 294" />
+</CanvasWidget>

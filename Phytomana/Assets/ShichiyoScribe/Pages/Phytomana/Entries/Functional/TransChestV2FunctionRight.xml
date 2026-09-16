@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="传输箱洋·运转细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="魔耗公式" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 62" />
+	<LabelWidget Text="单次运输耗魔 = 2 × 物品堆叠数量 × 花到目标的欧几里得距离（三维绝对距离）。运输距离无限制，但越远越费魔。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 90" />
+	<LabelWidget Text="时序" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 160" />
+	<LabelWidget Text="掉落物先升起一阵白烟，60 tick（3 秒）后瞬移到目标顶面。同一花每 0.25s 扫描一次范围内掉落物。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 188" />
+	<LabelWidget Text="注意事项" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 258" />
+	<LabelWidget Text="魔量不足时该物品本轮跳过，魔力恢复后重试；绑定目标设在工作范围内会导致物品反复往返、无意义烧魔，请避免。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 76" CanvasWidget.Position="12, 286" />
+</CanvasWidget>

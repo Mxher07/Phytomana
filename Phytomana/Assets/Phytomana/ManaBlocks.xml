@@ -19,4 +19,7 @@
   <Block Name="RunesTableBlock" MaxMana="2000" CanTransfer="true" StaffCheckable="true" />
   <Block Name="ChestTransFlower" MaxMana="30" CanTransfer="true" StaffCheckable="true" />
   <Block Name="JadedFlower" MaxMana="260" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="ClaySandFlower" MaxMana="368" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="AciFlower" MaxMana="360" CanTransfer="true" StaffCheckable="true" />
+  <Block Name="TransChestV2Flower" MaxMana="500" CanTransfer="true" StaffCheckable="true" />
 </PhytoManaBlocks>

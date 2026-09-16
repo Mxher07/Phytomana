@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="炼制小贴士" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="花瓣色号不可凑合：淡粉 ×2、绿 ×1、紫 ×2，一错即不成。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="两枚符文需在符文台分别炼制：水之符文走初阶 520mn，秋之符文走中阶 800mn，务必先备足魔力与材料。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 130" />
+	<LabelWidget Text="剧毒树丛不伤玩家，是守田驱兽的好手——但魔耗随区域内生物数增长，空旷之地最省魔。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 228" />
+</CanvasWidget>

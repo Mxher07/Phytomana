@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="黏土沙馨·运转细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="转化节奏" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 62" />
+	<LabelWidget Text="每 5 tick（0.25 秒）尝试转化 1 格最近的沙子，消耗 20mn；魔力不足时自动等待，不会空转。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 90" />
+	<LabelWidget Text="特效" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 160" />
+	<LabelWidget Text="转化时扬起沙尘：黄色火花（0.35f，存活 1.5s）从花根飞向沙块；0.25s 后淡灰色同款粒子（0.35f，1.5s）再飞回花根。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 186" />
+	<LabelWidget Text="落点" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 280" />
+	<LabelWidget Text="转化后的黏土以物品形式掉落在原沙块处，方便直接拾取运走。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 306" />
+</CanvasWidget>

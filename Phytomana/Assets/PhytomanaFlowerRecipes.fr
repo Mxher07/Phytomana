@@ -64,4 +64,25 @@
     <Ingredient Name="SumeruPetalBlock:26" Count="1" />
     <Ingredient Name="MediumRunesBlock:4" Count="1" />
   </Recipe>
+  <Recipe Result="ClaySandFlower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock:14" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:16" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:18" Count="1" />
+    <Ingredient Name="BasicRunesBlock:2" Count="1" />
+  </Recipe>
+  <Recipe Result="AciFlower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock:4" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:26" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:20" Count="2" />
+    <Ingredient Name="BasicRunesBlock:0" Count="1" />
+    <Ingredient Name="MediumRunesBlock:6" Count="1" />
+  </Recipe>
+  <Recipe Result="TransChestV2Flower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock:0" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:14" Count="2" />
+    <Ingredient Name="SumeruPetalBlock:18" Count="1" />
+    <Ingredient Name="BasicRunesBlock:0" Count="1" />
+    <Ingredient Name="ExpertRunesBlock:10" Count="1" />
+    <Ingredient Name="ChestTransFlower" Count="1" />
+  </Recipe>
 </FlowerRecipes>

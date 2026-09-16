@@ -18,6 +18,9 @@ namespace Phytomana {
         public const float DefaultManaRate = 7f / 1.7f;
         public const float DefaultMaxMana = 240f;
 
+        /// <summary>最终产能倍率：与配置速率相乘得到实际产魔（本花最终产能 ×0.45）。</summary>
+        public const float RateMultiplier = 0.45f;
+
         public SubsystemParticles m_subsystemParticles;
 
         public Random m_random = new();
@@ -40,7 +43,7 @@ namespace Phytomana {
             InitializeTimers();
         }
 
-        public override float GetProductionRate() => IsProducing ? PhytoConfig.Instance.WaterDonManaRate : 0f;
+        public override float GetProductionRate() => IsProducing ? PhytoConfig.Instance.WaterDonManaRate * RateMultiplier : 0f;
 
         public void InitializeTimers() {
             m_nextScanTime = TotalTime;
@@ -56,7 +59,7 @@ namespace Phytomana {
                     m_nextScanTime = time;
                 }
                 else {
-                    GenerateMana(PhytoConfig.Instance.WaterDonManaRate * DeltaTime);
+                    GenerateMana(PhytoConfig.Instance.WaterDonManaRate * RateMultiplier * DeltaTime);
                 }
             }
             else if (time >= m_nextScanTime) {

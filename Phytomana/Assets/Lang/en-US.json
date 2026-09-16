@@ -310,6 +310,18 @@
     "JadedFlower:0": {
       "DisplayName": "Jaded Flower",
       "Description": "Consumes mana to rapidly grow random-colored Sumeru flowers around it (staff bind-mode click toggles on/off, off by default)"
+    },
+    "ClaySandFlower:0": {
+      "DisplayName": "Clay Sand Flower",
+      "Description": "Consumes mana to turn nearby sand into clay (dropped as items). Staff bind-mode click toggles on/off, on by default"
+    },
+    "AciFlower:0": {
+      "DisplayName": "Aci Bush",
+      "Description": "Mana-fueled area poison flower: poisons creatures around it, non-lethal. Fed by mana pool or spreader link"
+    },
+    "TransChestV2Flower:0": {
+      "DisplayName": "Trans Chest Ocean",
+      "Description": "Teleports dropped items through walls to the staff-bound target block"
     }
   },
   "FlowerTableMessages": {
@@ -343,6 +355,7 @@
     "StartSelected": "Start point selected: ({0}, {1}, {2})",
     "StartCancelled": "Start point deselected",
     "BindSuccess": "Bound: {0},{1},{2} → {3},{4},{5}",
+    "TransChestV2BindStart": "Trans Chest Ocean start selected: ({0}, {1}, {2}), now click the target block to bind",
     "ErrTooFar": "Bind failed: too far away",
     "ErrWrongDirection": "Bind failed: target is not on a straight axis",
     "ErrNoManaCapability": "Bind failed: target has no mana capacity"
@@ -378,5 +391,17 @@
   "JadedMessages": {
     "JadedPowerOn": "Jaded Flower turned on",
     "JadedPowerOff": "Jaded Flower turned off"
+  },
+  "ClaySandMessages": {
+    "ClaySandPowerOn": "Clay Sand Flower turned on",
+    "ClaySandPowerOff": "Clay Sand Flower turned off"
+  },
+  "TransChestV2Messages": {
+    "BindSet": "Trans Chest Ocean bound to target block",
+    "NoTarget": "Trans Chest Ocean has no bound target block",
+    "TargetFormat": "Trans Chest Ocean target: ({0}, {1}, {2})"
+  },
+  "AciMessages": {
+    "Status": "Aci Bush marking: {0} creatures"
   }
 }

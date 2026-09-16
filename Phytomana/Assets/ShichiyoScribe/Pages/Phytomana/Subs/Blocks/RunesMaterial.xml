@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="4.4 符文材料" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="BasicRunesBlock,BasicRunesBlock:1,BasicRunesBlock:2,BasicRunesBlock:3;MediumRunesBlock:4,MediumRunesBlock:5,MediumRunesBlock:6,MediumRunesBlock:7;MediumRunesBlock:8,ExpertRunesBlock:9,ExpertRunesBlock:10,ExpertRunesBlock:11;ExpertRunesBlock:12,ExpertRunesBlock:13,ExpertRunesBlock:14,ExpertRunesBlock:15" IconSize="40" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="须弥符文分三阶十六种：初阶（水/火/地/风）走基础材料；中阶（春夏秋冬与魔力）以初阶为引；高阶（七宗罪）需魔力钻石。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 80" CanvasWidget.Position="12, 230" />
+	<LabelWidget Text="符文在符文台炼制（见 1.5），是各花药台配方里的「钥匙」材料。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 320" />
+</CanvasWidget>

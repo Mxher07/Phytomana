@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文一览" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="符文是花药台配方中的「钥匙」材料，需在符文台炼制。共三阶 16 种：初阶 4 枚、中阶 5 枚、高阶 7 枚。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="初阶符文（520mn，每次炼 2 枚）" FontScale="0.9" Color="70, 40, 10" Size="420, 24" CanvasWidget.Position="12, 132" />
+	<LabelWidget Text="水之符文　基础材料：水桶（返还空桶）+ 藤蔓 + 泥土 + 魔力钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 158" />
+	<LabelWidget Text="火之符文　基础材料：火把 + 火药 + 南瓜灯 + 泥土 + 魔力钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="地之符文　基础材料：花岗岩 + 煤炭 + 须弥花 + 泥土 ×2 + 魔力钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 210" />
+	<LabelWidget Text="风之符文　基础材料：地毯 + 羽毛 + 线 + 泥土 + 魔力钢锭" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 236" />
+</CanvasWidget>

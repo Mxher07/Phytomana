@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="黏土沙馨·合成配方" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="ClaySandFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="须弥花瓣 × 3：淡灰 ×1、灰 ×1、青 ×1，加一枚地之符文" FontScale="0.8" Color="80, 60, 36" Size="420, 26" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="沙色与尘色交织的一捧灰青花瓣，佐以地之符文——砂砾自此学会了变成泥。摆入花药台，注入清水，投下种子即得黏土沙馨一株。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="地之符文在符文台以「花岗岩 + 煤炭 + 须弥花 + 泥土 ×2 + 魔力钢锭」炼制（详见符文台条目）。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 264" />
+</CanvasWidget>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="传输箱洋·功能说明" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="功能" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="无视方块，瞬间把掉落物形式的物品从 5×5×5 工作范围搬运到法杖绑定的目标方块之上。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 88" />
+	<LabelWidget Text="查看绑定" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 158" />
+	<LabelWidget Text="须弥法杖「工作模式」指向本花：显示绑定目标坐标，并放出一枚 1.5f 大小、存活 2s 的白色飞行粒子飞向目标；未绑定时只显示消息、不产生粒子。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 76" CanvasWidget.Position="12, 184" />
+	<LabelWidget Text="取魔方式" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 270" />
+	<LabelWidget Text="范围搜寻魔力池；发射器亦可主动供魔（500mn 缓存）。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 296" />
+</CanvasWidget>

@@ -2,7 +2,7 @@
 <CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
 	<LabelWidget Text="夜影花·产能方式" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
 	<LabelWidget Text="① 每当天空明度降至 0.35 以下，它便认定「夜已降临」，开始汲取暗夜的魔力。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
-	<LabelWidget Text="② 以每秒 1.9 mn 的速率生产，直到天色转明或填满储能。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
+	<LabelWidget Text="② 以每秒 0.32 mn 的速率生产（最终产能 ×0.35），直到天色转明或填满储能。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
 	<LabelWidget Text="③ 白日到来，它便放慢脚步，静候下一个夜幕。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
 	<LabelWidget Text="④ 相邻无发射器收魔时，魔力以每秒 5 mn 流失。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
 	<LabelWidget Text="产量曲线" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 286" />

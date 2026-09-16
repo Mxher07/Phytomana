@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文炼制补充说明" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="· 作为原料的符文（初阶/中阶/高阶）在生存模式下不会被消耗，炼制成功后随成品一起返还，可循环使用。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="· 创造模式下符文原料照常消耗。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 30" CanvasWidget.Position="12, 132" />
+	<LabelWidget Text="· 带返还物的原料（如水桶 → 空桶）会在炼制时弹出返还方块。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 30" CanvasWidget.Position="12, 172" />
+	<LabelWidget Text="· 魔力钻石是大部分高阶符文的共同基础材料：钻石在魔法池中注入 400mn 魔力凝成。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 222" />
+	<LabelWidget Text="· 初阶符文一次炼制出 2 枚，可摊薄魔力成本；中阶与高阶各出 1 枚。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 282" />
+</CanvasWidget>

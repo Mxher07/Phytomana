@@ -12,6 +12,12 @@ namespace Phytomana {
     public class TileThermalilyFlower : TileGeneratingFlower {
         public const float DefaultManaPerMagma = 250f;
         public const float DefaultMaxMana = 1200f;
+
+        /// <summary>吞噬「完整岩浆」（桶可装、level=0）时的最终产能倍率：正常产能 ×1.5。</summary>
+        public const float FullMagmaMultiplier = 1.5f;
+
+        /// <summary>吞噬非完整岩浆（流动/部分）时的最终产能倍率：正常产能 ×0.15（不享受 ×1.5）。</summary>
+        public const float PartialMagmaMultiplier = 0.15f;
         public const double ScanInterval = 1.5;
         public const double AbsorbVisualTime = 2.0;
         public const double AbsorbParticleInterval = 0.5;
@@ -37,11 +43,19 @@ namespace Phytomana {
 
         public double m_nextAbsorbParticleTime;
 
+        /// <summary>最近一次吞噬获得的魔力（法杖按平均循环周期展示产能用；瞬态不存档）。</summary>
+        public float m_lastAbsorbMana;
+
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("ThermalilyFlower", PhytoConfig.Instance.ThermalilyMaxMana);
 
         public TileThermalilyFlower(Point3 position) : base(position) { }
 
-        public override float GetProductionRate() => 0f;
+        /// <summary>产能速率 = 单次吞噬产出 / 吞噬循环周期（扫描 1.5s + 凝固表演 2.0s），供法杖展示。</summary>
+        public override float GetProductionRate() {
+            return State == FlowerState.Working && m_lastAbsorbMana > 0f
+                ? m_lastAbsorbMana / (float)(ScanInterval + AbsorbVisualTime)
+                : 0f;
+        }
 
         public override void FlowerTick() {
             ResolveSubsystems();
@@ -70,13 +84,20 @@ namespace Phytomana {
         public void TrySwallowMagma(double time) {
             foreach (Point3 offset in NeighborOffsets) {
                 Point3 cell = new(Position.X + offset.X, Position.Y + offset.Y, Position.Z + offset.Z);
-                int contents = Scheduler.m_subsystemTerrain.Terrain.GetCellContents(cell);
-                if (contents != m_magmaIndex) {
+                int cellValue = Scheduler.m_subsystemTerrain.Terrain.GetCellValue(cell.X, cell.Y, cell.Z);
+                if (Terrain.ExtractContents(cellValue) != m_magmaIndex) {
                     continue;
                 }
+                // 「桶可装的完整岩浆」（level=0）享受正常产能 ×1.5；
+                // 流动的非完整岩浆产能 ×0.15，且不享受 ×1.5 —— 防止灌无尽薄岩浆白嫖。
+                float multiplier = FluidBlock.GetLevel(Terrain.ExtractData(cellValue)) == 0
+                    ? FullMagmaMultiplier
+                    : PartialMagmaMultiplier;
+                float absorb = PhytoConfig.Instance.ThermalilyManaPerMagma * multiplier;
                 // 岩浆凝固为石头，花朵吞噬产魔
                 Scheduler.m_subsystemTerrain.ChangeCell(cell.X, cell.Y, cell.Z, Terrain.MakeBlockValue(m_stoneIndex));
-                GenerateMana(PhytoConfig.Instance.ThermalilyManaPerMagma);
+                m_lastAbsorbMana = absorb;
+                GenerateMana(absorb);
                 m_timer = time + AbsorbVisualTime;
                 m_nextAbsorbParticleTime = time;
                 SetState(FlowerState.Working);
