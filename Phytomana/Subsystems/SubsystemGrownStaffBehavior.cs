@@ -266,27 +266,22 @@ namespace Game {
                 claySand.TogglePower(player);
                 return true;
             }
-            // 绑定模式下：传输箱洋绑定目标方块
-            if (contents == m_transChestV2Index
-                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedV2)
-                && clickedV2 is TileTransChestV2Flower transChestV2) {
-                if (!state.BindStart.HasValue) {
-                    // 直接以点击目标为起点进入两步绑定：先记下本花，再点目标方块
-                    state.BindStart = point;
-                    ShowMessage(player, "TransChestV2BindStart", Color.White, true, point.X, point.Y, point.Z);
-                    return true;
-                }
-                Point3 target = state.BindStart.Value;
+            // 绑定模式下：传输箱洋绑定目标方块（两步：先点本花记起点，再点目标方块；
+            // 目标可以是任意方块，故须以「起点是传输箱洋」判定，而非「当前点击的是传输箱洋」）
+            if (state.BindStart.HasValue
+                && m_flowerScheduler.TryGetFlower(state.BindStart.Value, out TilePhytoFlower v2StartFlower)
+                && v2StartFlower is TileTransChestV2Flower transChestV2) {
                 state.BindStart = null;
-                // 校验目标与花之间须为六向直线（与法杖绑定链路约定一致）
-                Point3 v2Delta = new(point.X - target.X, point.Y - target.Y, point.Z - target.Z);
-                int v2AxisCount = (v2Delta.X != 0 ? 1 : 0) + (v2Delta.Y != 0 ? 1 : 0) + (v2Delta.Z != 0 ? 1 : 0);
-                if (v2AxisCount != 1) {
-                    ShowMessage(player, "ErrWrongDirection", Color.Red, true);
-                    state.BindStart = target;
-                    return true;
-                }
                 transChestV2.SetBindTarget(point, player);
+                return true;
+            }
+            if (!state.BindStart.HasValue
+                && contents == m_transChestV2Index
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedV2)
+                && clickedV2 is TileTransChestV2Flower transChestV2Start) {
+                // 第一步：以花为起点
+                state.BindStart = point;
+                ShowMessage(player, "TransChestV2BindStart", Color.White, true, point.X, point.Y, point.Z);
                 return true;
             }
             // 花朵默认不可绑定；但具备魔力容量的功能花（如荆棘之花）允许作为链路目标
