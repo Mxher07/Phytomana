@@ -142,21 +142,21 @@ namespace Phytomana {
             if (contents == m_manaPickaxeIndex
                 || contents == m_manaMacheteIndex
                 || contents == m_manaAxeIndex) {
-                return 52;
+                return (int)PhytoConfig.Instance.TabletRepairCostTool;
             }
             if (contents == m_clothingIndex) {
                 // 魔力钢护甲：按服饰索引区分（900 头盔 / 901 胸甲 / 902 护腿 / 903 靴子）
                 int clothingIndex = ClothingBlock.GetClothingIndex(data);
                 if (clothingIndex == 901 || clothingIndex == 902) {
-                    return 45;
+                    return (int)PhytoConfig.Instance.TabletRepairCostArmor;
                 }
                 if (clothingIndex == 900 || clothingIndex == 903) {
-                    return 35;
+                    return (int)PhytoConfig.Instance.TabletRepairCostOther;
                 }
                 return 0;
             }
             if (contents == m_manaShovelIndex) {
-                return 35;
+                return (int)PhytoConfig.Instance.TabletRepairCostOther;
             }
             return 0;
         }

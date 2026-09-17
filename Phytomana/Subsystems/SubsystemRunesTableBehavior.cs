@@ -7,7 +7,6 @@ using Game;
 using GameEntitySystem;
 using Phytomana.Api;
 using TemplatesDatabase;
-
 namespace Phytomana {
     /// <summary>
     /// 符文台节点：逐位置状态（已放置材料 + 魔力）。
@@ -35,7 +34,7 @@ namespace Phytomana {
     /// 右键即完成炼制。符文类原料在生存模式下不消耗，随成品一起返还；
     /// 创造模式下照常消耗。配方由外部 .rr 文件声明。
     /// </summary>
-    public class SubsystemRunesTableBehavior : SubsystemBlockBehavior, IUpdateable {
+    public class SubsystemRunesTableBehavior : SubsystemBlockBehavior, IUpdateable, IStaffInteractionHandler {
         /// <summary>就绪指示粒子的播报间隔（秒）。</summary>
         public const float ReadyIndicatorInterval = 2.5f;
 
@@ -67,6 +66,8 @@ namespace Phytomana {
             m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
             m_network = Project.FindSubsystem<ManaNetworkManager>(true);
             m_grownStoneIndex = BlocksManager.GetBlockIndex<GrownStoneBlock>();
+            // 订阅法杖交互事件：法杖行为子系统不再直接依赖本子系统（依赖反转，经事件总线解耦）
+            PhytoEventBus.Subscribe<StaffInteractionEvent>(TryHandleStaffInteraction);
             // 存档格式：「x,y,z,魔力,物品值1,数量1,物品值2,数量2,...;」
             string text = valuesDictionary.GetValue("RunesTables", string.Empty);
             foreach (string entry in text.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
@@ -401,6 +402,26 @@ namespace Phytomana {
         public void ShowMessage(ComponentPlayer player, string key) {
             player?.ComponentGui.DisplaySmallMessage(
                 LanguageControl.Get("RunesTableMessages", key), Color.White, false, false);
+        }
+
+        public override void Dispose() {
+            base.Dispose();
+            PhytoEventBus.Unsubscribe<StaffInteractionEvent>(TryHandleStaffInteraction);
+        }
+
+        /// <summary>
+        /// 法杖交互事件处理：法杖（工作模式）点中符文台时触发炼制。
+        /// 经事件总线路由，法杖行为子系统无需直接依赖本子系统。
+        /// </summary>
+        public void TryHandleStaffInteraction(StaffInteractionEvent evt) {
+            // 只有点中符文台时才消费该事件（HandledBlocks 已限定了路由，这里做坐标兜底）
+            if (Terrain.ExtractContents(
+                    SubsystemTerrain.Terrain.GetCellValue(evt.Point.X, evt.Point.Y, evt.Point.Z))
+                != BlocksManager.GetBlockIndex<RunesTableBlock>()) {
+                return;
+            }
+            evt.Handled = true;
+            TryCraftByStaff(evt.Player, evt.Point);
         }
 
         public void ShowMessage(ComponentPlayer player, string key, string arg0, string arg1) {

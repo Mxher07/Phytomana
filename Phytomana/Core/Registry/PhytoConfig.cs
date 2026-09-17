@@ -88,6 +88,35 @@ namespace Phytomana {
         /// <summary>符文台魔力上限（需容纳最高 1200mn 的炼制消耗）。</summary>
         public float RunesTableMaxMana = 2000f;
 
+        // ===== 魔力发射器 =====
+
+        /// <summary>发射器魔力上限（此前硬编码在 SubsystemMana）。</summary>
+        public float SpreaderMaxMana = 1200f;
+
+        // ===== 魔力石板 =====
+
+        /// <summary>魔力石板空板丢入魔法池每 1s 吸走的魔量（此前硬编码 500）。</summary>
+        public float TabletPoolDrainPerSecond = 500f;
+
+        /// <summary>魔力石板充能器：修复一件魔力钢工具/装备 1 点耐久的耗魔（镐/弯刀/斧）。</summary>
+        public float TabletRepairCostTool = 52f;
+
+        /// <summary>魔力石板充能器：修复护甲（胸甲/护腿）1 点耐久的耗魔。</summary>
+        public float TabletRepairCostArmor = 45f;
+
+        /// <summary>魔力石板充能器：修复其余（铲/头盔/靴子）1 点耐久的耗魔。</summary>
+        public float TabletRepairCostOther = 35f;
+
+        // ===== 世界生成（须弥花群） =====
+
+        /// <summary>每区块生成须弥小散群的概率（百分比，默认 12）。</summary>
+        public int SumeruSmallGroupChancePercent = 12;
+
+        /// <summary>大花群数量分布：roll &lt; 该值 → 0 群，&lt; 下一阈值 → 1 群，否则 2 群。</summary>
+        public int SumeruBigPatchZeroRoll = 30;
+
+        public int SumeruBigPatchOneRoll = 75;
+
         public void Save(XElement element) {
             element.SetAttributeValue("TransferInterval", Format(TransferInterval));
             element.SetAttributeValue("FlowerTickInterval", Format(FlowerTickInterval));
@@ -109,6 +138,14 @@ namespace Phytomana {
             element.SetAttributeValue("ThornyRosePoolDrawAmount", Format(ThornyRosePoolDrawAmount));
             element.SetAttributeValue("ThornyRosePoolSearchRange", Format(ThornyRosePoolSearchRange));
             element.SetAttributeValue("RunesTableMaxMana", Format(RunesTableMaxMana));
+            element.SetAttributeValue("SpreaderMaxMana", Format(SpreaderMaxMana));
+            element.SetAttributeValue("TabletPoolDrainPerSecond", Format(TabletPoolDrainPerSecond));
+            element.SetAttributeValue("TabletRepairCostTool", Format(TabletRepairCostTool));
+            element.SetAttributeValue("TabletRepairCostArmor", Format(TabletRepairCostArmor));
+            element.SetAttributeValue("TabletRepairCostOther", Format(TabletRepairCostOther));
+            element.SetAttributeValue("SumeruSmallGroupChancePercent", SumeruSmallGroupChancePercent.ToString(CultureInfo.InvariantCulture));
+            element.SetAttributeValue("SumeruBigPatchZeroRoll", SumeruBigPatchZeroRoll.ToString(CultureInfo.InvariantCulture));
+            element.SetAttributeValue("SumeruBigPatchOneRoll", SumeruBigPatchOneRoll.ToString(CultureInfo.InvariantCulture));
         }
 
         public void Load(XElement element) {
@@ -135,6 +172,14 @@ namespace Phytomana {
             ThornyRosePoolDrawAmount = Read(element, "ThornyRosePoolDrawAmount", ThornyRosePoolDrawAmount);
             ThornyRosePoolSearchRange = Read(element, "ThornyRosePoolSearchRange", ThornyRosePoolSearchRange);
             RunesTableMaxMana = Read(element, "RunesTableMaxMana", RunesTableMaxMana);
+            SpreaderMaxMana = Read(element, "SpreaderMaxMana", SpreaderMaxMana);
+            TabletPoolDrainPerSecond = Read(element, "TabletPoolDrainPerSecond", TabletPoolDrainPerSecond);
+            TabletRepairCostTool = Read(element, "TabletRepairCostTool", TabletRepairCostTool);
+            TabletRepairCostArmor = Read(element, "TabletRepairCostArmor", TabletRepairCostArmor);
+            TabletRepairCostOther = Read(element, "TabletRepairCostOther", TabletRepairCostOther);
+            SumeruSmallGroupChancePercent = ReadInt(element, "SumeruSmallGroupChancePercent", SumeruSmallGroupChancePercent);
+            SumeruBigPatchZeroRoll = ReadInt(element, "SumeruBigPatchZeroRoll", SumeruBigPatchZeroRoll);
+            SumeruBigPatchOneRoll = ReadInt(element, "SumeruBigPatchOneRoll", SumeruBigPatchOneRoll);
         }
 
         public static string Format(float value) => value.ToString(CultureInfo.InvariantCulture);
@@ -142,6 +187,14 @@ namespace Phytomana {
         public static float Read(XElement element, string name, float defaultValue) {
             string text = (string)element.Attribute(name);
             return float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value) && value >= 0f
+                ? value
+                : defaultValue;
+        }
+
+        /// <summary>读取非负整数配置（区别于 Read 的正整数校验，允许 0，供世界生成阈值使用）。</summary>
+        public static int ReadInt(XElement element, string name, int defaultValue) {
+            string text = (string)element.Attribute(name);
+            return int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out int value) && value >= 0
                 ? value
                 : defaultValue;
         }

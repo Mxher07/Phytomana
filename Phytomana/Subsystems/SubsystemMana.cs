@@ -67,7 +67,7 @@ namespace Game {
             m_manaTabletIndex = BlocksManager.GetBlockIndex<ManaTabletBlock>();
             m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
             m_maxManaAmounts[m_sunPowerFlowerIndex] = PhytoConfig.Instance.SunPowerMaxMana;
-            m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
+            m_maxManaAmounts[m_manaSpreaderIndex] = PhytoConfig.Instance.SpreaderMaxMana;
             m_maxManaAmounts[m_waterDonFlowerIndex] = PhytoConfig.Instance.WaterDonMaxMana;
             m_maxManaAmounts[m_manaPoolIndex] = ManaPool.MaxMana;
             ManaBlockRegistry.ApplyMaxManaOverrides(m_maxManaAmounts);
@@ -275,7 +275,9 @@ namespace Game {
                     if (mana >= ManaTabletBlock.MaxMana) {
                         continue;
                     }
-                    int take = (int)MathF.Min(500f, MathF.Min(receiver.ManaStorage.Current, ManaTabletBlock.MaxMana - mana));
+                    int take = (int)MathF.Min(
+                        PhytoConfig.Instance.TabletPoolDrainPerSecond,
+                        MathF.Min(receiver.ManaStorage.Current, ManaTabletBlock.MaxMana - mana));
                     if (take <= 0) {
                         continue;
                     }
@@ -348,6 +350,37 @@ namespace Game {
                     DecrementIncomingLink(link.To);
                 }
             }
+        }
+
+        /// <summary>
+        /// 推进法杖链路魔力传输（链路本质是网络边，规则归属魔力层而非行为子系统）：
+        /// 遍历链路，按周期 1s/160mn 从发射器搬运到下游存储（须满足双方容量），
+        /// 返回本轮实际发生传输的「源→目标」坐标对，供行为层播粒子表现。
+        /// </summary>
+        public List<(Point3, Point3)> AdvanceLinkTransfers(float dt) {
+            List<(Point3, Point3)> transferred = [];
+            foreach (ManaLink link in m_links) {
+                link.TransferAccumulator += dt;
+                while (link.TransferAccumulator >= StaffLinkTransferPeriod) {
+                    link.TransferAccumulator -= StaffLinkTransferPeriod;
+                    Point3 from = link.From;
+                    Point3 to = link.To;
+                    if (m_subsystemTerrain.Terrain.GetCellContents(from) != m_manaSpreaderIndex
+                        || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
+                        continue;
+                    }
+                    int toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
+                    float maxTarget = GetMaxManaAmount(toContents);
+                    if (GetManaAmount(from) >= StaffLinkTransferAmount
+                        && maxTarget - GetManaAmount(to) >= StaffLinkTransferAmount) {
+                        RemoveMana(from, StaffLinkTransferAmount);
+                        AddMana(to, StaffLinkTransferAmount);
+                        transferred.Add((from, to));
+                    }
+                }
+            }
+            PruneLinks();
+            return transferred;
         }
 
         public float GetOutgoingUsage(Point3 from) {

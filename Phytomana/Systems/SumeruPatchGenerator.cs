@@ -20,12 +20,12 @@ namespace Phytomana {
         /// <summary>大花群的区域尺寸：2×2 区块（32×32 格）。</summary>
         public const int RegionCells = 32;
 
-        /// <summary>每区域大花群数量分布：roll &lt; 30 → 0 群，&lt; 75 → 1 群，否则 2 群。</summary>
-        public const int BigPatchZeroRoll = 30;
-        public const int BigPatchOneRoll = 75;
+        /// <summary>每区块生成小散群的概率（百分比），可经 PhytoConfig 调整。</summary>
+        public static int SmallGroupChancePercent => PhytoConfig.Instance.SumeruSmallGroupChancePercent;
 
-        /// <summary>每个区块生成小散群的概率（百分比）。</summary>
-        public const int SmallGroupChancePercent = 12;
+        /// <summary>大花群数量分布：roll &lt; 该值 → 0 群，&lt; 下一阈值 → 1 群，否则 2 群（可经 PhytoConfig 调整）。</summary>
+        public static int BigPatchZeroRoll => PhytoConfig.Instance.SumeruBigPatchZeroRoll;
+        public static int BigPatchOneRoll => PhytoConfig.Instance.SumeruBigPatchOneRoll;
 
         /// <summary>花群中心距区域/区块边缘的余量，保证花丛完整落在所属范围内不跨区。</summary>
         public const int PatchMargin = 3;

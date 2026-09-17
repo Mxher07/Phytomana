@@ -19,12 +19,10 @@ namespace Game {
         }
 
         private Random m_random = new Random();
-        private bool m_isMultiColor;
 
         public ManaParticleSystem(Vector3 position, float size, float duration, Color color, Vector3? targetPosition = null, int count = 2) 
             : base(count) {
             InitializeParticles(position, size, duration, new Color[] { color }, targetPosition);
-            m_isMultiColor = false;
         }
 
         public ManaParticleSystem(Vector3 position, float size, float duration, Color[] colors, Vector3? targetPosition = null) 
@@ -33,7 +31,6 @@ namespace Game {
                 throw new ArgumentException("Colors are null!");
             }
             InitializeParticles(position, size, duration, colors, targetPosition);
-            m_isMultiColor = true;
         }
 
         private void InitializeParticles(Vector3 position, float size, float duration, Color[] colors, Vector3? targetPosition) {
@@ -74,13 +71,11 @@ namespace Game {
         public override bool Simulate(float dt) {
             dt = Math.Clamp(dt, 0f, 0.1f);
             float num = MathF.Pow(0.1f, dt);
-            bool hasActiveParticles = false;
 
             for (int i = 0; i < Particles.Length; i++) {
                 Particle particle = Particles[i];
                 if (!particle.IsActive) continue;
 
-                hasActiveParticles = true;
                 particle.TimeToLive -= dt;
 
                 if (particle.TimeToLive <= 0f) {

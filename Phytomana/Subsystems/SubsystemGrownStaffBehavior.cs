@@ -63,8 +63,6 @@ namespace Game {
 
         public int m_transChestV2Index;
 
-        public SubsystemRunesTableBehavior m_subsystemRunesTable;
-
         public override void Load(ValuesDictionary valuesDictionary) {
             base.Load(valuesDictionary);
             m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
@@ -84,7 +82,6 @@ namespace Game {
             m_claySandIndex = BlocksManager.GetBlockIndex<ClaySandFlower>();
             m_aciIndex = BlocksManager.GetBlockIndex<AciFlower>();
             m_transChestV2Index = BlocksManager.GetBlockIndex<TransChestV2Flower>();
-            m_subsystemRunesTable = Project.FindSubsystem<SubsystemRunesTableBehavior>(false);
         }
 
         public void Update(float dt) {
@@ -133,28 +130,15 @@ namespace Game {
             }
         }
 
+        /// <summary>
+        /// 链路魔力搬运规则归属 <see cref="SubsystemMana"/>（网络层）；
+        /// 法杖行为只负责把「本轮实际传输的链路」转成粒子表现。
+        /// </summary>
         public void UpdateLinkTransfers(float dt) {
-            foreach (ManaLink link in m_subsystemMana.m_links) {
-                link.TransferAccumulator += dt;
-                while (link.TransferAccumulator >= SubsystemMana.StaffLinkTransferPeriod) {
-                    link.TransferAccumulator -= SubsystemMana.StaffLinkTransferPeriod;
-                    Point3 from = link.From;
-                    Point3 to = link.To;
-                    if (m_subsystemTerrain.Terrain.GetCellContents(from) != m_spreaderIndex
-                        || !m_subsystemMana.IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
-                        continue;
-                    }
-                    int toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
-                    float maxTarget = m_subsystemMana.GetMaxManaAmount(toContents);
-                    if (m_subsystemMana.GetManaAmount(from) >= SubsystemMana.StaffLinkTransferAmount
-                        && maxTarget - m_subsystemMana.GetManaAmount(to) >= SubsystemMana.StaffLinkTransferAmount) {
-                        m_subsystemMana.RemoveMana(from, SubsystemMana.StaffLinkTransferAmount);
-                        m_subsystemMana.AddMana(to, SubsystemMana.StaffLinkTransferAmount);
-                        QueueTransferParticles(from, to);
-                    }
-                }
+            List<(Point3, Point3)> transferred = m_subsystemMana.AdvanceLinkTransfers(dt);
+            for (int i = 0; i < transferred.Count; i++) {
+                QueueTransferParticles(transferred[i].Item1, transferred[i].Item2);
             }
-            m_subsystemMana.PruneLinks();
         }
 
         public void UpdatePendingParticles(double time) {
@@ -216,9 +200,14 @@ namespace Game {
             if (mode == 1) {
                 return HandleBindingClick(player, state, point, contents);
             }
-            // 符文台：工作模式右键触发炼制（材料齐备 + 生息岩引子 + 魔力）
-            if (contents == m_runesTableIndex && m_subsystemRunesTable != null) {
-                return m_subsystemRunesTable.TryCraftByStaff(player, point);
+            // 法杖工作模式点中可交互方块：经事件总线路由给订阅方（如符文台），
+            // 法杖不再直接依赖具体功能方块子系统（依赖反转）。
+            if (contents == m_runesTableIndex) {
+                StaffInteractionEvent evt = new(point, player);
+                PhytoEventBus.Fire(evt);
+                if (evt.Handled) {
+                    return true;
+                }
             }
             // 传输箱洋：工作模式指向本花时显示绑定目标并放白色飞行粒子（无绑定则只提示消息）
             if (contents == m_transChestV2Index

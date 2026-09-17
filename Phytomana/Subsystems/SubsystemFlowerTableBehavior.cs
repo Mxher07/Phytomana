@@ -27,9 +27,6 @@ namespace Phytomana {
         /// <summary>雨天集满一池水所需的时间（秒）。</summary>
         public const float RainFillSeconds = 30f;
 
-        /// <summary>集满提示的广播半径（格）。</summary>
-        public const float RainMessageRadius = 10f;
-
         public Dictionary<Point3, FlowerTable> m_tables = [];
 
         public SubsystemPickables m_subsystemPickables;
@@ -201,13 +198,7 @@ namespace Phytomana {
                 SpawnSplashParticles(table.Position);
                 m_subsystemAudio.PlaySound("Audio/Splashes", 1f, 0f, 0f, 0f);
                 RefreshCell(table.Position);
-                NotifyRainFilled(table);
             }
-        }
-
-        /// <summary>集满雨水时对附近玩家弹出提示。</summary>
-        public void NotifyRainFilled(FlowerTable table) {
-            
         }
 
         /// <summary>扫描花药台所在格（含台面）的掉落物：原料被吸收，种子触发合成。</summary>
@@ -219,7 +210,7 @@ namespace Phytomana {
                 if (pickable.ToRemove) {
                     continue;
                 }
-                if (!IsPickableInCell(pickable, table.Position)) {
+                if (!TilePhytoFlower.IsPickableInCell(pickable, table.Position)) {
                     continue;
                 }
                 int value = pickable.Value;
@@ -528,15 +519,8 @@ namespace Phytomana {
             }
         }
 
-        public bool IsPickableInCell(Pickable pickable, Point3 cell) {
-            Vector3 position = pickable.Position;
-            return position.X >= cell.X
-                && position.X < cell.X + 1f
-                && position.Z >= cell.Z
-                && position.Z < cell.Z + 1f
-                && position.Y >= cell.Y - 0.5f
-                && position.Y < cell.Y + 1.5f;
-        }
+        public bool IsPickableInCell(Pickable pickable, Point3 cell) =>
+            TilePhytoFlower.IsPickableInCell(pickable, cell);
 
         static float ParseFloat(string text) {
             return float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value) ? value : 0f;
