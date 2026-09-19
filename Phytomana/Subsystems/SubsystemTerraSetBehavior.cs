@@ -223,8 +223,9 @@ namespace Game {
         // ===== 潜行切换破坏者档位 =====
 
         /// <summary>
-        /// 玩家手持泰拉破坏者潜行时：C~SS 逐档切换激活档位（D 无激活态）。
+        /// 玩家手持泰拉破坏者潜行双击挖掘时：C~SS 逐档切换激活档位（D 无激活态）。
         /// 激活需存魔达标（C 380 / B 3800 / A 38000 / S 380000 / SS 3800000）。
+        /// 切换经 <see cref="SubsystemTerraToolBehavior.PersistBreakerState"/> 写回工具 data，随存档保存。
         /// </summary>
         public void ToggleBreakerLevel(ComponentPlayer player) {
             ComponentMiner miner = player.ComponentMiner;
@@ -234,10 +235,11 @@ namespace Game {
             if (Terrain.ExtractContents(miner.ActiveBlockValue) != m_terraBreakerIndex) {
                 return;
             }
-            SubsystemTerraToolBehavior.BreakerState state = m_terraToolBehavior?.GetBreakerState(miner);
-            if (state == null) {
+            SubsystemTerraToolBehavior toolBehavior = m_terraToolBehavior;
+            if (toolBehavior == null) {
                 return;
             }
+            SubsystemTerraToolBehavior.BreakerState state = toolBehavior.GetBreakerState(miner);
             int target = state.ActiveLevel + 1;
             if (target > 5) {
                 target = 0; // 回到 D（无激活）
@@ -247,6 +249,7 @@ namespace Game {
                 return; // 魔力不足无法激活该档
             }
             state.ActiveLevel = target;
+            toolBehavior.PersistBreakerState(miner, state);
         }
 
         /// <summary>各激活档位所需存魔（D 无需求，C..SS 见 PhytoConfig）。</summary>

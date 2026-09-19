@@ -35,11 +35,11 @@ namespace Phytomana {
         public SubsystemRunesTableBehavior m_subsystemRunesTables;
 
         /// <summary>开关机状态（存档保存，默认开机）。</summary>
-        public new bool m_powered = true;
+        public TileChestTransFlower(Point3 position) : base(position) {
+            m_powered = true;
+        }
 
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("ChestTransFlower", DefaultMaxMana);
-
-        public TileChestTransFlower(Point3 position) : base(position) { }
 
         public override string PoweredMessageKey => "ChestTransMessages";
 

@@ -197,6 +197,18 @@ namespace Game {
             DecrementIncomingLink(to);
         }
 
+        /// <summary>剔除以 from 为源的所有链路（发射器被破坏时调用，目标侧入链计数同步递减）。</summary>
+        public void RemoveLinksFrom(Point3 from) {
+            for (int i = m_links.Count - 1; i >= 0; i--) {
+                if (m_links[i].From != from) {
+                    continue;
+                }
+                Point3 to = m_links[i].To;
+                m_links.RemoveAt(i);
+                DecrementIncomingLink(to);
+            }
+        }
+
         /// <summary>目标坐标是否被至少一条发射器链路指向（O(1)，供功能花判定是否被绑链供魔）。</summary>
         public bool HasIncomingLink(Point3 target) => m_incomingLinks.GetValueOrDefault(target) > 0;
 

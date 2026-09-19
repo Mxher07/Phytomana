@@ -45,9 +45,9 @@ namespace Phytomana {
         /// </summary>
         public float KillThreshold => PhytoConfig.Instance.ThornyRoseKillThreshold;
 
-        /// <summary>开关机状态（默认开机，存档保存）。</summary>
-        public new bool m_powered = PhytoConfig.Instance.ThornyRoseDefaultPowered;
-
+        public TileThornyRose(Point3 position) : base(position) {
+            m_powered = PhytoConfig.Instance.ThornyRoseDefaultPowered;
+        }
         public override string PoweredMessageKey => "ThornyRoseMessages";
 
         public override string PoweredOnKey => "ThornyRosePowerOn";
@@ -65,8 +65,6 @@ namespace Phytomana {
         }
 
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("ThornyRoseFlower", PhytoConfig.Instance.ThornyRoseMaxMana);
-
-        public TileThornyRose(Point3 position) : base(position) { }
 
         public override void OnPlaced() {
             base.OnPlaced();

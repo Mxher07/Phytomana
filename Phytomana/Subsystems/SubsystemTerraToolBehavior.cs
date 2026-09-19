@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Engine;
+using Engine.Graphics;
 using Game;
 using GameEntitySystem;
 using Phytomana;
@@ -11,25 +13,52 @@ using TemplatesDatabase;
 namespace Game {
     /// <summary>
     /// 泰拉三工具的统一行为子系统：
-    /// 1. 泰拉刃——挥击 50% 概率追加发射剑气（直线无重力，命中 3.5 固定伤害可击杀，穿玩家）；
-    /// 2. 泰拉砍伐者——破坏原木/树叶时连锁伐木（广度优先同类型扩散 3×3，上限 63³；潜行禁用）；
-    /// 3. 泰拉破坏者——存魔升级（D~SS），潜行切换激活档位；激活后破坏时按档位水平范围
-    ///    挖掘同类方块（每格 -7mn），掉落进魔法池 3×3×3 内 1000mn/s 充能。
+    /// 1. 泰拉刃——「使用」（OnUse，任意方向点击即算，不影响挥击攻击）时 50% 概率
+    ///    发射一枚剑气（直线无重力，命中 3.5 固定伤害，穿玩家）；指向生物时
+    ///    原版的生物命中攻击逻辑照常结算，剑气是独立追加的一发；
+    /// 2. 泰拉砍伐者——破坏原木/树叶时连锁伐木（同类型 BFS 扩散，实际破格在 Update
+    ///    中按「0.5s 最多 8 格」限速消化，避免大量 DestroyCell 卡死游戏；潜行禁用）；
+    /// 3. 泰拉破坏者——存魔/激活档位（0=D,1=C,2=B,3=A,4=S,5=SS）存于工具 data，
+    ///    随存档保存（不随世界重建重置）；潜行双击挖掘切换档位；
+    ///    挖掘时玩家处于蹲伏（潜行）才展开水平扩围（按档位 1/1/2/3/4 半边长，
+    ///    每格 -7mn，自动降档）；预览边框：中心绿、将扩挖白；
+    ///    掉落进魔法池 3×3×3 内 1000mn/s 充能。
     /// 引擎钩子由 <see cref="TerraToolHooks"/> 经 <see cref="PhytomanaMod"/> 注册并转发给本子系统。
     /// </summary>
-    public class SubsystemTerraToolBehavior : Subsystem, IUpdateable {
+    public class SubsystemTerraToolBehavior : Subsystem, IUpdateable, IDrawable {
         public class BreakerState {
-            /// <summary>泰拉破坏者自身存魔（升级与范围挖掘消耗）。</summary>
-            public float Mana;
+            /// <summary>泰拉破坏者自身存魔（升级与范围挖掘消耗），随工具 data 保存。</summary>
+            public int Mana;
 
-            /// <summary>当前激活档位：0=D（无范围挖掘），1=C，2=B，3=A，4=S，5=SS。</summary>
+            /// <summary>当前激活档位：0=D（无范围挖掘），1=C，2=B，3=A，4=S，5=SS。随工具 data 保存。</summary>
             public int ActiveLevel;
-
-            /// <summary>玩家 Id（与 m_breakerStates 键一致），用于掏出提示的去重。</summary>
-            public int PlayerId;
 
             public bool IsActive => ActiveLevel > 0;
         }
+
+        /// <summary>砍伐链限速队列：同一次挖掘触发后，待破格在 0.5s 窗口内最多破 8 格。</summary>
+        public class FellingQueue {
+            public Queue<(Point3, int)> m_queue = [];
+
+            public double m_windowStartTime = -1;
+
+            public int m_windowRemaining = FellingBudget;
+        }
+
+        /// <summary>破坏者扩围预览：中心格 + 将被扩挖的格集合（渲染层画边框）。</summary>
+        public class BreakerPreview {
+            public Point3 Center;
+
+            public List<Point3> Affected = [];
+
+            public bool Valid;
+        }
+
+        /// <summary>砍伐链每 0.5s 窗口内最多破坏的格数。</summary>
+        public const int FellingBudget = 8;
+
+        /// <summary>砍伐链限速窗口（秒）。</summary>
+        public const float FellingWindow = 0.5f;
 
         public SubsystemTerrain m_subsystemTerrain;
 
@@ -53,7 +82,7 @@ namespace Game {
 
         public float m_chargeTimer;
 
-        /// <summary>玩家 Id → 破坏者状态（存魔/激活档位）。</summary>
+        /// <summary>玩家 Id → 破坏者状态缓存（存魔/档位）；持久化读写见 <see cref="PersistBreakerState"/>。</summary>
         public Dictionary<int, BreakerState> m_breakerStates = [];
 
         /// <summary>玩家 Id → 上一帧是否手持破坏者（用于检测掏出瞬间）。</summary>
@@ -62,15 +91,25 @@ namespace Game {
         /// <summary>玩家 Id → 掏出破坏者后提示是否已发（避免手持期间重复刷）。</summary>
         public Dictionary<int, bool> m_breakerHintShown = [];
 
+        /// <summary>玩家 Id → 砍伐链限速队列。</summary>
+        public Dictionary<int, FellingQueue> m_fellingQueues = [];
+
+        /// <summary>玩家 Id → 破坏者扩围预览（当前帧挖掘中心 + 将扩挖的格）。</summary>
+        public Dictionary<int, BreakerPreview> m_breakerPreviews = [];
+
         public SubsystemPlayers m_subsystemPlayers;
 
         public SubsystemGameInfo m_subsystemGameInfo;
 
         public SubsystemAudio m_subsystemAudio;
 
+        public PrimitivesRenderer3D m_primitivesRenderer3D = new();
+
         public Game.Random m_random = new();
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
+
+        public int[] DrawOrders => [203];
 
         public override void Load(ValuesDictionary valuesDictionary) {
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
@@ -92,32 +131,33 @@ namespace Game {
         // ===== 泰拉刃：剑气 =====
 
         /// <summary>
-        /// 泰拉刃命中生物：原版近击后 50% 追加一枚剑气。
-        /// 剑气命中生物的 3.5 固定伤害见 <see cref="HandleProjectileHitBody"/>。
+        /// 泰拉刃「使用」剑气：OnUse 路径（参考火柴——手持工具右键点击即触发，
+        /// 无条件、不要求准星命中任何目标），50% 概率发射一枚剑气。
+        /// 准星指向生物时原版的挥击攻击照常结算（本方法在 OnUse 派发链上，
+        /// 不拦截也不吞击），剑气是独立追加的一发。
         /// </summary>
-        public void HandleMinerHit2(
-            ComponentMiner miner,
-            ComponentBody body,
-            Vector3 hitPoint,
-            Vector3 hitDirection,
-            ref int durabilityReduction) {
-            if (Terrain.ExtractContents(miner.ActiveBlockValue) != m_terraBladeIndex) {
-                return;
-            }
+        public bool TryFireBladeQi(ComponentMiner miner, Ray3 ray) {
             if (!m_random.Bool()) {
-                return;
+                return false;
             }
-            Vector3 origin = hitPoint + hitDirection * 0.5f;
-            Vector3 velocity = hitDirection * TerraSwordQiProjectile.Speed;
+            Vector3 start = ray.Position;
+            Vector3 direction = ray.Direction;
+            if (direction.LengthSquared() < 1e-6f) {
+                direction = new Vector3(0f, 0f, 1f);
+            }
+            else {
+                direction = Vector3.Normalize(direction);
+            }
+            // 剑气从玩家前方 2 格出发，避免贴着位置自穿
+            Vector3 origin = start + direction * 2f;
             m_subsystemProjectiles.FireProjectile<TerraSwordQiProjectile>(
                 Terrain.MakeBlockValue(m_terraBladeIndex),
                 origin,
-                velocity,
+                direction * TerraSwordQiProjectile.Speed,
                 Vector3.Zero,
                 miner.ComponentCreature
             );
-            // 剑气发射额外消耗 1 点耐久
-            durabilityReduction++;
+            return true;
         }
 
         /// <summary>剑气命中生物：固定 3.5 伤害（可击杀），对玩家穿透不伤。</summary>
@@ -136,11 +176,11 @@ namespace Game {
             }
         }
 
-        // ===== 泰拉砍伐者：连锁伐木 =====
+        // ===== 泰拉砍伐者：连锁伐木（限速） =====
 
         /// <summary>
-        /// 挖掘钩子：泰拉砍伐者破坏原木/树叶时连锁伐木。潜行禁用。
-        /// 破坏发生在原版 Dig 完成帧（digProgress>=1）。
+        /// 挖掘钩子：泰拉砍伐者破坏原木/树叶时入队连锁伐木。潜行禁用。
+        /// 实际破格在 <see cref="Update"/> 中按「0.5s 最多 8 格」限速消化。
         /// </summary>
         public void HandleMinerDig(ComponentMiner miner, TerrainRaycastResult raycastResult, float digProgress) {
             if (digProgress < 1f) {
@@ -161,25 +201,27 @@ namespace Game {
             if (body != null && body.IsCrouching) {
                 return;
             }
-            Felling(miner, new Point3(face.X, face.Y, face.Z));
+            QueueFelling(miner, player, new Point3(face.X, face.Y, face.Z), cellContents, 1);
         }
 
         /// <summary>
-        /// 连锁伐木：从破坏点广度优先扩散 3×3 同类型木/叶（上限 63³），
-        /// 非主格逐格 DestroyCell。每根原木 -1 耐久、每 3 片树叶 -1 耐久
-        /// （主格耐久由原版 OnBlockDug 计 1，这里补上其余格）。
+        /// 连锁伐木入队：从破坏点广度优先扩散同类型木/叶（半径 3，上限 63³），
+        /// 非主格逐格入队；主格耐久 1（原版计），其余原木 1/块、树叶 1/3 块。
+        /// 破格由 Update 限速消化。
         /// </summary>
-        public void Felling(ComponentMiner miner, Point3 start) {
+        public void QueueFelling(ComponentMiner miner, ComponentPlayer player, Point3 start, int type, int mainDurability) {
             Terrain terrain = m_subsystemTerrain.Terrain;
-            int type = terrain.GetCellContents(start.X, start.Y, start.Z);
-            if (type == 0) {
-                return;
+            int key = player?.Entity?.Id ?? 0;
+            FellingQueue queue;
+            if (!m_fellingQueues.TryGetValue(key, out queue)) {
+                queue = new FellingQueue();
+                m_fellingQueues[key] = queue;
             }
-            List<Point3> queue = [start];
+            List<Point3> open = [start];
             HashSet<Point3> visited = [start];
-            while (queue.Count > 0 && visited.Count < 63 * 63 * 63) {
-                Point3 p = queue[^1];
-                queue.RemoveAt(queue.Count - 1);
+            while (open.Count > 0 && visited.Count < 63 * 63 * 63) {
+                Point3 p = open[^1];
+                open.RemoveAt(open.Count - 1);
                 for (int dx = -3; dx <= 3; dx++) {
                     for (int dy = -3; dy <= 3; dy++) {
                         for (int dz = -3; dz <= 3; dz++) {
@@ -191,7 +233,7 @@ namespace Game {
                                 continue;
                             }
                             if (terrain.GetCellContents(n.X, n.Y, n.Z) == type) {
-                                queue.Add(n);
+                                open.Add(n);
                             }
                         }
                     }
@@ -200,6 +242,9 @@ namespace Game {
             int woodCount = 0;
             int leafCount = 0;
             foreach (Point3 p in visited) {
+                if (p == start) {
+                    continue;
+                }
                 int c = terrain.GetCellContents(p.X, p.Y, p.Z);
                 if (c != type) {
                     continue;
@@ -210,51 +255,104 @@ namespace Game {
                 else if (BlocksManager.Blocks[c] is LeavesBlock) {
                     leafCount++;
                 }
+                queue.m_queue.Enqueue((p, type));
             }
-            int extraDurability = Math.Max(0, woodCount + (leafCount + 2) / 3 - 1);
+            int extraDurability = Math.Max(0, woodCount + (leafCount + 2) / 3 + mainDurability - 1);
             if (extraDurability > 0) {
                 miner.DamageActiveTool(extraDurability);
             }
-            foreach (Point3 p in visited) {
-                if (p == start) {
+        }
+
+        /// <summary>
+        /// 砍伐链限速消化：每玩家 0.5s 窗口最多破 8 格；破前复核目标格仍是
+        /// 入队时的类型（防止期间已被别的挖掘破掉）。
+        /// </summary>
+        public void DigestFellingQueues(float dt) {
+            double time = m_subsystemGameInfo.TotalElapsedGameTime;
+            Terrain terrain = m_subsystemTerrain.Terrain;
+            foreach (KeyValuePair<int, FellingQueue> pair in m_fellingQueues) {
+                FellingQueue queue = pair.Value;
+                if (queue.m_queue.Count == 0) {
                     continue;
                 }
-                if (terrain.GetCellContents(p.X, p.Y, p.Z) == type) {
-                    m_subsystemTerrain.DestroyCell(0, p.X, p.Y, p.Z, 0, false, false);
+                if (queue.m_windowStartTime < 0 || time - queue.m_windowStartTime >= FellingWindow) {
+                    queue.m_windowStartTime = time;
+                    queue.m_windowRemaining = FellingBudget;
+                }
+                while (queue.m_windowRemaining > 0 && queue.m_queue.Count > 0) {
+                    (Point3 p, int type) = queue.m_queue.Dequeue();
+                    if (terrain.GetCellContents(p.X, p.Y, p.Z) == type) {
+                        m_subsystemTerrain.DestroyCell(0, p.X, p.Y, p.Z, 0, false, false);
+                    }
+                    queue.m_windowRemaining--;
                 }
             }
         }
 
         // ===== 泰拉破坏者：等级挖掘 =====
 
+        /// <summary>
+        /// 取玩家当前破坏者状态：优先从活动槽工具 data 读（工具存魔随存档保存），
+        /// 无工具（或存魔在 200mn 以下）时退回玩家级缓存（充能掉落物仍可用）。
+        /// 退出世界/读档时状态来自工具 data，不会重置。
+        /// </summary>
         public BreakerState GetBreakerState(ComponentMiner miner) {
-            int playerKey = miner.Entity?.Id ?? 0;
-            if (!m_breakerStates.TryGetValue(playerKey, out BreakerState state)) {
+            int key = miner.Entity?.Id ?? 0;
+            if (!m_breakerStates.TryGetValue(key, out BreakerState state)) {
                 state = new BreakerState();
-                m_breakerStates[playerKey] = state;
+                m_breakerStates[key] = state;
             }
+            int toolValue = miner.ActiveBlockValue;
+            if (Terrain.ExtractContents(toolValue) != m_terraBreakerIndex) {
+                return state;
+            }
+            int data = Terrain.ExtractData(toolValue);
+            state.Mana = data >> 5;
+            state.ActiveLevel = data & 31;
             return state;
         }
 
         public int GetBreakerRange(int level) {
             return level switch {
-                <= 0 => 0,
-                1 => 1, // C: 1×3×1
-                2 => 1, // B: 1×3×1
-                3 => 2, // A: 5×1×5（水平半边）
-                4 => 3, // S: 7×1×7
-                _ => 4 // SS: 9×1×9
+                1 => 1, // C: 水平 3×3
+                2 => 1, // B: 水平 3×3
+                3 => 2, // A: 水平 5×5
+                4 => 3, // S: 水平 7×7
+                _ => 4 // SS: 水平 9×9（D 档范围挖掘由调用方拦截，不会到这里）
             };
         }
 
-        /// <summary>破坏者激活档位下的水平半边长（C/B 为 1，A/S/SS 递增）。</summary>
-        public int GetBreakerHorizontalRange(int level) {
-            return GetBreakerRange(level);
+        /// <summary>
+        /// 把破坏者状态（存魔/档位）写回活动槽工具 data（data = 档位低 5 位 | 存魔<<5，
+        /// 存魔上限 1048575mn）。读档后、玩家下线（工具进包）后状态不丢。
+        /// </summary>
+        public void PersistBreakerState(ComponentMiner miner, BreakerState state) {
+            int value = miner.ActiveBlockValue;
+            if (Terrain.ExtractContents(value) != m_terraBreakerIndex) {
+                return;
+            }
+            int data = (state.ActiveLevel & 31) | (Math.Max(0, state.Mana) << 5);
+            int newValue = Terrain.ReplaceData(value, data);
+            if (newValue == value) {
+                return;
+            }
+            IInventory inventory = miner.Inventory;
+            if (inventory == null) {
+                return;
+            }
+            int slot = inventory.ActiveSlotIndex;
+            int count = inventory.GetSlotCount(slot);
+            inventory.RemoveSlotItems(slot, count);
+            if (inventory.GetSlotCount(slot) == 0) {
+                inventory.AddSlotItems(slot, newValue, count);
+            }
         }
 
         /// <summary>
-        /// 破坏者范围挖掘：主格被挖后，水平同层范围内与主格同类的方块按 -7mn/格 顺带挖掉。
-        /// D 档（未激活）或魔力不足时不挖。每挖一格扣魔后若存魔跌破当前档位门槛，自动降档。
+        /// 破坏者范围挖掘：主格被挖后，仅当玩家处于蹲伏（潜行）状态才展开水平同层
+        /// 扩围（按档位 1/1/2/3/4 半边长，每格 -7mn，同类才挖，挖不动即停），
+        /// 挖中后存魔跌破档位门槛自动降档；被扩挖的格并入预览边框（白色）。
+        /// D 档（未激活）或魔力不足时不挖。挖掘中心格预览（绿色）由 <see cref="UpdateBreakerPreview"/> 负责。
         /// </summary>
         public void HandleBlockDug(
             ComponentMiner miner,
@@ -266,20 +364,31 @@ namespace Game {
             if (contents != m_terraBreakerIndex) {
                 return;
             }
-            BreakerState state = GetBreakerState(miner);
-            int level = state.ActiveLevel;
-            if (level <= 0) {
-                return;
-            }
+            ComponentPlayer player = miner.ComponentPlayer;
+            Point3 center = new(digValue.CellFace.X, digValue.CellFace.Y, digValue.CellFace.Z);
             int targetContents = Terrain.ExtractContents(cellValue);
             if (targetContents == 0) {
                 return;
             }
+            BreakerState state = GetBreakerState(miner);
+            if (state.ActiveLevel <= 0) {
+                return;
+            }
+            ComponentBody body = player?.Entity?.FindComponent<ComponentBody>();
+            if (body == null || !body.IsCrouching) {
+                return; // 非蹲下不扩展破坏范围（挖掘照常，仅中心绿框）
+            }
+            int range = GetBreakerRange(state.ActiveLevel);
             float costPerBlock = PhytoConfig.Instance.TerraBreakerPerBlockCost;
             SubsystemTerraSetBehavior setBehavior = Project.FindSubsystem<SubsystemTerraSetBehavior>(false);
-            int range = GetBreakerHorizontalRange(level);
-            Point3 center = new(digValue.CellFace.X, digValue.CellFace.Y, digValue.CellFace.Z);
             Terrain terrain = m_subsystemTerrain.Terrain;
+            int key = player.Entity?.Id ?? 0;
+            if (!m_breakerPreviews.TryGetValue(key, out BreakerPreview preview)) {
+                preview = new BreakerPreview();
+                m_breakerPreviews[key] = preview;
+            }
+            preview.Center = center;
+            preview.Affected.Clear();
             for (int dx = -range; dx <= range; dx++) {
                 for (int dz = -range; dz <= range; dz++) {
                     if (dx == 0 && dz == 0) {
@@ -291,9 +400,9 @@ namespace Game {
                         continue;
                     }
                     if (state.Mana < costPerBlock) {
-                        return;
+                        break; // 魔力见底立即停
                     }
-                    state.Mana -= costPerBlock;
+                    state.Mana -= (int)costPerBlock;
                     // 存魔跌破当前档位门槛时自动降档（D 档无门槛）
                     while (state.ActiveLevel > 0
                         && setBehavior != null
@@ -302,7 +411,54 @@ namespace Game {
                     }
                     durabilityReduction++;
                     playerDataDugAdd++;
+                    preview.Affected.Add(new Point3(x, center.Y, z));
                     m_subsystemTerrain.DestroyCell(0, x, center.Y, z, 0, false, false);
+                }
+            }
+            PersistBreakerState(miner, state);
+        }
+
+        /// <summary>
+        /// 瞄准预览（挖掘前）：玩家手持激活的破坏者、非蹲下时，
+        /// 当前瞄准的挖掘中心格画绿色边框；处于潜行（蹲伏）状态且魔力足够时，
+        /// 同时把将被扩挖的同类格画白色边框。供渲染层每帧调用。
+        /// </summary>
+        public void UpdateBreakerPreview(ComponentMiner miner, Point3 center, int targetContents) {
+            int key = miner.Entity?.Id ?? 0;
+            if (!m_breakerPreviews.TryGetValue(key, out BreakerPreview preview)) {
+                preview = new BreakerPreview();
+                m_breakerPreviews[key] = preview;
+            }
+            preview.Center = center;
+            preview.Affected.Clear();
+            preview.Valid = false;
+            if (targetContents == 0) {
+                return;
+            }
+            BreakerState state = GetBreakerState(miner);
+            if (state.ActiveLevel <= 0) {
+                return;
+            }
+            preview.Valid = true; // 中心格绿框常显
+            ComponentPlayer player = miner.ComponentPlayer;
+            ComponentBody body = player?.Entity?.FindComponent<ComponentBody>();
+            if (body == null || !body.IsCrouching) {
+                return; // 非蹲下：只有中心绿框，不扩围
+            }
+            if (state.Mana < (int)PhytoConfig.Instance.TerraBreakerPerBlockCost) {
+                return;
+            }
+            int range = GetBreakerRange(state.ActiveLevel);
+            Terrain terrain = m_subsystemTerrain.Terrain;
+            for (int dx = -range; dx <= range; dx++) {
+                for (int dz = -range; dz <= range; dz++) {
+                    if (dx == 0 && dz == 0) {
+                        continue;
+                    }
+                    Point3 p = new(center.X + dx, center.Y, center.Z + dz);
+                    if (terrain.GetCellContents(p.X, p.Y, p.Z) == targetContents) {
+                        preview.Affected.Add(p);
+                    }
                 }
             }
         }
@@ -314,11 +470,58 @@ namespace Game {
                 ChargeDroppedBreakers();
             }
             CheckBreakerPullOut(dt);
+            DigestFellingQueues(dt);
+            UpdateBreakerPreviews();
+        }
+
+        /// <summary>
+        /// 挖掘预览：每帧对每个手持激活破坏者的玩家做瞄准射线（Digging 模式），
+        /// 把当前瞄准中心格（绿框）与蹲伏状态下将扩挖的格（白框）刷新到
+        /// <see cref="m_breakerPreviews"/>，渲染层据此画边框。挖掘完成后预览自然清空。
+        /// </summary>
+        public void UpdateBreakerPreviews() {
+            foreach (ComponentPlayer player in m_subsystemPlayers.ComponentPlayers) {
+                if (player.Entity == null) {
+                    continue;
+                }
+                ComponentMiner miner = player.ComponentMiner;
+                if (miner == null) {
+                    continue;
+                }
+                if (Terrain.ExtractContents(miner.ActiveBlockValue) != m_terraBreakerIndex) {
+                    if (m_breakerPreviews.TryGetValue(player.Entity.Id, out BreakerPreview stale)) {
+                        stale.Valid = false;
+                    }
+                    continue;
+                }
+                BreakerState state = GetBreakerState(miner);
+                if (state.ActiveLevel <= 0) {
+                    if (m_breakerPreviews.TryGetValue(player.Entity.Id, out BreakerPreview stale2)) {
+                        stale2.Valid = false;
+                    }
+                    continue;
+                }
+                Camera camera = player.GameWidget.ActiveCamera;
+                if (camera == null) {
+                    continue;
+                }
+                Ray3 ray = new(camera.ViewPosition, camera.ViewDirection);
+                TerrainRaycastResult? hit = miner.Raycast<TerrainRaycastResult>(ray, RaycastMode.Digging);
+                if (!hit.HasValue) {
+                    if (m_breakerPreviews.TryGetValue(player.Entity.Id, out BreakerPreview stale3)) {
+                        stale3.Valid = false;
+                    }
+                    continue;
+                }
+                int targetContents = Terrain.ExtractContents(hit.Value.Value);
+                Point3 center = hit.Value.CellFace.Point;
+                UpdateBreakerPreview(miner, center, targetContents);
+            }
         }
 
         /// <summary>
         /// 掏出提示：玩家手持泰拉破坏者、且处于潜行（蹲下）状态时，
-        /// 首次掏出瞬间显示当前档位与存魔（同档不重复刷）。
+        /// 首次掏出瞬间显示当前档位与存魔（同档不重复刷；读档后从工具 data 恢复）。
         /// </summary>
         public void CheckBreakerPullOut(float dt) {
             foreach (ComponentPlayer player in m_subsystemPlayers.ComponentPlayers) {
@@ -371,6 +574,7 @@ namespace Game {
         /// <summary>
         /// 每 1s 扫描掉落物：泰拉破坏者落在魔法池 3×3×3 内且池子存量 ≥1000mn/s 充能速率时，
         /// 吸魔充入破坏者自身存魔（经掉落物归属玩家）。优先扣魔法池存量。
+        /// 数据经 <see cref="PersistBreakerState"/> 写回玩家当前工具。
         /// </summary>
         public void ChargeDroppedBreakers() {
             float rate = PhytoConfig.Instance.TerraBreakerPoolChargeRate;
@@ -397,7 +601,11 @@ namespace Game {
                     float taken = pool.ManaStorage.Take(rate);
                     BreakerState state = GetBreakerStateByEntity(ownerEntity);
                     if (state != null) {
-                        state.Mana += taken;
+                        state.Mana += (int)taken;
+                        ComponentMiner ownerMiner = ownerEntity.FindComponent<ComponentMiner>();
+                        if (ownerMiner != null) {
+                            PersistBreakerState(ownerMiner, state);
+                        }
                     }
                 }
             }
@@ -440,6 +648,54 @@ namespace Game {
             }
             return false;
         }
+
+        // ===== 预览边框渲染 =====
+
+        public void Draw(Camera camera, int drawOrder) {
+            FlatBatch3D batch = null;
+            foreach (ComponentPlayer player in m_subsystemPlayers.ComponentPlayers) {
+                if (camera.GameWidget.PlayerData != player.PlayerData || player.PlayerData == null) {
+                    continue;
+                }
+                if (!m_breakerPreviews.TryGetValue(player.Entity?.Id ?? 0, out BreakerPreview preview)) {
+                    continue;
+                }
+                if (!preview.Valid) {
+                    continue;
+                }
+                if (batch == null) {
+                    batch = m_primitivesRenderer3D.FlatBatch(0, DepthStencilState.None);
+                }
+                // 挖掘中心点绿色边框
+                DrawPreviewBox(batch, preview.Center, new Color(80, 220, 80));
+                // 将扩挖的方块白色边框（仅蹲伏扩围时非空）
+                foreach (Point3 p in preview.Affected) {
+                    DrawPreviewBox(batch, p, Color.White);
+                }
+            }
+            if (batch != null) {
+                batch.Flush(camera.ViewProjectionMatrix);
+            }
+        }
+
+        static void DrawPreviewBox(FlatBatch3D batch, Point3 point, Color color) {
+            Vector3 min = new(point.X, point.Y, point.Z);
+            batch.QueueBoundingBox(new BoundingBox(min, min + Vector3.One), color);
+        }
+
+        /// <summary>
+        /// 破坏者档位显示名（与掏出提示一致）：0=D（未激活），1=C，2=B，3=A，4=S，5=SS。
+        /// </summary>
+        public static string LevelName(int level) {
+            return level switch {
+                1 => "C",
+                2 => "B",
+                3 => "A",
+                4 => "S",
+                5 => "SS",
+                _ => "D"
+            };
+        }
     }
 
     /// <summary>
@@ -448,16 +704,6 @@ namespace Game {
     /// </summary>
     public class TerraToolHooks : ModLoader {
         public static SubsystemTerraToolBehavior m_terraToolBehavior;
-
-        public override void OnMinerHit2(
-            ComponentMiner miner,
-            ComponentBody componentBody,
-            Vector3 hitPoint,
-            Vector3 hitDirection,
-            ref int durabilityReduction,
-            ref Attackment attackment) {
-            m_terraToolBehavior?.HandleMinerHit2(miner, componentBody, hitPoint, hitDirection, ref durabilityReduction);
-        }
 
         public override void OnMinerDig(
             ComponentMiner miner,

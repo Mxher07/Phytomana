@@ -12,9 +12,15 @@ namespace Game {
     /// 泰拉合成毯行为：结构校验 + 两档合成 + 供魔粒子。
     /// 毯以 IManaReceiver 身份（容量 38000mn，见 ManaBlocks.xml）接入魔力网络，
     /// 经法杖绑定发射器供魔；材料由毯顶面（y+1~y+2，水平 ±1）的掉落物提供。
-    /// 结构（毯平铺在地面上）：
-    ///   毯层（y）：3×3 全部为 生息岩/锗晶块（棋盘 G B G / B G B / G B G）；
-    ///   上层（y+1）：中心为毯本身，外围 8 格为 生息岩/锗晶块。
+    /// 结构（以毯为中心、高度减一的地面上，毯悬空 3×3 层）：
+    ///   毯层（y）：中心为毯，外围 8 格须为空气；
+    ///   下层（y-1）：岩 锗 岩
+    ///                 锗 岩 锗
+    ///                 岩 锗 岩
+    ///   最下层（y-2）：岩 锗 岩
+    ///                  锗 岩 锗
+    ///                  岩 锗 岩
+    /// 其中「岩」= 生息岩/锗晶块任一，「锗」= 仅锗晶块。
     /// 结构错误时：供入的魔力每周期清空，法杖指向提示「结构无效」。
     /// 结构正确且材料齐备 + 魔力足额时：
     ///   一档（魔力钻石 + 魔力钢锭 + 锗晶锭）→ 消耗魔力池半分魔力，产 泰拉锭×1；
@@ -143,34 +149,54 @@ namespace Game {
         }
 
         /// <summary>
-        /// 结构校验（毯平铺在棋盘地面上，毯本体在 Y+1 层中心）：
-        ///   下层（毯 Y）：3×3 棋盘 —— G B G / B G B / G B G（G=生息岩 B=锗晶块，可同色）；
-        ///   上层（毯 Y+1）：8 邻格须为 生息岩/锗晶块，中心是毯本身（已保证）。
+        /// 结构校验（毯悬空在 3×3 空气层中心，中心列下方两层为棋盘）：
+        ///   毯层（毯 Y）：外围 8 格须为空气（中心是毯本身，已保证）；
+        ///   下层（毯 Y-1）与最下层（毯 Y-2）：
+        ///     岩 锗 岩
+        ///     锗 岩 锗
+        ///     岩 锗 岩
+        ///   「岩」= 生息岩或锗晶块，「锗」= 仅锗晶块（角与中心）。
         /// 只要任一格不符合即判结构无效（渲染变红 + 法杖提示）。
         /// </summary>
         public bool IsStructureValid(Point3 slab) {
             Terrain terrain = m_subsystemTerrain.Terrain;
-            // 下层 3×3 棋盘
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dz = -1; dz <= 1; dz++) {
-                    if (!IsGrownOrTerra(terrain.GetCellContents(slab.X + dx, slab.Y, slab.Z + dz))) {
-                        return false;
-                    }
-                }
-            }
-            // 上层 8 邻格
+            // 毯层：外围 8 格须为空气
             for (int dx = -1; dx <= 1; dx++) {
                 for (int dz = -1; dz <= 1; dz++) {
                     if (dx == 0 && dz == 0) {
                         continue;
                     }
-                    if (!IsGrownOrTerra(terrain.GetCellContents(slab.X + dx, slab.Y + 1, slab.Z + dz))) {
+                    if (terrain.GetCellContents(slab.X + dx, slab.Y, slab.Z + dz) != 0) {
                         return false;
+                    }
+                }
+            }
+            // 下层（Y-1）与最下层（Y-2）两层相同的棋盘：
+            //   岩 锗 岩
+            //   锗 岩 锗
+            //   岩 锗 岩
+            // 角与边为「锗」（仅锗晶块），中心为「岩」（生息岩或锗晶块）
+            for (int dy = -1; dy >= -2; dy--) {
+                for (int dx = -1; dx <= 1; dx++) {
+                    for (int dz = -1; dz <= 1; dz++) {
+                        int cell = terrain.GetCellContents(slab.X + dx, slab.Y + dy, slab.Z + dz);
+                        bool isCenter = dx == 0 && dz == 0;
+                        if (isCenter) {
+                            if (!IsGrownOrTerra(cell)) {
+                                return false;
+                            }
+                        }
+                        else if (!IsTerra(cell)) {
+                            return false;
+                        }
                     }
                 }
             }
             return true;
         }
+
+        public bool IsTerra(int cellContents) =>
+            Terrain.ExtractContents(cellContents) == m_terraBlockIndex;
 
         public bool IsGrownOrTerra(int cellContents) {
             int contents = Terrain.ExtractContents(cellContents);

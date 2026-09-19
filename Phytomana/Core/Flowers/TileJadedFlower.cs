@@ -29,14 +29,13 @@ namespace Phytomana {
 
         public System.Random m_random = new();
 
-        /// <summary>开关机状态（存档保存，默认关机）。</summary>
-        public new bool m_powered = false;
+        public TileJadedFlower(Point3 position) : base(position) {
+            m_powered = false;
+        }
 
         public const float PoolSearchRange = 11f;
 
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("JadedFlower", DefaultMaxMana);
-
-        public TileJadedFlower(Point3 position) : base(position) { }
 
         public override string PoweredMessageKey => "JadedMessages";
 

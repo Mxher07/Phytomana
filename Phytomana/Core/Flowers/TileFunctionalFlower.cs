@@ -137,6 +137,8 @@ namespace Phytomana {
         public override void LoadData(ValuesDictionary values) {
             base.LoadData(values);
             ManaStorage.LoadData(values.GetValue("Mana", 0f));
+            // 注意：必须读写基类 m_powered。子类的 `new m_powered` 只是隐藏字段，
+            // 存档写读的都是基类字段，写错字段开关机就变成「表面工作」了。
             m_powered = values.GetValue("Powered", m_powered);
         }
     }

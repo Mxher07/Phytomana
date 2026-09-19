@@ -48,5 +48,8 @@
   <MemberSubsystemTemplate Name="TerraSetBehavior" Guid="a1b2c3d4-5555-4aaa-bbbb-cccccccccccc" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="a1b2c3d4-6666-4aaa-bbbb-cccccccccccc" Value="Game.SubsystemTerraSetBehavior" Type="string"/>
   </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="TerraBladeBehavior" Guid="a1b2c3d4-7777-4aaa-bbbb-cccccccccccc" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="a1b2c3d4-8888-4aaa-bbbb-cccccccccccc" Value="Game.SubsystemTerraBladeBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
       </ProjectTemplate>
 </PhytoMana>

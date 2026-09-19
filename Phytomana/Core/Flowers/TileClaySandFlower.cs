@@ -29,8 +29,9 @@ namespace Phytomana {
         /// <summary>回飞粒子相对目标时刻的延迟（秒）。</summary>
         public const double ReturnDelay = 0.25;
 
-        /// <summary>开关机状态（存档保存，默认开机）。</summary>
-        public new bool m_powered = true;
+        public TileClaySandFlower(Point3 position) : base(position) {
+            m_powered = true;
+        }
 
         /// <summary>待结算的回飞粒子（0.25s 后从目标飞回花根）。</summary>
         public double m_returnParticleTime;
@@ -47,8 +48,6 @@ namespace Phytomana {
         public const float PoolSearchRange = 11f;
 
         public override float MaxMana => ManaBlockRegistry.GetMaxMana("ClaySandFlower", DefaultMaxMana);
-
-        public TileClaySandFlower(Point3 position) : base(position) { }
 
         public override string PoweredMessageKey => "ClaySandMessages";
 
