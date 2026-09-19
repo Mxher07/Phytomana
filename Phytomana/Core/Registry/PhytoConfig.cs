@@ -117,6 +117,46 @@ namespace Phytomana {
 
         public int SumeruBigPatchOneRoll = 75;
 
+        // ===== 泰拉装备 =====
+
+        /// <summary>泰拉工具自然魔力修复耗魔（每点耐久，默认 60）。</summary>
+        public float TerraEquipRepairCost = 60f;
+
+        /// <summary>泰拉套装：工具魔力修复耗魔减免（默认 0.2 = 20%）。</summary>
+        public float TerraToolRepairDiscount = 0.2f;
+
+        /// <summary>魔力钢套装：魔力修复耗魔减免（默认 0.45 = 45%）。</summary>
+        public float ManaSteelRepairDiscount = 0.45f;
+
+        // ===== 泰拉破坏者 =====
+
+        /// <summary>泰拉破坏者各级所需魔力：索引 = 等级（D=0 无需求，C=1..SS=5）。</summary>
+        public float TerraBreakerLevelMana = 0f;
+
+        public float TerraBreakerLevelCMana = 380f;
+
+        public float TerraBreakerLevelBMana = 3800f;
+
+        public float TerraBreakerLevelAMana = 38000f;
+
+        public float TerraBreakerLevelSMana = 380000f;
+
+        public float TerraBreakerLevelSSMana = 3800000f;
+
+        /// <summary>泰拉破坏者每额外挖掘一格扣魔。</summary>
+        public float TerraBreakerPerBlockCost = 7f;
+
+        /// <summary>泰拉破坏者魔力池充能速率（1000mn/s）。</summary>
+        public float TerraBreakerPoolChargeRate = 1000f;
+
+        // ===== 荆棘之刺 =====
+
+        /// <summary>荆棘之刺秒杀阈值：最大生命低于该值（即 Injure 百分比）的目标被一击致死。</summary>
+        public float ThornyRoseKillThreshold = 0.25f;
+
+        /// <summary>荆棘之刺是否默认开机（存档缺省值）。</summary>
+        public bool ThornyRoseDefaultPowered = true;
+
         public void Save(XElement element) {
             element.SetAttributeValue("TransferInterval", Format(TransferInterval));
             element.SetAttributeValue("FlowerTickInterval", Format(FlowerTickInterval));

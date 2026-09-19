@@ -330,6 +330,34 @@
     "TransChestV2Flower:0": {
       "DisplayName": "传输箱洋",
       "Description": "「穿墙而行的信使」。无视方块瞬间运输掉落物至法杖绑定的目标方块上方"
+    },
+    "ManaStarFlower:0": {
+      "DisplayName": "魔法星",
+      "Description": "「魔力潮汐的星图」。每 3 秒观测平面 3×3 内的魔法池：魔力增多放蓝色升星屑，减少放红色沉星屑"
+    },
+    "TerraBladeBlock:0": {
+      "DisplayName": "泰拉刃",
+      "Description": "泰拉锭锻造的剑。挥击有 50% 概率射出剑气，命中造成固定伤害；剑气消耗 1 点耐久"
+    },
+    "TerraCutterBlock:0": {
+      "DisplayName": "泰拉砍伐者",
+      "Description": "泰拉锭锻造的伐木斧。砍断原木时连锁采下整棵树（潜行禁用）；每砍一根原木 -1 耐久，每 3 片树叶 -1 耐久"
+    },
+    "TerraBreakerBlock:0": {
+      "DisplayName": "泰拉破坏者",
+      "Description": "泰拉锭锻造的挖掘镐。存入魔力升级（D→SS），激活后按等级范围挖掘同类方块；掉入魔法池自动回魔"
+    },
+    "TerraSlabBlock:0": {
+      "DisplayName": "泰拉合成毯",
+      "Description": "铺设特定结构后，投入材料并供魔即可合成泰拉锭/泰拉锭块。结构错误时显示红色"
+    },
+    "TerraIngotBlock:0": {
+      "DisplayName": "泰拉锭",
+      "Description": "魔力钻石/钢锭/锗晶在泰拉合成毯中供魔凝成的高阶材料"
+    },
+    "TerraBlock:0": {
+      "DisplayName": "泰拉锭块",
+      "Description": "九个泰拉锭压缩成的可放置方块，泰拉装备的核心材料"
     }
   },
   "FlowerTableMessages": {
@@ -364,6 +392,16 @@
     "StartCancelled": "已取消选择起始点",
     "BindSuccess": "绑定成功：{0},{1},{2} → {3},{4},{5}",
     "TransChestV2BindStart": "已选中传输箱洋起点：({0}, {1}, {2})，再点目标方块完成绑定",
+    "ThornRoseToggle": "荆棘之刺已{0}",
+    "ThornRoseOn": "开机",
+    "ThornRoseOff": "关机",
+    "SlabStructureInvalid": "泰拉合成毯结构无效：需要 生息岩/锗晶块 棋盘结构 + 上层毯",
+    "SlabStatusFormat": "泰拉合成毯：魔力 {0}/{1}mn｜材料：{2}",
+    "SlabCrafted": "泰拉合成毯合成完成：{0}×{1}",
+    "SlabMissingItems": "泰拉合成毯还缺 {0} 类材料",
+    "SlabManaLow": "泰拉合成毯魔力不足：{0}/{1}mn",
+    "SlabMaterialsReady": "材料齐备，供魔即可合成",
+    "BreakerStatusFormat": "泰拉破坏者：{0}档｜存魔 {1}mn",
     "ErrTooFar": "绑定失败：距离太远",
     "ErrWrongDirection": "绑定失败：目标不在起始点的六向直线上",
     "ErrNoManaCapability": "绑定失败：目标方块不具有魔力使用能力"
@@ -403,6 +441,10 @@
   "ClaySandMessages": {
     "ClaySandPowerOn": "黏土沙馨已开机",
     "ClaySandPowerOff": "黏土沙馨已关机"
+  },
+  "ThornyRoseMessages": {
+    "ThornyRosePowerOn": "荆棘之刺已开机",
+    "ThornyRosePowerOff": "荆棘之刺已关机"
   },
   "TransChestV2Messages": {
     "BindSet": "传输箱洋已绑定目标方块",

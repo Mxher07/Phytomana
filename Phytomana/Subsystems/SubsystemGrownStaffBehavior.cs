@@ -63,6 +63,12 @@ namespace Game {
 
         public int m_transChestV2Index;
 
+        public int m_thornyRoseIndex;
+
+        public int m_terraSlabIndex;
+
+        public SubsystemTerraSlabBehavior m_subsystemTerraSlab;
+
         public override void Load(ValuesDictionary valuesDictionary) {
             base.Load(valuesDictionary);
             m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
@@ -82,6 +88,9 @@ namespace Game {
             m_claySandIndex = BlocksManager.GetBlockIndex<ClaySandFlower>();
             m_aciIndex = BlocksManager.GetBlockIndex<AciFlower>();
             m_transChestV2Index = BlocksManager.GetBlockIndex<TransChestV2Flower>();
+            m_thornyRoseIndex = BlocksManager.GetBlockIndex<ThornyRoseFlower>();
+            m_terraSlabIndex = BlocksManager.GetBlockIndex<TerraSlabBlock>();
+            m_subsystemTerraSlab = Project.FindSubsystem<SubsystemTerraSlabBehavior>(false);
         }
 
         public void Update(float dt) {
@@ -200,6 +209,12 @@ namespace Game {
             if (mode == 1) {
                 return HandleBindingClick(player, state, point, contents);
             }
+            // 合成毯：工作模式指向时显示结构/魔力/材料状态（法杖状态入口）
+            if (contents == m_terraSlabIndex
+                && m_subsystemTerraSlab != null) {
+                m_subsystemTerraSlab.ShowStatus(point, player);
+                return true;
+            }
             // 法杖工作模式点中可交互方块：经事件总线路由给订阅方（如符文台），
             // 法杖不再直接依赖具体功能方块子系统（依赖反转）。
             if (contents == m_runesTableIndex) {
@@ -221,6 +236,11 @@ namespace Game {
             }
             if (contents == m_spreaderIndex) {
                 ShowSpreaderStatus(player, point);
+                return true;
+            }
+            if (contents == m_terraSlabIndex
+                && m_subsystemTerraSlab != null) {
+                m_subsystemTerraSlab.ShowStatus(point, player);
                 return true;
             }
             if (IsStaffCheckable(contents)) {
@@ -253,6 +273,14 @@ namespace Game {
                 && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedClaySand)
                 && clickedClaySand is TileClaySandFlower claySand) {
                 claySand.TogglePower(player);
+                return true;
+            }
+            // 绑定模式下未选起始点时点击荆棘之刺：开关机（默认开机）
+            if (!state.BindStart.HasValue
+                && contents == m_thornyRoseIndex
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedRose)
+                && clickedRose is TileThornyRose thornyRose) {
+                thornyRose.TogglePower(player);
                 return true;
             }
             // 绑定模式下：传输箱洋绑定目标方块（两步：先点本花记起点，再点目标方块；

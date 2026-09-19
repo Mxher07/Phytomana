@@ -40,6 +40,20 @@ namespace Phytomana {
         /// </summary>
         public const float DamageToHealthScale = 0.1f;
 
+        /// <summary>
+        /// 秒杀阈值：生命值（Health×10 点数刻度）低于该值的生物被荆棘一击致死（可经 PhytoConfig 调整）。
+        /// </summary>
+        public float KillThreshold => PhytoConfig.Instance.ThornyRoseKillThreshold;
+
+        /// <summary>开关机状态（默认开机，存档保存）。</summary>
+        public new bool m_powered = PhytoConfig.Instance.ThornyRoseDefaultPowered;
+
+        public override string PoweredMessageKey => "ThornyRoseMessages";
+
+        public override string PoweredOnKey => "ThornyRosePowerOn";
+
+        public override string PoweredOffKey => "ThornyRosePowerOff";
+
         public SubsystemParticles m_subsystemParticles;
 
         /// <summary>飞行中的荆棘粒子：到点后在落点附近做命中判定。</summary>
@@ -69,6 +83,9 @@ namespace Phytomana {
             ResolveSubsystems();
             double time = TotalTime;
             SettlePendingHits(time);
+            if (!m_powered) {
+                return;
+            }
             if (time < m_cooldown) {
                 return;
             }
@@ -128,7 +145,19 @@ namespace Phytomana {
                 Vector3 hitPosition = m_pendingHits[i].TargetPosition;
                 m_pendingHits.RemoveAt(i);
                 ComponentBody hit = FindNearestCreatureBody(hitPosition, HitRadius);
-                hit?.Entity.FindComponent<ComponentHealth>()?.Injure(
+                if (hit == null) {
+                    continue;
+                }
+                ComponentHealth health = hit.m_componentHealth;
+                if (health == null) {
+                    continue;
+                }
+                // 生命值低于 2.5（Health×10 点数刻度）的生物被一击杀死
+                if (health.Health * 10f < PhytoConfig.Instance.ThornyRoseKillThreshold * 10f) {
+                    health.Injure(1f, null, true, LanguageControl.Get("OtherCauseOfDeath", "ThornyRose"));
+                    continue;
+                }
+                health.Injure(
                     PhytoConfig.Instance.ThornyRoseDamage * DamageToHealthScale,
                     null,
                     false,

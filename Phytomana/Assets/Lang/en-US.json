@@ -321,7 +321,35 @@
     },
     "TransChestV2Flower:0": {
       "DisplayName": "Trans Chest Ocean",
-      "Description": "Teleports dropped items through walls to the staff-bound target block"
+      "Description": "A messenger that walks through walls. Instantly transports dropped items to the block bound by the staff"
+    },
+    "ManaStarFlower:0": {
+      "DisplayName": "Mana Star",
+      "Description": "A star chart of the mana tide. Every 3s it watches the mana pools in a 3x3 plane: rising mana raises blue star-dust, falling mana sinks red"
+    },
+    "TerraBladeBlock:0": {
+      "DisplayName": "Terra Blade",
+      "Description": "A sword forged from Terra Ingot. 50% chance to fire a sword-qi on swing (fixed damage); each qi costs 1 durability"
+    },
+    "TerraCutterBlock:0": {
+      "DisplayName": "Terra Cutter",
+      "Description": "A felling axe from Terra Ingot. Chains down the whole tree when a log breaks (sneak disables); -1 durability per log, -1 per 3 leaves"
+    },
+    "TerraBreakerBlock:0": {
+      "DisplayName": "Terra Breaker",
+      "Description": "A mining pickaxe from Terra Ingot. Stores mana to upgrade (D to SS); when active, range-mines identical blocks by level; drops into a mana pool refill"
+    },
+    "TerraSlabBlock:0": {
+      "DisplayName": "Terra Crafting Carpet",
+      "Description": "Lay the proper structure, feed items and mana, and it crafts Terra Ingot / Terra Ingot Block. Shows red when the structure is invalid"
+    },
+    "TerraIngotBlock:0": {
+      "DisplayName": "Terra Ingot",
+      "Description": "A high-tier material forged from mana diamond / steel / germanium in the Terra Carpet"
+    },
+    "TerraBlock:0": {
+      "DisplayName": "Terra Ingot Block",
+      "Description": "A placeable block compressed from nine Terra Ingots; the core material of Terra equipment"
     }
   },
   "FlowerTableMessages": {
@@ -356,6 +384,16 @@
     "StartCancelled": "Start point deselected",
     "BindSuccess": "Bound: {0},{1},{2} → {3},{4},{5}",
     "TransChestV2BindStart": "Trans Chest Ocean start selected: ({0}, {1}, {2}), now click the target block to bind",
+    "ThornRoseToggle": "Thorny Rose {0}",
+    "ThornRoseOn": "powered on",
+    "ThornRoseOff": "powered off",
+    "SlabStructureInvalid": "Terra Carpet structure invalid: needs a GrownStone/TerraBlock checkerboard with the carpet on top",
+    "SlabStatusFormat": "Terra Carpet: Mana {0}/{1}mn | Materials: {2}",
+    "SlabCrafted": "Terra Carpet crafted: {0} x {1}",
+    "SlabMissingItems": "Terra Carpet still missing {0} material type(s)",
+    "SlabManaLow": "Terra Carpet not enough mana: {0}/{1}mn",
+    "SlabMaterialsReady": "materials ready, feed mana to craft",
+    "BreakerStatusFormat": "Terra Breaker: {0} | {1}mn stored",
     "ErrTooFar": "Bind failed: too far away",
     "ErrWrongDirection": "Bind failed: target is not on a straight axis",
     "ErrNoManaCapability": "Bind failed: target has no mana capacity"
@@ -393,8 +431,12 @@
     "JadedPowerOff": "Jaded Flower turned off"
   },
   "ClaySandMessages": {
-    "ClaySandPowerOn": "Clay Sand Flower turned on",
-    "ClaySandPowerOff": "Clay Sand Flower turned off"
+    "ClaySandPowerOn": "Clay sand flower powered on",
+    "ClaySandPowerOff": "Clay sand flower powered off"
+  },
+  "ThornyRoseMessages": {
+    "ThornyRosePowerOn": "Thorny Rose powered on",
+    "ThornyRosePowerOff": "Thorny Rose powered off"
   },
   "TransChestV2Messages": {
     "BindSet": "Trans Chest Ocean bound to target block",

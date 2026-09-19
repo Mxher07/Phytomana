@@ -29,6 +29,8 @@ namespace Phytomana {
 
         public int m_clothingIndex;
 
+        public SubsystemTerraSetBehavior m_subsystemTerraSet;
+
         public float m_chargeTimer;
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
@@ -43,6 +45,7 @@ namespace Phytomana {
             m_manaAxeIndex = BlocksManager.GetBlockIndex<ManaAxeBlock>();
             m_manaShovelIndex = BlocksManager.GetBlockIndex<ManaShovelBlock>();
             m_clothingIndex = BlocksManager.GetBlockIndex<ClothingBlock>();
+            m_subsystemTerraSet = Project.FindSubsystem<SubsystemTerraSetBehavior>(false);
         }
 
         public void Update(float dt) {
@@ -72,15 +75,15 @@ namespace Phytomana {
             }
             // 第一轮：找一件耐久不满的魔力钢工具/装备，记下修复耗魔
             int repairSlot = -1;
-            int repairCost = 0;
+            float repairCost = 0f;
             for (int slot = 0; slot < inventory.SlotsCount; slot++) {
                 int value = inventory.GetSlotValue(slot);
                 int count = inventory.GetSlotCount(slot);
                 if (count <= 0) {
                     continue;
                 }
-                int cost = GetRepairCost(value);
-                if (cost <= 0) {
+                float cost = GetRepairCost(value, player);
+                if (cost <= 0f) {
                     continue;
                 }
                 Block block = BlocksManager.Blocks[Terrain.ExtractContents(value)];
@@ -125,7 +128,7 @@ namespace Phytomana {
                 inventory.AddSlotItems(repairSlot, newValue, repairCount);
             }
             // 石板扣魔
-            int newTabletValue = Terrain.ReplaceData(tabletValue, tabletMana - repairCost);
+            int newTabletValue = Terrain.ReplaceData(tabletValue, (int)MathF.Round(tabletMana - repairCost));
             inventory.RemoveSlotItems(tabletSlot, tabletCount);
             if (inventory.GetSlotCount(tabletSlot) == 0) {
                 inventory.AddSlotItems(tabletSlot, newTabletValue, tabletCount);
@@ -135,30 +138,48 @@ namespace Phytomana {
         /// <summary>
         /// 修复一件魔力钢工具/装备的耗魔：镐/弯刀/斧 52mn，胸甲与护腿 45mn，
         /// 其余（铲、头盔、靴子）35mn；非魔力钢工具/装备或耐久已满返回 0。
+        /// 泰拉工具/装具的减免见 SubsystemTerraSetBehavior.GetRepairDiscount。
         /// </summary>
-        public int GetRepairCost(int value) {
+        public float GetRepairCost(int value, ComponentPlayer player) {
             int contents = Terrain.ExtractContents(value);
             int data = Terrain.ExtractData(value);
+            float baseCost;
             if (contents == m_manaPickaxeIndex
                 || contents == m_manaMacheteIndex
                 || contents == m_manaAxeIndex) {
-                return (int)PhytoConfig.Instance.TabletRepairCostTool;
+                baseCost = PhytoConfig.Instance.TabletRepairCostTool;
             }
-            if (contents == m_clothingIndex) {
+            else if (contents == m_clothingIndex) {
                 // 魔力钢护甲：按服饰索引区分（900 头盔 / 901 胸甲 / 902 护腿 / 903 靴子）
                 int clothingIndex = ClothingBlock.GetClothingIndex(data);
                 if (clothingIndex == 901 || clothingIndex == 902) {
-                    return (int)PhytoConfig.Instance.TabletRepairCostArmor;
+                    baseCost = PhytoConfig.Instance.TabletRepairCostArmor;
                 }
-                if (clothingIndex == 900 || clothingIndex == 903) {
-                    return (int)PhytoConfig.Instance.TabletRepairCostOther;
+                else if (clothingIndex == 900 || clothingIndex == 903) {
+                    baseCost = PhytoConfig.Instance.TabletRepairCostOther;
                 }
-                return 0;
+                else {
+                    return 0f;
+                }
             }
-            if (contents == m_manaShovelIndex) {
-                return (int)PhytoConfig.Instance.TabletRepairCostOther;
+            else if (contents == m_manaShovelIndex) {
+                baseCost = PhytoConfig.Instance.TabletRepairCostOther;
             }
-            return 0;
+            else {
+                return 0f;
+            }
+            // 套装减免：泰拉工具 -20%，魔力钢装具 -45%（全装时）
+            float discount = 0f;
+            if (m_subsystemTerraSet != null && player != null) {
+                discount = m_subsystemTerraSet.GetRepairDiscount(player, value);
+                if (discount == 0f && m_subsystemTerraSet.HasFullTerraSet(player)) {
+                    discount = PhytoConfig.Instance.TerraToolRepairDiscount;
+                }
+                if (discount == 0f && m_subsystemTerraSet.HasFullManaSteelSet(player)) {
+                    discount = PhytoConfig.Instance.ManaSteelRepairDiscount;
+                }
+            }
+            return baseCost * (1f - discount);
         }
     }
 }

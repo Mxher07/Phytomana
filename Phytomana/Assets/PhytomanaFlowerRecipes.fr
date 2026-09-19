@@ -85,4 +85,10 @@
     <Ingredient Name="ExpertRunesBlock:10" Count="1" />
     <Ingredient Name="ChestTransFlower" Count="1" />
   </Recipe>
+  <Recipe Result="ManaStarFlower" ResultCount="1">
+    <Ingredient Name="SumeruPetalBlock:26" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:28" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:18" Count="1" />
+    <Ingredient Name="SumeruPetalBlock:6" Count="1" />
+  </Recipe>
 </FlowerRecipes>

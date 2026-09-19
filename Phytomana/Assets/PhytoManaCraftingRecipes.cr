@@ -85,6 +85,21 @@
   <Recipe Result="TerraIngotBlock" ResultCount="1" RequiredHeatLevel="0" a="terrablock" Description="[0]">
     "a"
   </Recipe>
+  <Recipe Result="TerraBladeBlock" ResultCount="1" RequiredHeatLevel="0" a="grownrod" b="terraingot" Description="[0]">
+    "ba "
+    "ba "
+    " b"
+  </Recipe>
+  <Recipe Result="TerraCutterBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="terraingot" c="grownrod" d="grownwood" Description="[0]">
+    "aca"
+    "bcb"
+    " b "
+  </Recipe>
+  <Recipe Result="TerraBreakerBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="manatablet" c="grownrod" d="grownwood" Description="[0]">
+    "aaa"
+    "bcb"
+    " c "
+  </Recipe>
   <Recipe Result="GrownStaffBlock" ResultCount="1" RequiredHeatLevel="0" a="grownrod" b="petal" Description="[0]">
     "ab"
     "ba "

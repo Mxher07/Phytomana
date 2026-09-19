@@ -72,7 +72,9 @@ namespace Phytomana {
             int regionX = origin.X >> 5;
             int regionZ = origin.Y >> 5;
             // 同一区域的所有区块共享颜色，形成「一片一片」的同色花海分区。
-            int regionColor = MixHash(m_worldSeed, FlowerSaltRegionColor, regionX, regionZ) % 16;
+            // C# 的 % 对负哈希值返回负数，须取绝对值再模，保证 regionColor ∈ [0,15]，
+            // 否则 color<<1 会变成未注册的 data 值（显示为默认白花）。
+            int regionColor = Math.Abs(MixHash(m_worldSeed, FlowerSaltRegionColor, regionX, regionZ)) % 16;
             System.Random patchRng = new(MixHash(m_worldSeed, FlowerSaltRegionPatches, regionX, regionZ));
             int roll = patchRng.Next(100);
             int patchCount = roll < BigPatchZeroRoll ? 0 : (roll < BigPatchOneRoll ? 1 : 2);

@@ -39,5 +39,14 @@
   <MemberSubsystemTemplate Name="ManaTableCharger" Guid="9e5c81d7-2f4a-4b36-8c70-5a9d16e3b742" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
     <Parameter Name="Class" Guid="4a8b2c75-6d93-41e7-af28-9b5c07e4d613" Value="Phytomana.SubsystemManaTableCharger" Type="string"/>
   </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="TerraSlabBehavior" Guid="a1b2c3d4-1111-4aaa-bbbb-cccccccccccc" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="a1b2c3d4-2222-4aaa-bbbb-cccccccccccc" Value="Game.SubsystemTerraSlabBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="TerraToolBehavior" Guid="a1b2c3d4-3333-4aaa-bbbb-cccccccccccc" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="a1b2c3d4-4444-4aaa-bbbb-cccccccccccc" Value="Game.SubsystemTerraToolBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
+  <MemberSubsystemTemplate Name="TerraSetBehavior" Guid="a1b2c3d4-5555-4aaa-bbbb-cccccccccccc" InheritanceParent="fefb9590-4972-4893-b02a-76063611b745">
+    <Parameter Name="Class" Guid="a1b2c3d4-6666-4aaa-bbbb-cccccccccccc" Value="Game.SubsystemTerraSetBehavior" Type="string"/>
+  </MemberSubsystemTemplate>
       </ProjectTemplate>
 </PhytoMana>
