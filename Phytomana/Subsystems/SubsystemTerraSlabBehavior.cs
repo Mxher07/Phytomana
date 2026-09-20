@@ -67,6 +67,8 @@ namespace Game {
 
         public int m_terraBlockIndex;
 
+        public int m_semicontductorIndex;
+
         public int m_terraIngotIndex;
 
         public int m_manaDiamondChunkIndex;
@@ -93,6 +95,7 @@ namespace Game {
             m_slabIndex = BlocksManager.GetBlockIndex<TerraSlabBlock>();
             m_grownStoneIndex = BlocksManager.GetBlockIndex<GrownStoneBlock>();
             m_terraBlockIndex = BlocksManager.GetBlockIndex<TerraBlock>();
+            m_semicontductorIndex = BlocksManager.GetBlockIndex<SemiconductorBlock>();
             m_terraIngotIndex = BlocksManager.GetBlockIndex<TerraIngotBlock>();
             m_manaDiamondChunkIndex = BlocksManager.GetBlockIndex<ManaDiamondChunkBlock>();
             m_manaDiamondBlockIndex = BlocksManager.GetBlockIndex<ManaDiamondBlock>();
@@ -155,7 +158,8 @@ namespace Game {
         ///     岩 锗 岩
         ///     锗 岩 锗
         ///     岩 锗 岩
-        ///   「岩」= 生息岩或锗晶块，「锗」= 仅锗晶块（角与中心）。
+        ///   「岩」= 生息岩（GrownStoneBlock）或锗晶块（SemiconductorBlock）；
+        ///   「锗」= 仅锗晶块（SemiconductorBlock）。
         /// 只要任一格不符合即判结构无效（渲染变红 + 法杖提示）。
         /// </summary>
         public bool IsStructureValid(Point3 slab) {
@@ -171,22 +175,19 @@ namespace Game {
                     }
                 }
             }
-            // 下层（Y-1）与最下层（Y-2）两层相同的棋盘：
-            //   岩 锗 岩
-            //   锗 岩 锗
-            //   岩 锗 岩
-            // 角与边为「锗」（仅锗晶块），中心为「岩」（生息岩或锗晶块）
+            // 下层（Y-1）与最下层（Y-2）两层相同的棋盘
             for (int dy = -1; dy >= -2; dy--) {
                 for (int dx = -1; dx <= 1; dx++) {
                     for (int dz = -1; dz <= 1; dz++) {
                         int cell = terrain.GetCellContents(slab.X + dx, slab.Y + dy, slab.Z + dz);
-                        bool isCenter = dx == 0 && dz == 0;
-                        if (isCenter) {
-                            if (!IsGrownOrTerra(cell)) {
+                        if (dx == 0 && dz == 0) {
+                            // 中心：岩（生息岩或锗晶块）
+                            if (!IsRock(cell)) {
                                 return false;
                             }
                         }
-                        else if (!IsTerra(cell)) {
+                        else if (!IsSemiconductor(cell)) {
+                            // 角与边：锗（仅锗晶块）
                             return false;
                         }
                     }
@@ -195,13 +196,15 @@ namespace Game {
             return true;
         }
 
-        public bool IsTerra(int cellContents) =>
-            Terrain.ExtractContents(cellContents) == m_terraBlockIndex;
-
-        public bool IsGrownOrTerra(int cellContents) {
+        /// <summary>「岩」位：生息岩或锗晶块。</summary>
+        public bool IsRock(int cellContents) {
             int contents = Terrain.ExtractContents(cellContents);
-            return contents == m_grownStoneIndex || contents == m_terraBlockIndex;
+            return contents == m_grownStoneIndex || contents == m_semicontductorIndex;
         }
+
+        /// <summary>「锗」位：仅锗晶块（SemiconductorBlock）。</summary>
+        public bool IsSemiconductor(int cellContents) =>
+            Terrain.ExtractContents(cellContents) == m_semicontductorIndex;
 
         public void Update(float dt) {
             double time = m_subsystemGameInfo.TotalElapsedGameTime;
@@ -253,7 +256,7 @@ namespace Game {
                     info.Receiver.ManaStorage.Take(cost);
                     ConsumePickables(point, m_manaDiamondBlockIndex, 1);
                     ConsumePickables(point, m_manaSteelBlockIndex, 1);
-                    ConsumePickables(point, m_terraBlockIndex, 1);
+                    ConsumePickables(point, m_semicontductorIndex, 1);
                     SpawnResult(point, m_terraBlockIndex);
                     SpawnCornerBurst(point);
                     return;
@@ -312,7 +315,7 @@ namespace Game {
                 else if (contents == m_manaSteelBlockIndex) {
                     manaSteelBlocks += pickable.Count;
                 }
-                else if (contents == m_terraBlockIndex) {
+                else if (contents == m_semicontductorIndex) {
                     terraIngotBlocks += pickable.Count;
                 }
             }
