@@ -74,7 +74,15 @@
     "aaa"
     "aaa"
   </Recipe>
-  <Recipe Result="ManaIngotBlock" ResultCount="1" RequiredHeatLevel="0" a="manablock" Description="[0]">
+  <Recipe Result="ManaIngotBlock" ResultCount="9" RequiredHeatLevel="0" a="manablock" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="ManaDiamondBlock" ResultCount="1" RequiredHeatLevel="0" a="manadiamond" Description="[0]">
+    "aaa"
+    "aaa"
+    "aaa"
+  </Recipe>
+  <Recipe Result="ManaDiamondChunkBlock" ResultCount="9" RequiredHeatLevel="0" a="manadiamondblock" Description="[0]">
     "a"
   </Recipe>
   <Recipe Result="TerraBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" Description="[0]">
@@ -82,22 +90,22 @@
     "aaa"
     "aaa"
   </Recipe>
-  <Recipe Result="TerraIngotBlock" ResultCount="1" RequiredHeatLevel="0" a="terrablock" Description="[0]">
+  <Recipe Result="TerraIngotBlock" ResultCount="9" RequiredHeatLevel="0" a="terrablock" Description="[0]">
     "a"
   </Recipe>
   <Recipe Result="TerraBladeBlock" ResultCount="1" RequiredHeatLevel="0" a="grownrod" b="terraingot" Description="[0]">
-    "ba "
-    "ba "
-    " b"
-  </Recipe>
-  <Recipe Result="TerraCutterBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="terraingot" c="grownrod" d="grownwood" Description="[0]">
-    "aca"
-    "bcb"
     " b "
+    " b "
+    " a "
   </Recipe>
-  <Recipe Result="TerraBreakerBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="manatablet" c="grownrod" d="grownwood" Description="[0]">
+  <Recipe Result="TerraCutterBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="manaingot" c="grownrod" Description="[0]">
+    "aab"
+    "ac "
+    " c "
+  </Recipe>
+  <Recipe Result="TerraBreakerBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="manatablet" c="grownrod" Description="[0]">
     "aaa"
-    "bcb"
+    "acb"
     " c "
   </Recipe>
   <Recipe Result="GrownStaffBlock" ResultCount="1" RequiredHeatLevel="0" a="grownrod" b="petal" Description="[0]">
