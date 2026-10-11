@@ -175,20 +175,25 @@ namespace Game {
                     }
                 }
             }
-            // 下层（Y-1）与最下层（Y-2）两层相同的棋盘
+            // 下层（Y-1）与最下层（Y-2）两层相同的棋盘 岩锗岩/锗岩锗/岩锗岩：
+            //   「岩」位（中心 + 4 角，dx+dz 为偶数）= 生息岩或锗晶块；
+            //   「锗」位（4 个边中点，dx+dz 为奇数）= 仅锗晶块。
+            // 旧实现把「中心之外的 8 格」全当锗位，误把 4 个角逼成锗晶块，导致按 spec 摆角为生息岩时判无效。
             for (int dy = -1; dy >= -2; dy--) {
                 for (int dx = -1; dx <= 1; dx++) {
                     for (int dz = -1; dz <= 1; dz++) {
                         int cell = terrain.GetCellContents(slab.X + dx, slab.Y + dy, slab.Z + dz);
-                        if (dx == 0 && dz == 0) {
-                            // 中心：岩（生息岩或锗晶块）
+                        if ((dx + dz) % 2 == 0) {
+                            // 岩位：中心与 4 个角
                             if (!IsRock(cell)) {
                                 return false;
                             }
                         }
-                        else if (!IsSemiconductor(cell)) {
-                            // 角与边：锗（仅锗晶块）
-                            return false;
+                        else {
+                            // 锗位：4 个边中点
+                            if (!IsSemiconductor(cell)) {
+                                return false;
+                            }
                         }
                     }
                 }
@@ -196,15 +201,13 @@ namespace Game {
             return true;
         }
 
-        /// <summary>「岩」位：生息岩或锗晶块。</summary>
-        public bool IsRock(int cellContents) {
-            int contents = Terrain.ExtractContents(cellContents);
-            return contents == m_grownStoneIndex || contents == m_semicontductorIndex;
-        }
+        /// <summary>「岩」位：生息岩或锗晶块（入参为 <c>GetCellContents</c> 返回的方块索引，直接比较）。</summary>
+        public bool IsRock(int contents) =>
+            contents == m_grownStoneIndex || contents == m_semicontductorIndex;
 
         /// <summary>「锗」位：仅锗晶块（SemiconductorBlock）。</summary>
-        public bool IsSemiconductor(int cellContents) =>
-            Terrain.ExtractContents(cellContents) == m_semicontductorIndex;
+        public bool IsSemiconductor(int contents) =>
+            contents == m_semicontductorIndex;
 
         public void Update(float dt) {
             double time = m_subsystemGameInfo.TotalElapsedGameTime;
