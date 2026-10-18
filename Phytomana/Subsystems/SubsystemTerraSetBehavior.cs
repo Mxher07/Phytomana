@@ -20,6 +20,9 @@ namespace Game {
             public int PlayerId;
 
             public float RepairTimer;
+
+            /// <summary>上次档位切换的游戏时间（防抖用）。</summary>
+            public double LastToggleTime;
         }
 
         public SubsystemPlayers m_subsystemPlayers;
@@ -27,6 +30,8 @@ namespace Game {
         public SubsystemTerrain m_subsystemTerrain;
 
         public SubsystemMana m_subsystemMana;
+
+        public SubsystemGameInfo m_subsystemGameInfo;
 
         public int m_clothingIndex;
 
@@ -49,6 +54,7 @@ namespace Game {
             m_subsystemPlayers = Project.FindSubsystem<SubsystemPlayers>(true);
             m_subsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
             m_subsystemMana = Project.FindSubsystem<SubsystemMana>(true);
+            m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
             m_terraToolBehavior = Project.FindSubsystem<SubsystemTerraToolBehavior>(true);
             m_clothingIndex = BlocksManager.GetBlockIndex<ClothingBlock>();
             m_manaTabletIndex = BlocksManager.GetBlockIndex<ManaTabletBlock>();
@@ -252,6 +258,20 @@ namespace Game {
             toolBehavior.PersistBreakerState(miner, state);
         }
 
+        /// <summary>
+        /// 带每玩家防抖的档位切换：仅距上次 >= <c>PhytoConfig.TerraBreakerToggleCooldown</c> 时放行，
+        /// 避免潜行按住挖掘时按帧/按次狂跳档（挖掘完成门槛由 <see cref="TerraSetHooks"/> 保证）。
+        /// </summary>
+        public void TryToggleBreakerLevel(ComponentPlayer player) {
+            PlayerSetState st = GetState(player);
+            double now = m_subsystemGameInfo.TotalElapsedGameTime;
+            if (now - st.LastToggleTime < PhytoConfig.Instance.TerraBreakerToggleCooldown) {
+                return;
+            }
+            st.LastToggleTime = now;
+            ToggleBreakerLevel(player);
+        }
+
         /// <summary>各激活档位所需存魔（D 无需求，C..SS 见 PhytoConfig）。</summary>
         public float RequiredManaForLevel(int level) {
             return level switch {
@@ -299,7 +319,11 @@ namespace Game {
             if (body == null || !body.IsCrouching) {
                 return;
             }
-            m_terraSetBehavior.ToggleBreakerLevel(miner.ComponentPlayer);
+            // 仅一次完成的挖掘触发（对照砍伐者门槛），再交给行为做每玩家防抖，避免潜行按住狂跳档
+            if (digProgress < 1f) {
+                return;
+            }
+            m_terraSetBehavior.TryToggleBreakerLevel(miner.ComponentPlayer);
         }
     }
 }

@@ -149,6 +149,12 @@ namespace Phytomana {
         /// <summary>泰拉破坏者魔力池充能速率（1000mn/s）。</summary>
         public float TerraBreakerPoolChargeRate = 1000f;
 
+        /// <summary>泰拉破坏者档位切换最小间隔（秒），潜行按住挖掘时防狂跳档。</summary>
+        public float TerraBreakerToggleCooldown = 0.3f;
+
+        /// <summary>泰拉砍伐者连锁 BFS 单次最多访问的方块数（含邻居探测），到预算即停，防稠密林区卡顿。</summary>
+        public int TerraFellingScanBudget = 512;
+
         // ===== 荆棘之刺 =====
 
         /// <summary>荆棘之刺秒杀阈值：最大生命低于该值（即 Injure 百分比）的目标被一击致死。</summary>

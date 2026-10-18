@@ -205,7 +205,8 @@ namespace Game {
         }
 
         /// <summary>
-        /// 连锁伐木入队：从破坏点广度优先扩散同类型木/叶（半径 3，上限 63³），
+        /// 连锁伐木入队：从破坏点广度优先扩散同类型木/叶（半径 3，单次扫描上限
+        /// <c>PhytoConfig.TerraFellingScanBudget</c> 默认 512 格），
         /// 非主格逐格入队；主格耐久 1（原版计），其余原木 1/块、树叶 1/3 块。
         /// 破格由 Update 限速消化。
         /// </summary>
@@ -219,7 +220,10 @@ namespace Game {
             }
             List<Point3> open = [start];
             HashSet<Point3> visited = [start];
-            while (open.Count > 0 && visited.Count < 63 * 63 * 63) {
+            int scanBudget = PhytoConfig.Instance.TerraFellingScanBudget;
+            // 单次 BFS 最多访问 scanBudget 个方块（默认 512，PhytoConfig 可调），到预算即停，
+            // 防稠密林区 63³ 全量扩散造成多秒卡顿；实际破坏另由 DigestFellingQueues 的 8/0.5s 窗口限速。
+            while (open.Count > 0 && visited.Count < scanBudget) {
                 Point3 p = open[^1];
                 open.RemoveAt(open.Count - 1);
                 for (int dx = -3; dx <= 3; dx++) {
@@ -298,18 +302,39 @@ namespace Game {
         /// </summary>
         public BreakerState GetBreakerState(ComponentMiner miner) {
             int key = miner.Entity?.Id ?? 0;
-            if (!m_breakerStates.TryGetValue(key, out BreakerState state)) {
+            bool fresh;
+            if (m_breakerStates.TryGetValue(key, out BreakerState state)) {
+                fresh = false;
+            }
+            else {
                 state = new BreakerState();
                 m_breakerStates[key] = state;
+                fresh = true;
             }
             int toolValue = miner.ActiveBlockValue;
             if (Terrain.ExtractContents(toolValue) != m_terraBreakerIndex) {
                 return state;
             }
-            int data = Terrain.ExtractData(toolValue);
-            state.Mana = data >> 5;
-            state.ActiveLevel = data & 31;
+            // data 低 3 位 = 激活档位（0=D,1=C,2=B,3=A,4=S,5=SS）。
+            // 仅新建条目（读档/首次进世界）按档位门槛回填存魔；会话内已有进度则保留，不被 data 覆盖。
+            int tier = Terrain.ExtractData(toolValue) & 0b111;
+            if (fresh) {
+                state.ActiveLevel = tier;
+                state.Mana = GetTierFloorMana(tier);
+            }
             return state;
+        }
+
+        /// <summary>各激活档位最低需求魔力（读档回填用）：D=0，C/B/A/S/SS 见 PhytoConfig。</summary>
+        public int GetTierFloorMana(int level) {
+            return level switch {
+                1 => (int)PhytoConfig.Instance.TerraBreakerLevelCMana,
+                2 => (int)PhytoConfig.Instance.TerraBreakerLevelBMana,
+                3 => (int)PhytoConfig.Instance.TerraBreakerLevelAMana,
+                4 => (int)PhytoConfig.Instance.TerraBreakerLevelSMana,
+                5 => (int)PhytoConfig.Instance.TerraBreakerLevelSSMana,
+                _ => 0
+            };
         }
 
         public int GetBreakerRange(int level) {
@@ -323,16 +348,18 @@ namespace Game {
         }
 
         /// <summary>
-        /// 把破坏者状态（存魔/档位）写回活动槽工具 data（data = 档位低 5 位 | 存魔<<5，
-        /// 存魔上限 1048575mn）。读档后、玩家下线（工具进包）后状态不丢。
+        /// 把破坏者激活档位写回活动槽工具 data 的<b>低 3 位</b>（保留 data 其余位，不碰耐久等）。
+        /// 存魔不再入 data（工具 data 仅 18 位，塞不下 A/S/SS 档的大魔力，旧 <c>存魔&lt;&lt;5</c> 会截断致降档）；
+        /// 读档后按 <see cref="GetTierFloorMana"/> 的档位门槛回填存魔，会话内充能进度存于
+        /// <see cref="m_breakerStates"/>，只在 Persist 时以档位落盘。
         /// </summary>
         public void PersistBreakerState(ComponentMiner miner, BreakerState state) {
             int value = miner.ActiveBlockValue;
             if (Terrain.ExtractContents(value) != m_terraBreakerIndex) {
                 return;
             }
-            int data = (state.ActiveLevel & 31) | (Math.Max(0, state.Mana) << 5);
-            int newValue = Terrain.ReplaceData(value, data);
+            int newData = (Terrain.ExtractData(value) & ~0b111) | (state.ActiveLevel & 0b111);
+            int newValue = Terrain.ReplaceData(value, newData);
             if (newValue == value) {
                 return;
             }
@@ -572,9 +599,9 @@ namespace Game {
         }
 
         /// <summary>
-        /// 每 1s 扫描掉落物：泰拉破坏者落在魔法池 3×3×3 内且池子存量 ≥1000mn/s 充能速率时，
-        /// 吸魔充入破坏者自身存魔（经掉落物归属玩家）。优先扣魔法池存量。
-        /// 数据经 <see cref="PersistBreakerState"/> 写回玩家当前工具。
+        /// 每 1s 扫描掉落物：泰拉破坏者落在魔力池 3×3×3 内、且该池存量足够时，
+        /// 只对「这个掉落物」抬一档（档位随其 data 持久化，拾回即带档），并只向
+        /// 「存量最大的一个池子」扣该档增量——不再 27 池并充、不再误充到归属者当前活动槽工具。
         /// </summary>
         public void ChargeDroppedBreakers() {
             float rate = PhytoConfig.Instance.TerraBreakerPoolChargeRate;
@@ -583,40 +610,42 @@ namespace Game {
                     || Terrain.ExtractContents(pickable.Value) != m_terraBreakerIndex) {
                     continue;
                 }
-                Entity ownerEntity = pickable.OwnerEntity;
-                if (ownerEntity == null) {
-                    continue;
+                int currentTier = Terrain.ExtractData(pickable.Value) & 0b111;
+                if (currentTier >= 5) {
+                    continue; // 已 SS，无需再充
                 }
                 Point3 cell = new(
                     (int)MathF.Round(pickable.Position.X - 0.5f),
                     (int)MathF.Round(pickable.Position.Y - 0.5f),
                     (int)MathF.Round(pickable.Position.Z - 0.5f));
+                // 取 3×3×3 内「存量最大」的一个魔力池（不并充）
+                Point3 bestPool = default;
+                float bestAmount = 0f;
+                bool hasPool = false;
                 foreach (Point3 poolPoint in FindPoolsNear(cell)) {
-                    if (!TryGetPool(poolPoint, out ManaPool pool)) {
-                        continue;
-                    }
-                    if (pool.ManaStorage.Current < rate) {
-                        continue;
-                    }
-                    float taken = pool.ManaStorage.Take(rate);
-                    BreakerState state = GetBreakerStateByEntity(ownerEntity);
-                    if (state != null) {
-                        state.Mana += (int)taken;
-                        ComponentMiner ownerMiner = ownerEntity.FindComponent<ComponentMiner>();
-                        if (ownerMiner != null) {
-                            PersistBreakerState(ownerMiner, state);
+                    if (TryGetPool(poolPoint, out ManaPool pool)) {
+                        float current = pool.ManaStorage.Current;
+                        if (!hasPool || current > bestAmount) {
+                            bestPool = poolPoint;
+                            bestAmount = current;
+                            hasPool = true;
                         }
                     }
                 }
+                if (!hasPool || bestAmount < rate) {
+                    continue;
+                }
+                int nextTier = currentTier + 1;
+                float increment = GetTierFloorMana(nextTier) - GetTierFloorMana(currentTier);
+                if (bestAmount < increment) {
+                    continue; // 池子撑不起下一档的增量
+                }
+                if (TryGetPool(bestPool, out ManaPool chosen)) {
+                    chosen.ManaStorage.Take(increment);
+                }
+                int newData = (Terrain.ExtractData(pickable.Value) & ~0b111) | (nextTier & 0b111);
+                pickable.Value = Terrain.ReplaceData(pickable.Value, newData);
             }
-        }
-
-        public BreakerState GetBreakerStateByEntity(Entity entity) {
-            ComponentMiner miner = entity?.FindComponent<ComponentMiner>();
-            if (miner == null) {
-                return null;
-            }
-            return GetBreakerState(miner);
         }
 
         /// <summary>取坐标 3×3×3 内是魔法池的所有格。</summary>

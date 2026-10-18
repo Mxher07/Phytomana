@@ -102,7 +102,42 @@ namespace Game {
         }
 
         public override void OnBlockAdded(int value, int oldValue, int x, int y, int z) {
+            AddSlab(x, y, z);
+        }
+
+        public override void OnBlockGenerated(int value, int x, int y, int z, bool isLoaded) {
+            AddSlab(x, y, z);
+        }
+
+        public override void OnBlockRemoved(int value, int newValue, int x, int y, int z) {
+            RemoveSlab(new Point3(x, y, z), true);
+        }
+
+        /// <summary>
+        /// 区块卸载：dormant 保留存魔（destroyed=false）并移除强引用，
+        /// 避免 <see cref="Update"/> 把卸载区块的结构全判无效后把存魔清零；
+        /// 重载时 <see cref="AddSlab"/> 经 RegisterReceiver→AttachDormantMana 自动恢复。
+        /// </summary>
+        public override void OnChunkDiscarding(TerrainChunk chunk) {
+            List<Point3> list = [];
+            foreach (Point3 point in m_slabs.Keys) {
+                if (point.X >= chunk.Origin.X
+                    && point.X < chunk.Origin.X + 16
+                    && point.Z >= chunk.Origin.Y
+                    && point.Z < chunk.Origin.Y + 16) {
+                    list.Add(point);
+                }
+            }
+            foreach (Point3 point in list) {
+                RemoveSlab(point, false);
+            }
+        }
+
+        public void AddSlab(int x, int y, int z) {
             Point3 point = new(x, y, z);
+            if (m_slabs.ContainsKey(point)) {
+                return;
+            }
             TerraSlabReceiver receiver = new(point);
             m_subsystemMana.m_network.RegisterReceiver(receiver);
             SlabInfo info = new() {
@@ -114,16 +149,13 @@ namespace Game {
             m_slabs[point] = info;
         }
 
-        public override void OnBlockGenerated(int value, int x, int y, int z, bool isLoaded) {
-            OnBlockAdded(value, 0, x, y, z);
-        }
-
-        public override void OnBlockRemoved(int value, int newValue, int x, int y, int z) {
-            Point3 point = new(x, y, z);
-            if (m_slabs.TryGetValue(point, out SlabInfo info)) {
-                m_subsystemMana.m_network.UnregisterReceiver(info.Receiver, true);
-                m_slabs.Remove(point);
+        /// <param name="destroyed">true 方块被破坏（存魔丢弃）；false 区块卸载（存魔休眠保留）。</param>
+        public void RemoveSlab(Point3 point, bool destroyed) {
+            if (!m_slabs.TryGetValue(point, out SlabInfo info)) {
+                return;
             }
+            m_slabs.Remove(point);
+            m_subsystemMana.m_network.UnregisterReceiver(info.Receiver, destroyed);
         }
 
         public override void OnNeighborBlockChanged(int x, int y, int z, int neighborX, int neighborY, int neighborZ) {
