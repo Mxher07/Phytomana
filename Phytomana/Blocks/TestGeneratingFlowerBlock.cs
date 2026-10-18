@@ -8,7 +8,7 @@ namespace Game {
     /// 不属于正式玩法，后续阶段可移除。需放置在泥土或草皮上。
     /// </summary>
     public class TestGeneratingFlowerBlock : PhytoCrossBlock, IPhytoFlowerBlock {
-    public static int Index = 1145;
+    public static int Index = 666;
 
         public override void Initialize() {
             base.Initialize();

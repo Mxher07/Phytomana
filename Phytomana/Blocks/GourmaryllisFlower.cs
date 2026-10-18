@@ -7,7 +7,7 @@ namespace Game {
     /// 暴食花：吞食掉落的食物，消化片刻后按食物营养价值产出魔力。
     /// </summary>
     public class GourmaryllisFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-public static int Index = 1145;
+public static int Index = 666;
         public override void Initialize() {
             base.Initialize();
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/Gourmaryllis");

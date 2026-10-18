@@ -4,7 +4,7 @@ using Phytomana;
 
 namespace Game {
     public class WaterDonFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-    public static int Index = 1145;
+    public static int Index = 666;
         public override void Initialize() {
             base.Initialize();
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/WaterDon");

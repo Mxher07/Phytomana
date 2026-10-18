@@ -7,7 +7,7 @@ namespace Game {
     /// 传箱花：拾取周围的掉落物并送入贴身箱子（功能花）。行为见 TileChestTransFlower。
     /// </summary>
     public class ChestTransFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-public static int Index = 1145;
+public static int Index = 666;
         public override void Initialize() {
             base.Initialize();
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ChestTransFlower");

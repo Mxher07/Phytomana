@@ -9,7 +9,7 @@ namespace Game {
     /// 法杖工作模式右键炼制符文。碰撞箱高为完整方块的 15/16。
     /// </summary>
     public class RunesTableBlock : Block {
-    public static int Index = 1145;
+    public static int Index = 666;
         public BlockMesh m_meshTable = new();
         public Texture2D m_textureTable;
         // 延迟获取的符文台行为子系统，用于查询该位置已放置的材料。

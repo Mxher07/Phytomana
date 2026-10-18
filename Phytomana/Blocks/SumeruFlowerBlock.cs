@@ -9,7 +9,7 @@ namespace Game {
     /// （0 为默认白色，1~15 对应世界颜料调色板，与原版电线/颜料的取色方式一致）。
     /// </summary>
     public class SumeruFlowerBlock : PhytoCrossBlock {
-    public static int Index = 1145;
+    public static int Index = 666;
         public const int ColorCount = 16;
 
 

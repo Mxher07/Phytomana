@@ -5,7 +5,7 @@ namespace Game {
     public class ManaIngotBlock : Block {
         public Texture2D m_texture;
         public BlockMesh m_standaloneBlockMesh = new();
-public static int Index = 1145;
+public static int Index = 666;
         public override void Initialize() {
             Model model = ContentManager.Get<Model>("Models/Ingots");
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");

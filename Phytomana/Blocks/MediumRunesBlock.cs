@@ -7,7 +7,7 @@ namespace Game {
     /// 中阶符文（data 4~8）：春之、夏之、秋之、冬之、魔力。贴图索引 = 特殊值。
     /// </summary>
     public class MediumRunesBlock : PhytoFlatBlock {
-    public static int Index = 1145;
+    public static int Index = 666;
         public const int MinData = 4;
         public const int MaxData = 8;
 

@@ -8,7 +8,7 @@ namespace Game {
     /// </summary>
     public class AciFlower : PhytoCrossBlock, IPhytoFlowerBlock {
         
-        public static int Index = 1145;
+        public static int Index = 666;
         
         public override void Initialize() {
             base.Initialize();

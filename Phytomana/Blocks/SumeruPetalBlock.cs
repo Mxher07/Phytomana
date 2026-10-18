@@ -10,7 +10,7 @@ namespace Game {
     /// 只需处理 DrawBlock 一条渲染路径。
     /// </summary>
     public class SumeruPetalBlock : PhytoFlatBlock {
-    public static int Index = 1145;
+    public static int Index = 666;
         public const int ColorCount = 16;
 
 

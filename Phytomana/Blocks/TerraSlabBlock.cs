@@ -8,7 +8,7 @@ namespace Game {
     /// 渲染按 data bit0：0 = 结构正确（原色），1 = 结构无效（代码染红）；bit0 由行为子系统翻转。
     /// </summary>
     public class TerraSlabBlock : PhytoCubeBlock {
-    public static int Index = 1145;
+    public static int Index = 666;
         /// <summary>薄板厚度（1/16 格高，与地毯一致）。</summary>
         public const float Thickness = 0.0625f;
 
