@@ -381,6 +381,12 @@ namespace Game {
                         || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
                         continue;
                     }
+                    // 供魔门：任务未开始（材料未齐等）时拒绝搬运——绑定的发射器也不供魔；
+                    // 未实现 IManaGate 的接收器（池/发射器等）保持原有行为。
+                    if (m_network.TryGetReceiver(to, out IManaReceiver target)
+                        && target is IManaGate gate && !gate.AcceptsMana()) {
+                        continue;
+                    }
                     int toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
                     float maxTarget = GetMaxManaAmount(toContents);
                     if (GetManaAmount(from) >= StaffLinkTransferAmount
@@ -403,6 +409,11 @@ namespace Game {
                 }
                 int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To);
                 if (!IsManaStorage(toContents)) {
+                    continue;
+                }
+                // 与实际传输同门的判定，供魔门关着时不算流出（法杖读数不骗人）
+                if (m_network.TryGetReceiver(link.To, out IManaReceiver target)
+                    && target is IManaGate gate && !gate.AcceptsMana()) {
                     continue;
                 }
                 float targetFree = GetMaxManaAmount(toContents) - GetManaAmount(link.To);

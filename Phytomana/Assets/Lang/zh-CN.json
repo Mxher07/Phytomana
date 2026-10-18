@@ -337,7 +337,7 @@
     },
     "TerraBladeBlock:0": {
       "DisplayName": "泰拉刃",
-      "Description": "泰拉锭锻造的剑。挥击有 50% 概率射出剑气，命中造成固定伤害；剑气消耗 1 点耐久"
+      "Description": "泰拉锭锻造的剑。使用时按固定 2.5 秒冷却射出剑气，命中造成固定伤害；剑气消耗 1 点耐久"
     },
     "TerraCutterBlock:0": {
       "DisplayName": "泰拉砍伐者",
@@ -401,6 +401,8 @@
     "SlabMissingItems": "泰拉合成毯还缺 {0} 类材料",
     "SlabManaLow": "泰拉合成毯魔力不足：{0}/{1}mn",
     "SlabMaterialsReady": "材料齐备，供魔即可合成",
+    "SlabNotNeeded": "合成毯只收：魔力钻石/魔力钢锭/魔力钻石块/魔力钢锭块/锗晶块（也可丢在毯上自动吸附）",
+    "SlabEnough": "该材料在毯上已存满",
     "BreakerStatusFormat": "泰拉破坏者：{0}档｜存魔 {1}mn",
     "ErrTooFar": "绑定失败：距离太远",
     "ErrWrongDirection": "绑定失败：目标不在起始点的六向直线上",
@@ -412,15 +414,14 @@
   "RunesTableMessages": {
     "StatusFormat": "「符文台」魔力：{0}/{1}mn｜材料：{2}",
     "Empty": "空",
-    "HintEmpty": "手持材料右键放置到祭坛上，凑齐配方后投掷生息岩并用法杖右键炼制",
-    "HintReady": "材料齐备，投掷生息岩并用法杖右键即可炼出 {0}",
+    "HintEmpty": "手持材料右键放置到祭坛上，凑齐配方后投掷/点击放置生息岩并用法杖右键炼制",
+    "HintReady": "材料齐备，投掷/点击放置生息岩并用法杖右键即可炼出 {0}",
     "HintManaLow": "魔力不足：{0}/{1}mn，先由魔力网络供魔",
     "HintMissing": "还差：{0}",
     "HintNoMatch": "材料与任何符文配方都不匹配（空手潜行右键取回）",
     "NotNeeded": "符文台不收此物",
     "Enough": "该材料已达到配方所需数量",
-    "CatalystThrow": "生息岩是炼制引子，请投掷到祭坛上",
-    "MissingCatalyst": "需要向祭坛投掷一块生息岩作为引子",
+    "MissingCatalyst": "需要一块生息岩作为引子：投掷到祭坛上（有材料时会自动吸附），或手持生息岩点击祭坛放置",
     "ManaLow": "魔力不足：{0}/{1}mn",
     "Crafted": "符文炼制完成"
   },

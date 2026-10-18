@@ -11,13 +11,16 @@ namespace Phytomana {
     /// <summary>
     /// 符文台节点：逐位置状态（已放置材料 + 魔力）。
     /// </summary>
-    public class RunesTable : IManaReceiver {
+    public class RunesTable : IManaReceiver, IManaGate {
         public Point3 Position { get; }
 
         public ManaStorage ManaStorage { get; }
 
         /// <summary>已放置的材料：完整方块值 → 数量（点击放入，悬浮显示，不会消失）。</summary>
         public Dictionary<int, int> Items = [];
+
+        /// <summary>点击放置的生息岩引子（0/1）。独立于 Items：引子混进材料账会多出一件，破坏配方精确匹配。</summary>
+        public int CatalystStored;
 
         /// <summary>就绪指示粒子的下次播报时间。</summary>
         public double NextIndicatorTime;
@@ -26,13 +29,27 @@ namespace Phytomana {
             Position = position;
             ManaStorage = new ManaStorage(maxMana);
         }
+
+        /// <summary>
+        /// 供魔门：放置的材料能配出配方时（合成可以开始）才收魔；
+        /// 不含魔力本身，避免「要够魔才收魔」的死锁。
+        /// </summary>
+        public bool AcceptsMana() {
+            List<int> provided = [];
+            foreach (KeyValuePair<int, int> item in Items) {
+                for (int i = 0; i < item.Value; i++) {
+                    provided.Add(item.Key);
+                }
+            }
+            return RunesRecipeRegistry.TryMatch(provided, out _);
+        }
     }
 
     /// <summary>
     /// 符文台行为：与花药台类似但以「手持点击」放置材料（悬浮显示、不会消失），
-    /// 材料与魔力齐备时冒白色粒子提示；投掷生息岩到祭坛上并用须弥法杖（工作模式）
-    /// 右键即完成炼制。符文类原料在生存模式下不消耗，随成品一起返还；
-    /// 创造模式下照常消耗。配方由外部 .rr 文件声明。
+    /// 材料与魔力齐备时冒白色粒子提示；投掷生息岩（有材料时自动吸附到坛顶中心）
+    /// 或手持生息岩点击祭坛放置，再用须弥法杖（工作模式）右键即完成炼制。
+    /// 符文类原料在生存模式下不消耗，随成品一起返还；创造模式下照常消耗。配方由外部 .rr 文件声明。
     /// </summary>
     public class SubsystemRunesTableBehavior : SubsystemBlockBehavior, IUpdateable, IStaffInteractionHandler {
         /// <summary>就绪指示粒子的播报间隔（秒）。</summary>
@@ -90,6 +107,18 @@ namespace Phytomana {
                 }
                 m_tables[new Point3(x, y, z)] = table;
             }
+            // 点击放置的引子（独立存档键，不动既有 RunesTables 格式；坛子节点不存在时忽略）
+            string catalysts = valuesDictionary.GetValue("RunesTableCatalysts", string.Empty);
+            foreach (string entry in catalysts.Split([';'], StringSplitOptions.RemoveEmptyEntries)) {
+                string[] parts = entry.Split([','], StringSplitOptions.None);
+                if (parts.Length >= 3
+                    && int.TryParse(parts[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out int x)
+                    && int.TryParse(parts[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int y)
+                    && int.TryParse(parts[2], NumberStyles.Integer, CultureInfo.InvariantCulture, out int z)
+                    && m_tables.TryGetValue(new Point3(x, y, z), out RunesTable table)) {
+                    table.CatalystStored = 1;
+                }
+            }
         }
 
         public override void Save(ValuesDictionary valuesDictionary) {
@@ -107,6 +136,16 @@ namespace Phytomana {
                 stringBuilder.Append(';');
             }
             valuesDictionary.SetValue("RunesTables", stringBuilder.ToString());
+            StringBuilder catalysts = new();
+            foreach (KeyValuePair<Point3, RunesTable> pair in m_tables) {
+                if (pair.Value.CatalystStored > 0) {
+                    catalysts.Append(pair.Key.X.ToString(CultureInfo.InvariantCulture)).Append(',');
+                    catalysts.Append(pair.Key.Y.ToString(CultureInfo.InvariantCulture)).Append(',');
+                    catalysts.Append(pair.Key.Z.ToString(CultureInfo.InvariantCulture));
+                    catalysts.Append(';');
+                }
+            }
+            valuesDictionary.SetValue("RunesTableCatalysts", catalysts.ToString());
         }
 
         public float MaxMana => ManaBlockRegistry.GetMaxMana("RunesTableBlock", PhytoConfig.Instance.RunesTableMaxMana);
@@ -149,12 +188,15 @@ namespace Phytomana {
             }
             m_tables.Remove(point);
             m_network.UnregisterReceiver(table, true);
-            // 拆除祭坛时退回全部已放置材料，避免材料凭空消失。
+            // 拆除祭坛时退回全部已放置材料（含点击放置的引子），避免材料凭空消失。
             Vector3 center = new(x + 0.5f, y + 1f, z + 0.5f);
             foreach (KeyValuePair<int, int> item in table.Items) {
                 if (item.Value > 0) {
                     m_subsystemPickables.AddPickable(item.Key, item.Value, center, new Vector3(0f, 2f, 0f), null);
                 }
+            }
+            if (table.CatalystStored > 0) {
+                m_subsystemPickables.AddPickable(Terrain.MakeBlockValue(m_grownStoneIndex), 1, center, new Vector3(0f, 2f, 0f), null);
             }
         }
 
@@ -164,6 +206,28 @@ namespace Phytomana {
                     continue;
                 }
                 UpdateReadyIndicator(table);
+                AttractCatalyst(table);
+            }
+        }
+
+        /// <summary>
+        /// 吸附：祭坛已有放置材料（炼制进行中）时，把其格子带内（含高度+1 坛顶）的
+        /// 生息岩掉落物吸到坛顶中心，落位后即被 <see cref="TryCraftByStaff"/> 的引子扫描消费。
+        /// 引擎侧由 Pickable 飞行机制执行：目标内 0.25 格自动清除并落体静止。
+        /// </summary>
+        public void AttractCatalyst(RunesTable table) {
+            if (table.Items.Count == 0) {
+                return;
+            }
+            Vector3 center = new(table.Position.X + 0.5f, table.Position.Y + 1.0f, table.Position.Z + 0.5f);
+            foreach (Pickable pickable in m_subsystemPickables.Pickables) {
+                if (pickable.ToRemove) {
+                    continue;
+                }
+                if (Terrain.ExtractContents(pickable.Value) == m_grownStoneIndex
+                    && IsPickableInCell(pickable, table.Position)) {
+                    pickable.FlyToPosition = center;
+                }
             }
         }
 
@@ -216,9 +280,8 @@ namespace Phytomana {
                 return true;
             }
             if (heldContents == m_grownStoneIndex) {
-                // 生息岩是炼制引子，须投掷到祭坛上，不能点击放置
-                ShowMessage(player, "CatalystThrow");
-                return true;
+                // 生息岩是炼制引子：点击放置，或投掷成掉落物由祭坛吸附到坛顶
+                return PlaceCatalyst(table, componentMiner);
             }
             return PlaceItem(table, componentMiner, heldContents);
         }
@@ -245,13 +308,36 @@ namespace Phytomana {
             return true;
         }
 
-        /// <summary>空手潜行右键：取回全部已放置材料。</summary>
+        /// <summary>
+        /// 手持生息岩点击：放一件引子进 <see cref="RunesTable.CatalystStored"/>（每坛限 1 件），
+        /// 与投掷掉落物二选一供炼制取用。引子不放进 Items，避免污染配方精确匹配。
+        /// </summary>
+        public bool PlaceCatalyst(RunesTable table, ComponentMiner componentMiner) {
+            ComponentPlayer player = componentMiner.Entity?.FindComponent<ComponentPlayer>();
+            if (table.CatalystStored >= 1) {
+                ShowMessage(player, "Enough");
+                return true;
+            }
+            IInventory inventory = componentMiner.Inventory;
+            int activeSlot = inventory.ActiveSlotIndex;
+            inventory.RemoveSlotItems(activeSlot, 1);
+            table.CatalystStored = 1;
+            SpawnReadyParticle(table.Position);
+            m_subsystemAudio.PlaySound("Audio/UI/ButtonClick", 1f, 0f, 0f, 0f);
+            return true;
+        }
+
+        /// <summary>空手潜行右键：取回全部已放置材料（含点击放置的生息岩引子）。</summary>
         public bool ReturnAllItems(RunesTable table) {
             Vector3 center = new(table.Position.X + 0.5f, table.Position.Y + 1.1f, table.Position.Z + 0.5f);
             foreach (KeyValuePair<int, int> item in table.Items) {
                 if (item.Value > 0) {
                     m_subsystemPickables.AddPickable(item.Key, item.Value, center, new Vector3(0f, 2f, 0f), null);
                 }
+            }
+            if (table.CatalystStored > 0) {
+                table.CatalystStored = 0;
+                m_subsystemPickables.AddPickable(Terrain.MakeBlockValue(m_grownStoneIndex), 1, center, new Vector3(0f, 2f, 0f), null);
             }
             table.Items.Clear();
             return true;
@@ -330,7 +416,7 @@ namespace Phytomana {
             }
             bool creative = m_subsystemGameInfo != null
                 && m_subsystemGameInfo.WorldSettings.GameMode == GameMode.Creative;
-            // 引子：祭坛上的一块生息岩
+            // 引子：祭坛上的一块生息岩 —— 投掷的掉落物（经吸附落在坛顶）或手持点击放置的存量
             Pickable catalyst = null;
             foreach (Pickable pickable in m_subsystemPickables.Pickables) {
                 if (pickable.ToRemove) {
@@ -342,7 +428,7 @@ namespace Phytomana {
                     break;
                 }
             }
-            if (catalyst == null) {
+            if (catalyst == null && table.CatalystStored < 1) {
                 ShowMessage(player, "MissingCatalyst");
                 return true;
             }
@@ -359,9 +445,15 @@ namespace Phytomana {
                 return true;
             }
             // 结算：耗引子与魔力；消耗全部材料；生存模式下符文类原料随成品返还
-            catalyst.Count = MathUtils.Max(catalyst.Count - 1, 0);
-            if (catalyst.Count == 0) {
-                catalyst.ToRemove = true;
+            if (catalyst != null) {
+                catalyst.Count = MathUtils.Max(catalyst.Count - 1, 0);
+                if (catalyst.Count == 0) {
+                    catalyst.ToRemove = true;
+                }
+            }
+            else {
+                // 点击放置的引子：直接消耗存储
+                table.CatalystStored = 0;
             }
             table.ManaStorage.Take(recipe.ManaCost);
             Vector3 ejectCenter = new(point.X + 0.5f, point.Y + 1.3f, point.Z + 0.5f);

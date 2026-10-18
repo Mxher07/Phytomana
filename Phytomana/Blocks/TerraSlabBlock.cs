@@ -25,6 +25,10 @@ namespace Game {
 
         public override int GetTextureSlotCount(int value) => 1;
 
+        // 右键毯子的交互优先级高于手持物品的「使用」（PriorityUse=3000）与放置；
+        // OnInteract 未处理时（如手持法杖）回落到正常使用/放置逻辑。
+        public override int GetPriorityInteract(int value, ComponentMiner componentMiner) => 3500;
+
         public override Texture2D GetDefaultTexture(int value) => m_texture;
 
         public override BoundingBox[] GetCustomCollisionBoxes(SubsystemTerrain subsystemTerrain, int value) => m_collisionBoxes;

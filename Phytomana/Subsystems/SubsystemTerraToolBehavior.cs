@@ -13,8 +13,8 @@ using TemplatesDatabase;
 namespace Game {
     /// <summary>
     /// 泰拉三工具的统一行为子系统：
-    /// 1. 泰拉刃——「使用」（OnUse，任意方向点击即算，不影响挥击攻击）时 50% 概率
-    ///    发射一枚剑气（直线无重力，命中 3.5 固定伤害，穿玩家）；指向生物时
+    /// 1. 泰拉刃——「使用」（OnUse，任意方向点击即算，不影响挥击攻击）时按固定 2.5s 冷却
+    ///    发射一枚剑气（冷却必发、无概率判定；直线无重力，命中 3.5 固定伤害，穿玩家）；指向生物时
     ///    原版的生物命中攻击逻辑照常结算，剑气是独立追加的一发；
     /// 2. 泰拉砍伐者——破坏原木/树叶时连锁伐木（同类型 BFS 扩散，实际破格在 Update
     ///    中按「0.5s 最多 8 格」限速消化，避免大量 DestroyCell 卡死游戏；潜行禁用）；
@@ -97,6 +97,9 @@ namespace Game {
         /// <summary>玩家 Id → 破坏者扩围预览（当前帧挖掘中心 + 将扩挖的格）。</summary>
         public Dictionary<int, BreakerPreview> m_breakerPreviews = [];
 
+        /// <summary>玩家 Id → 剑气上次发射时刻（固定冷却门，到期必发）。</summary>
+        public Dictionary<int, double> m_bladeQiLastFire = [];
+
         public SubsystemPlayers m_subsystemPlayers;
 
         public SubsystemGameInfo m_subsystemGameInfo;
@@ -104,8 +107,6 @@ namespace Game {
         public SubsystemAudio m_subsystemAudio;
 
         public PrimitivesRenderer3D m_primitivesRenderer3D = new();
-
-        public Game.Random m_random = new();
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
@@ -132,12 +133,15 @@ namespace Game {
 
         /// <summary>
         /// 泰拉刃「使用」剑气：OnUse 路径（参考火柴——手持工具右键点击即触发，
-        /// 无条件、不要求准星命中任何目标），50% 概率发射一枚剑气。
-        /// 准星指向生物时原版的挥击攻击照常结算（本方法在 OnUse 派发链上，
-        /// 不拦截也不吞击），剑气是独立追加的一发。
+        /// 不要求准星命中任何目标），固定冷却（<see cref="PhytoConfig.TerraBladeQiCooldown"/>，默认 2.5s）
+        /// 到期必发，冷却内静默拦截。准星指向生物时原版的挥击攻击照常结算
+        /// （本方法在 OnUse 派发链上，不拦截也不吞击），剑气是独立追加的一发。
         /// </summary>
         public bool TryFireBladeQi(ComponentMiner miner, Ray3 ray) {
-            if (!m_random.Bool()) {
+            int key = miner.Entity?.Id ?? 0;
+            double now = m_subsystemGameInfo.TotalElapsedGameTime;
+            if (m_bladeQiLastFire.TryGetValue(key, out double lastFire)
+                && now - lastFire < PhytoConfig.Instance.TerraBladeQiCooldown) {
                 return false;
             }
             Vector3 start = ray.Position;
@@ -157,6 +161,7 @@ namespace Game {
                 Vector3.Zero,
                 miner.ComponentCreature
             );
+            m_bladeQiLastFire[key] = now;
             return true;
         }
 

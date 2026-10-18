@@ -155,6 +155,9 @@ namespace Phytomana {
         /// <summary>泰拉砍伐者连锁 BFS 单次最多访问的方块数（含邻居探测），到预算即停，防稠密林区卡顿。</summary>
         public int TerraFellingScanBudget = 512;
 
+        /// <summary>泰拉刃剑气发射固定冷却（秒），冷却到期必发（无概率判定）。</summary>
+        public float TerraBladeQiCooldown = 2.5f;
+
         // ===== 荆棘之刺 =====
 
         /// <summary>荆棘之刺秒杀阈值：最大生命低于该值（即 Injure 百分比）的目标被一击致死。</summary>

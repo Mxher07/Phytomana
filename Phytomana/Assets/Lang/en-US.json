@@ -329,7 +329,7 @@
     },
     "TerraBladeBlock:0": {
       "DisplayName": "Terra Blade",
-      "Description": "A sword forged from Terra Ingot. 50% chance to fire a sword-qi on swing (fixed damage); each qi costs 1 durability"
+      "Description": "A sword forged from Terra Ingot. On use, fires a sword-qi on a fixed 2.5s cooldown (fixed damage); each qi costs 1 durability"
     },
     "TerraCutterBlock:0": {
       "DisplayName": "Terra Cutter",
@@ -393,6 +393,8 @@
     "SlabMissingItems": "Terra Carpet still missing {0} material type(s)",
     "SlabManaLow": "Terra Carpet not enough mana: {0}/{1}mn",
     "SlabMaterialsReady": "materials ready, feed mana to craft",
+    "SlabNotNeeded": "The Terra Carpet only accepts: Mana Diamond / Mana Ingot / Mana Diamond Block / Mana Steel Block / Semiconductor Block (or just drop them on it - they get attracted)",
+    "SlabEnough": "The carpet storage is full for this material",
     "BreakerStatusFormat": "Terra Breaker: {0} | {1}mn stored",
     "ErrTooFar": "Bind failed: too far away",
     "ErrWrongDirection": "Bind failed: target is not on a straight axis",
@@ -404,15 +406,14 @@
   "RunesTableMessages": {
     "StatusFormat": "[Runes Table] Mana: {0}/{1}mn | Materials: {2}",
     "Empty": "empty",
-    "HintEmpty": "Right-click with materials in hand to place them; complete a recipe, throw a Grown Stone and craft with the staff",
-    "HintReady": "Materials ready! Throw a Grown Stone and right-click with the staff to craft {0}",
+    "HintEmpty": "Right-click with materials in hand to place them; complete a recipe, throw or click-place a Grown Stone and craft with the staff",
+    "HintReady": "Materials ready! Throw or click-place a Grown Stone, and right-click with the staff to craft {0}",
     "HintManaLow": "Not enough mana: {0}/{1}mn, feed it from the mana network first",
     "HintMissing": "Still missing: {0}",
     "HintNoMatch": "Materials match no rune recipe (sneak right-click to retrieve)",
     "NotNeeded": "The runes table does not accept this",
     "Enough": "Enough of this material for the recipe",
-    "CatalystThrow": "The Grown Stone is the catalyst - throw it onto the altar",
-    "MissingCatalyst": "Throw a Grown Stone onto the altar as the catalyst",
+    "MissingCatalyst": "A Grown Stone is needed as the catalyst: throw it onto the altar (it gets attracted once materials are placed), or place it by right-clicking while holding it",
     "ManaLow": "Not enough mana: {0}/{1}mn",
     "Crafted": "Rune crafted"
   },

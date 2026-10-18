@@ -173,6 +173,18 @@ namespace Phytomana {
             return false;
         }
 
+        /// <summary>查询某坐标的活跃接收器（供魔门判定用；区块未加载时无活跃接收器）。</summary>
+        public bool TryGetReceiver(Point3 point, out IManaReceiver receiver) {
+            receiver = null;
+            foreach (WeakReference<IManaReceiver> reference in m_receivers) {
+                if (reference.TryGetTarget(out IManaReceiver target) && target.Position == point) {
+                    receiver = target;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// 查询某坐标的魔力存量：优先活跃接收器，其次休眠数据（区块未加载/存档待还原）。
         /// </summary>
