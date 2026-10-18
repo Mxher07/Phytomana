@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Game {
     /// <summary>
@@ -266,7 +266,7 @@ namespace Game {
         }
 
         public PlayerSetState GetState(ComponentPlayer player) {
-            int key = player.Entity?.Id ?? 0;
+            int key = player.Entity?.EntityId ?? 0;
             if (!m_states.TryGetValue(key, out PlayerSetState state)) {
                 state = new PlayerSetState { PlayerId = key };
                 m_states[key] = state;

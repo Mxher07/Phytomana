@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>
@@ -421,7 +421,7 @@ namespace Phytomana {
             if (!string.IsNullOrEmpty(hint)) {
                 text += "｜" + hint;
             }
-            player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
+            PhytoMessages.Show(player, text, Color.White);
         }
 
         /// <summary>
@@ -468,7 +468,7 @@ namespace Phytomana {
 
         public void ShowMessage(ComponentMiner componentMiner, string text, Color color) {
             ComponentPlayer player = componentMiner.Entity?.FindComponent<ComponentPlayer>();
-            player?.ComponentGui.DisplaySmallMessage(text, color, false, false);
+            PhytoMessages.Show(player, text, color);
         }
 
         /// <summary>原料是否出现在任意 .fr 配方中（只吸收配方认识的材料）。</summary>

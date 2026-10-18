@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -39,7 +39,6 @@ namespace Game {
         }
         
         
-        public override Texture2D GetDefaultTexture(int value) => m_textureStone;
         
         
         public override void GenerateTerrainVertices(

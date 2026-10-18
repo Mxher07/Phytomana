@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 using Random = Game.Random;
 
 namespace Phytomana {
@@ -146,7 +146,7 @@ namespace Phytomana {
                 if (hit == null) {
                     continue;
                 }
-                ComponentHealth health = hit.m_componentHealth;
+                ComponentHealth health = hit.Entity.FindComponent<ComponentHealth>();
                 if (health == null) {
                     continue;
                 }
@@ -181,7 +181,7 @@ namespace Phytomana {
                     continue;
                 }
                 ComponentBody body = creature.ComponentBody;
-                if (body == null || body.m_componentHealth.Health <= 0.01f) {
+                if (body == null || body.Entity.FindComponent<ComponentHealth>()?.Health <= 0.01f) {
                     continue;
                 }
                 Vector3 position = body.Position;

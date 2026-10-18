@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -29,7 +29,6 @@ namespace Game {
 
         public override int GetTextureSlotCount(int value) => 1;
         
-        public override Texture2D GetDefaultTexture(int value) => m_texture;
 
         public override void GenerateTerrainVertices(
             BlockGeometryGenerator generator, 

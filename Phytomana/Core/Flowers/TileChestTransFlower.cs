@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>
@@ -160,7 +160,7 @@ namespace Phytomana {
             ];
             foreach (Point3 offset in offsets) {
                 Point3 cell = new(Position.X + offset.X, Position.Y + offset.Y, Position.Z + offset.Z);
-                int contents = Scheduler.m_subsystemTerrain.Terrain.GetCellContents(cell);
+                int contents = Scheduler.m_subsystemTerrain.Terrain.GetCellContents(cell.X, cell.Y, cell.Z);
                 if (contents != BlocksManager.GetBlockIndex<ChestBlock>()) {
                     continue;
                 }

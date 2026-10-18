@@ -1,13 +1,14 @@
-using Engine;
-using Engine.Graphics;
-using GameEntitySystem;
-using Phytomana;
+using Engine.Core;
 
 namespace Game {
     /// <summary>
-    /// 泰拉刃剑气：沿发射方向直线飞行（无重力、无减速），命中生物造成固定伤害，
-    /// 命中方块或超时（4s）后消散；飞行中每 0.15s 甩出绿色轨迹粒子，消散时迸发浅绿粒子。
-    /// 伤害由 TerraToolBehaviorSubsystem 的 OnProjectileHitBody 钩子注入（3.5 固定值）。
+    /// 泰拉刃剑气：沿发射方向直线飞行，命中生物造成固定伤害，命中方块或超时（4s）后消散；
+    /// 飞行中每 0.15s 甩出绿色轨迹粒子，消散时迸发浅绿粒子。
+    /// 新联机 API 的 Projectile 为纯数据类、弹道物理集中在 SubsystemProjectiles，
+    /// 故直线轨迹由 <see cref="SubsystemTerraToolBehavior"/> 每帧把速度与位置锁定到
+    /// 理想轨迹上实现（抵消宿主对全部射弹统一施加的重力下沉项）；
+    /// 实例化经 ModLoader.OnProjectileAdded 钩子（服务器与客户端一致）把宿主新建的
+    /// 普通射弹原位替换为本类型；伤害由 OnProjectileHitBody 钩子注入（3.5 固定值）。
     /// </summary>
     public class TerraSwordQiProjectile : Projectile {
         public const float Speed = 28f;
@@ -19,68 +20,72 @@ namespace Game {
 
         public const float TrailParticleInterval = 0.15f;
 
+        /// <summary>理想轨迹原点（发射点；客户端以收到射弹的位置重建）。</summary>
+        public Vector3 m_origin;
+
+        /// <summary>发射方向（单位向量，飞行期间恒定）。</summary>
+        public Vector3 m_direction;
+
+        /// <summary>已飞行时间（秒）。</summary>
         public double m_flightTime;
 
+        /// <summary>上一次甩轨迹粒子的时间点（秒）。</summary>
         public double m_lastTrailTime;
 
         public bool m_dead;
 
-        public override void Initialize(int value, Vector3 position, Vector3 velocity, Vector3 angularVelocity, Entity owner) {
-            base.Initialize(value, position, velocity, angularVelocity, owner);
-            Gravity = 0f;
-            Damping = 1f;
-            DampingInFluid = 1f;
-            TerrainKnockBack = 0f;
-            ProjectileStoppedAction = ProjectileStoppedAction.Disappear;
-            ToRemove = false;
-            m_dead = false;
-            m_flightTime = 0;
-            m_lastTrailTime = -TrailParticleInterval;
-        }
-
-        public override void UpdateInChunk(float dt) {
-            m_flightTime += dt;
-            // 飞行轨迹粒子（0.25 大小、0.35s 寿命、绿色）
-            if (m_flightTime - m_lastTrailTime >= TrailParticleInterval && SubsystemParticles != null) {
-                m_lastTrailTime = m_flightTime;
-                SubsystemParticles.AddParticleSystem(new ManaParticleSystem(
-                    Position,
-                    0.25f,
-                    0.35f,
-                    new Color(80, 200, 80)
-                ));
+        /// <summary>
+        /// 原位替换宿主新建的普通射弹：仅当射弹方块为泰拉刃（bladeIndex）时接管。
+        /// 复制宿主已填装的公共字段，避免丢失 Id（网络同步键）、Owner（伤害归属）、
+        /// CreationTime（存档恢复）等运行时状态。
+        /// </summary>
+        public static bool TryReplace(ref Projectile projectile, int bladeIndex) {
+            if (projectile == null || projectile is TerraSwordQiProjectile) {
+                return false;
             }
-            if (m_flightTime >= LifeTime) {
-                Die();
-                return;
+            if (bladeIndex < 0 || Terrain.ExtractContents(projectile.Value) != bladeIndex) {
+                return false;
             }
-            base.UpdateInChunk(dt);
+            TerraSwordQiProjectile qi = new() {
+                Id = projectile.Id,
+                Value = projectile.Value,
+                Position = projectile.Position,
+                Velocity = projectile.Velocity,
+                Rotation = projectile.Rotation,
+                AngularVelocity = projectile.AngularVelocity,
+                IsInWater = projectile.IsInWater,
+                LastNoiseTime = projectile.LastNoiseTime,
+                Owner = projectile.Owner,
+                ProjectileStoppedAction = ProjectileStoppedAction.Disappear,
+                TrailParticleSystem = projectile.TrailParticleSystem,
+                TrailOffset = projectile.TrailOffset,
+                NoChunk = projectile.NoChunk,
+                IsIncendiary = projectile.IsIncendiary,
+                IsFireProjectile = projectile.IsFireProjectile,
+                CreationTime = projectile.CreationTime,
+                Light = projectile.Light,
+                ToRemove = projectile.ToRemove
+            };
+            Vector3 velocity = qi.Velocity;
+            qi.m_direction = velocity.LengthSquared() > 1e-6f
+                ? Vector3.Normalize(velocity)
+                : new Vector3(0f, 0f, 1f);
+            qi.m_origin = qi.Position;
+            qi.m_flightTime = 0.0;
+            qi.m_lastTrailTime = -TrailParticleInterval;
+            projectile = qi;
+            return true;
         }
 
-        public override void HitTerrain(TerrainRaycastResult terrainRaycastResult,
-            CellFace cellFace,
-            ref Vector3 positionAtdt,
-            ref Vector3? pickableStuckMatrix) {
-            // 撞方块直接消散（不破格、不卡入、不转掉落物）
-            positionAtdt = Position;
-            Die();
-        }
-
-        public override void HitBody(BodyRaycastResult bodyRaycastResult, ref Vector3 positionAtdt) {
-            // 伤害结算走基类（OnProjectileHitBody 钩子把 AttackPower 改为固定 3.5），随后消散
-            base.HitBody(bodyRaycastResult, ref positionAtdt);
-            Die();
-        }
-
-        public void Die() {
+        /// <summary>消散：标记移除并迸发浅绿粒子（幂等，命中与超时共用）。</summary>
+        public void Die(SubsystemParticles subsystemParticles) {
             if (m_dead || ToRemove) {
                 return;
             }
             m_dead = true;
             ToRemove = true;
-            // 消散粒子（0.35 大小、0.4s 寿命、浅绿色，上移 0.05）
-            if (SubsystemParticles != null) {
-                SubsystemParticles.AddParticleSystem(new ManaParticleSystem(
+            if (subsystemParticles != null) {
+                subsystemParticles.AddParticleSystem(new ManaParticleSystem(
                     Position + new Vector3(0f, 0.05f, 0f),
                     0.35f,
                     0.4f,

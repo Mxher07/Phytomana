@@ -1,9 +1,9 @@
 using System;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>
@@ -78,7 +78,7 @@ namespace Phytomana {
             if (arg0 != null) {
                 text = string.Format(text, arg0, arg1);
             }
-            player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
+            PhytoMessages.Show(player, text, Color.White);
         }
     }
 }

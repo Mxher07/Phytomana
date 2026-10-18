@@ -4,7 +4,7 @@
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <OutputType>Library</OutputType>
         <RootNamespace>Game</RootNamespace>
-        <TargetFramework>net10.0</TargetFramework>
+        <TargetFramework>net11.0</TargetFramework>
         <AssemblyName>Phytomana</AssemblyName>
         <Deterministic>true</Deterministic>
         <LangVersion>preview</LangVersion>
@@ -23,7 +23,17 @@
         <OutputPath>bin\Release\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="SurvivalcraftAPI.Survivalcraft" Version="1.9.3"/>
+        <PackageReference Include="SCNET.Survivalcraft.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.EngineSystem.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.Engine.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.Engine.Core.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.Engine.Serialization.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Engine.Core"/>
+        <Using Include="Engine.Windowing"/>
+        <Using Include="Engine.FileStorage"/>
+        <Using Include="EntitySystem.Core"/>
     </ItemGroup>
     <ItemGroup>
         <None Update="modinfo.json">
@@ -36,6 +46,8 @@
     <ItemGroup>
         <Compile Include="Blocks/*.cs"/>
         <Compile Include="Blocks/Tools/*.cs"/>
+        <Compile Include="Core/Blocks/*.cs"/>
+        <Compile Include="Core/Network/*.cs"/>
         <Compile Include="Core/ManaSystem/*.cs"/>
         <Compile Include="Core/Flowers/*.cs"/>
         <Compile Include="Core/Events/*.cs"/>
@@ -46,7 +58,7 @@
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <PropertyGroup>
-            <PathOfScmod>$(TargetDir)..\$(AssemblyName).scmod</PathOfScmod>
+            <PathOfScmod>$(TargetDir)..\$(AssemblyName).netmod</PathOfScmod>
         </PropertyGroup>
         <ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(PathOfScmod)" Overwrite="true" />
         <Message Text="The scmod file has been created:$(PathOfScmod)" Importance="high" />

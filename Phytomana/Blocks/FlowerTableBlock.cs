@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 using Phytomana;
 
@@ -19,9 +19,8 @@ namespace Game {
 
         public override bool IsFaceTransparent(SubsystemTerrain subsystemTerrain, int face, int value) => true;
 
-        // 右键花药台的交互优先级高于手持物品的「使用」优先级（PriorityUse=3000），
-        // 使水桶优先注入花药台而不是把水倒在地上；OnInteract 未处理时回落到正常放置/使用逻辑。
-        public override int GetPriorityInteract(int value, ComponentMiner componentMiner) => 3500;
+        // 交互（水桶注水/放置材料）由 SubsystemFlowerTableBehavior 经行为派发处理，
+        // 新联机 API 已无交互优先级概念，无需在方块上覆写优先级。
 
         public override void Initialize() {
             base.Initialize();
@@ -54,7 +53,6 @@ namespace Game {
         }
 
 
-        public override Texture2D GetDefaultTexture(int value) => m_textureStone;
 
 
         public override void GenerateTerrainVertices(

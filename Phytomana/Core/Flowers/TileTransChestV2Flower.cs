@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>
@@ -69,8 +69,7 @@ namespace Phytomana {
         /// <summary>法杖绑定模式下把发射器绑到目的地方块（写入绑定目标）。</summary>
         public void SetBindTarget(Point3 target, ComponentPlayer player) {
             m_bindTarget = target;
-            player?.ComponentGui.DisplaySmallMessage(
-                LanguageControl.Get("TransChestV2Messages", "BindSet"), Color.Green, false, false);
+            PhytoMessages.Show(player, LanguageControl.Get("TransChestV2Messages", "BindSet"), Color.Green);
         }
 
         /// <summary>
@@ -79,20 +78,18 @@ namespace Phytomana {
         /// </summary>
         public void OnStaffCheck(ComponentPlayer player) {
             if (m_bindTarget == null) {
-                player?.ComponentGui.DisplaySmallMessage(
-                    LanguageControl.Get("TransChestV2Messages", "NoTarget"), Color.White, false, false);
+                PhytoMessages.Show(player, LanguageControl.Get("TransChestV2Messages", "NoTarget"), Color.White);
                 return;
             }
-            player?.ComponentGui.DisplaySmallMessage(
+            PhytoMessages.Show(
+                player,
                 string.Format(
                     LanguageControl.Get("TransChestV2Messages", "TargetFormat"),
                     m_bindTarget.Value.X,
                     m_bindTarget.Value.Y,
                     m_bindTarget.Value.Z
                 ),
-                Color.White,
-                false,
-                false
+                Color.White
             );
             Vector3 muzzle = new(Position.X + 0.5f, Position.Y + 0.8f, Position.Z + 0.5f);
             Vector3 targetCenter = new(m_bindTarget.Value.X + 0.5f, m_bindTarget.Value.Y + 0.5f, m_bindTarget.Value.Z + 0.5f);

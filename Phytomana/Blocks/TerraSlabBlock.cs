@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -7,17 +7,15 @@ namespace Game {
     /// 结构校验与合成逻辑见 SubsystemTerraSlabBehavior。
     /// 渲染按 data bit0：0 = 结构正确（原色），1 = 结构无效（代码染红）；bit0 由行为子系统翻转。
     /// </summary>
-    public class TerraSlabBlock : CubeBlock {
+    public class TerraSlabBlock : PhytoCubeBlock {
         /// <summary>薄板厚度（1/16 格高，与地毯一致）。</summary>
         public const float Thickness = 0.0625f;
 
-        public Texture2D m_texture;
 
         public BoundingBox[] m_collisionBoxes = [new(new Vector3(0, 0, 0), new Vector3(1f, Thickness, 1f))];
 
         public override void Initialize() {
             base.Initialize();
-            CanBeBuiltIntoFurniture = false;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/TerraSlab");
         }
 
@@ -25,7 +23,6 @@ namespace Game {
 
         public override int GetTextureSlotCount(int value) => 1;
 
-        public override Texture2D GetDefaultTexture(int value) => m_texture;
 
         public override BoundingBox[] GetCustomCollisionBoxes(SubsystemTerrain subsystemTerrain, int value) => m_collisionBoxes;
 
@@ -71,12 +68,14 @@ namespace Game {
             if (IsStructureInvalid(value)) {
                 color *= new Color(255, 120, 120);
             }
+            // 新 API 无「高度 + 贴图」的 DrawCubeBlock 重载：以 Y 轴缩放矩阵复现薄板厚度，
+            // 几何与旧高度参数版本等价（两者都绕中心缩放），且保留独立贴图。
+            Matrix slabMatrix = Matrix.CreateScale(1f, Thickness, 1f) * matrix;
             BlocksManager.DrawCubeBlock(
                 primitivesRenderer,
                 value,
                 new Vector3(size),
-                Thickness,
-                ref matrix,
+                ref slabMatrix,
                 color,
                 color,
                 environmentData,

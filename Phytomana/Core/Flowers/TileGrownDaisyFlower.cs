@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
-using TemplatesDatabase;
+using EntitySystem.Core;
+using EntitySystem.TemplatesDatabase;
 using Random = Game.Random;
 
 namespace Phytomana {
@@ -96,7 +96,7 @@ namespace Phytomana {
 
             Terrain terrain = Scheduler.m_subsystemTerrain.Terrain;
             TerrainChunk chunk = terrain.GetChunkAtCell(x, z);
-            if (chunk == null || chunk.State != TerrainChunkState.Valid) {
+            if (chunk == null || chunk.MainThreadState != TerrainChunkState.Valid) {
                 return;
             }
 
@@ -115,14 +115,14 @@ namespace Phytomana {
 
             Terrain terrain = Scheduler.m_subsystemTerrain.Terrain;
             TerrainChunk chunk = terrain.GetChunkAtCell(x, z);
-            if (chunk == null || chunk.State != TerrainChunkState.Valid) {
+            if (chunk == null || chunk.MainThreadState != TerrainChunkState.Valid) {
                 return;
             }
 
             for (int i = x - 1; i <= x + 1; i++) {
                 for (int j = z - 1; j <= z + 1; j++) {
                     TerrainChunk cellChunk = terrain.GetChunkAtCell(i, j);
-                    if (cellChunk == null || cellChunk.State != TerrainChunkState.Valid) {
+                    if (cellChunk == null || cellChunk.MainThreadState != TerrainChunkState.Valid) {
                         continue;
                     }
 

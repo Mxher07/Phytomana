@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Engine;
-using GameEntitySystem;
+using Engine.Core;
+using EntitySystem.Core;
 using Phytomana;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Game {
     public class ManaLink {
@@ -143,7 +143,7 @@ namespace Game {
                 storage.SetCurrent(amount);
                 return;
             }
-            int contents = m_subsystemTerrain.Terrain.GetCellContents(point);
+            int contents = m_subsystemTerrain.Terrain.GetCellContents(point.X, point.Y, point.Z);
             float max = GetMaxManaAmount(contents);
             if (max <= 0f) {
                 return;
@@ -244,7 +244,7 @@ namespace Game {
             m_network.GetActiveReceivers(m_receiverBuffer);
             foreach (IManaReceiver receiver in m_receiverBuffer) {
                 Point3 point = receiver.Position;
-                if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex) {
+                if (m_subsystemTerrain.Terrain.GetCellContents(point.X, point.Y, point.Z) != m_manaPoolIndex) {
                     continue;
                 }
                 TryConvertPool(point, receiver);
@@ -264,7 +264,7 @@ namespace Game {
             m_network.GetActiveReceivers(m_receiverBuffer);
             foreach (IManaReceiver receiver in m_receiverBuffer) {
                 Point3 point = receiver.Position;
-                if (m_subsystemTerrain.Terrain.GetCellContents(point) != m_manaPoolIndex
+                if (m_subsystemTerrain.Terrain.GetCellContents(point.X, point.Y, point.Z) != m_manaPoolIndex
                     || receiver.ManaStorage.IsEmpty) {
                     continue;
                 }
@@ -356,8 +356,8 @@ namespace Game {
         public void PruneLinks() {
             for (int i = m_links.Count - 1; i >= 0; i--) {
                 ManaLink link = m_links[i];
-                if (m_subsystemTerrain.Terrain.GetCellContents(link.From) != m_manaSpreaderIndex
-                    || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(link.To))) {
+                if (m_subsystemTerrain.Terrain.GetCellContents(link.From.X, link.From.Y, link.From.Z) != m_manaSpreaderIndex
+                    || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(link.To.X, link.To.Y, link.To.Z))) {
                     m_links.RemoveAt(i);
                     DecrementIncomingLink(link.To);
                 }
@@ -377,11 +377,11 @@ namespace Game {
                     link.TransferAccumulator -= StaffLinkTransferPeriod;
                     Point3 from = link.From;
                     Point3 to = link.To;
-                    if (m_subsystemTerrain.Terrain.GetCellContents(from) != m_manaSpreaderIndex
-                        || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
+                    if (m_subsystemTerrain.Terrain.GetCellContents(from.X, from.Y, from.Z) != m_manaSpreaderIndex
+                        || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to.X, to.Y, to.Z))) {
                         continue;
                     }
-                    int toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
+                    int toContents = m_subsystemTerrain.Terrain.GetCellContents(to.X, to.Y, to.Z);
                     float maxTarget = GetMaxManaAmount(toContents);
                     if (GetManaAmount(from) >= StaffLinkTransferAmount
                         && maxTarget - GetManaAmount(to) >= StaffLinkTransferAmount) {
@@ -401,7 +401,7 @@ namespace Game {
                 if (link.From != from) {
                     continue;
                 }
-                int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To);
+                int toContents = m_subsystemTerrain.Terrain.GetCellContents(link.To.X, link.To.Y, link.To.Z);
                 if (!IsManaStorage(toContents)) {
                     continue;
                 }

@@ -1,13 +1,11 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
-    public class TerraBlock : CubeBlock {
-        public Texture2D m_texture;
+    public class TerraBlock : PhytoCubeBlock {
 
         public override void Initialize() {
             base.Initialize();
-            CanBeBuiltIntoFurniture = true;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/SumeruIngotBlock");
             int contents = BlocksManager.GetBlockIndex<ManaBlock>();
             Log.Information($"[PhytoMana]{contents} Registered.");
@@ -17,6 +15,5 @@ namespace Game {
 
         public override int GetTextureSlotCount(int value) => 1;
 
-        public override Texture2D GetDefaultTexture(int value) => m_texture;
     }
 }

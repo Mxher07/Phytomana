@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -24,7 +24,6 @@ namespace Game {
 
         public override void GenerateTerrainVertices(BlockGeometryGenerator generator, TerrainGeometry geometry, int value, int x, int y, int z) { }
 
-        public override Texture2D GetDefaultTexture(int value) => m_texture;
 
         public override void DrawBlock(PrimitivesRenderer3D primitivesRenderer,
             int value,

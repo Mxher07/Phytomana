@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 using Phytomana;
 
@@ -21,9 +21,8 @@ namespace Game {
 
         public override bool IsFaceTransparent(SubsystemTerrain subsystemTerrain, int face, int value) => true;
 
-        // 右键符文台的交互优先级高于手持物品的「使用」（PriorityUse=3000）与放置；
-        // OnInteract 未处理时（如手持法杖）回落到正常使用/放置逻辑。
-        public override int GetPriorityInteract(int value, ComponentMiner componentMiner) => 3500;
+        // 交互（放置材料/法杖炼制）由 SubsystemRunesTableBehavior 经行为派发处理，
+        // 新联机 API 已无交互优先级概念，无需在方块上覆写优先级。
 
         public override BoundingBox[] GetCustomCollisionBoxes(SubsystemTerrain terrain, int value) => m_collisionBoxes;
 
@@ -42,7 +41,6 @@ namespace Game {
             );
         }
 
-        public override Texture2D GetDefaultTexture(int value) => m_textureTable;
 
         public override int GetFaceTextureSlot(int face, int value) => 0;
 

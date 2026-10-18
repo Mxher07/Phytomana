@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -9,10 +9,9 @@ namespace Game {
     /// 数据直传（.fr 配方 CopyData）天然保色。花瓣是纯物品方块（不可放置），
     /// 只需处理 DrawBlock 一条渲染路径。
     /// </summary>
-    public class SumeruPetalBlock : FlatBlock {
+    public class SumeruPetalBlock : PhytoFlatBlock {
         public const int ColorCount = 16;
 
-        public Texture2D m_texture;
 
         public override void Initialize() {
             base.Initialize();
@@ -21,7 +20,6 @@ namespace Game {
 
         public override int GetTextureSlotCount(int value) => 1;
 
-        public override Texture2D GetDefaultTexture(int value) => m_texture;
 
         /// <summary>颜色索引存于 data 的 bit1~4（与 SumeruFlowerBlock 相同布局）。</summary>
         public static int GetColorIndex(int data) => (data >> 1) & 0xF;

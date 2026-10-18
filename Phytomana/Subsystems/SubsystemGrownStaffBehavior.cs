@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Game {
     public class SubsystemGrownStaffBehavior : SubsystemBlockBehavior, IUpdateable, IDrawable {
@@ -378,7 +378,7 @@ namespace Game {
                 LanguageControl.Get("GrownStaffMessages", isSwitch ? "ModeChanged" : "ModeEquip"),
                 modeName
             );
-            player.ComponentGui.DisplaySmallMessage(message, Color.White, false, false);
+            PhytoMessages.Show(player, message, Color.White);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
@@ -420,7 +420,7 @@ namespace Game {
                     value
                 );
             }
-            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            PhytoMessages.Show(player, message, Color.Green);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
             return true;
         }
@@ -440,7 +440,7 @@ namespace Game {
                 status,
                 FormatMana(usage)
             );
-            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            PhytoMessages.Show(player, message, Color.Green);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
@@ -457,7 +457,7 @@ namespace Game {
                 FormatMana(max),
                 status
             );
-            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            PhytoMessages.Show(player, message, Color.Green);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
@@ -495,7 +495,7 @@ namespace Game {
             if (args.Length > 0) {
                 text = string.Format(text, args);
             }
-            player.ComponentGui.DisplaySmallMessage(text, color, false, false);
+            PhytoMessages.Show(player, text, color);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 

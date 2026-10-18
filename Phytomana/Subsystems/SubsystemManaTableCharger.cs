@@ -1,8 +1,8 @@
 using System;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
-using TemplatesDatabase;
+using EntitySystem.Core;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>

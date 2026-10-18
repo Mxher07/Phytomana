@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 using Game;
-using GameEntitySystem;
-using TemplatesDatabase;
+using EntitySystem.Core;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>

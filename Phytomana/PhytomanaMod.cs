@@ -1,7 +1,7 @@
 using System.Xml.Linq;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
 
 namespace Phytomana {
@@ -21,6 +21,8 @@ namespace Phytomana {
             ModsManager.RegisterHook("OnMinerDig", terraToolHooks, 1);
             ModsManager.RegisterHook("OnBlockDug", terraToolHooks, 1);
             ModsManager.RegisterHook("OnProjectileHitBody", terraToolHooks, 1);
+            ModsManager.RegisterHook("OnProjectileAdded", terraToolHooks, 1);
+            ModsManager.RegisterHook("OnProjectileHitTerrain", terraToolHooks, 1);
             TerraSetHooks terraSetHooks = new();
             ModsManager.RegisterHook("OnMinerDig", terraSetHooks, 2);
         }
@@ -44,7 +46,7 @@ namespace Phytomana {
             // 缓存世界种子供地形线程的花群生成使用（确定性推导，无共享可变状态）。
             SubsystemGameInfo gameInfo = project.FindSubsystem<SubsystemGameInfo>(false);
             if (gameInfo != null) {
-                SumeruPatchGenerator.SetWorldSeed(gameInfo.WorldSettings.WorldSeed);
+                SumeruPatchGenerator.SetWorldSeed(gameInfo.WorldSeed);
             }
             Log.Information("[PhytoMana]World runtime ready: mana network + flower scheduler loaded.");
         }

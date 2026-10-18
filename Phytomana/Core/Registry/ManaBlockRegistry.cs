@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Xml.Linq;
-using Engine;
+using Engine.Core;
 using Game;
 
 namespace Phytomana {
@@ -45,8 +45,7 @@ namespace Phytomana {
         internal static void Initialize() {
             m_byContents.Clear();
             m_byName.Clear();
-            XElement root = ContentManager.Get<XElement>(ContentPath, null, false);
-            if (root == null) {
+            if (!ContentManager.TryGet(ContentPath, out XElement root)) {
                 IsInitialized = true;
                 Log.Warning("[PhytoMana]ManaBlockRegistry: ManaBlocks.xml not found, falling back to built-in defaults.");
                 return;

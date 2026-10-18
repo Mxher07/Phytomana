@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -9,7 +9,7 @@ namespace Game {
     /// 手持点击魔法池灌注魔力；手持时任意点击显示当前魔力；空板丢进魔法池会缓慢吸魔。
     /// 行为见 SubsystemManaTableBehavior 与 SubsystemMana 的石板吸魔逻辑。
     /// </summary>
-    public class ManaTabletBlock : FlatBlock {
+    public class ManaTabletBlock : PhytoFlatBlock {
         public const int MaxMana = 3000;
 
         /// <summary>魔力高于该阈值时显示充能（亮）贴图。</summary>
@@ -29,7 +29,7 @@ namespace Game {
 
         public override int GetTextureSlotCount(int value) => 1;
 
-        public override Texture2D GetDefaultTexture(int value) =>
+        public override Texture2D GetPhytoTexture(int value) =>
             Terrain.ExtractData(value) > ChargedThreshold ? m_textureCharged : m_textureEmpty;
     }
 }

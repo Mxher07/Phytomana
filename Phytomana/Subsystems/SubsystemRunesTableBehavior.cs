@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 namespace Phytomana {
     /// <summary>
     /// 符文台节点：逐位置状态（已放置材料 + 魔力）。
@@ -276,7 +276,7 @@ namespace Phytomana {
             if (!string.IsNullOrEmpty(hint)) {
                 text += "｜" + hint;
             }
-            player.ComponentGui.DisplaySmallMessage(text, Color.White, false, false);
+            PhytoMessages.Show(player, text, Color.White);
         }
 
         /// <summary>炼制进度提示：齐备 → 可投生息岩开炼；差材料 → 列缺口；魔力不足 → 提示。</summary>
@@ -400,8 +400,7 @@ namespace Phytomana {
         }
 
         public void ShowMessage(ComponentPlayer player, string key) {
-            player?.ComponentGui.DisplaySmallMessage(
-                LanguageControl.Get("RunesTableMessages", key), Color.White, false, false);
+            PhytoMessages.Show(player, LanguageControl.Get("RunesTableMessages", key), Color.White);
         }
 
         public override void Dispose() {
@@ -425,8 +424,10 @@ namespace Phytomana {
         }
 
         public void ShowMessage(ComponentPlayer player, string key, string arg0, string arg1) {
-            player?.ComponentGui.DisplaySmallMessage(
-                string.Format(LanguageControl.Get("RunesTableMessages", key), arg0, arg1), Color.White, false, false);
+            PhytoMessages.Show(
+                player,
+                string.Format(LanguageControl.Get("RunesTableMessages", key), arg0, arg1),
+                Color.White);
         }
 
         public bool IsPickableInCell(Pickable pickable, Point3 cell) {

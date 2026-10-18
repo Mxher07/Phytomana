@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using Game.Network;
+using Game.Network.Enums;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>
@@ -37,10 +39,14 @@ namespace Phytomana {
         /// </summary>
         public virtual void TogglePower(ComponentPlayer player) {
             m_powered = !m_powered;
+            // 服务端权威：广播开机/关机结果，其他已连接客户端同步本地预测状态
+            // （操作者本机已有预测；收到回包后按服务端值校正）。
+            if (CommonLib.WorkType == WorkType.Server) {
+                CommonLib.Net.QueuePackage(new FlowerPowerSyncPackage(Position, m_powered));
+            }
             if (player != null) {
                 string key = m_powered ? PoweredOnKey : PoweredOffKey;
-                player.ComponentGui.DisplaySmallMessage(
-                    LanguageControl.Get(PoweredMessageKey, key), Color.White, false, false);
+                PhytoMessages.Show(player, LanguageControl.Get(PoweredMessageKey, key), Color.White);
             }
         }
 

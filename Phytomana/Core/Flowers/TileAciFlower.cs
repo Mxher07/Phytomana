@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Phytomana {
     /// <summary>
@@ -122,7 +122,8 @@ namespace Phytomana {
                     continue;
                 }
                 ComponentBody body = creature.ComponentBody;
-                if (body == null || body.m_componentHealth.Health <= 0.01f) {
+                ComponentHealth health = body?.Entity.FindComponent<ComponentHealth>();
+                if (body == null || health == null || health.Health <= 0.01f) {
                     continue;
                 }
                 Vector3 position = body.Position;
@@ -154,14 +155,14 @@ namespace Phytomana {
             for (int i = m_marked.Count - 1; i >= 0; i--) {
                 MarkedCreature marked = m_marked[i];
                 ComponentBody body = marked.Body;
+                ComponentHealth health = body?.Entity.FindComponent<ComponentHealth>();
                 if (body == null
-                    || body.m_componentHealth == null
-                    || body.m_componentHealth.Health <= 0.01f
+                    || health == null
+                    || health.Health <= 0.01f
                     || time >= marked.ExpireTime) {
                     m_marked.RemoveAt(i);
                     continue;
                 }
-                ComponentHealth health = body.m_componentHealth;
                 if (time >= marked.NextPoisonTick) {
                     marked.NextPoisonTick = time + PoisonTickInterval;
                     // 固定 10% 的中毒伤害，但不致死（余血不低于 1 点）

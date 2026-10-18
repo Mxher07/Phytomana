@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml.Linq;
-using Engine;
+using Engine.Core;
 using Game;
-using XmlUtilities;
+using EntitySystem.XmlUtilities;
 
 namespace Phytomana {
     /// <summary>

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Game {
     /// <summary>
@@ -374,9 +374,10 @@ namespace Game {
         public void ShowStatus(Point3 point, ComponentPlayer player) {
             bool valid = IsStructureValid(point);
             if (!valid) {
-                player.ComponentGui.DisplaySmallMessage(
+                PhytoMessages.Show(
+                    player,
                     LanguageControl.Get("GrownStaffMessages", "SlabStructureInvalid"),
-                    Color.Red, false, false);
+                    Color.Red);
                 return;
             }
             float max = m_subsystemMana.GetMaxManaAmount(m_slabIndex);
@@ -399,7 +400,7 @@ namespace Game {
                 SubsystemGrownStaffBehavior.FormatMana(current),
                 SubsystemGrownStaffBehavior.FormatMana(max),
                 materials);
-            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            PhytoMessages.Show(player, message, Color.Green);
             SubsystemAudio audio = Project.FindSubsystem<SubsystemAudio>(false);
             audio?.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }

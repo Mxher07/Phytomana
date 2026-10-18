@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -8,14 +8,12 @@ namespace Game {
     /// data 布局与 FlowerBlock 兼容：bit0 = IsSmall（微型花），bit1~4 = 颜色索引 0~15
     /// （0 为默认白色，1~15 对应世界颜料调色板，与原版电线/颜料的取色方式一致）。
     /// </summary>
-    public class SumeruFlowerBlock : FlowerBlock {
+    public class SumeruFlowerBlock : PhytoCrossBlock {
         public const int ColorCount = 16;
 
-        public Texture2D m_texture;
 
         public override void Initialize() {
             base.Initialize();
-            CanBeBuiltIntoFurniture = false;
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/SumeruFlower");
         }
 
@@ -23,7 +21,6 @@ namespace Game {
 
         public override int GetTextureSlotCount(int value) => 1;
 
-        public override Texture2D GetDefaultTexture(int value) => m_texture;
 
         /// <summary>从 data 中取颜色索引（bit1~4）。</summary>
         public static int GetColorIndex(int data) => (data >> 1) & 0xF;
@@ -32,7 +29,7 @@ namespace Game {
         public static int SetColorIndex(int data, int colorIndex) => (data & ~0x1E) | ((colorIndex & 0xF) << 1);
 
         public override void GenerateTerrainVertices(BlockGeometryGenerator generator, TerrainGeometry geometry, int value, int x, int y, int z) {
-            Texture2D texture = GetDefaultTexture(value);
+            Texture2D texture = GetPhytoTexture(value);
             Color tint = GetColorValue(Terrain.ExtractData(value), generator.SubsystemPalette);
             generator.GenerateCrossfaceVertices(
                 this,

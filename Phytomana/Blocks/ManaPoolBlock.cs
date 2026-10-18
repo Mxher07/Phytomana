@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -62,7 +62,6 @@ namespace Game {
         
         
         // 方块的默认纹理用于普通方块渲染和未指定专用纹理的场景，使用底座纹理即可。
-        public override Texture2D GetDefaultTexture(int value) => m_textureStone;
         
         
         // 将石质底座和当前魔力液体添加到地形几何体中。
@@ -141,8 +140,7 @@ namespace Game {
                 color, 
                 drawSize, 
                 ref matrix, 
-                environmentData,
-                GeometrySubsetType.Transparent
+                environmentData
             );
         }
     }

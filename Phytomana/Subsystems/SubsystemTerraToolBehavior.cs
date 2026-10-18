@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana;
 using Phytomana.Api;
-using TemplatesDatabase;
+using EntitySystem.TemplatesDatabase;
 
 namespace Game {
     /// <summary>
@@ -150,7 +150,8 @@ namespace Game {
             }
             // 剑气从玩家前方 2 格出发，避免贴着位置自穿
             Vector3 origin = start + direction * 2f;
-            m_subsystemProjectiles.FireProjectile<TerraSwordQiProjectile>(
+            // 新 API 无泛型 FireProjectile；实例类型由 OnProjectileAdded 钩子原位替换（见 HandleProjectileAdded）
+            m_subsystemProjectiles.FireProjectile(
                 Terrain.MakeBlockValue(m_terraBladeIndex),
                 origin,
                 direction * TerraSwordQiProjectile.Speed,
@@ -158,6 +159,61 @@ namespace Game {
                 miner.ComponentCreature
             );
             return true;
+        }
+
+        /// <summary>
+        /// 射弹添加钩子：把泰拉刃射弹原位替换为剑气实例。
+        /// 服务器发射（FireProjectileNet）与客户端收到网络射弹（ProjectilePackage）
+        /// 都会经过该钩子，两端因此获得一致的剑气类型与状态。
+        /// </summary>
+        public void HandleProjectileAdded(ref Projectile projectile) {
+            TerraSwordQiProjectile.TryReplace(ref projectile, m_terraBladeIndex);
+        }
+
+        /// <summary>
+        /// 剑气撞方块：不破格、不卡入、不触发被击方块行为、不发声。
+        /// 移除由 <see cref="SubsystemTerraBladeBehavior.OnHitAsProjectile"/> 统一负责。
+        /// </summary>
+        public void HandleProjectileHitTerrain(
+            Projectile projectile,
+            ref bool triggerBlocksBehavior,
+            ref bool destroyCell,
+            ref float impactSoundLoudness,
+            ref bool projectileGetStuck) {
+            if (!(projectile is TerraSwordQiProjectile)) {
+                return;
+            }
+            triggerBlocksBehavior = false;
+            destroyCell = false;
+            impactSoundLoudness = 0f;
+            projectileGetStuck = false;
+        }
+
+        /// <summary>
+        /// 剑气每帧维护：把速度与位置锁定到理想直线轨迹（抵消宿主弹道统一施加的重力下沉），
+        /// 按 0.15s 间隔甩绿色轨迹粒子，超时（4s）消散。
+        /// </summary>
+        public void UpdateBladeQis(float dt) {
+            foreach (Projectile projectile in m_subsystemProjectiles.Projectiles) {
+                if (!(projectile is TerraSwordQiProjectile qi) || qi.ToRemove) {
+                    continue;
+                }
+                qi.m_flightTime += dt;
+                qi.Velocity = qi.m_direction * TerraSwordQiProjectile.Speed;
+                qi.Position = qi.m_origin + qi.m_direction * ((float)qi.m_flightTime * TerraSwordQiProjectile.Speed);
+                if (qi.m_flightTime - qi.m_lastTrailTime >= TerraSwordQiProjectile.TrailParticleInterval) {
+                    qi.m_lastTrailTime = qi.m_flightTime;
+                    m_subsystemParticles.AddParticleSystem(new ManaParticleSystem(
+                        qi.Position,
+                        0.25f,
+                        0.35f,
+                        new Color(80, 200, 80)
+                    ));
+                }
+                if (qi.m_flightTime >= TerraSwordQiProjectile.LifeTime) {
+                    qi.Die(m_subsystemParticles);
+                }
+            }
         }
 
         /// <summary>剑气命中生物：固定 3.5 伤害（可击杀），对玩家穿透不伤。</summary>
@@ -211,7 +267,7 @@ namespace Game {
         /// </summary>
         public void QueueFelling(ComponentMiner miner, ComponentPlayer player, Point3 start, int type, int mainDurability) {
             Terrain terrain = m_subsystemTerrain.Terrain;
-            int key = player?.Entity?.Id ?? 0;
+            int key = player?.Entity?.EntityId ?? 0;
             FellingQueue queue;
             if (!m_fellingQueues.TryGetValue(key, out queue)) {
                 queue = new FellingQueue();
@@ -297,7 +353,7 @@ namespace Game {
         /// 退出世界/读档时状态来自工具 data，不会重置。
         /// </summary>
         public BreakerState GetBreakerState(ComponentMiner miner) {
-            int key = miner.Entity?.Id ?? 0;
+            int key = miner.Entity?.EntityId ?? 0;
             if (!m_breakerStates.TryGetValue(key, out BreakerState state)) {
                 state = new BreakerState();
                 m_breakerStates[key] = state;
@@ -382,7 +438,7 @@ namespace Game {
             float costPerBlock = PhytoConfig.Instance.TerraBreakerPerBlockCost;
             SubsystemTerraSetBehavior setBehavior = Project.FindSubsystem<SubsystemTerraSetBehavior>(false);
             Terrain terrain = m_subsystemTerrain.Terrain;
-            int key = player.Entity?.Id ?? 0;
+            int key = player.Entity?.EntityId ?? 0;
             if (!m_breakerPreviews.TryGetValue(key, out BreakerPreview preview)) {
                 preview = new BreakerPreview();
                 m_breakerPreviews[key] = preview;
@@ -424,7 +480,7 @@ namespace Game {
         /// 同时把将被扩挖的同类格画白色边框。供渲染层每帧调用。
         /// </summary>
         public void UpdateBreakerPreview(ComponentMiner miner, Point3 center, int targetContents) {
-            int key = miner.Entity?.Id ?? 0;
+            int key = miner.Entity?.EntityId ?? 0;
             if (!m_breakerPreviews.TryGetValue(key, out BreakerPreview preview)) {
                 preview = new BreakerPreview();
                 m_breakerPreviews[key] = preview;
@@ -472,6 +528,7 @@ namespace Game {
             CheckBreakerPullOut(dt);
             DigestFellingQueues(dt);
             UpdateBreakerPreviews();
+            UpdateBladeQis(dt);
         }
 
         /// <summary>
@@ -489,14 +546,14 @@ namespace Game {
                     continue;
                 }
                 if (Terrain.ExtractContents(miner.ActiveBlockValue) != m_terraBreakerIndex) {
-                    if (m_breakerPreviews.TryGetValue(player.Entity.Id, out BreakerPreview stale)) {
+                    if (m_breakerPreviews.TryGetValue(player.Entity.EntityId, out BreakerPreview stale)) {
                         stale.Valid = false;
                     }
                     continue;
                 }
                 BreakerState state = GetBreakerState(miner);
                 if (state.ActiveLevel <= 0) {
-                    if (m_breakerPreviews.TryGetValue(player.Entity.Id, out BreakerPreview stale2)) {
+                    if (m_breakerPreviews.TryGetValue(player.Entity.EntityId, out BreakerPreview stale2)) {
                         stale2.Valid = false;
                     }
                     continue;
@@ -508,7 +565,7 @@ namespace Game {
                 Ray3 ray = new(camera.ViewPosition, camera.ViewDirection);
                 TerrainRaycastResult? hit = miner.Raycast<TerrainRaycastResult>(ray, RaycastMode.Digging);
                 if (!hit.HasValue) {
-                    if (m_breakerPreviews.TryGetValue(player.Entity.Id, out BreakerPreview stale3)) {
+                    if (m_breakerPreviews.TryGetValue(player.Entity.EntityId, out BreakerPreview stale3)) {
                         stale3.Valid = false;
                     }
                     continue;
@@ -532,7 +589,7 @@ namespace Game {
                 if (miner == null) {
                     continue;
                 }
-                int playerKey = player.Entity.Id;
+                int playerKey = player.Entity.EntityId;
                 bool holdingBreaker =
                     Terrain.ExtractContents(miner.ActiveBlockValue) == m_terraBreakerIndex;
                 bool wasHolding = m_wasHoldingBreaker.GetValueOrDefault(playerKey, false);
@@ -562,7 +619,7 @@ namespace Game {
                     LanguageControl.Get("GrownStaffMessages", "BreakerStatusFormat"),
                     levelName,
                     SubsystemGrownStaffBehavior.FormatMana(state.Mana));
-                player.ComponentGui.DisplaySmallMessage(message, Color.White, false, true);
+                PhytoMessages.Show(player, message, Color.White, false, true);
                 m_breakerHintShown[playerKey] = true;
             }
             // 离开破坏者手持时清除标记，允许下次再掏出时重新提示
@@ -573,18 +630,16 @@ namespace Game {
 
         /// <summary>
         /// 每 1s 扫描掉落物：泰拉破坏者落在魔法池 3×3×3 内且池子存量 ≥1000mn/s 充能速率时，
-        /// 吸魔充入破坏者自身存魔（经掉落物归属玩家）。优先扣魔法池存量。
-        /// 数据经 <see cref="PersistBreakerState"/> 写回玩家当前工具。
+        /// 吸魔充入掉落破坏者自身的存魔数据位（编码与手持工具一致：mana = data >> 5，档位 = data &amp; 31）。
+        /// 优先扣魔法池存量；拾取后充能随物品带入背包/手持。
+        /// （新引擎的 Pickable 不再携带归属玩家，故改写物品 Value 数据位本身；
+        /// 旧行为经归属玩家的当前工具间接写入，二者在「拾取后破坏者带充能」上等价。）
         /// </summary>
         public void ChargeDroppedBreakers() {
             float rate = PhytoConfig.Instance.TerraBreakerPoolChargeRate;
             foreach (Pickable pickable in m_subsystemPickables.Pickables) {
                 if (pickable.ToRemove
                     || Terrain.ExtractContents(pickable.Value) != m_terraBreakerIndex) {
-                    continue;
-                }
-                Entity ownerEntity = pickable.OwnerEntity;
-                if (ownerEntity == null) {
                     continue;
                 }
                 Point3 cell = new(
@@ -599,24 +654,11 @@ namespace Game {
                         continue;
                     }
                     float taken = pool.ManaStorage.Take(rate);
-                    BreakerState state = GetBreakerStateByEntity(ownerEntity);
-                    if (state != null) {
-                        state.Mana += (int)taken;
-                        ComponentMiner ownerMiner = ownerEntity.FindComponent<ComponentMiner>();
-                        if (ownerMiner != null) {
-                            PersistBreakerState(ownerMiner, state);
-                        }
-                    }
+                    int data = Terrain.ExtractData(pickable.Value);
+                    int mana = (data >> 5) + (int)taken;
+                    pickable.Value = Terrain.ReplaceData(pickable.Value, (data & 31) | (mana << 5));
                 }
             }
-        }
-
-        public BreakerState GetBreakerStateByEntity(Entity entity) {
-            ComponentMiner miner = entity?.FindComponent<ComponentMiner>();
-            if (miner == null) {
-                return null;
-            }
-            return GetBreakerState(miner);
         }
 
         /// <summary>取坐标 3×3×3 内是魔法池的所有格。</summary>
@@ -657,7 +699,7 @@ namespace Game {
                 if (camera.GameWidget.PlayerData != player.PlayerData || player.PlayerData == null) {
                     continue;
                 }
-                if (!m_breakerPreviews.TryGetValue(player.Entity?.Id ?? 0, out BreakerPreview preview)) {
+                if (!m_breakerPreviews.TryGetValue(player.Entity?.EntityId ?? 0, out BreakerPreview preview)) {
                     continue;
                 }
                 if (!preview.Valid) {
@@ -732,6 +774,31 @@ namespace Game {
             ref Vector3 angularVelocityAfterAttack,
             ref bool ignoreBody) {
             m_terraToolBehavior?.HandleProjectileHitBody(projectile, bodyRaycastResult, ref attackment, ref ignoreBody);
+        }
+
+        public override void OnProjectileAdded(
+            SubsystemProjectiles subsystemProjectiles,
+            ref Projectile projectile,
+            ValuesDictionary loadValuesDictionary) {
+            m_terraToolBehavior?.HandleProjectileAdded(ref projectile);
+        }
+
+        public override void OnProjectileHitTerrain(
+            Projectile projectile,
+            TerrainRaycastResult terrainRaycastResult,
+            ref bool triggerBlocksBehavior,
+            ref bool destroyCell,
+            ref float impactSoundLoudness,
+            ref bool projectileGetStuck,
+            ref Vector3 velocityAfterHit,
+            ref Vector3 angularVelocityAfterHit) {
+            m_terraToolBehavior?.HandleProjectileHitTerrain(
+                projectile,
+                ref triggerBlocksBehavior,
+                ref destroyCell,
+                ref impactSoundLoudness,
+                ref projectileGetStuck
+            );
         }
     }
 }

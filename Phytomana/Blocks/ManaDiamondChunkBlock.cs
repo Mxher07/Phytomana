@@ -1,4 +1,4 @@
-using Engine;
+using Engine.Core;
 using Engine.Graphics;
 
 namespace Game {
@@ -9,7 +9,10 @@ namespace Game {
     public class ManaDiamondChunkBlock : Block {
         public BlockMesh m_standaloneBlockMesh = new();
 
+        public Texture2D m_texture;
+
         public override void Initialize() {
+            m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");
             Model model = ContentManager.Get<Model>("Models/Diamond");
             Matrix boneAbsoluteTransform = BlockMesh.GetBoneAbsoluteTransform(model.FindMesh("Diamond").ParentBone);
             m_standaloneBlockMesh.AppendModelMeshPart(
@@ -26,15 +29,13 @@ namespace Game {
 
         public override void GenerateTerrainVertices(BlockGeometryGenerator generator, TerrainGeometry geometry, int value, int x, int y, int z) { }
 
-        public override Texture2D GetDefaultTexture(int value) => ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");
-
         public override void DrawBlock(PrimitivesRenderer3D primitivesRenderer,
             int value,
             Color color,
             float size,
             ref Matrix matrix,
             DrawBlockEnvironmentData environmentData) {
-            BlocksManager.DrawMeshBlock(primitivesRenderer, m_standaloneBlockMesh, GetDefaultTexture(value), color, 2f * size, ref matrix, environmentData);
+            BlocksManager.DrawMeshBlock(primitivesRenderer, m_standaloneBlockMesh, m_texture, color, 2f * size, ref matrix, environmentData);
         }
     }
 }

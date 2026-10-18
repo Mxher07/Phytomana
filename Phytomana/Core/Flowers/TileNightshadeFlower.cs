@@ -1,6 +1,6 @@
-using Engine;
+using Engine.Core;
 using Game;
-using GameEntitySystem;
+using EntitySystem.Core;
 using Phytomana.Api;
 
 namespace Phytomana {
