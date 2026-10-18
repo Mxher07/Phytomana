@@ -33,7 +33,9 @@ namespace Game {
             base.Initialize();
             
             // 读取模型资源。模型中包含两个命名网格：石质底座 base 和魔力液体 mana。
-            Model model = ContentManager.Get<Model>("Models/PhytoMana/mana_pool");
+            // 联机版 ContentManager 按读取器 DefaultSuffix 探测资源（模型读取器仅含 dae），
+            // 必须显式传入 .gltf 后缀才能命中模组的 gltf 资源键。
+            Model model = ContentManager.Get<Model>("Models/PhytoMana/mana_pool", ".gltf");
             // 底座使用生长石纹理，液体使用魔力纹理。
             m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownStone");
             m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/Mana2");

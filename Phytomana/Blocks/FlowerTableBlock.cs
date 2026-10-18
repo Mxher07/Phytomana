@@ -25,7 +25,9 @@ public static int Index = 305;
         public override void Initialize() {
             base.Initialize();
 
-            Model model = ContentManager.Get<Model>("Models/PhytoMana/flower_table");
+            // 联机版 ContentManager 按读取器 DefaultSuffix 探测资源（模型读取器仅含 dae），
+            // 必须显式传入 .gltf 后缀才能命中模组的 gltf 资源键。
+            Model model = ContentManager.Get<Model>("Models/PhytoMana/flower_table", ".gltf");
             m_textureStone = ContentManager.Get<Texture2D>("Textures/PhytoMana/Stone");
             m_textureMana = ContentManager.Get<Texture2D>("Textures/PhytoMana/Water");
 
