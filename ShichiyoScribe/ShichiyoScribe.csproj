@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <OutputType>Library</OutputType>
+        <RootNamespace>Game</RootNamespace>
+        <TargetFramework>net11.0</TargetFramework>
+        <AssemblyName>ShichiyoScribe</AssemblyName>
+        <Deterministic>true</Deterministic>
+        <LangVersion>preview</LangVersion>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <Nullable>disable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+        <ErrorReport>prompt</ErrorReport>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>pdbonly</DebugType>
+        <OutputPath>bin\Debug\</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DebugType>none</DebugType>
+        <OutputPath>bin\Release\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="SCNET.Survivalcraft.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.EngineSystem.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.Engine.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.Engine.Core.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+        <PackageReference Include="SCNET.Engine.Serialization.Desktop" Version="2.4.0" ExcludeAssets="runtime"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Engine.Core"/>
+        <Using Include="Engine.Windowing"/>
+        <Using Include="Engine.FileStorage"/>
+        <Using Include="EntitySystem.Core"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="modinfo.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Assets\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Books/*.cs"/>
+        <Compile Include="Loader/*.cs"/>
+        <Compile Include="SubsystemOlderBook.cs"/>
+    </ItemGroup>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <PropertyGroup>
+            <PathOfScmod>$(TargetDir)..\$(AssemblyName).netmod</PathOfScmod>
+        </PropertyGroup>
+        <ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(PathOfScmod)" Overwrite="true" />
+        <Message Text="The scmod file has been created:$(PathOfScmod)" Importance="high" />
+    </Target>
+</Project>

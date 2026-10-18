@@ -7,6 +7,7 @@ namespace Game {
     /// 夜影花：被动产魔花，与日耀花互补，仅在夜晚缓慢产出魔力。
     /// </summary>
     public class NightshadeFlower : PhytoCrossBlock, IPhytoFlowerBlock {
+    public static int Index = 1145;
 
         public override void Initialize() {
             base.Initialize();

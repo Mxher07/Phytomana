@@ -1,0 +1,14 @@
+{
+  "Name": "ShichiyoScribe_NET 七曜手记_联机版",
+  "Version": "1.0.0-alpha",
+  "ApiVersion": "1.9.3",
+  "Description": "",
+  "ScVersion": "2.4.0.0",
+  "LoadOrder": -1000,
+  "NonPersistentMod": false,
+  "GameplayImpactLevel": "Turbo",
+  "Link": "https://github.com/Mxher07/Phytomana/tree/net",
+  "Author": "VLWuro",
+  "PackageName": "VL.ShichiyoScribe",
+  "Dependencies": {}
+}

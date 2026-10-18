@@ -7,6 +7,7 @@ namespace Game {
     /// 传输箱洋：无视方块瞬间运输掉落物的功能花。行为见 TileTransChestV2Flower。
     /// </summary>
     public class TransChestV2Flower : PhytoCrossBlock, IPhytoFlowerBlock {
+    public static int Index = 1145;
 
         public override void Initialize() {
             base.Initialize();

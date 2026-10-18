@@ -3,6 +3,7 @@ using Engine.Graphics;
 
 namespace Game {
     public class TerraBlock : PhytoCubeBlock {
+    public static int Index = 1145;
 
         public override void Initialize() {
             base.Initialize();

@@ -6,7 +6,7 @@ namespace Game {
     /// 魔力钻石块：九个魔力钻石压缩成的可放置方块，钻石块在魔法池中注入 4000mn 获得。
     /// </summary>
     public class ManaDiamondBlock : PhytoCubeBlock {
-
+public static int Index = 1145;
         public override void Initialize() {
             base.Initialize();
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ManaIngot");

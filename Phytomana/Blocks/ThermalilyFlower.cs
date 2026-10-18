@@ -7,6 +7,7 @@ namespace Game {
     /// 热力百合：吞噬邻近的岩浆方块产出大量魔力，岩浆随之凝固为石头。
     /// </summary>
     public class ThermalilyFlower : PhytoCrossBlock, IPhytoFlowerBlock {
+    public static int Index = 1145;
 
         public override void Initialize() {
             base.Initialize();

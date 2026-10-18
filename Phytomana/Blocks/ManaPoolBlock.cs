@@ -7,6 +7,8 @@ namespace Game {
     /// 动态调整液体模型的显示高度。
     /// </summary>
     public class ManaPoolBlock : Block {
+    
+   public static int Index = 1145;
         // 底座和液体使用独立的网格，绘制时可以只显示需要的部分。
         public BlockMesh m_meshStone = new();
         public BlockMesh m_meshMana = new();

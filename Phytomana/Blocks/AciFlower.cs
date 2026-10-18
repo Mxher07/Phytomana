@@ -7,7 +7,9 @@ namespace Game {
     /// 剧毒树丛：范围毒攻功能花。行为见 TileAciFlower。
     /// </summary>
     public class AciFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-
+        
+        public static int Index = 1145;
+        
         public override void Initialize() {
             base.Initialize();
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/AciFlower");

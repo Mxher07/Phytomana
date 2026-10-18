@@ -7,7 +7,7 @@ namespace Game {
     /// 黏土沙馨：消耗魔力把周围沙子变成粘土（物品形式掉落）的功能花。行为见 TileClaySandFlower。
     /// </summary>
     public class ClaySandFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-
+public static int Index = 1145;
         public override void Initialize() {
             base.Initialize();
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/ClaySandFlower");

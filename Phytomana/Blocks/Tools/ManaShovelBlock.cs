@@ -3,6 +3,7 @@ using Engine.Graphics;
 
 namespace Game {
     public class ManaShovelBlock : Block {
+    public static int Index = 1145;
         public BlockMesh m_meshStone = new();
         public BlockMesh m_meshMana = new();
         public Texture2D m_textureStone;
