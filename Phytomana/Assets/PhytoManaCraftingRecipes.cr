@@ -145,43 +145,43 @@
   </Recipe>
   
   
-  <Recipe Result="ClothingBlock:900" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:11" Description="[0]">
+  <Recipe Result="ClothingBlock:38" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:11" Description="[0]">
     " a"
     "aba"
   </Recipe>
-  <Recipe Result="ClothingBlock:901" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:5" Description="[0]">
+  <Recipe Result="ClothingBlock:39" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:5" Description="[0]">
     " a "
     "aba"
     " a "
   </Recipe>
-  <Recipe Result="ClothingBlock:902" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:7" Description="[0]">
+  <Recipe Result="ClothingBlock:40" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:7" Description="[0]">
     " a"
     "aba"
     " a"
   </Recipe>
-  <Recipe Result="ClothingBlock:903" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:8" Description="[0]">
+  <Recipe Result="ClothingBlock:41" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:8" Description="[0]">
     " a"
     "aba"
   </Recipe>
   
   
-  <Recipe Result="ClothingBlock:904" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:900" c="grownrod" d="mediumrunes:4" Description="[0]">
+  <Recipe Result="ClothingBlock:42" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:38" c="grownrod" d="mediumrunes:4" Description="[0]">
     "cac"
     "aba"
     " d "
   </Recipe>
-  <Recipe Result="ClothingBlock:905" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:902" c="grownrod" d="mediumrunes:5" Description="[0]">
+  <Recipe Result="ClothingBlock:43" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:39" c="grownrod" d="mediumrunes:5" Description="[0]">
     "cac"
     "aba"
     " d "
   </Recipe>
-  <Recipe Result="ClothingBlock:906" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:903" c="grownrod" d="mediumrunes:6" Description="[0]">
+  <Recipe Result="ClothingBlock:44" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:40" c="grownrod" d="mediumrunes:6" Description="[0]">
     "cac"
     "aba"
     " d "
   </Recipe>
   
-  <Recipe Result="ClothingBlock:907" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:904" c="grownrod" d="mediumrunes:7" Description="[0]">
+  <Recipe Result="ClothingBlock:45" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:41" c="grownrod" d="mediumrunes:7" Description="[0]">
     "cac"
     "aba"
     " d "

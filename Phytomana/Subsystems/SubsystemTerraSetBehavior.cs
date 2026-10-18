@@ -62,11 +62,11 @@ namespace Game {
 
         /// <summary>玩家是否穿着完整泰拉套装（904~907 四件齐全）。</summary>
         public bool HasFullTerraSet(ComponentPlayer player) =>
-            HasAllClothing(player, 904, 905, 906, 907);
+            HasAllClothing(player, 42, 43, 44, 45);
 
         /// <summary>玩家是否穿着完整魔力钢套装（900~903 四件齐全）。</summary>
         public bool HasFullManaSteelSet(ComponentPlayer player) =>
-            HasAllClothing(player, 900, 901, 902, 903);
+            HasAllClothing(player, 38, 39, 40, 41);
 
         public bool HasAllClothing(ComponentPlayer player, params int[] clothingIndices) {
             ComponentClothing clothing = player.ComponentClothing;

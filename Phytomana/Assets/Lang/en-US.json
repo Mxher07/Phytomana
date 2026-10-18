@@ -271,19 +271,19 @@
       "DisplayName": "Test Generating Flower",
       "Description": "Framework self-test flower that only verifies the flower framework. Not part of the real gameplay. Must be placed on dirt or grass."
     },
-    "ClothingBlock:900": {
+    "ClothingBlock:38": {
       "DisplayName": "Mana Steel Helmet",
       "Description": "Armor crafted with Mana Ingots."
     },
-    "ClothingBlock:901": {
+    "ClothingBlock:39": {
       "DisplayName": "Mana Steel Chestplate",
       "Description": "Armor crafted with Mana Ingots."
     },
-    "ClothingBlock:902": {
+    "ClothingBlock:40": {
       "DisplayName": "Mana Steel Leggings",
       "Description": "Armor crafted with Mana Ingots."
     },
-    "ClothingBlock:903": {
+    "ClothingBlock:41": {
       "DisplayName": "Mana Steel Boots",
       "Description": "Armor crafted with Mana Ingots."
     },

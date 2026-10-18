@@ -275,22 +275,22 @@
       "DisplayName": "测试产魔花",
       "Description": "框架自测用产魔花，仅用于验证花朵框架，不属于正式玩法。需放置在泥土或草皮上。"
     },
-    "ClothingBlock:900": {
+    "ClothingBlock:38": {
       "DisplayName": "魔力钢头盔",
       "Description": "以魔力钢锭打造的护甲",
       "CRDescription:0": "使用魔力钢锭制作魔力钢头盔"
     },
-    "ClothingBlock:901": {
+    "ClothingBlock:39": {
       "DisplayName": "魔力钢胸甲",
       "Description": "以魔力钢锭打造的护甲",
       "CRDescription:0": "使用魔力钢锭制作魔力钢胸甲"
     },
-    "ClothingBlock:902": {
+    "ClothingBlock:40": {
       "DisplayName": "魔力钢护腿",
       "Description": "以魔力钢锭打造的护甲",
       "CRDescription:0": "使用魔力钢锭制作魔力钢护腿"
     },
-    "ClothingBlock:903": {
+    "ClothingBlock:41": {
       "DisplayName": "魔力钢靴子",
       "Description": "以魔力钢锭打造的护甲",
       "CRDescription:0": "使用魔力钢锭制作魔力钢靴子"
