@@ -8,7 +8,7 @@ namespace Game {
     /// 使用独立纹理与独立绑定，不与 ShichiyoScribe 自带书方块冲突。
     /// </summary>
     public class SumeruManualBlock : PhytoFlatBlock {
-        public static int Index;
+        public static int Index = 343;
 
         public override void Initialize() {
             base.Initialize();

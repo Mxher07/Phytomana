@@ -3,7 +3,7 @@ using Engine.Graphics;
 
 namespace Game {
     public class TerraIngotBlock : Block {
-    public static int Index = 666;
+    public static int Index = 328;
         public Texture2D m_texture;
         public BlockMesh m_standaloneBlockMesh = new();
 

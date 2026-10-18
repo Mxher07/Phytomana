@@ -8,7 +8,7 @@ namespace Game {
     /// 行为见 TileThornyRose。
     /// </summary>
     public class ThornyRoseFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-    public static int Index = 666;
+    public static int Index = 333;
 
         public override void Initialize() {
             base.Initialize();

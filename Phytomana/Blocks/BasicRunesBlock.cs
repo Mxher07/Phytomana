@@ -9,7 +9,7 @@ namespace Game {
     public class BasicRunesBlock : PhytoFlatBlock {
         public const int MinData = 0;
         public const int MaxData = 3;
-    public static int Index = 666;
+    public static int Index = 301;
         public override int GetFaceTextureSlot(int face, int value) => 0;
 
         public override int GetTextureSlotCount(int value) => 1;

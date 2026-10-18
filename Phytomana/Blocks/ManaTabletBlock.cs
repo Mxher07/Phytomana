@@ -10,7 +10,7 @@ namespace Game {
     /// 行为见 SubsystemManaTableBehavior 与 SubsystemMana 的石板吸魔逻辑。
     /// </summary>
     public class ManaTabletBlock : PhytoFlatBlock {
-    public static int Index = 666;
+    public static int Index = 320;
         public const int MaxMana = 3000;
 
         /// <summary>魔力高于该阈值时显示充能（亮）贴图。</summary>

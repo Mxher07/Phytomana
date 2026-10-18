@@ -5,7 +5,7 @@ namespace Game {
     public class GrownRodBlock : Block {
         public BlockMesh m_standaloneBlockMesh = new();
         public Texture2D m_texture;
-        public static int Index = 666;
+        public static int Index = 308;
         public override void Initialize() {
             base.Initialize();
             

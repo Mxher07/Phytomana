@@ -3,7 +3,7 @@ using Engine.Graphics;
 
 namespace Game {
     public class ManaMacheteBlock : Block {
-    public static int Index = 666;
+    public static int Index = 335;
         public BlockMesh m_meshStone = new();
         public BlockMesh m_meshMana = new();
         public Texture2D m_textureStone;

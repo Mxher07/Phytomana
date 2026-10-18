@@ -4,7 +4,7 @@ using Phytomana;
 
 namespace Game {
     public class GrownDaisyFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-    public static int Index = 666;
+    public static int Index = 307;
         public override void Initialize() {
             base.Initialize();
             m_texture = ContentManager.Get<Texture2D>("Textures/PhytoMana/GrownDaisy");

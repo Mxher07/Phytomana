@@ -7,7 +7,7 @@ namespace Game {
     /// 渲染与原版钻石晶体一致（Models/Diamond 晶体模型），贴图使用魔力钢锭材质。
     /// </summary>
     public class ManaDiamondChunkBlock : Block {
-    public static int Index = 666;
+    public static int Index = 315;
         public BlockMesh m_standaloneBlockMesh = new();
 
         public Texture2D m_texture;

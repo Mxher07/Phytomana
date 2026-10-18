@@ -6,7 +6,7 @@ namespace Game {
     /// 框架自测用产魔方块：仅验证魔力网络投递，不属于正式玩法，后续阶段可移除。
     /// </summary>
     public class TestManaSourceBlock : PhytoCubeBlock {
-    public static int Index = 666;
+    public static int Index = 331;
 
         public override void Initialize() {
             base.Initialize();

@@ -8,7 +8,7 @@ namespace Game {
     /// 存量上升放蓝色升腾粒子、下降放红色下沉粒子。行为见 TileManaStarFlower。
     /// </summary>
     public class ManaStarFlower : PhytoCrossBlock, IPhytoFlowerBlock {
-    public static int Index = 666;
+    public static int Index = 319;
 
         public override void Initialize() {
             base.Initialize();

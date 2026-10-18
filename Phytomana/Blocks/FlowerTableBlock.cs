@@ -21,7 +21,7 @@ namespace Game {
 
         // 交互（水桶注水/放置材料）由 SubsystemFlowerTableBehavior 经行为派发处理，
         // 新联机 API 已无交互优先级概念，无需在方块上覆写优先级。
-public static int Index = 666;
+public static int Index = 305;
         public override void Initialize() {
             base.Initialize();
 
