@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文材料" FontScale="1.0" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<BookIconGridWidget BlockNames="BasicRunesBlock,BasicRunesBlock:1,BasicRunesBlock:2,BasicRunesBlock:3;MediumRunesBlock:4,MediumRunesBlock:5,MediumRunesBlock:6,MediumRunesBlock:7;MediumRunesBlock:8,ExpertRunesBlock:9,ExpertRunesBlock:10,ExpertRunesBlock:11,ExpertRunesBlock:12;ExpertRunesBlock:13,ExpertRunesBlock:14,ExpertRunesBlock:15" IconSize="48" CanvasWidget.Position="12, 60" />
+	<LabelWidget Text="符文分三阶：初阶（水、火、地、风）以基础材料炼制，每次出 2 枚；中阶（春夏秋冬、魔力）以初阶符文为引，每次出 1 枚；高阶（七宗罪）以中阶符文 + 魔力钻石炼制，每次出 1 枚。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 110" CanvasWidget.Position="12, 220" />
+	<LabelWidget Text="各符文的完整材料表见「1.5 符文台」的符文一览条目。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 340" />
+</CanvasWidget>

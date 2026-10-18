@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="3.4 翡翠菜" FontScale="1.0" Color="70, 40, 10" Size="424, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="JadedFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「繁花似锦。」须弥花田的播种机：只要魔力不断，它便一刻不停地随手种出随机颜色的须弥花。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="它默认关机，放好后记得用绑定模式法杖点开机。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 250" />
+	<LabelWidget Text="有了它，花瓣配方与花药台合成的原料从此不再靠手采。" FontScale="0.8" Color="130, 100, 60" Size="420, 60" CanvasWidget.Position="12, 310" />
+</CanvasWidget>

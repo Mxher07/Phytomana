@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="炼制小贴士" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="花瓣颜色不可凑合：淡灰、灰、青必须各一，缺一不合成。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="地之符文是初阶符文，520mn 一份（出 2 枚），需先备好魔力钢锭与须弥花。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 70" CanvasWidget.Position="12, 150" />
+	<LabelWidget Text="有了黏土沙馨，沙漠也能就地取泥烧坯——搭窑造墙，从此不怕没土。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 240" />
+</CanvasWidget>

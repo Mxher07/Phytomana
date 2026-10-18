@@ -32,6 +32,9 @@ namespace Game {
 
         public List<ManaLink> m_links = [];
 
+        /// <summary>入链计数：每个目标坐标被多少条链路指向（供 O(1) 判定功能花是否被绑链供魔）。</summary>
+        public Dictionary<Point3, int> m_incomingLinks = [];
+
         public SubsystemTerrain m_subsystemTerrain;
 
         public SubsystemPickables m_subsystemPickables;
@@ -64,7 +67,7 @@ namespace Game {
             m_manaTabletIndex = BlocksManager.GetBlockIndex<ManaTabletBlock>();
             m_subsystemGameInfo = Project.FindSubsystem<SubsystemGameInfo>(true);
             m_maxManaAmounts[m_sunPowerFlowerIndex] = PhytoConfig.Instance.SunPowerMaxMana;
-            m_maxManaAmounts[m_manaSpreaderIndex] = 1200f;
+            m_maxManaAmounts[m_manaSpreaderIndex] = PhytoConfig.Instance.SpreaderMaxMana;
             m_maxManaAmounts[m_waterDonFlowerIndex] = PhytoConfig.Instance.WaterDonMaxMana;
             m_maxManaAmounts[m_manaPoolIndex] = ManaPool.MaxMana;
             ManaBlockRegistry.ApplyMaxManaOverrides(m_maxManaAmounts);
@@ -168,6 +171,7 @@ namespace Game {
                 return false;
             }
             m_links.Add(new ManaLink(from, to));
+            m_incomingLinks[to] = m_incomingLinks.GetValueOrDefault(to) + 1;
             if (apply) {
                 PruneLinks();
             }
@@ -187,8 +191,33 @@ namespace Game {
             for (int i = 0; i < m_links.Count; i++) {
                 if (m_links[i].From == from && m_links[i].To == to) {
                     m_links.RemoveAt(i);
-                    return;
+                    break;
                 }
+            }
+            DecrementIncomingLink(to);
+        }
+
+        /// <summary>剔除以 from 为源的所有链路（发射器被破坏时调用，目标侧入链计数同步递减）。</summary>
+        public void RemoveLinksFrom(Point3 from) {
+            for (int i = m_links.Count - 1; i >= 0; i--) {
+                if (m_links[i].From != from) {
+                    continue;
+                }
+                Point3 to = m_links[i].To;
+                m_links.RemoveAt(i);
+                DecrementIncomingLink(to);
+            }
+        }
+
+        /// <summary>目标坐标是否被至少一条发射器链路指向（O(1)，供功能花判定是否被绑链供魔）。</summary>
+        public bool HasIncomingLink(Point3 target) => m_incomingLinks.GetValueOrDefault(target) > 0;
+
+        void DecrementIncomingLink(Point3 target) {
+            if (m_incomingLinks.TryGetValue(target, out int count) && count > 1) {
+                m_incomingLinks[target] = count - 1;
+            }
+            else {
+                m_incomingLinks.Remove(target);
             }
         }
 
@@ -206,7 +235,6 @@ namespace Game {
         public SubsystemGameInfo m_subsystemGameInfo;
 
         public void Update(float dt) {
-            // 服务端权威：魔力石板汲取、池子合成只由服务器模拟，客户端仅显示服务器广播后的结果。
             if (NetworkManager.IsClientRunning) {
                 return;
             }
@@ -262,7 +290,9 @@ namespace Game {
                     if (mana >= ManaTabletBlock.MaxMana) {
                         continue;
                     }
-                    int take = (int)MathF.Min(500f, MathF.Min(receiver.ManaStorage.Current, ManaTabletBlock.MaxMana - mana));
+                    int take = (int)MathF.Min(
+                        PhytoConfig.Instance.TabletPoolDrainPerSecond,
+                        MathF.Min(receiver.ManaStorage.Current, ManaTabletBlock.MaxMana - mana));
                     if (take <= 0) {
                         continue;
                     }
@@ -282,7 +312,7 @@ namespace Game {
                 if (pickable.ToRemove) {
                     continue;
                 }
-                if (!IsPickableInCell(pickable, poolPoint)) {
+                if (!TilePhytoFlower.IsPickableInCell(pickable, poolPoint)) {
                     continue;
                 }
                 ManaPoolRecipe recipe = ManaPoolRecipeRegistry.FindByIngredient(Terrain.ExtractContents(pickable.Value));
@@ -326,24 +356,46 @@ namespace Game {
             }
         }
 
-        public bool IsPickableInCell(Pickable pickable, Point3 cell) {
-            Vector3 position = pickable.Position;
-            return position.X >= cell.X
-                && position.X < cell.X + 1f
-                && position.Z >= cell.Z
-                && position.Z < cell.Z + 1f
-                && position.Y >= cell.Y - 0.5f
-                && position.Y < cell.Y + 1.5f;
-        }
-
         public void PruneLinks() {
             for (int i = m_links.Count - 1; i >= 0; i--) {
                 ManaLink link = m_links[i];
                 if (m_subsystemTerrain.Terrain.GetCellContents(link.From) != m_manaSpreaderIndex
                     || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(link.To))) {
                     m_links.RemoveAt(i);
+                    DecrementIncomingLink(link.To);
                 }
             }
+        }
+
+        /// <summary>
+        /// 推进法杖链路魔力传输（链路本质是网络边，规则归属魔力层而非行为子系统）：
+        /// 遍历链路，按周期 1s/160mn 从发射器搬运到下游存储（须满足双方容量），
+        /// 返回本轮实际发生传输的「源→目标」坐标对，供行为层播粒子表现。
+        /// </summary>
+        public List<(Point3, Point3)> AdvanceLinkTransfers(float dt) {
+            List<(Point3, Point3)> transferred = [];
+            foreach (ManaLink link in m_links) {
+                link.TransferAccumulator += dt;
+                while (link.TransferAccumulator >= StaffLinkTransferPeriod) {
+                    link.TransferAccumulator -= StaffLinkTransferPeriod;
+                    Point3 from = link.From;
+                    Point3 to = link.To;
+                    if (m_subsystemTerrain.Terrain.GetCellContents(from) != m_manaSpreaderIndex
+                        || !IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
+                        continue;
+                    }
+                    int toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
+                    float maxTarget = GetMaxManaAmount(toContents);
+                    if (GetManaAmount(from) >= StaffLinkTransferAmount
+                        && maxTarget - GetManaAmount(to) >= StaffLinkTransferAmount) {
+                        RemoveMana(from, StaffLinkTransferAmount);
+                        AddMana(to, StaffLinkTransferAmount);
+                        transferred.Add((from, to));
+                    }
+                }
+            }
+            PruneLinks();
+            return transferred;
         }
 
         public float GetOutgoingUsage(Point3 from) {

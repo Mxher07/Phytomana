@@ -2,7 +2,7 @@
 <CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
 	<LabelWidget Text="刺击细则" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
 	<LabelWidget Text="每 1 秒一次：魔力充足（≥12mn）时，锁定荆棘范围内最近的一只非玩家生物，射出一枚 0.25 大小的纯红魔法粒子，循迹飞向目标，飞行 1.5 秒。" WordWrap="true" FontScale="0.8" Color="80, 60, 36" Size="420, 70" CanvasWidget.Position="12, 62" />
-	<LabelWidget Text="命中判定：粒子抵达落点时，附近若存在生物，才对最近者结算 1.5 点伤害（1 点 ≈ 目标最大生命的 10%）；落点无实体便是一记空刺——魔力照扣，出手需看准。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 142" />
+	<LabelWidget Text="命中判定：粒子抵达落点时，附近若存在生物，才对最近者结算固定 2.5 点伤害（按 1 点 = 目标最大生命 10% 的点数刻度，即一次削去 25% 最大生命，对任何目标恒定量）；落点无实体便是一记空刺——魔力照扣，出手需看准。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 80" CanvasWidget.Position="12, 142" />
 	<LabelWidget Text="范围内没有生物就不耗魔；一次也只发射一枚——再多敌人，也只能排队领刺。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 232" />
 	<LabelWidget Text="把它种在门口、田边与矿道口，便是最好的守卫。" FontScale="0.8" Color="130, 100, 60" Size="420, 40" CanvasWidget.Position="12, 290" />
 </CanvasWidget>

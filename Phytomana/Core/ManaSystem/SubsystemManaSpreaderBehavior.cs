@@ -33,7 +33,11 @@ namespace Phytomana {
         }
 
         public override void OnBlockRemoved(int value, int newValue, int x, int y, int z) {
-            RemoveSpreader(new Point3(x, y, z), true);
+            Point3 point = new(x, y, z);
+            // 发射手被破坏：显式剔除以其为源的所有链路，不靠 PruneLinks 懒清理；
+            // 链路随 SubsystemMana 存档持久化，重进存档后绑定不重置。
+            m_subsystemMana.RemoveLinksFrom(point);
+            RemoveSpreader(point, true);
         }
 
         public override void OnChunkDiscarding(TerrainChunk chunk) {

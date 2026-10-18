@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="炼制小贴士" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="花瓣色号须严格对应：淡黄 ×1、紫 ×1、绿 ×1，一错即不成。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 60" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="春之符文走中阶 800mn，需先备好水之符文与火之符文（初阶）作为引子。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 130" />
+	<LabelWidget Text="翡翠菜默认关机：放好后用绑定模式法杖点一下开机，否则不会耗魔、不会种花。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 208" />
+</CanvasWidget>

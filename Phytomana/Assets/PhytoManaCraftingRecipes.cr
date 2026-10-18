@@ -9,8 +9,13 @@
   </Recipe>
   <Recipe Result="RunesTableBlock" ResultCount="1" RequiredHeatLevel="0" a="grownstone" b="manadiamond" Description="[0]">
     "   "
-    "ABA"
-    "AAA"
+    "aba"
+    "aaa"
+  </Recipe>
+  <Recipe Result="ManaTabletBlock" ResultCount="1" RequiredHeatLevel="0" a="grownstone" b="manadiamond" Description="[0]">
+    "aaa"
+    "aba"
+    "aaa"
   </Recipe>
   <Recipe Result="SumeruPetalBlock:0" ResultCount="4" RequiredHeatLevel="0" a="sumeruflower:0" Description="[0]">
     "a"
@@ -69,6 +74,40 @@
     "aaa"
     "aaa"
   </Recipe>
+  <Recipe Result="ManaIngotBlock" ResultCount="9" RequiredHeatLevel="0" a="manablock" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="ManaDiamondBlock" ResultCount="1" RequiredHeatLevel="0" a="manadiamond" Description="[0]">
+    "aaa"
+    "aaa"
+    "aaa"
+  </Recipe>
+  <Recipe Result="ManaDiamondChunkBlock" ResultCount="9" RequiredHeatLevel="0" a="manadiamondblock" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="TerraBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" Description="[0]">
+    "aaa"
+    "aaa"
+    "aaa"
+  </Recipe>
+  <Recipe Result="TerraIngotBlock" ResultCount="9" RequiredHeatLevel="0" a="terrablock" Description="[0]">
+    "a"
+  </Recipe>
+  <Recipe Result="TerraBladeBlock" ResultCount="1" RequiredHeatLevel="0" a="grownrod" b="terraingot" Description="[0]">
+    " b "
+    " b "
+    " a "
+  </Recipe>
+  <Recipe Result="TerraCutterBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="manaingot" c="grownrod" Description="[0]">
+    "aab"
+    "ac "
+    " c "
+  </Recipe>
+  <Recipe Result="TerraBreakerBlock" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="manatablet" c="grownrod" Description="[0]">
+    "aaa"
+    "acb"
+    " c "
+  </Recipe>
   <Recipe Result="GrownStaffBlock" ResultCount="1" RequiredHeatLevel="0" a="grownrod" b="petal" Description="[0]">
     "ab"
     "ba "
@@ -104,6 +143,8 @@
   " a"
   " b"
   </Recipe>
+  
+  
   <Recipe Result="ClothingBlock:900" ResultCount="1" RequiredHeatLevel="0" a="manaingot" b="clothing:11" Description="[0]">
     " a"
     "aba"
@@ -122,4 +163,28 @@
     " a"
     "aba"
   </Recipe>
+  
+  
+  <Recipe Result="ClothingBlock:904" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:900" c="grownrod" d="mediumrunes:4" Description="[0]">
+    "cac"
+    "aba"
+    " d "
+  </Recipe>
+  <Recipe Result="ClothingBlock:905" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:902" c="grownrod" d="mediumrunes:5" Description="[0]">
+    "cac"
+    "aba"
+    " d "
+  </Recipe>
+  <Recipe Result="ClothingBlock:906" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:903" c="grownrod" d="mediumrunes:6" Description="[0]">
+    "cac"
+    "aba"
+    " d "
+  </Recipe>
+  
+  <Recipe Result="ClothingBlock:907" ResultCount="1" RequiredHeatLevel="0" a="terraingot" b="clothing:904" c="grownrod" d="mediumrunes:7" Description="[0]">
+    "cac"
+    "aba"
+    " d "
+  </Recipe>
+  
 </PhytoMana>

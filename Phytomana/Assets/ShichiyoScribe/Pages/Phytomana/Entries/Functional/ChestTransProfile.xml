@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="传箱花·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="ChestTransFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「乾坤纳物。」它拾起四周散落的掉落物，悄悄塞进贴身的箱子里，免去你往返拾取之苦。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="拾取节奏　每 5 tick（0.25 秒）一轮，单次耗魔 1mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="拾取范围　无魔力 6 格／有魔力 10 格（以花为中心立方）" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 302" />
+	<LabelWidget Text="魔力容器　30mn｜绑定模式法杖点击开关机，默认开机" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 330" />
+</CanvasWidget>

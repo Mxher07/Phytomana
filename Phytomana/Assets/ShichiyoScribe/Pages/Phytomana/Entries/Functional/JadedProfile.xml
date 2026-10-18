@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="翡翠菜·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="JadedFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「繁花似锦。」一株慷慨的菜：它饮取魔力，随手便能在四周种出一整片随机颜色的须弥花田。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="生成节奏　每 30 tick（1.5 秒）1 株，单次耗魔 35mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="生成范围　水平 ±4 格，垂直 -2~+6 格（须泥土/草地表面）" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 302" />
+	<LabelWidget Text="魔力容器　260mn｜绑定模式法杖点击开关机，默认关机" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 330" />
+</CanvasWidget>

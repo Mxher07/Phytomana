@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="传箱花·运转细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="拾取节奏" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 62" />
+	<LabelWidget Text="每 5 tick（0.25 秒）一轮；有魔力时半径 10 格，无魔力时 6 格。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 90" />
+	<LabelWidget Text="粒子特效" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 150" />
+	<LabelWidget Text="拾取时灰色引导粒子从掉落物飞向花；收进箱时棕色存储粒子在花朵根处升起。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 56" CanvasWidget.Position="12, 178" />
+	<LabelWidget Text="堆叠与溢出" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 246" />
+	<LabelWidget Text="优先堆叠同物品，再占空格；塞不下的余量会从花边重新弹出，避免丢失。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 56" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="与传输箱洋配合：传箱花负责把散落各处的掉落物收进箱子，传输箱洋再把物品瞬间搬到目的地。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 344" />
+</CanvasWidget>

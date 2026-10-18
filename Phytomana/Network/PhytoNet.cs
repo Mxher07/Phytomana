@@ -37,6 +37,9 @@ namespace Phytomana.Network {
         /// <summary>客户端收到方块交互状态文本并显示（由 SubsystemFlowerTableBehavior 注册）。</summary>
         public static Action<PhytoModPacket> HandleTableStatusClient;
 
+        /// <summary>服务端处理泰拉刃剑气发射请求（由 SubsystemTerraToolBehavior 注册）。</summary>
+        public static Action<PhytoModPacket> HandleSwordQiServer;
+
         public static void AddTableHandler(Action<PhytoModPacket> handler) {
             HandleTableActionServer += handler;
         }
@@ -79,6 +82,10 @@ namespace Phytomana.Network {
                 case PhytoCommand.TableStatusReply when !isServer:
                     HandleTableStatusClient?.Invoke(packet);
                     break;
+                case PhytoCommand.SwordQiUse when isServer:
+                    EnsureRegistered();
+                    HandleSwordQiServer?.Invoke(packet);
+                    break;
             }
         }
 
@@ -97,6 +104,16 @@ namespace Phytomana.Network {
             PlayerIndex = request.PlayerIndex,
             HasText = true,
             Text = text,
+        };
+
+        /// <summary>构造一个泰拉刃剑气发射请求包（客户端→服务器，附继发射线）。</summary>
+        public static PhytoModPacket BuildSwordQiRequest(Ray3 ray) => new() {
+            Command = PhytoCommand.SwordQiUse,
+            PlayerIndex = NetworkManager.PlayerIndex,
+            HasV1 = true,
+            V1 = ray.Position,
+            HasV2 = true,
+            V2 = ray.Direction,
         };
 
         public static void Send(Packet packet) {

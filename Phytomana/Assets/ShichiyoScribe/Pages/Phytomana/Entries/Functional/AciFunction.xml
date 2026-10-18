@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="剧毒树丛·功能说明" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="功能" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="对范围内除玩家以外的生物进行中毒攻击：被攻击者获得 3s 标记，标记期内不会被重复标记；被标记者无论身处何处，每 1s 受到固定 10% 生命的中毒伤害（不致死，余血 1 点保底）。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 110" CanvasWidget.Position="12, 88" />
+	<LabelWidget Text="取魔方式" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 210" />
+	<LabelWidget Text="与其他功能花相同的范围搜寻魔力池；发射器亦可主动供魔。耗魔速率 = 范围内每只生物 30mn/s。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 56" CanvasWidget.Position="12, 236" />
+	<LabelWidget Text="适用场景" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 304" />
+	<LabelWidget Text="圈养区、庄稼田、宅院四周的软性驱逐：不致死，但足以让生物知难而退。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 56" CanvasWidget.Position="12, 330" />
+</CanvasWidget>

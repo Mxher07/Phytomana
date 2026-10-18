@@ -2,9 +2,9 @@
 <CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
 	<LabelWidget Text="泉沫珠·产能方式" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
 	<LabelWidget Text="① 扫描 3×3×3 邻域内的水流，吸收的泉水越多，蓄能越高。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
-	<LabelWidget Text="② 每每 1.65 秒「涌流」一次：把这阵子啜下的水化作 7 mn 魔力。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
+	<LabelWidget Text="② 每每 1.65 秒「涌流」一次：把这阵子啜下的水化作魔力（最终产能为配置速率 ×0.45）。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
 	<LabelWidget Text="③ 满 240 mn 后休眠，等无水时干涸成等待，有发射器则立即吐哺。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
 	<LabelWidget Text="④ 邻近无发射器收魔时，魔力以每秒 5 mn 流失。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
 	<LabelWidget Text="产量曲线" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 286" />
-	<LabelWidget Text="约 4.24 mn/s 是其尾速；多水同邻则稳定充盈。适合与日耀花互补。" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 314" />
+	<LabelWidget Text="约 1.9 mn/s 是尾速（最终产能 ×0.45）；多水同邻则稳定充盈。适合与日耀花互补。" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 314" />
 </CanvasWidget>

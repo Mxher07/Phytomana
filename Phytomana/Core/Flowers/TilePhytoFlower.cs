@@ -63,9 +63,14 @@ namespace Phytomana {
         public virtual void OnDestroyed() { }
 
         /// <summary>
-        /// 区块加载（或首次生成）时调用。
+        /// 区块加载（或首次生成）时调用。基类默认对齐通用计时器到当前游戏时间；
+        /// 子类若有私有计时器（扫描/粒子截止时间等），重写本方法统一对齐，
+        /// 避免读档后计时器归 0 导致立即补发粒子/重扫。
         /// </summary>
-        public virtual void OnChunkLoad() { }
+        public virtual void OnChunkLoad() {
+            m_cooldown = TotalTime;
+            m_timer = TotalTime;
+        }
 
         /// <summary>
         /// 区块卸载时调用，随后节点注销并转入休眠存档。

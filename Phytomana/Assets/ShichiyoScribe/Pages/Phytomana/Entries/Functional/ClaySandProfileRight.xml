@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="黏土沙馨·细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="每次转化都会扬起一阵沙尘：一朵黄色的小火花从花根飞向目标沙块，片刻后一团淡灰色的尘雾再飞回花根，仿佛沙与泥之间完成了一次交换。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 72" />
+	<LabelWidget Text="转化细则" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 172" />
+	<LabelWidget Text="只有「沙子」方块会被转化；石化的砂岩（沙岩）不在其列。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 32" CanvasWidget.Position="12, 200" />
+	<LabelWidget Text="沙被就地替换成黏土，并以黏土物品的形式掉落——地上不会出现一整面黏土墙。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 32" CanvasWidget.Position="12, 234" />
+	<LabelWidget Text="取魔方式与其余功能花一致：范围搜寻魔力池；也可由发射器绑链主动供魔。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 32" CanvasWidget.Position="12, 268" />
+</CanvasWidget>

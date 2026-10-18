@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="剧毒树丛·花语档案" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<BookBlockIconWidget BlockName="AciFlower" Size="88, 88" Scale="1.8" CanvasWidget.Position="178, 52" />
+	<LabelWidget Text="「无形的毒雾。」它不留情面：范围内所有生物都会被它盯上，中毒标记一旦烙下，无论躲到何处，毒都会准时到访。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 90" CanvasWidget.Position="12, 148" />
+	<LabelWidget Text="体魄" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 246" />
+	<LabelWidget Text="毒攻范围　以花为中心 13×13×13 立方体" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="耗魔速率　范围内每只生物 30mn/s" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 302" />
+	<LabelWidget Text="魔力容器　360mn" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 330" />
+</CanvasWidget>

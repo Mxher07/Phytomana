@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文台·交互一览" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="· 手持材料右键：放置一件到祭坛（不认识的物体会被拒绝并提示「不收此物」）" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 56" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="· 空手右键：查看魔力与已放材料，并给出炼制进度提示（齐备/缺口/魔力不足）" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 56" CanvasWidget.Position="12, 128" />
+	<LabelWidget Text="· 空手潜行右键：取回祭坛上全部已放置材料" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 194" />
+	<LabelWidget Text="· 手持生息岩右键：提示需投掷引子（引子须扔上祭坛，不能点击放置）" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 244" />
+	<LabelWidget Text="· 法杖工作模式右键：材料齐备且祭坛上有生息岩引子时，消耗魔力与材料完成炼制" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 56" CanvasWidget.Position="12, 294" />
+	<LabelWidget Text="破坏符文台时，祭坛上已放置的材料会全部退回，不会丢失。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 360" />
+</CanvasWidget>

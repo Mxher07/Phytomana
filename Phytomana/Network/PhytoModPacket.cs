@@ -12,6 +12,8 @@ namespace Phytomana.Network {
         TableAction = 3,
         /// <summary>服务器回写方块交互/状态文本（服务器→发起方）。</summary>
         TableStatusReply = 4,
+        /// <summary>玩家向服务器发起泰拉刃剑气发射请求（客户端→服务器，50% 概率掷骰在服务器）。</summary>
+        SwordQiUse = 5,
     }
 
     /// <summary>

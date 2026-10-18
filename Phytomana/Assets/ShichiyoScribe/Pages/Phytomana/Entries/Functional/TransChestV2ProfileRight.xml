@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="传输箱洋·细节" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="运输方式" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 62" />
+	<LabelWidget Text="掉落在 5×5×5 范围内的物品，升起一阵白烟后，延迟 60 tick 瞬移到绑定目标方块之上（物品形式，非方块）。「移动物品到目标方块的上面」——物品落在目标顶面，不会嵌入方块。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 110" CanvasWidget.Position="12, 90" />
+	<LabelWidget Text="绑定方式" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 210" />
+	<LabelWidget Text="须弥法杖「绑定模式」：先点本花（记起点），再点目标方块（完成绑定）。工作模式指向本花可查看当前绑定目标，并放一枚 1.5f 白色飞行粒子指向它。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 110" CanvasWidget.Position="12, 238" />
+	<LabelWidget Text="魔耗公式：2 × 堆叠数 × 欧几里得距离（花到目标）。距离越远耗魔越高。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 358" />
+</CanvasWidget>

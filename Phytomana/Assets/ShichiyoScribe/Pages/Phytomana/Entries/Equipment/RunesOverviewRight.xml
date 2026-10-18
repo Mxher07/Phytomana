@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="符文一览·续" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="中阶符文（800mn，每次炼 1 枚）" FontScale="0.9" Color="70, 40, 10" Size="420, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="春之符文：树苗 ×3 + 面包 + 水之符文 + 火之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 88" />
+	<LabelWidget Text="夏之符文：沙子 ×2 + 石灰石 + 南瓜 + 地之符文 + 风之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 114" />
+	<LabelWidget Text="秋之符文：树叶 ×3 + 腐肉 + 火之符文 + 风之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 140" />
+	<LabelWidget Text="冬之符文：雪球 ×2 + 地毯 + 南瓜汤（返还空桶）+ 水之符文 + 地之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 166" />
+	<LabelWidget Text="魔力符文（580mn）：魔力钻石 + 魔力钢锭 ×2" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 192" />
+	<LabelWidget Text="高阶符文（1200mn，每次炼 1 枚）" FontScale="0.9" Color="70, 40, 10" Size="420, 24" CanvasWidget.Position="12, 222" />
+	<LabelWidget Text="欲望符文：魔力钻石 ×2 + 夏之符文 + 风之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 248" />
+	<LabelWidget Text="暴食符文：魔力钻石 ×2 + 冬之符文 + 火之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 274" />
+	<LabelWidget Text="贪婪符文：魔力钻石 ×2 + 春之符文 + 水之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 300" />
+	<LabelWidget Text="懒惰符文：魔力钻石 ×2 + 秋之符文 + 风之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 326" />
+	<LabelWidget Text="暴怒符文：魔力钻石 ×2 + 秋之符文 + 地之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 352" />
+	<LabelWidget Text="嫉妒符文：魔力钻石 ×2 + 冬之符文 + 水之符文" FontScale="0.8" Color="110, 80, 40" Size="420, 24" CanvasWidget.Position="12, 378" />
+</CanvasWidget>

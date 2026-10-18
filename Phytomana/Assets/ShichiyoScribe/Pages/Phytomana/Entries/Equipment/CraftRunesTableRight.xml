@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="合成贴士" FontScale="0.9" Color="70, 40, 10" Size="200, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="工作台 3×3 配方：中央一格放魔力钻石，其余八格填满生息岩。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="魔力钻石需在魔法池中注入 400mn 后由钻石凝成；魔力不足时无法完成转化。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 60" CanvasWidget.Position="12, 122" />
+	<LabelWidget Text="一块符文台可同时存放多份材料并行炼制，是符文产线的核心。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 192" />
+</CanvasWidget>

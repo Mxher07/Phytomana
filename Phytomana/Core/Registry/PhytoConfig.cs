@@ -71,7 +71,7 @@ namespace Phytomana {
         /// <summary>荆棘之花每次刺击消耗的魔力。</summary>
         public float ThornyRoseManaCost = TileThornyRose.DefaultManaCost;
 
-        /// <summary>荆棘之花每次刺击造成的伤害（1 点 ≈ 目标最大生命的 10%）。</summary>
+        /// <summary>荆棘之花每次刺击造成的固定伤害（按 1 点 = 目标最大生命 10% 的点数刻度，2.5 点 = 25%）。</summary>
         public float ThornyRoseDamage = TileThornyRose.DefaultDamage;
 
         /// <summary>荆棘之花攻击范围的半边长（刺击 2×该值 边长的立方）。</summary>
@@ -87,6 +87,75 @@ namespace Phytomana {
 
         /// <summary>符文台魔力上限（需容纳最高 1200mn 的炼制消耗）。</summary>
         public float RunesTableMaxMana = 2000f;
+
+        // ===== 魔力发射器 =====
+
+        /// <summary>发射器魔力上限（此前硬编码在 SubsystemMana）。</summary>
+        public float SpreaderMaxMana = 1200f;
+
+        // ===== 魔力石板 =====
+
+        /// <summary>魔力石板空板丢入魔法池每 1s 吸走的魔量（此前硬编码 500）。</summary>
+        public float TabletPoolDrainPerSecond = 500f;
+
+        /// <summary>魔力石板充能器：修复一件魔力钢工具/装备 1 点耐久的耗魔（镐/弯刀/斧）。</summary>
+        public float TabletRepairCostTool = 52f;
+
+        /// <summary>魔力石板充能器：修复护甲（胸甲/护腿）1 点耐久的耗魔。</summary>
+        public float TabletRepairCostArmor = 45f;
+
+        /// <summary>魔力石板充能器：修复其余（铲/头盔/靴子）1 点耐久的耗魔。</summary>
+        public float TabletRepairCostOther = 35f;
+
+        // ===== 世界生成（须弥花群） =====
+
+        /// <summary>每区块生成须弥小散群的概率（百分比，默认 12）。</summary>
+        public int SumeruSmallGroupChancePercent = 12;
+
+        /// <summary>大花群数量分布：roll &lt; 该值 → 0 群，&lt; 下一阈值 → 1 群，否则 2 群。</summary>
+        public int SumeruBigPatchZeroRoll = 30;
+
+        public int SumeruBigPatchOneRoll = 75;
+
+        // ===== 泰拉装备 =====
+
+        /// <summary>泰拉工具自然魔力修复耗魔（每点耐久，默认 60）。</summary>
+        public float TerraEquipRepairCost = 60f;
+
+        /// <summary>泰拉套装：工具魔力修复耗魔减免（默认 0.2 = 20%）。</summary>
+        public float TerraToolRepairDiscount = 0.2f;
+
+        /// <summary>魔力钢套装：魔力修复耗魔减免（默认 0.45 = 45%）。</summary>
+        public float ManaSteelRepairDiscount = 0.45f;
+
+        // ===== 泰拉破坏者 =====
+
+        /// <summary>泰拉破坏者各级所需魔力：索引 = 等级（D=0 无需求，C=1..SS=5）。</summary>
+        public float TerraBreakerLevelMana = 0f;
+
+        public float TerraBreakerLevelCMana = 380f;
+
+        public float TerraBreakerLevelBMana = 3800f;
+
+        public float TerraBreakerLevelAMana = 38000f;
+
+        public float TerraBreakerLevelSMana = 380000f;
+
+        public float TerraBreakerLevelSSMana = 3800000f;
+
+        /// <summary>泰拉破坏者每额外挖掘一格扣魔。</summary>
+        public float TerraBreakerPerBlockCost = 7f;
+
+        /// <summary>泰拉破坏者魔力池充能速率（1000mn/s）。</summary>
+        public float TerraBreakerPoolChargeRate = 1000f;
+
+        // ===== 荆棘之刺 =====
+
+        /// <summary>荆棘之刺秒杀阈值：最大生命低于该值（即 Injure 百分比）的目标被一击致死。</summary>
+        public float ThornyRoseKillThreshold = 0.25f;
+
+        /// <summary>荆棘之刺是否默认开机（存档缺省值）。</summary>
+        public bool ThornyRoseDefaultPowered = true;
 
         public void Save(XElement element) {
             element.SetAttributeValue("TransferInterval", Format(TransferInterval));
@@ -109,6 +178,14 @@ namespace Phytomana {
             element.SetAttributeValue("ThornyRosePoolDrawAmount", Format(ThornyRosePoolDrawAmount));
             element.SetAttributeValue("ThornyRosePoolSearchRange", Format(ThornyRosePoolSearchRange));
             element.SetAttributeValue("RunesTableMaxMana", Format(RunesTableMaxMana));
+            element.SetAttributeValue("SpreaderMaxMana", Format(SpreaderMaxMana));
+            element.SetAttributeValue("TabletPoolDrainPerSecond", Format(TabletPoolDrainPerSecond));
+            element.SetAttributeValue("TabletRepairCostTool", Format(TabletRepairCostTool));
+            element.SetAttributeValue("TabletRepairCostArmor", Format(TabletRepairCostArmor));
+            element.SetAttributeValue("TabletRepairCostOther", Format(TabletRepairCostOther));
+            element.SetAttributeValue("SumeruSmallGroupChancePercent", SumeruSmallGroupChancePercent.ToString(CultureInfo.InvariantCulture));
+            element.SetAttributeValue("SumeruBigPatchZeroRoll", SumeruBigPatchZeroRoll.ToString(CultureInfo.InvariantCulture));
+            element.SetAttributeValue("SumeruBigPatchOneRoll", SumeruBigPatchOneRoll.ToString(CultureInfo.InvariantCulture));
         }
 
         public void Load(XElement element) {
@@ -135,6 +212,14 @@ namespace Phytomana {
             ThornyRosePoolDrawAmount = Read(element, "ThornyRosePoolDrawAmount", ThornyRosePoolDrawAmount);
             ThornyRosePoolSearchRange = Read(element, "ThornyRosePoolSearchRange", ThornyRosePoolSearchRange);
             RunesTableMaxMana = Read(element, "RunesTableMaxMana", RunesTableMaxMana);
+            SpreaderMaxMana = Read(element, "SpreaderMaxMana", SpreaderMaxMana);
+            TabletPoolDrainPerSecond = Read(element, "TabletPoolDrainPerSecond", TabletPoolDrainPerSecond);
+            TabletRepairCostTool = Read(element, "TabletRepairCostTool", TabletRepairCostTool);
+            TabletRepairCostArmor = Read(element, "TabletRepairCostArmor", TabletRepairCostArmor);
+            TabletRepairCostOther = Read(element, "TabletRepairCostOther", TabletRepairCostOther);
+            SumeruSmallGroupChancePercent = ReadInt(element, "SumeruSmallGroupChancePercent", SumeruSmallGroupChancePercent);
+            SumeruBigPatchZeroRoll = ReadInt(element, "SumeruBigPatchZeroRoll", SumeruBigPatchZeroRoll);
+            SumeruBigPatchOneRoll = ReadInt(element, "SumeruBigPatchOneRoll", SumeruBigPatchOneRoll);
         }
 
         public static string Format(float value) => value.ToString(CultureInfo.InvariantCulture);
@@ -142,6 +227,14 @@ namespace Phytomana {
         public static float Read(XElement element, string name, float defaultValue) {
             string text = (string)element.Attribute(name);
             return float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value) && value >= 0f
+                ? value
+                : defaultValue;
+        }
+
+        /// <summary>读取非负整数配置（区别于 Read 的正整数校验，允许 0，供世界生成阈值使用）。</summary>
+        public static int ReadInt(XElement element, string name, int defaultValue) {
+            string text = (string)element.Attribute(name);
+            return int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out int value) && value >= 0
                 ? value
                 : defaultValue;
         }

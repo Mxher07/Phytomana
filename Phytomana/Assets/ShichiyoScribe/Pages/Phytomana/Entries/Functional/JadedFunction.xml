@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CanvasWidget xmlns="runtime-namespace:Game" Size="444, 408">
+	<LabelWidget Text="翡翠菜·功能说明" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
+	<LabelWidget Text="功能" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 62" />
+	<LabelWidget Text="消耗魔力在周围快速生成随机颜色的须弥花。" WordWrap="true" FontScale="0.85" Color="80, 60, 36" Size="420, 40" CanvasWidget.Position="12, 88" />
+	<LabelWidget Text="取魔方式" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 138" />
+	<LabelWidget Text="与其他功能花相同的范围搜寻魔力池；发射器主动供魔亦可（每生成 1 株耗 35mn）。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 56" CanvasWidget.Position="12, 164" />
+	<LabelWidget Text="机关" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 230" />
+	<LabelWidget Text="须弥法杖「绑定模式」点击本花即可开关机，默认关机；关闭后不耗魔、不种花。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 56" CanvasWidget.Position="12, 256" />
+	<LabelWidget Text="放置要求" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 322" />
+	<LabelWidget Text="仅能在泥土/草地表面放置（与全部产能/功能花一致），否则掉落并自掘。" WordWrap="true" FontScale="0.8" Color="110, 80, 40" Size="420, 40" CanvasWidget.Position="12, 348" />
+</CanvasWidget>

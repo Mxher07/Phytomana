@@ -58,7 +58,17 @@ namespace Game {
 
         public int m_jadedIndex;
 
-        public SubsystemRunesTableBehavior m_subsystemRunesTable;
+        public int m_claySandIndex;
+
+        public int m_aciIndex;
+
+        public int m_transChestV2Index;
+
+        public int m_thornyRoseIndex;
+
+        public int m_terraSlabIndex;
+
+        public SubsystemTerraSlabBehavior m_subsystemTerraSlab;
 
         public override void Load(ValuesDictionary valuesDictionary) {
             base.Load(valuesDictionary);
@@ -76,7 +86,12 @@ namespace Game {
             m_runesTableIndex = BlocksManager.GetBlockIndex<RunesTableBlock>();
             m_chestTransIndex = BlocksManager.GetBlockIndex<ChestTransFlower>();
             m_jadedIndex = BlocksManager.GetBlockIndex<JadedFlower>();
-            m_subsystemRunesTable = Project.FindSubsystem<SubsystemRunesTableBehavior>(false);
+            m_claySandIndex = BlocksManager.GetBlockIndex<ClaySandFlower>();
+            m_aciIndex = BlocksManager.GetBlockIndex<AciFlower>();
+            m_transChestV2Index = BlocksManager.GetBlockIndex<TransChestV2Flower>();
+            m_thornyRoseIndex = BlocksManager.GetBlockIndex<ThornyRoseFlower>();
+            m_terraSlabIndex = BlocksManager.GetBlockIndex<TerraSlabBlock>();
+            m_subsystemTerraSlab = Project.FindSubsystem<SubsystemTerraSlabBehavior>(false);
             PhytoNet.HandleStaffUseServer = HandleStaffUseFromClient;
             PhytoNet.HandleStaffStatusClient = HandleStaffStatusReply;
         }
@@ -130,31 +145,18 @@ namespace Game {
             }
         }
 
+        /// <summary>
+        /// 链路魔力搬运规则归属 <see cref="SubsystemMana"/>（网络层）；
+        /// 法杖行为只负责把「本轮实际传输的链路」转成粒子表现。
+        /// </summary>
         public void UpdateLinkTransfers(float dt) {
             if (NetworkManager.IsClientRunning) {
                 return;
             }
-            foreach (ManaLink link in m_subsystemMana.m_links) {
-                link.TransferAccumulator += dt;
-                while (link.TransferAccumulator >= SubsystemMana.StaffLinkTransferPeriod) {
-                    link.TransferAccumulator -= SubsystemMana.StaffLinkTransferPeriod;
-                    Point3 from = link.From;
-                    Point3 to = link.To;
-                    if (m_subsystemTerrain.Terrain.GetCellContents(from) != m_spreaderIndex
-                        || !m_subsystemMana.IsManaStorage(m_subsystemTerrain.Terrain.GetCellContents(to))) {
-                        continue;
-                    }
-                    int toContents = m_subsystemTerrain.Terrain.GetCellContents(to);
-                    float maxTarget = m_subsystemMana.GetMaxManaAmount(toContents);
-                    if (m_subsystemMana.GetManaAmount(from) >= SubsystemMana.StaffLinkTransferAmount
-                        && maxTarget - m_subsystemMana.GetManaAmount(to) >= SubsystemMana.StaffLinkTransferAmount) {
-                        m_subsystemMana.RemoveMana(from, SubsystemMana.StaffLinkTransferAmount);
-                        m_subsystemMana.AddMana(to, SubsystemMana.StaffLinkTransferAmount);
-                        QueueTransferParticles(from, to);
-                    }
-                }
+            List<(Point3, Point3)> transferred = m_subsystemMana.AdvanceLinkTransfers(dt);
+            for (int i = 0; i < transferred.Count; i++) {
+                QueueTransferParticles(transferred[i].Item1, transferred[i].Item2);
             }
-            m_subsystemMana.PruneLinks();
         }
 
         public void UpdatePendingParticles(double time) {
@@ -228,13 +230,34 @@ namespace Game {
                 }
                 return handled;
             }
-            // 符文台：工作模式右键触发炼制（材料齐备 + 生息岩引子 + 魔力）
-            if (contents == m_runesTableIndex && m_subsystemRunesTable != null) {
-                bool crafted = m_subsystemRunesTable.TryCraftByStaff(player, point);
+            // 合成毯：工作模式指向时显示结构/魔力/材料状态（法杖状态入口）
+            if (contents == m_terraSlabIndex
+                && m_subsystemTerraSlab != null) {
                 if (NetworkManager.IsClientRunning && isMain) {
                     SendStaffUseRequest(ray, crouch: false);
+                    return true;
                 }
-                return crafted;
+                m_subsystemTerraSlab.ShowStatus(point, player);
+                return true;
+            }
+            // 法杖工作模式点中可交互方块：经事件总线路由给订阅方（如符文台），
+            // 法杖不再直接依赖具体功能方块子系统（依赖反转）。
+            if (contents == m_runesTableIndex) {
+                StaffInteractionEvent evt = new(point, player);
+                PhytoEventBus.Fire(evt);
+                if (evt.Handled) {
+                    if (NetworkManager.IsClientRunning && isMain) {
+                        SendStaffUseRequest(ray, crouch: false);
+                    }
+                    return true;
+                }
+            }
+            // 传输箱洋：工作模式指向本花时显示绑定目标并放白色飞行粒子（无绑定则只提示消息）
+            if (contents == m_transChestV2Index
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedTransV2)
+                && clickedTransV2 is TileTransChestV2Flower transChestV2) {
+                transChestV2.OnStaffCheck(player);
+                return true;
             }
             // 状态分支：联机客户端只发请求，由服务器回执数据后显示真实数值。
             if (NetworkManager.IsClientRunning && isMain) {
@@ -301,8 +324,23 @@ namespace Game {
                 HandleBindingClick(player, state, point, contents);
                 return;
             }
-            if (contents == m_runesTableIndex && m_subsystemRunesTable != null) {
-                m_subsystemRunesTable.TryCraftByStaff(player, point);
+            // 合成毯：回执魔力与最缺一档的缺口数（材料为服务器端掉落物状态）
+            if (contents == m_terraSlabIndex && m_subsystemTerraSlab != null) {
+                SendStaffStatusReply(packet, StatusKindTerraSlab, point, contents, false, false, false, 0f, m_subsystemTerraSlab.IsStructureValid(point));
+                return;
+            }
+            // 法杖交互：经事件总线路由（如符文台炼制，服务器直接消费事件）
+            if (contents == m_runesTableIndex) {
+                StaffInteractionEvent evt = new(point, player);
+                PhytoEventBus.Fire(evt);
+                if (evt.Handled) {
+                    return;
+                }
+            }
+            // 传输箱洋：客户端已在本地执行了 OnStaffCheck 的提示/粒子，服务器无需重复
+            if (contents == m_transChestV2Index
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedTransV2)
+                && clickedTransV2 is TileTransChestV2Flower) {
                 return;
             }
             if (TryGetFlowerStatus(point, contents, out bool producing, out bool draining, out bool sleeping, out float rate)) {
@@ -324,6 +362,8 @@ namespace Game {
 
         public const int StatusKindStorage = 2;
 
+        public const int StatusKindTerraSlab = 3;
+
         public bool TryGetFlowerStatus(Point3 point, int contents, out bool producing, out bool draining, out bool sleeping, out float rate) {
             producing = false;
             draining = false;
@@ -339,7 +379,7 @@ namespace Game {
             return true;
         }
 
-        public void SendStaffStatusReply(PhytoModPacket request, int kind, Point3 point, int contents, bool producing, bool draining, bool sleeping, float rate) {
+        public void SendStaffStatusReply(PhytoModPacket request, int kind, Point3 point, int contents, bool producing, bool draining, bool sleeping, float rate, bool structureValid = false) {
             PhytoModPacket reply = new() {
                 Command = PhytoCommand.StaffStatusReply,
                 PlayerIndex = request.PlayerIndex,
@@ -347,10 +387,13 @@ namespace Game {
                 PointA = point,
                 ByteA = PhytoNet.PackFlags(producing, draining, sleeping),
                 ByteB = (byte)kind,
+                BoolA = structureValid,
                 FloatA = m_subsystemMana.GetManaAmount(point),
                 FloatB = m_subsystemMana.GetMaxManaAmount(contents),
                 FloatC = m_subsystemMana.GetOutgoingUsage(point),
-                FloatD = rate,
+                FloatD = kind == StatusKindTerraSlab && m_subsystemTerraSlab != null
+                    ? m_subsystemTerraSlab.GetMissingTierCount(point)
+                    : rate,
             };
             PhytoNet.ReplyTo(request, reply);
         }
@@ -374,6 +417,7 @@ namespace Game {
             bool sleeping = PhytoNet.HasFlag(packet.ByteA, 2);
             string name = GetBlockName(point);
             string message;
+            Color messageColor = Color.Green;
             switch (packet.ByteB) {
                 case StatusKindSpreader: {
                     string status = mana > 0f || usage > 0f
@@ -399,6 +443,24 @@ namespace Game {
                         FormatMana(mana),
                         FormatMana(max),
                         status
+                    );
+                    break;
+                }
+                case StatusKindTerraSlab: {
+                    if (!packet.BoolA) {
+                        message = LanguageControl.Get("GrownStaffMessages", "SlabStructureInvalid");
+                        messageColor = Color.Red;
+                        break;
+                    }
+                    int missing = (int)packet.FloatD;
+                    string materials = missing <= 0
+                        ? LanguageControl.Get("GrownStaffMessages", "SlabMaterialsReady")
+                        : string.Format(LanguageControl.Get("GrownStaffMessages", "SlabMissingItems"), missing);
+                    message = string.Format(
+                        LanguageControl.Get("GrownStaffMessages", "SlabStatusFormat"),
+                        FormatMana(mana),
+                        FormatMana(max),
+                        materials
                     );
                     break;
                 }
@@ -433,7 +495,7 @@ namespace Game {
                     break;
                 }
             }
-            player.ComponentGui.DisplaySmallMessage(message, Color.Green, false, false);
+            player.ComponentGui.DisplaySmallMessage(message, messageColor, false, false);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
 
@@ -452,6 +514,40 @@ namespace Game {
                 && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedJaded)
                 && clickedJaded is TileJadedFlower jaded) {
                 jaded.TogglePower(player);
+                return true;
+            }
+            // 绑定模式下未选起始点时点击黏土沙馨：开关机
+            if (!state.BindStart.HasValue
+                && contents == m_claySandIndex
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedClaySand)
+                && clickedClaySand is TileClaySandFlower claySand) {
+                claySand.TogglePower(player);
+                return true;
+            }
+            // 绑定模式下未选起始点时点击荆棘之刺：开关机（默认开机）
+            if (!state.BindStart.HasValue
+                && contents == m_thornyRoseIndex
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedRose)
+                && clickedRose is TileThornyRose thornyRose) {
+                thornyRose.TogglePower(player);
+                return true;
+            }
+            // 绑定模式下：传输箱洋绑定目标方块（两步：先点本花记起点，再点目标方块；
+            // 目标可以是任意方块，故须以「起点是传输箱洋」判定，而非「当前点击的是传输箱洋」）
+            if (state.BindStart.HasValue
+                && m_flowerScheduler.TryGetFlower(state.BindStart.Value, out TilePhytoFlower v2StartFlower)
+                && v2StartFlower is TileTransChestV2Flower transChestV2) {
+                state.BindStart = null;
+                transChestV2.SetBindTarget(point, player);
+                return true;
+            }
+            if (!state.BindStart.HasValue
+                && contents == m_transChestV2Index
+                && m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower clickedV2)
+                && clickedV2 is TileTransChestV2Flower transChestV2Start) {
+                // 第一步：以花为起点
+                state.BindStart = point;
+                ShowMessage(player, "TransChestV2BindStart", Color.White, true, point.X, point.Y, point.Z);
                 return true;
             }
             // 花朵默认不可绑定；但具备魔力容量的功能花（如荆棘之花）允许作为链路目标

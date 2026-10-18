@@ -3,7 +3,7 @@
 	<LabelWidget Text="热力百合·产能方式" FontScale="0.9" Color="70, 40, 10" Size="240, 26" CanvasWidget.Position="10, 32" />
 	<LabelWidget Text="① 每 1.5 秒扫描一次六邻域，寻觅岩浆块。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 62" />
 	<LabelWidget Text="② 吞入一块岩浆，随即约 2 秒的灼亮表演（吸收期间不计下一次）。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 116" />
-	<LabelWidget Text="③ 每块被吞噬的岩浆回报 250 mn，魔力随即渡给邻域发射器与链路。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
+	<LabelWidget Text="③ 每块被吞噬的岩浆按档位回报魔力：桶可装的完整岩浆 375 mn（250 × 1.5），流动的薄岩浆仅 37.5 mn（250 × 0.15）；魔力随即渡给邻域发射器与链路。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 170" />
 	<LabelWidget Text="④ 满 1200 mn 便饱则休眠；相邻无发射器收魔时，魔力以每秒 5 mn 流失。" FontScale="0.8" Color="80, 60, 36" Size="420, 50" CanvasWidget.Position="12, 224" />
 	<LabelWidget Text="产量曲线" FontScale="0.9" Color="70, 40, 10" Size="120, 24" CanvasWidget.Position="12, 286" />
 	<LabelWidget Text="一株百合若被岩浆环绕，吞吐之间很快就能喂满一口池子，是重生产力的首选。" FontScale="0.8" Color="110, 80, 40" Size="420, 50" CanvasWidget.Position="12, 314" />
