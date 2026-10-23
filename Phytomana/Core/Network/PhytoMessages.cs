@@ -22,7 +22,9 @@ namespace Phytomana {
             }
             if (CommonLib.WorkType == WorkType.Server) {
                 Client client = player.PlayerData.Client;
-                if (client != null) {
+                // 只有真正连上网络的远端客户端才走回执包；主机内置的 Self 玩家没有网络 Peer，
+                // 发包永远到不了本机 UI（表现为只听到音效、看不到文字），必须本地直显。
+                if (client != null && !ReferenceEquals(client, CommonLib.Net.Self)) {
                     CommonLib.Net.QueuePackage(new SmallMessagePackage(text, color, blinking, playSound) { To = client });
                     return;
                 }

@@ -16,6 +16,7 @@ namespace Phytomana {
             ModsManager.RegisterHook("BlocksInitalized", this, 1);
             ModsManager.RegisterHook("OnProjectLoaded", this, 1);
             ModsManager.RegisterHook("OnTerrainContentsGenerated", this, 1);
+            ModsManager.RegisterHook("BeforeMinerPlace", this, 1);
             TerraToolHooks terraToolHooks = new();
             ModsManager.RegisterHook("OnMinerHit2", terraToolHooks, 1);
             ModsManager.RegisterHook("OnMinerDig", terraToolHooks, 1);
@@ -54,6 +55,34 @@ namespace Phytomana {
         /// <summary>全新区块地形内容生成完毕：种上须弥花群（存档加载的区块不会走这里）。</summary>
         public override void OnTerrainContentsGenerated(TerrainChunk chunk) {
             SumeruPatchGenerator.OnChunkGenerated(chunk);
+        }
+
+        /// <summary>
+        /// 手持水桶瞄准花药台时取消原版的倒水放置。
+        /// 原版交互顺序是先物品 OnUse 再目标块 OnInteract：水桶会把水倒在花药台上方的空格，
+        /// Use 返回成功后花药台永远收不到 OnInteract，水也就注不进去。
+        /// 这里拦截这次放置让 Use 返回 false，引擎随后回落到 OnInteract，
+        /// 由 SubsystemFlowerTableBehavior.FillWater 完成灌水/换桶。
+        /// </summary>
+        public override void BeforeMinerPlace(
+            ComponentMiner componentMiner,
+            TerrainRaycastResult terrainRaycastResult,
+            int x,
+            int y,
+            int z,
+            BlockPlacementData placementData,
+            out bool placementNotAllowed
+        ) {
+            placementNotAllowed = false;
+            if (componentMiner.m_subsystemTerrain == null) {
+                return;
+            }
+            if (Terrain.ExtractContents(componentMiner.ActiveBlockValue) != BlocksManager.GetBlockIndex<WaterBucketBlock>()) {
+                return;
+            }
+            CellFace cellFace = terrainRaycastResult.CellFace;
+            var target = BlocksManager.Blocks[componentMiner.m_subsystemTerrain.Terrain.GetCellContents(cellFace.X, cellFace.Y, cellFace.Z)];
+            placementNotAllowed = target is FlowerTableBlock;
         }
 
         public override void ModDispose() {

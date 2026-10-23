@@ -1,5 +1,6 @@
 using Engine.Core;
 using Engine.Graphics;
+using Phytomana;
 
 namespace Game {
     /// <summary>
@@ -44,7 +45,10 @@ namespace Game {
             // 提取底座网格及其父骨骼的绝对变换，确保模型骨骼层级不会丢失。
             var poolMesh = model.FindMesh("base");
             Matrix poolBone = BlockMesh.GetBoneAbsoluteTransform(poolMesh.ParentBone);
-            m_meshStone.AppendModelMeshPart(
+            // 联机版 gltf 网格带自动生成的切线（4 元素顶点格式），原生 AppendModelMeshPart
+            // 只接受 3 元素格式，故经兼容层重打包后再附加。
+            GltfBlockMeshCompat.AppendModelMeshPart(
+                m_meshStone,
                 poolMesh.MeshParts[0],
                 // 模型原点向下偏移半个方块，使底座落在方块底部。
                 poolBone * Matrix.CreateTranslation(0f, -0.5f, 0f),
@@ -56,7 +60,8 @@ namespace Game {
             // 提取液体网格，并将其初始位置放在底座上方。
             var manaMesh = model.FindMesh("mana");
             Matrix manaBone = BlockMesh.GetBoneAbsoluteTransform(manaMesh.ParentBone);
-            m_meshMana.AppendModelMeshPart(
+            GltfBlockMeshCompat.AppendModelMeshPart(
+                m_meshMana,
                 manaMesh.MeshParts[0],
                 manaBone * Matrix.CreateTranslation(0f, 0.5f, 0f),
                 false, false, false, false,

@@ -36,7 +36,9 @@ namespace Game {
             // 模型的网格名可能未绑定，直接取第一个网格（本模型只有一个整体台座网格）。
             ModelMesh tableMesh = model.Meshes[0];
             Matrix tableBone = BlockMesh.GetBoneAbsoluteTransform(tableMesh.ParentBone);
-            m_meshTable.AppendModelMeshPart(
+            // 联机版 gltf 网格带自动生成的切线（4 元素顶点格式），经兼容层重打包后再附加。
+            GltfBlockMeshCompat.AppendModelMeshPart(
+                m_meshTable,
                 tableMesh.MeshParts[0],
                 tableBone * Matrix.CreateTranslation(0f, -0.5f, 0f),
                 false, false, false, false,

@@ -34,7 +34,9 @@ public static int Index = 305;
 
             var poolMesh = model.FindMesh("base");
             Matrix poolBone = BlockMesh.GetBoneAbsoluteTransform(poolMesh.ParentBone);
-            m_meshStone.AppendModelMeshPart(
+            // 联机版 gltf 网格带自动生成的切线（4 元素顶点格式），经兼容层重打包后再附加。
+            GltfBlockMeshCompat.AppendModelMeshPart(
+                m_meshStone,
                 poolMesh.MeshParts[0],
                 poolBone * Matrix.CreateTranslation(0f, -0.5f, 0f),
                 false, false, false, false,
@@ -44,7 +46,8 @@ public static int Index = 305;
 
             var manaMesh = model.FindMesh("water");
             Matrix manaBone = BlockMesh.GetBoneAbsoluteTransform(manaMesh.ParentBone);
-            m_meshMana.AppendModelMeshPart(
+            GltfBlockMeshCompat.AppendModelMeshPart(
+                m_meshMana,
                 manaMesh.MeshParts[0],
                 manaBone * Matrix.CreateTranslation(0f, 0.5f, 0f),
                 false, false, false, false,
