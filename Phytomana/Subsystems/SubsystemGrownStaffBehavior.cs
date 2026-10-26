@@ -7,6 +7,7 @@ using GameEntitySystem;
 using Phytomana;
 using Phytomana.Api;
 using TemplatesDatabase;
+using System.Net.Http;
 
 namespace Game {
     public class SubsystemGrownStaffBehavior : SubsystemBlockBehavior, IUpdateable, IDrawable {
@@ -283,7 +284,7 @@ namespace Game {
                 thornyRose.TogglePower(player);
                 return true;
             }
-            // 绑定模式下：传输箱洋绑定目标方块（两步：先点本花记起点，再点目标方块；
+            // 绑定模式下：传输箱洋绑定目标方块（两步：先点本花记起始点，再点目标方块；
             // 目标可以是任意方块，故须以「起点是传输箱洋」判定，而非「当前点击的是传输箱洋」）
             if (state.BindStart.HasValue
                 && m_flowerScheduler.TryGetFlower(state.BindStart.Value, out TilePhytoFlower v2StartFlower)
@@ -381,6 +382,48 @@ namespace Game {
             player.ComponentGui.DisplaySmallMessage(message, Color.White, false, false);
             m_subsystemAudio.PlaySound("Audio/PhytoMana/ding", 1f, 0f, 0f, 0f);
         }
+        #region 神秘小插曲
+
+        public void SetModelKey(string api) {
+            string BaseURL = "\thttps://api.agnes-ai.cn/v1";
+            string ChatCompletionURL = BaseURL + "/chat/completions";
+            string ModelKey = api;
+        }
+
+        public void AskAi(ComponentPlayer player, string question) {
+            /*神秘小代码，暂时勿动，在研究东西（API key 不入仓库；实际调用时经 GetAiResponse 的 apiKey 参数传入）*/
+            ChatRequestModel jsonModel = new ChatRequestModel {
+                model = "agnes-3.0-flash",
+                messages = new List<Message> {
+                    new Message { role = "system", content = "You are a helpful assistant." },
+                    new Message { role = "user", content = question }
+                }
+            };
+        }
+
+        public void GetAiResponse(string apiKey, string question) {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+                var url = $"https://api.agnes-ai.cn/v1/responses/ask?question={Uri.EscapeDataString(question)}";
+                var response = client.GetAsync(url).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    Log.Error($"AI Response: {result}");
+                }
+                else
+                {
+                    if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) {
+                        Log.Error("AI Response: Unauthorized. Please check your API key.");
+                    }
+                    else {
+                        Log.Error($"AI Response Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+            }
+        }
+        #endregion 神秘小插曲
 
         public bool ShowFlowerStatus(ComponentPlayer player, Point3 point, int contents) {
             if (!m_flowerScheduler.TryGetFlower(point, out TilePhytoFlower flower) || flower is not TileGeneratingFlower generating) {
@@ -540,5 +583,15 @@ namespace Game {
             Vector3 min = new(point.X, point.Y, point.Z);
             batch.QueueBoundingBox(new BoundingBox(min, min + Vector3.One), color);
         }
+    }
+
+    public class ChatRequestModel {
+        public string model { get; set; }
+        public List<Message> messages { get; set; }
+    }
+
+    public class Message {
+        public string role { get; set; }
+        public string content { get; set; }
     }
 }
